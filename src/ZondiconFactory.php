@@ -8,7 +8,7 @@ class ZondiconFactory
 {
     private $config = [
         'inline' => false,
-        'class' => 'icon'
+        'class' => 'zondicon'
     ];
 
     private $svgCache;
@@ -19,14 +19,9 @@ class ZondiconFactory
         $this->svgCache = Collection::make();
     }
 
-    public function icon($name, $class)
+    public function icon($name, $class = '')
     {
         return new Zondicon($name, $this->config, $this, $class);
-    }
-
-    public function inline()
-    {
-        return $this->config['inline'];
     }
 
     public function getSvg($name)

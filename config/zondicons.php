@@ -2,5 +2,5 @@
 
 return [
     'inline' => false,
-    'class' => 'icon',
+    'class' => 'zondicon',
 ];

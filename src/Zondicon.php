@@ -57,7 +57,7 @@ class Zondicon
 
     public function renderFromSprite()
     {
-        return vsprintf('<svg class="%s"%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#%s"></use></svg>', [
+        return vsprintf('<svg class="%s"%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-%s"></use></svg>', [
             $this->buildClass(),
             $this->renderAttributes(),
             $this->icon
