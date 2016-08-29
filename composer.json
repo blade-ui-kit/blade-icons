@@ -7,7 +7,9 @@
         }
     ],
     "require": {
-        "illuminate/support": "^5.3"
+        "illuminate/support": "^5.3",
+        "illuminate/filesystem": "^5.3",
+        "mockery/mockery": "^0.9.5"
     },
     "autoload": {
         "psr-4": {
