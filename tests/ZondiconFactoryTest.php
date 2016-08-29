@@ -10,7 +10,7 @@ class ZondiconFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factory = new ZondiconFactory(['class' => 'zondicon']);
         $result = (string) $factory->icon('arrow-thick-up');
-        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-arrow-thick-up"></use></svg>';
+        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-arrow-thick-up"></use></svg>';
         $this->assertEquals($expected, $result);
     }
 
@@ -19,7 +19,7 @@ class ZondiconFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factory = new ZondiconFactory();
         $result = (string) $factory->icon('arrow-thick-up');
-        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-arrow-thick-up"></use></svg>';
+        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-arrow-thick-up"></use></svg>';
         $this->assertEquals($expected, $result);
     }
 
@@ -28,7 +28,7 @@ class ZondiconFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factory = new ZondiconFactory(['inline' => false, 'class' => 'zondicon']);
         $result = (string) $factory->icon('arrow-thick-up');
-        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-arrow-thick-up"></use></svg>';
+        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-arrow-thick-up"></use></svg>';
         $this->assertEquals($expected, $result);
     }
 
@@ -46,7 +46,7 @@ class ZondiconFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factory = new ZondiconFactory();
         $result = (string) $factory->icon('arrow-thick-up', 'icon-lg inline-block');
-        $expected = '<svg class="zondicon icon-lg inline-block"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-arrow-thick-up"></use></svg>';
+        $expected = '<svg class="zondicon icon-lg inline-block"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-arrow-thick-up"></use></svg>';
         $this->assertEquals($expected, $result);
     }
 
@@ -55,7 +55,7 @@ class ZondiconFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factory = new ZondiconFactory();
         $result = (string) $factory->icon('arrow-thick-up')->alt('Alt text')->id('arrow-icon');
-        $expected = '<svg class="zondicon" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-arrow-thick-up"></use></svg>';
+        $expected = '<svg class="zondicon" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-arrow-thick-up"></use></svg>';
         $this->assertEquals($expected, $result);
     }
 
@@ -73,7 +73,7 @@ class ZondiconFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factory = new ZondiconFactory(['inline' => true, 'class' => 'zondicon']);
         $result = (string) $factory->icon('arrow-thick-up')->sprite();
-        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-arrow-thick-up"></use></svg>';
+        $expected = '<svg class="zondicon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-arrow-thick-up"></use></svg>';
         $this->assertEquals($expected, $result);
     }
 
