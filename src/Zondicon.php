@@ -7,42 +7,41 @@ use Illuminate\Support\Collection;
 class Zondicon
 {
     private $icon;
-    private $config;
+    private $renderMode;
     private $factory;
-    private $class = '';
     private $attrs = [];
 
-    public function __construct($icon, $config, $factory, $class = '')
+    public function __construct($icon, $renderMode, $factory, $attrs = [])
     {
         $this->icon = $icon;
-        $this->config = $config;
+        $this->renderMode = $renderMode;
         $this->factory = $factory;
-        $this->class = $class;
+        $this->attrs = $attrs;
     }
 
     public function __toString()
     {
-        return $this->config['inline'] ? $this->renderInline() : $this->renderFromSprite();
+        return call_user_func([
+            'inline' => [$this, 'renderInline'],
+            'sprite' => [$this, 'renderFromSprite'],
+        ][$this->renderMode]);
     }
 
     public function __call($method, $args)
     {
-        $this->attrs[] = [
-            'attribute' => snake_case($method, '-'),
-            'value' => count($args) ? $args[0] : null
-        ];
+        $this->attrs[snake_case($method, '-')] = array_merge($args, [true])[0];
         return $this;
     }
 
     public function inline()
     {
-        $this->config['inline'] = true;
+        $this->renderMode = 'inline';
         return $this;
     }
 
     public function sprite()
     {
-        $this->config['inline'] = false;
+        $this->renderMode = 'sprite';
         return $this;
     }
 
@@ -50,23 +49,17 @@ class Zondicon
     {
         return str_replace(
             '<svg',
-            sprintf('<svg class="%s"%s', $this->buildClass(), $this->renderAttributes()),
+            sprintf('<svg%s', $this->renderAttributes()),
             $this->factory->getSvg($this->icon)
         );
     }
 
     public function renderFromSprite()
     {
-        return vsprintf('<svg class="%s"%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-%s"></use></svg>', [
-            $this->buildClass(),
+        return vsprintf('<svg%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicons-%s"></use></svg>', [
             $this->renderAttributes(),
             $this->icon
         ]);
-    }
-
-    private function buildClass()
-    {
-        return trim(sprintf('%s %s', $this->config['class'], $this->class));
     }
 
     private function renderAttributes()
@@ -75,11 +68,11 @@ class Zondicon
             return '';
         }
 
-        return ' '.collect($this->attrs)->map(function ($attr) {
-            if ($attr['value'] === null) {
-                return $attr['attribute'];
+        return ' '.collect($this->attrs)->map(function ($value, $attr) {
+            if ($value === true) {
+                return $attr;
             }
-            return sprintf('%s="%s"', $attr['attribute'], $attr['value']);
+            return sprintf('%s="%s"', $attr, $value);
         })->implode(' ');
     }
 }

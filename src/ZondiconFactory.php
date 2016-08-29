@@ -24,7 +24,17 @@ class ZondiconFactory
 
     public function icon($name, $class = '')
     {
-        return new Zondicon($name, $this->config, $this, $class);
+        return new Zondicon($name, $this->renderMode(), $this, ['class' => $this->buildClass($class)]);
+    }
+
+    private function renderMode()
+    {
+        return $this->config['inline'] ? 'inline' : 'sprite';
+    }
+
+    private function buildClass($class)
+    {
+        return trim(sprintf('%s %s', $this->config['class'], $class));
     }
 
     public function getSvg($name)
