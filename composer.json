@@ -1,0 +1,20 @@
+{
+    "name": "zondicons/blade-bridge",
+    "authors": [
+        {
+            "name": "Adam Wathan",
+            "email": "adam.wathan@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zondicons\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
