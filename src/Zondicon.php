@@ -6,62 +6,80 @@ use Illuminate\Support\Collection;
 
 class Zondicon
 {
-    private $config = [
-        'inline' => false,
-        'class' => 'icon'
-    ];
+    private $icon;
+    private $config;
+    private $factory;
+    private $class = '';
+    private $attrs = [];
 
-    private $svgCache;
-
-    public function __construct($config = [])
+    public function __construct($icon, $config, $factory, $class = '')
     {
-        $this->config = array_merge($this->config, $config);
-        $this->svgCache = Collection::make();
+        $this->icon = $icon;
+        $this->config = $config;
+        $this->factory = $factory;
+        $this->class = $class;
     }
 
-    public function icon($name, $class = '', $attrs = [])
+    public function __toString()
     {
-        return $this->config['inline'] ? $this->inline($name, $class, $attrs) : $this->sprite($name, $class, $attrs);
+        return $this->config['inline'] ? $this->renderInline() : $this->renderFromSprite();
     }
 
-    public function inline($name, $class = '', $attrs = [])
+    public function __call($method, $args)
+    {
+        $this->attrs[] = [
+            'attribute' => snake_case($method, '-'),
+            'value' => count($args) ? $args[0] : null
+        ];
+        return $this;
+    }
+
+    public function inline()
+    {
+        $this->config['inline'] = true;
+        return $this;
+    }
+
+    public function sprite()
+    {
+        $this->config['inline'] = false;
+        return $this;
+    }
+
+    public function renderInline()
     {
         return str_replace(
             '<svg',
-            sprintf('<svg class="%s"%s', $this->buildClass($class), $this->renderAttributes($attrs)),
-            $this->getIconSvg($name)
+            sprintf('<svg class="%s"%s', $this->buildClass(), $this->renderAttributes()),
+            $this->factory->getSvg($this->icon)
         );
     }
 
-    public function sprite($name, $class = '', $attrs = [])
+    public function renderFromSprite()
     {
         return vsprintf('<svg class="%s"%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#%s"></use></svg>', [
-            $this->buildClass($class),
-            $this->renderAttributes($attrs),
-            $name
+            $this->buildClass(),
+            $this->renderAttributes(),
+            $this->icon
         ]);
     }
 
-    private function buildClass($class = '')
+    private function buildClass()
     {
-        return trim(sprintf('%s %s', $this->config['class'], $class));
+        return trim(sprintf('%s %s', $this->config['class'], $this->class));
     }
 
-    private function renderAttributes($attrs)
+    private function renderAttributes()
     {
-        if (count($attrs) == 0) {
+        if (count($this->attrs) == 0) {
             return '';
         }
 
-        return ' '.collect($attrs)->map(function ($value, $key) {
-            return sprintf('%s="%s"', $key, $value);
+        return ' '.collect($this->attrs)->map(function ($attr) {
+            if ($attr['value'] === null) {
+                return $attr['attribute'];
+            }
+            return sprintf('%s="%s"', $attr['attribute'], $attr['value']);
         })->implode(' ');
-    }
-
-    private function getIconSvg($name)
-    {
-        return $this->svgCache->get($name, function () use ($name) {
-            return $this->svgCache[$name] = file_get_contents(sprintf('%s/../resources/icons/%s.svg', __DIR__, $name));
-        });
     }
 }

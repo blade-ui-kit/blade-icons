@@ -22,8 +22,8 @@ if (! function_exists('zondicons')) {
         );
     }
 
-    function zondicon($icon)
+    function zondicon($icon, $class = '')
     {
-        return app(ZondiconFactory::class)->icon($icon);
+        return app(ZondiconFactory::class)->icon($icon, $class);
     }
 }

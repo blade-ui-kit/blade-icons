@@ -19,11 +19,6 @@ class ZondiconsServiceProvider extends ServiceProvider
                 return '<?php echo zondicon'.$matches[1].'; ?>';
             }, $html);
         });
-        /*
-        Blade::directive('icon', function ($expression) {
-            return "<?php echo app('\Zondicons\Zondicon')->icon($expression); ?>";
-        });
-        */
 
         $this->publishes([
             __DIR__.'/../config/zondicons.php' => config_path('zondicons.php'),
