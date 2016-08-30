@@ -29,7 +29,11 @@ class Icon
 
     public function __call($method, $args)
     {
-        $this->attrs[snake_case($method, '-')] = array_merge($args, [true])[0];
+        if (count($args) === 0) {
+            $this->attrs[] = snake_case($method, '-');
+        } else {
+            $this->attrs[snake_case($method, '-')] = $args[0];
+        }
         return $this;
     }
 
@@ -69,8 +73,8 @@ class Icon
         }
 
         return ' '.collect($this->attrs)->map(function ($value, $attr) {
-            if ($value === true) {
-                return $attr;
+            if (is_int($attr)) {
+                return $value;
             }
             return sprintf('%s="%s"', $attr, $value);
         })->implode(' ');

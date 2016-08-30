@@ -27,10 +27,8 @@ class IconFactory
 
     public function registerBladeTag()
     {
-        Blade::extend(function ($html) {
-            return preg_replace_callback('/\@icon((\(.+\)\-\>.+)*\(.+\))/', function ($matches) {
-                return '<?php echo svg_icon'.$matches[1].'; ?>';
-            }, $html);
+        Blade::directive('icon', function ($expression) {
+            return "<?php echo svg_icon($expression); ?>";
         });
     }
 
@@ -55,9 +53,18 @@ class IconFactory
         );
     }
 
-    public function icon($name, $class = '')
+    public function icon($name, $class = '', $attrs = [])
     {
-        return new Icon($name, $this->renderMode(), $this, ['class' => $this->buildClass($class)]);
+        if (is_array($class)) {
+            $attrs = $class;
+            $class = '';
+        }
+
+        $attrs = array_merge([
+            'class' => $this->buildClass($class),
+        ], $attrs);
+
+        return new Icon($name, $this->renderMode(), $this, $attrs);
     }
 
     public function spriteId($icon)

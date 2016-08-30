@@ -60,11 +60,56 @@ class IconFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function can_render_icon_with_additional_attributes()
+    public function can_specify_additional_attributes_as_an_array()
+    {
+        $factory = new IconFactory();
+        $result = (string) $factory->icon('arrow-thick-up', 'icon-lg', ['alt' => 'Alt text', 'id' => 'arrow-icon']);
+        $expected = '<svg class="icon icon-lg" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $this->assertEquals($expected, $result);
+    }
+
+    /** @test */
+    public function can_skip_class_parameter()
+    {
+        $factory = new IconFactory();
+        $result = (string) $factory->icon('arrow-thick-up', ['alt' => 'Alt text', 'id' => 'arrow-icon']);
+        $expected = '<svg class="icon" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $this->assertEquals($expected, $result);
+    }
+
+    /** @test */
+    public function attributes_without_keys_are_used_as_valueless_html_attributes()
+    {
+        $factory = new IconFactory();
+        $result = (string) $factory->icon('arrow-thick-up', ['alt' => 'Alt text', 'data-foo']);
+        $expected = '<svg class="icon" alt="Alt text" data-foo><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $this->assertEquals($expected, $result);
+    }
+
+    /** @test */
+    public function specifying_class_as_attribute_overrides_default_class()
+    {
+        $factory = new IconFactory(['class' => 'default']);
+        $result = (string) $factory->icon('arrow-thick-up', ['class' => 'overridden']);
+        $expected = '<svg class="overridden"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $this->assertEquals($expected, $result);
+    }
+
+    /** @test */
+    public function can_chain_additional_attributes()
     {
         $factory = new IconFactory();
         $result = (string) $factory->icon('arrow-thick-up')->alt('Alt text')->id('arrow-icon');
         $expected = '<svg class="icon" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $this->assertEquals($expected, $result);
+    }
+
+    /** @test */
+    public function camelcase_attributes_are_dash_cased_when_chaining()
+    {
+        $factory = new IconFactory();
+        $result = (string) $factory->icon('arrow-thick-up')->dataFoo('bar');
+        $expected = '<svg class="icon" data-foo="bar"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
         $this->assertEquals($expected, $result);
     }
 
