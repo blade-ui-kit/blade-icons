@@ -122,71 +122,103 @@ To insert an icon in your template, simply use the `@icon` Blade directive, pass
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
     </svg>
     Settings
 </a>
 ```
 
-To add additional attributes to the rendered SVG tag, chain them off of the original `@icon` call:
+To add additional attributes to the rendered SVG tag, pass an associative array as the third parameter:
 
 ```html
 <a href="/settings">
-    @icon('cog', 'icon-lg')->alt('Gear icon') Settings
+    @icon('cog', 'icon-lg', ['alt' => 'Gear icon']) Settings
 </a>
 
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" alt="Gear icon">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
     </svg>
     Settings
 </a>
 ```
 
-Camel-case your method names to have them converted to dash-case HTML attributes:
+If you have attributes to declare but no additional class, you can pass an associative array as the second parameter instead:
 
 ```html
 <a href="/settings">
-    @icon('cog', 'icon-lg')->dataFoo('bar') Settings
+    @icon('cog', ['alt' => 'Gear icon']) Settings
 </a>
 
 <!-- Renders.. -->
 <a href="/settings">
-    <svg class="icon icon-lg" data-foo="bar">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
+    <svg class="icon" alt="Gear icon">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
     </svg>
     Settings
 </a>
 ```
 
-Attributes with no value can be added by passing no arguments to the chained method:
+If you'd like to _override_ the default class name, specify a class in the attributes array:
 
 ```html
 <a href="/settings">
-    @icon('cog', 'icon-lg')->dataFoo() Settings
+    @icon('cog', ['class' => 'overridden']) Settings
+</a>
+
+<!-- Renders.. -->
+<a href="/settings">
+    <svg class="overridden">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+    </svg>
+    Settings
+</a>
+```
+
+If you'd like to add an attribute that needs no value, just specify it without a key:
+
+```html
+<a href="/settings">
+    @icon('cog', ['data-foo']) Settings
+</a>
+
+<!-- Renders.. -->
+<a href="/settings">
+    <svg class="icon" data-foo>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+    </svg>
+    Settings
+</a>
+```
+
+If you'd like, you can use the `svg_icon` helper directly to expose a fluent syntax for setting icon attributes:
+
+```html
+<a href="/settings">
+    {{ svg_icon('cog')->alt('Alt text')->dataFoo('bar')->dataBaz() }} Settings
+</a>
+
+<!-- Renders.. -->
+<a href="/settings">
+    <svg class="icon" alt="Alt text" data-foo="bar" data-baz>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+    </svg>
+    Settings
+</a>
+```
+
+You can force an icon to reference the sprite sheet even if you are rendering inline by default by using the fluent syntax and chaining the `sprite` method:
+
+```html
+<a href="/settings">
+    {{ svg_icon('cog', 'icon-lg')->sprite() }} Settings
 </a>
 
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" data-foo>
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
-    </svg>
-    Settings
-</a>
-```
-
-You can force an icon to reference the sprite sheet even if you are rendering inline by default by chaining the `sprite` method:
-
-```html
-<a href="/settings">
-    @icon('cog', 'icon-lg')->sprite() Settings
-</a>
-
-<!-- Renders.. -->
-<a href="/settings">
-    <svg class="icon icon-lg" data-foo>
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
     </svg>
     Settings
 </a>
@@ -196,7 +228,7 @@ Similarly, you can force an icon to render inline even if you are using sprites 
 
 ```html
 <a href="/settings">
-    @icon('cog', 'icon-lg')->inline() Settings
+    {{ svg_icon('cog', 'icon-lg')->inline() }} Settings
 </a>
 
 <!-- Renders.. -->
