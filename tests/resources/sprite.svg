@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol viewBox="0 0 20 20" id="arrow-thick-up"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></symbol>
+    <symbol viewBox="0 0 20 20" id="backward"><path d="M19 5l-9 5 9 5V5zm-9 0l-9 5 9 5V5z" fill-rule="evenodd"/></symbol>
+</svg>

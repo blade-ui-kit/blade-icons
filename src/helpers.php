@@ -1,20 +1,17 @@
 <?php
 
-use Zondicons\ZondiconFactory;
-use Illuminate\Support\HtmlString;
+use BladeSvg\IconFactory;
 
-if (! function_exists('zondicons')) {
-    function zondicons()
+if (! function_exists('svg_spritesheet')) {
+    function svg_spritesheet()
     {
-        return new HtmlString(
-            sprintf('<div style="display: none;">%s</div>', file_get_contents(__DIR__ . '/../resources/sprite.svg'))
-        );
+        return app(IconFactory::class)->spritesheet();
     }
 }
 
-if (! function_exists('zondicon')) {
-    function zondicon($icon, $class = '')
+if (! function_exists('svg_icon')) {
+    function svg_icon($icon, $class = '')
     {
-        return app(ZondiconFactory::class)->icon($icon, $class);
+        return app(IconFactory::class)->icon($icon, $class);
     }
 }

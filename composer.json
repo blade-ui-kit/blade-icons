@@ -1,5 +1,5 @@
 {
-    "name": "zondicons/blade-bridge",
+    "name": "nothingworks/blade-svg",
     "authors": [
         {
             "name": "Adam Wathan",
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Zondicons\\": "src/"
+            "BladeSvg\\": "src/"
         },
         "files": [
             "src/helpers.php"

@@ -1,10 +1,10 @@
-# Zondicons Blade Bridge
+# Blade SVG
 
-Easily use Zondicons in your Blade templates, either as inline SVG or using SVG sprites.
+Easily use SVG icons in your Blade templates, either as inline SVG or using SVG sprites.
 
 ## Getting started
 
-Add the Zondicons service provider to your `config/app.php` file:
+Add the Blade SVG service provider to your `config/app.php` file:
 
 ```php
 <?php
@@ -14,7 +14,7 @@ return [
     'providers' => [
         // ...
 
-        Zondicons\ZondiconsServiceProvider::class,
+        BladeSvg\BladeSvgServiceProvider::class,
 
         // ...
     ],
@@ -22,13 +22,13 @@ return [
 ];
 ```
 
-Publish the Zondicons config file:
+Publish the Blade SVG config file:
 
 ```
 php artisan vendor:publish
 ```
 
-If you want to use the sprite sheet instead of rendering every icon inline, make sure you render the hidden sprite sheet somewhere at the end of any layouts that are going to use icons using the `zondicons()` helper:
+If you want to use the sprite sheet instead of rendering every icon inline, make sure you render the hidden sprite sheet somewhere at the end of any layouts that are going to use icons using the `svg_spritesheet()` helper:
 
 ```
 <!-- layout.blade.php -->
@@ -39,19 +39,34 @@ If you want to use the sprite sheet instead of rendering every icon inline, make
     <body>
         <!-- ... -->
 
-        {{ zondicons() }}
+        {{ svg_spritesheet() }}
     </body>
 </html>
 ```
 
 ### Configuration
 
-Inside `config/zondicons.php` you can specify whether you'd like icons to be rendered inline by default, or to reference the icon from the sprite sheet:
+Inside `config/blade-svg.php` specify the location of your spritesheet and the path to your individual icons:
 
 ```php
 <?php
 
 return [
+    'spritesheet_path' => 'resources/assets/svg/sprite.svg',
+    'icon_path' => 'resources/assets/svg/icons',
+    // ...
+];
+```
+
+> These paths are resolved internally using the `base_path()` helper, so specify them relative to the root of your project.
+
+You can also specify whether you'd like icons to be rendered inline by default, or to reference the icon from the sprite sheet:
+
+```php
+<?php
+
+return [
+    // ...
     'inline' => true, // Render the full icon SVG inline by default
     // or...
     'inline' => false, // Reference the sprite sheet and render the icon with a `use` tag
@@ -59,13 +74,15 @@ return [
 ];
 ```
 
-You can also specify any default CSS classes you'd like to be applied to your icons using the `class` option:
+You can specify any default CSS classes you'd like to be applied to your icons using the `class` option:
 
 ```php
 <?php
 
 return [
+    // ...
     'class' => 'icon', // Add the `icon` class to every SVG icon when rendered
+    // ...
 ];
 ```
 
@@ -75,13 +92,27 @@ You can specify multiple classes by separating them with a space, just like you 
 <?php
 
 return [
+    // ...
     'class' => 'icon inline-block',
+    // ...
+];
+```
+
+If the ID attributes of the icons in your spritesheet have a prefix, you can configure that using the `sprite_prefix` option:
+
+```php
+<?php
+
+return [
+    // ...
+    'sprite_prefix' => 'zondicon-',
+    // ...
 ];
 ```
 
 ## Basic Usage
 
-To insert a Zondicon in your template, simply use the `@icon` Blade directive, passing the name of the icon and optionally any additional classes:
+To insert an icon in your template, simply use the `@icon` Blade directive, passing the name of the icon and optionally any additional classes:
 
 ```html
 <a href="/settings">
@@ -91,7 +122,7 @@ To insert a Zondicon in your template, simply use the `@icon` Blade directive, p
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
     </svg>
     Settings
 </a>
@@ -107,7 +138,7 @@ To add additional attributes to the rendered SVG tag, chain them off of the orig
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" alt="Gear icon">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
     </svg>
     Settings
 </a>
@@ -123,7 +154,7 @@ Camel-case your method names to have them converted to dash-case HTML attributes
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" data-foo="bar">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
     </svg>
     Settings
 </a>
@@ -139,7 +170,7 @@ Attributes with no value can be added by passing no arguments to the chained met
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" data-foo>
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
     </svg>
     Settings
 </a>
@@ -155,7 +186,7 @@ You can force an icon to reference the sprite sheet even if you are rendering in
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" data-foo>
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cog"></use>
     </svg>
     Settings
 </a>
