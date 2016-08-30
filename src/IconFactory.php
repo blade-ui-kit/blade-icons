@@ -28,7 +28,7 @@ class IconFactory
     public function registerBladeTag()
     {
         Blade::directive('icon', function ($expression) {
-            return "<?php echo svg_icon($expression); ?>";
+            return "<?php echo e(svg_icon($expression)); ?>";
         });
     }
 
