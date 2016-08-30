@@ -10,11 +10,7 @@ class BladeSvgServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Blade::extend(function ($html) {
-            return preg_replace_callback('/\@icon((\(.+\)\-\>.+)*\(.+\))/', function ($matches) {
-                return '<?php echo svg_icon'.$matches[1].'; ?>';
-            }, $html);
-        });
+        app(IconFactory::class)->registerBladeTag();
 
         $this->publishes([
             __DIR__.'/../config/blade-svg.php' => config_path('blade-svg.php'),

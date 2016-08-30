@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Blade;
 
 class IconFactory
 {
@@ -22,6 +23,15 @@ class IconFactory
         $this->config = Collection::make(array_merge($this->config, $config));
         $this->svgCache = Collection::make();
         $this->files = $filesystem ?: new Filesystem;
+    }
+
+    public function registerBladeTag()
+    {
+        Blade::extend(function ($html) {
+            return preg_replace_callback('/\@icon((\(.+\)\-\>.+)*\(.+\))/', function ($matches) {
+                return '<?php echo svg_icon'.$matches[1].'; ?>';
+            }, $html);
+        });
     }
 
     private function iconPath()
