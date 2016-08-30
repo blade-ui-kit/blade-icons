@@ -3,8 +3,10 @@
 namespace BladeSvg;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
+use Illuminate\Contracts\Support\Htmlable;
 
-class Icon
+class Icon implements Htmlable
 {
     private $icon;
     private $renderMode;
@@ -19,12 +21,12 @@ class Icon
         $this->attrs = $attrs;
     }
 
-    public function __toString()
+    public function toHtml()
     {
-        return call_user_func([
+        return new HtmlString(call_user_func([
             'inline' => [$this, 'renderInline'],
             'sprite' => [$this, 'renderFromSprite'],
-        ][$this->renderMode]);
+        ][$this->renderMode]));
     }
 
     public function __call($method, $args)
