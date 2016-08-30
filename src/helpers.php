@@ -10,8 +10,8 @@ if (! function_exists('svg_spritesheet')) {
 }
 
 if (! function_exists('svg_icon')) {
-    function svg_icon($icon, $class = '')
+    function svg_icon($icon, $class = '', $attrs = [])
     {
-        return app(IconFactory::class)->icon($icon, $class);
+        return app(IconFactory::class)->icon($icon, $class, $attrs);
     }
 }
