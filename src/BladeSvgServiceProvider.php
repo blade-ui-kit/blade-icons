@@ -20,7 +20,7 @@ class BladeSvgServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(IconFactory::class, function () {
-            $config = array_merge(config('blade-svg'), [
+            $config = array_merge(config('blade-svg', []), [
                 'spritesheet_path' => config('blade-svg.spritesheet_path') ? base_path(config('blade-svg.spritesheet_path')) : null,
                 'icon_path' => config('blade-svg.icon_path') ? base_path(config('blade-svg.icon_path')) : null,
             ]);
