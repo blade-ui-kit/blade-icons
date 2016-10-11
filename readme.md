@@ -2,6 +2,12 @@
 
 Easily use SVG icons in your Blade templates, either as inline SVG or using SVG sprites.
 
+## Installation
+
+You can install this package via Composer by running this command in your terminal in the root of your project:
+
+`composer require nothingworks/blade-svg`
+
 ## Getting started
 
 Add the Blade SVG service provider to your `config/app.php` file:
