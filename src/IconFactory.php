@@ -46,6 +46,11 @@ class IconFactory
         });
     }
 
+    public function spritesheetUrl()
+    {
+        return $this->config->get('spritesheet_url', '');
+    }
+
     public function spritesheet()
     {
         return new HtmlString(

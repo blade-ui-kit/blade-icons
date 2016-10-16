@@ -62,8 +62,9 @@ class Icon implements Htmlable
 
     public function renderFromSprite()
     {
-        return vsprintf('<svg%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#%s"></use></svg>', [
+        return vsprintf('<svg%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="%s#%s"></use></svg>', [
             $this->renderAttributes(),
+            $this->factory->spritesheetUrl(),
             $this->factory->spriteId($this->icon)
         ]);
     }
