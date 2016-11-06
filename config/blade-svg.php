@@ -9,7 +9,7 @@ return [
     |
     | This value is the path to the directory of individual SVG icons. This
     | path is then resolved internally. Please ensure that this value is
-    | relative to the root directory. I.e. the 'resources' directory.
+    | set relative to the root directory and not the public directory.
     |
     */
 
