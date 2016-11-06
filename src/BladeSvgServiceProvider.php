@@ -3,7 +3,6 @@
 namespace BladeSvg;
 
 use BladeSvg\IconFactory;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class BladeSvgServiceProvider extends ServiceProvider
