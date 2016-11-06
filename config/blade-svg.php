@@ -30,6 +30,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Spritesheet URL
+    |--------------------------------------------------------------------------
+    |
+    | If you don't want to embed the spritesheet directly in your markup and
+    | would rather reference an external URL, you can specify the path to
+    | the external spritesheet to use with this configuration option.
+    |
+    */
+
+    'spritesheet_url' => '',
+
+    /*
+    |--------------------------------------------------------------------------
     | Inline Rendering
     |--------------------------------------------------------------------------
     |
