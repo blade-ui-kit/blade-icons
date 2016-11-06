@@ -54,7 +54,10 @@ class IconFactory
     public function spritesheet()
     {
         return new HtmlString(
-            sprintf('<div style="display: none;">%s</div>', file_get_contents($this->spritesheetPath()))
+            sprintf(
+                '<div style="height: 0; width: 0; position: absolute; visibility: hidden;">%s</div>',
+                file_get_contents($this->spritesheetPath())
+            )
         );
     }
 
