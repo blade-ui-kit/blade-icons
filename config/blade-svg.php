@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'spritesheet_path' => 'path/to/spritesheet',
+    'spritesheet_path' => 'path/to/spritesheet.svg',
 
     /*
     |--------------------------------------------------------------------------
