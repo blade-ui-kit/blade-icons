@@ -19,6 +19,7 @@ class Icon implements Htmlable
         $this->renderMode = $renderMode;
         $this->factory = $factory;
         $this->attrs = $attrs;
+        $this->title = array_pull($this->attrs, 'alt');
     }
 
     public function toHtml()
@@ -62,11 +63,16 @@ class Icon implements Htmlable
 
     public function renderFromSprite()
     {
-        return vsprintf('<svg%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="%s#%s"></use></svg>', [
+        return vsprintf('<svg%s>%s<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#%s"></use></svg>', [
             $this->renderAttributes(),
-            $this->factory->spritesheetUrl(),
+            $this->renderTitle(),
             $this->factory->spriteId($this->icon)
         ]);
+    }
+
+    private function renderTitle()
+    {
+        return strlen($this->title) ? '<title>' . $this->title . '</title>' : '';
     }
 
     private function renderAttributes()
