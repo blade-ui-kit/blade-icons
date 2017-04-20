@@ -5,6 +5,7 @@ namespace BladeSvg;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\Support\Htmlable;
+use DOMDocument;
 
 class Icon implements Htmlable
 {
@@ -54,10 +55,36 @@ class Icon implements Htmlable
 
     public function renderInline()
     {
+        // Filters attributes.
+        $this->title = array_pull($this->attrs, 'alt');
+        $this->class = array_pull($this->attrs, 'class');
+
+        // Prepares SVG string for DOM manipulation.
+        $svg_str = $this->factory->getSvg($this->icon);
+        $xml_doc = new DOMDocument();
+        $xml_doc->loadXML($svg_str);
+        $svg = $xml_doc->getElementsByTagName('svg');
+
+        // Inserts <title> as first child of <svg>.
+        if(strlen($this->title)) {
+            $title = $xml_doc->createElement('title', htmlentities($this->title));
+            $svg->item(0)->insertBefore($title, $svg->item(0)->childNodes->item(0));
+        }
+
+        $svg_str = $svg->item(0)->C14N();
+
+        // Prevents class attribute duplication when both blade-svg config and <svg> document come with class attribute. (svg class="…" class="…")
+        if(strlen($this->class)) {
+            preg_match("/\s\bclass=(\"[^\"]+\")/", $svg_str, $classes);
+            $old_classes = str_replace('"', '', $classes[1]);
+            $new_classes = $old_classes . ' ' . $this->class;
+            $svg_str = str_replace($old_classes, $new_classes, $svg_str);
+        }
+
         return str_replace(
             '<svg',
             sprintf('<svg%s', $this->renderAttributes()),
-            $this->factory->getSvg($this->icon)
+            $svg_str
         );
     }
 
