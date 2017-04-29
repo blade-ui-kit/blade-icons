@@ -11,7 +11,7 @@ class IconFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factory = new IconFactory(['spritesheet_path' => __DIR__.'/resources/sprite.svg']);
         $result = $factory->spritesheet();
-        $expected = sprintf('<div style="display: none;">%s</div>', file_get_contents(__DIR__.'/resources/sprite.svg'));
+        $expected = sprintf('<div style="height: 0; width: 0; position: absolute; visibility: hidden;">%s</div>', file_get_contents(__DIR__.'/resources/sprite.svg'));
         $this->assertEquals($expected, (string) $result);
     }
 
