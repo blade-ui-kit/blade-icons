@@ -98,7 +98,7 @@ class IconFactory
     public function getSvg($name)
     {
         return $this->svgCache->get($name, function () use ($name) {
-            return $this->svgCache[$name] = $this->files->get(sprintf('%s/%s.svg', rtrim($this->iconPath()), $name));
+            return $this->svgCache[$name] = trim($this->files->get(sprintf('%s/%s.svg', rtrim($this->iconPath()), str_replace('.', '/', $name))));
         });
     }
 }

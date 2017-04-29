@@ -156,4 +156,13 @@ class IconFactoryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $resultB);
         $files->shouldHaveReceived('get')->once();
     }
+
+    /** @test */
+    public function can_render_inline_icons_from_nested_folders_with_dot_notation()
+    {
+        $factory = new IconFactory(['inline' => true, 'class' => 'icon', 'icon_path' => __DIR__.'/resources/icons/']);
+        $result = $factory->icon('foo.bar.arrow-thick-down')->toHtml();
+        $expected = '<svg class="icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13 10V2H7v8H2l8 8 8-8h-5z" fill-rule="evenodd"/></svg>';
+        $this->assertEquals($expected, $result);
+    }
 }
