@@ -6,16 +6,16 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\Support\Htmlable;
 
-class Icon implements Htmlable
+class Svg implements Htmlable
 {
-    private $icon;
+    private $imageName;
     private $renderMode;
     private $factory;
     private $attrs = [];
 
-    public function __construct($icon, $renderMode, $factory, $attrs = [])
+    public function __construct($imageName, $renderMode, $factory, $attrs = [])
     {
-        $this->icon = $icon;
+        $this->imageName = $imageName;
         $this->renderMode = $renderMode;
         $this->factory = $factory;
         $this->attrs = $attrs;
@@ -56,7 +56,7 @@ class Icon implements Htmlable
         return str_replace(
             '<svg',
             sprintf('<svg%s', $this->renderAttributes()),
-            $this->factory->getSvg($this->icon)
+            $this->factory->getSvg($this->imageName)
         );
     }
 
@@ -65,7 +65,7 @@ class Icon implements Htmlable
         return vsprintf('<svg%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="%s#%s"></use></svg>', [
             $this->renderAttributes(),
             $this->factory->spritesheetUrl(),
-            $this->factory->spriteId($this->icon)
+            $this->factory->spriteId($this->imageName)
         ]);
     }
 

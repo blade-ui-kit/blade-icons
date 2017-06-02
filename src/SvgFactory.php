@@ -8,7 +8,7 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 
-class IconFactory
+class SvgFactory
 {
     private $files;
     private $svgCache;
@@ -28,14 +28,18 @@ class IconFactory
     public function registerBladeTag()
     {
         Blade::directive('icon', function ($expression) {
-            return "<?php echo e(svg_icon($expression)); ?>";
+            return "<?php echo e(svg_image($expression)); ?>";
+        });
+
+        Blade::directive('svg', function ($expression) {
+            return "<?php echo e(svg_image($expression)); ?>";
         });
     }
 
-    private function iconPath()
+    private function svgPath()
     {
-        return $this->config->get('icon_path', function () {
-            throw new Exception('No icon_path set!');
+        return $this->config->get('svg_path', function () {
+            throw new Exception('No svg_path set!');
         });
     }
 
@@ -61,7 +65,7 @@ class IconFactory
         );
     }
 
-    public function icon($name, $class = '', $attrs = [])
+    public function svg($name, $class = '', $attrs = [])
     {
         if (is_array($class)) {
             $attrs = $class;
@@ -72,12 +76,12 @@ class IconFactory
             'class' => $this->buildClass($class),
         ], $attrs);
 
-        return new Icon($name, $this->renderMode(), $this, $attrs);
+        return new Svg($name, $this->renderMode(), $this, $attrs);
     }
 
-    public function spriteId($icon)
+    public function spriteId($svgName)
     {
-        return "{$this->spritePrefix()}{$icon}";
+        return "{$this->spritePrefix()}{$svgName}";
     }
 
     private function spritePrefix()
@@ -98,7 +102,7 @@ class IconFactory
     public function getSvg($name)
     {
         return $this->svgCache->get($name, function () use ($name) {
-            return $this->svgCache[$name] = trim($this->files->get(sprintf('%s/%s.svg', rtrim($this->iconPath()), str_replace('.', '/', $name))));
+            return $this->svgCache[$name] = trim($this->files->get(sprintf('%s/%s.svg', rtrim($this->svgPath()), str_replace('.', '/', $name))));
         });
     }
 }

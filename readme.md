@@ -1,6 +1,6 @@
 # Blade SVG
 
-Easily use SVG icons in your Blade templates, either as inline SVG or using SVG sprites.
+Easily use SVG images in your Blade templates, either as inline SVG or using SVG sprites.
 
 ## Installation
 
@@ -34,7 +34,7 @@ Publish the Blade SVG config file:
 php artisan vendor:publish --provider="BladeSvg\BladeSvgServiceProvider"
 ```
 
-If you want to use the sprite sheet instead of rendering every icon inline, make sure you render the hidden sprite sheet somewhere at the end of any layouts that are going to use icons using the `svg_spritesheet()` helper:
+If you want to use the sprite sheet instead of rendering every image inline, make sure you render the hidden sprite sheet somewhere at the end of any layouts that are going to use SVGs using the `svg_spritesheet()` helper:
 
 ```
 <!-- layout.blade.php -->
@@ -52,42 +52,42 @@ If you want to use the sprite sheet instead of rendering every icon inline, make
 
 ### Configuration
 
-Inside `config/blade-svg.php` specify the location of your spritesheet and the path to your individual icons:
+Inside `config/blade-svg.php` specify the location of your spritesheet and the path to your individual SVG images:
 
 ```php
 <?php
 
 return [
     'spritesheet_path' => 'resources/assets/svg/sprite.svg',
-    'icon_path' => 'resources/assets/svg/icons',
+    'svg_path' => 'resources/assets/svg/icons',
     // ...
 ];
 ```
 
 > These paths are resolved internally using the `base_path()` helper, so specify them relative to the root of your project.
 
-You can also specify whether you'd like icons to be rendered inline by default, or to reference the icon from the sprite sheet:
+You can also specify whether you'd like SVGs to be rendered inline by default, or to reference the SVG from the sprite sheet:
 
 ```php
 <?php
 
 return [
     // ...
-    'inline' => true, // Render the full icon SVG inline by default
+    'inline' => true, // Render the full SVG inline by default
     // or...
-    'inline' => false, // Reference the sprite sheet and render the icon with a `use` tag
+    'inline' => false, // Reference the sprite sheet and render the image with a `use` tag
     // ...
 ];
 ```
 
-You can specify any default CSS classes you'd like to be applied to your icons using the `class` option:
+You can specify any default CSS classes you'd like to be applied to your SVG images using the `class` option:
 
 ```php
 <?php
 
 return [
     // ...
-    'class' => 'icon', // Add the `icon` class to every SVG icon when rendered
+    'class' => 'icon', // Add the `icon` class to every SVG when rendered
     // ...
 ];
 ```
@@ -104,7 +104,7 @@ return [
 ];
 ```
 
-If the ID attributes of the icons in your spritesheet have a prefix, you can configure that using the `sprite_prefix` option:
+If the ID attributes of the SVGs in your spritesheet have a prefix, you can configure that using the `sprite_prefix` option:
 
 ```php
 <?php
@@ -118,11 +118,11 @@ return [
 
 ## Basic Usage
 
-To insert an icon in your template, simply use the `@icon` Blade directive, passing the name of the icon and optionally any additional classes:
+To insert an SVG in your template, simply use the `@svg` Blade directive, passing the name of the SVG and optionally any additional classes:
 
 ```html
 <a href="/settings">
-    @icon('cog', 'icon-lg') Settings
+    @svg('cog', 'icon-lg') Settings
 </a>
 
 <!-- Renders.. -->
@@ -138,7 +138,7 @@ To add additional attributes to the rendered SVG tag, pass an associative array 
 
 ```html
 <a href="/settings">
-    @icon('cog', 'icon-lg', ['alt' => 'Gear icon']) Settings
+    @svg('cog', 'icon-lg', ['alt' => 'Gear icon']) Settings
 </a>
 
 <!-- Renders.. -->
@@ -154,7 +154,7 @@ If you have attributes to declare but no additional class, you can pass an assoc
 
 ```html
 <a href="/settings">
-    @icon('cog', ['alt' => 'Gear icon']) Settings
+    @svg('cog', ['alt' => 'Gear icon']) Settings
 </a>
 
 <!-- Renders.. -->
@@ -170,7 +170,7 @@ If you'd like to _override_ the default class name, specify a class in the attri
 
 ```html
 <a href="/settings">
-    @icon('cog', ['class' => 'overridden']) Settings
+    @svg('cog', ['class' => 'overridden']) Settings
 </a>
 
 <!-- Renders.. -->
@@ -186,7 +186,7 @@ If you'd like to add an attribute that needs no value, just specify it without a
 
 ```html
 <a href="/settings">
-    @icon('cog', ['data-foo']) Settings
+    @svg('cog', ['data-foo']) Settings
 </a>
 
 <!-- Renders.. -->
@@ -198,11 +198,11 @@ If you'd like to add an attribute that needs no value, just specify it without a
 </a>
 ```
 
-If you'd like, you can use the `svg_icon` helper directly to expose a fluent syntax for setting icon attributes:
+If you'd like, you can use the `svg_image` helper directly to expose a fluent syntax for setting SVG attributes:
 
 ```html
 <a href="/settings">
-    {{ svg_icon('cog')->alt('Alt text')->dataFoo('bar')->dataBaz() }} Settings
+    {{ svg_image('cog')->alt('Alt text')->dataFoo('bar')->dataBaz() }} Settings
 </a>
 
 <!-- Renders.. -->
@@ -214,11 +214,11 @@ If you'd like, you can use the `svg_icon` helper directly to expose a fluent syn
 </a>
 ```
 
-You can force an icon to reference the sprite sheet even if you are rendering inline by default by using the fluent syntax and chaining the `sprite` method:
+You can force an SVG to reference the sprite sheet even if you are rendering inline by default by using the fluent syntax and chaining the `sprite` method:
 
 ```html
 <a href="/settings">
-    {{ svg_icon('cog', 'icon-lg')->sprite() }} Settings
+    {{ svg_image('cog', 'icon-lg')->sprite() }} Settings
 </a>
 
 <!-- Renders.. -->
@@ -230,11 +230,11 @@ You can force an icon to reference the sprite sheet even if you are rendering in
 </a>
 ```
 
-Similarly, you can force an icon to render inline even if you are using sprites by default by chaining the `inline` method:
+Similarly, you can force an SVG to render inline even if you are using sprites by default by chaining the `inline` method:
 
 ```html
 <a href="/settings">
-    {{ svg_icon('cog', 'icon-lg')->inline() }} Settings
+    {{ svg_image('cog', 'icon-lg')->inline() }} Settings
 </a>
 
 <!-- Renders.. -->
