@@ -23,7 +23,7 @@ class BladeSvgServiceProvider extends ServiceProvider
             $config = Collection::make(config('blade-svg', []))->merge([
                 'spritesheet_path' => config('blade-svg.spritesheet_path') ? base_path(config('blade-svg.spritesheet_path')) : null,
                 'svg_path' => config('blade-svg.svg_path') ? base_path(config('blade-svg.svg_path')) : null,
-            ]);
+            ])->all();
 
             return new SvgFactory($config);
         });
