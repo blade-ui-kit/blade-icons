@@ -138,12 +138,12 @@ To add additional attributes to the rendered SVG tag, pass an associative array 
 
 ```html
 <a href="/settings">
-    @svg('cog', 'icon-lg', ['alt' => 'Gear icon']) Settings
+    @svg('cog', 'icon-lg', ['id' => 'settings-icon']) Settings
 </a>
 
 <!-- Renders.. -->
 <a href="/settings">
-    <svg class="icon icon-lg" alt="Gear icon">
+    <svg class="icon icon-lg" id="settings-icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
     </svg>
     Settings
@@ -154,12 +154,12 @@ If you have attributes to declare but no additional class, you can pass an assoc
 
 ```html
 <a href="/settings">
-    @svg('cog', ['alt' => 'Gear icon']) Settings
+    @svg('cog', ['id' => 'settings-icon']) Settings
 </a>
 
 <!-- Renders.. -->
 <a href="/settings">
-    <svg class="icon" alt="Gear icon">
+    <svg class="icon" id="settings-icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
     </svg>
     Settings
@@ -202,12 +202,12 @@ If you'd like, you can use the `svg_image` helper directly to expose a fluent sy
 
 ```html
 <a href="/settings">
-    {{ svg_image('cog')->alt('Alt text')->dataFoo('bar')->dataBaz() }} Settings
+    {{ svg_image('cog')->id('settings-icon')->dataFoo('bar')->dataBaz() }} Settings
 </a>
 
 <!-- Renders.. -->
 <a href="/settings">
-    <svg class="icon" alt="Alt text" data-foo="bar" data-baz>
+    <svg class="icon" id="settings-icon" data-foo="bar" data-baz>
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
     </svg>
     Settings
