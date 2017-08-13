@@ -22,5 +22,12 @@
     "require-dev": {
         "phpunit/phpunit": "^5.5",
         "mockery/mockery": "^0.9.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BladeSvg\\BladeSvgServiceProvider"
+            ]
+        }
     }
 }
