@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'svg_path' => 'path/to/svgs',
+    'svg_path' => 'resources/assets/svg',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'spritesheet_path' => 'path/to/spritesheet.svg',
+    'spritesheet_path' => 'resources/assets/svg/spritesheet.svg',
 
     /*
     |--------------------------------------------------------------------------
@@ -46,15 +46,14 @@ return [
     | Inline Rendering
     |--------------------------------------------------------------------------
     |
-    | This value will determine whether or not the image should be rendered
-    | as an SVG element or if it must be referenced on the spritesheet. The
-    | SVG, if this value is false, will be rendered with a 'use' tag.
+    | This value will determine whether or not the SVG should be rendered inline
+    | or if it should reference a spritesheet through a <use> element.
     |
-    | Default: false
+    | Default: true
     |
     */
 
-    'inline' => false,
+    'inline' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -65,9 +64,9 @@ return [
     | specify them here. Much like how you would define multiple classes
     | in an HTML attribute, you may separate each class using a space.
     |
-    | Default: 'icon'
+    | Default: ''
     |
     */
 
-    'class' => 'icon',
+    'class' => '',
 ];
