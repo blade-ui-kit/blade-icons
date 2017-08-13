@@ -1,6 +1,6 @@
 # Blade SVG
 
-Easily use SVG images in your Blade templates, either as inline SVG or using SVG sprites.
+Easily inline SVG images in your Blade templates.
 
 ## Installation
 
@@ -34,53 +34,9 @@ Publish the Blade SVG config file:
 php artisan vendor:publish --provider="BladeSvg\BladeSvgServiceProvider"
 ```
 
-If you want to use the sprite sheet instead of rendering every image inline, make sure you render the hidden sprite sheet somewhere at the end of any layouts that are going to use SVGs using the `svg_spritesheet()` helper:
-
-```
-<!-- layout.blade.php -->
-
-<!DOCTYPE html>
-<html lang="en">
-    <head><!-- ... --></head>
-    <body>
-        <!-- ... -->
-
-        {{ svg_spritesheet() }}
-    </body>
-</html>
-```
-
 ### Configuration
 
-Inside `config/blade-svg.php` specify the location of your spritesheet and the path to your individual SVG images:
-
-```php
-<?php
-
-return [
-    'spritesheet_path' => 'resources/assets/svg/sprite.svg',
-    'svg_path' => 'resources/assets/svg/icons',
-    // ...
-];
-```
-
-> These paths are resolved internally using the `base_path()` helper, so specify them relative to the root of your project.
-
-You can also specify whether you'd like SVGs to be rendered inline by default, or to reference the SVG from the sprite sheet:
-
-```php
-<?php
-
-return [
-    // ...
-    'inline' => true, // Render the full SVG inline by default
-    // or...
-    'inline' => false, // Reference the sprite sheet and render the image with a `use` tag
-    // ...
-];
-```
-
-You can specify any default CSS classes you'd like to be applied to your SVG images using the `class` option:
+Inside `config/blade-svg.php`, you can specify any default CSS classes you'd like to be applied to your SVG images using the `class` option:
 
 ```php
 <?php
@@ -104,19 +60,7 @@ return [
 ];
 ```
 
-If the ID attributes of the SVGs in your spritesheet have a prefix, you can configure that using the `sprite_prefix` option:
-
-```php
-<?php
-
-return [
-    // ...
-    'sprite_prefix' => 'zondicon-',
-    // ...
-];
-```
-
-## Basic Usage
+## Basic usage
 
 To insert an SVG in your template, simply use the `@svg` Blade directive, passing the name of the SVG and optionally any additional classes:
 
@@ -128,7 +72,7 @@ To insert an SVG in your template, simply use the `@svg` Blade directive, passin
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <path d="..." fill-rule="evenodd"></path>
     </svg>
     Settings
 </a>
@@ -144,7 +88,7 @@ To add additional attributes to the rendered SVG tag, pass an associative array 
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" id="settings-icon">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <path d="..." fill-rule="evenodd"></path>
     </svg>
     Settings
 </a>
@@ -160,7 +104,7 @@ If you have attributes to declare but no additional class, you can pass an assoc
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon" id="settings-icon">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
+        <path d="..." fill-rule="evenodd"></path>
     </svg>
     Settings
 </a>
@@ -214,11 +158,67 @@ If you'd like, you can use the `svg_image` helper directly to expose a fluent sy
 </a>
 ```
 
+## Using a spritesheet
+
+I recommend [just rendering icons inline](https://css-tricks.com/pretty-good-svg-icon-system/) because it's really simple, has a few advantages over spritesheets, and has no real disadvantages, but if you *really* want to use a spritesheet, who am I to stop you?
+
+So if you'd rather use a sprite sheet instead of rendering your SVGs inline, start by configuring the path to your spritesheet in the `blade-svg` config file:
+
+```php
+<?php
+
+return [
+    // ...
+    'spritesheet_path' => 'resources/assets/svg/spritesheet.svg',
+    // ...
+];
+```
+
+If the ID attributes of the SVGs in your spritesheet have a prefix, you can configure that using the `sprite_prefix` option:
+
+```php
+<?php
+
+return [
+    // ...
+    'sprite_prefix' => 'zondicon-',
+    // ...
+];
+```
+
+Next, set the `inline` option to `false` which will tell Blade SVG to render icons using the spritesheet by default instead of inlining the entire SVG:
+
+```php
+<?php
+
+return [
+    // ...
+    'inline' => false,
+    // ...
+];
+```
+
+Make sure you render the hidden sprite sheet somewhere at the end of any layouts that use SVGs by using the `svg_spritesheet()` helper:
+
+```html
+<!-- layout.blade.php -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head><!-- ... --></head>
+    <body>
+        <!-- ... -->
+
+        {{ svg_spritesheet() }}
+    </body>
+</html>
+```
+
 You can force an SVG to reference the sprite sheet even if you are rendering inline by default by using the fluent syntax and chaining the `sprite` method:
 
 ```html
 <a href="/settings">
-    {{ svg_image('cog', 'icon-lg')->sprite() }} Settings
+    {{ svg_image('cog', 'icon icon-lg')->sprite() }} Settings
 </a>
 
 <!-- Renders.. -->
@@ -234,7 +234,7 @@ Similarly, you can force an SVG to render inline even if you are using sprites b
 
 ```html
 <a href="/settings">
-    {{ svg_image('cog', 'icon-lg')->inline() }} Settings
+    {{ svg_image('cog', 'icon icon-lg')->inline() }} Settings
 </a>
 
 <!-- Renders.. -->
