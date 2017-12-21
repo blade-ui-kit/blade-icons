@@ -28,7 +28,7 @@ return [
 ];
 ```
 
-Publish the Blade SVG config file:
+If laravel version is <= 5.4 publish the Blade SVG config file:
 
 ```
 php artisan vendor:publish --provider="BladeSvg\BladeSvgServiceProvider"
