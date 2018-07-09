@@ -16,20 +16,20 @@ class SvgFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function icons_are_rendered_from_spritesheet_by_default()
+    public function icons_are_rendered_inline_by_default()
     {
-        $factory = new SvgFactory(['class' => 'icon']);
+        $factory = new SvgFactory(['class' => 'icon', 'svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up')->toHtml();
-        $expected = '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
     /** @test */
     public function icons_are_given_the_icon_class_by_default()
     {
-        $factory = new SvgFactory();
+        $factory = new SvgFactory(['svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up')->toHtml();
-        $expected = '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
@@ -54,63 +54,63 @@ class SvgFactoryTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function can_render_icon_with_additional_classes()
     {
-        $factory = new SvgFactory();
+        $factory = new SvgFactory(['svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up', 'icon-lg inline-block')->toHtml();
-        $expected = '<svg class="icon icon-lg inline-block"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon icon-lg inline-block" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
     /** @test */
     public function can_specify_additional_attributes_as_an_array()
     {
-        $factory = new SvgFactory();
+        $factory = new SvgFactory(['svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up', 'icon-lg', ['alt' => 'Alt text', 'id' => 'arrow-icon'])->toHtml();
-        $expected = '<svg class="icon icon-lg" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon icon-lg" alt="Alt text" id="arrow-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
     /** @test */
     public function can_skip_class_parameter()
     {
-        $factory = new SvgFactory();
+        $factory = new SvgFactory(['svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up', ['alt' => 'Alt text', 'id' => 'arrow-icon'])->toHtml();
-        $expected = '<svg class="icon" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon" alt="Alt text" id="arrow-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
     /** @test */
     public function attributes_without_keys_are_used_as_valueless_html_attributes()
     {
-        $factory = new SvgFactory();
+        $factory = new SvgFactory(['svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up', ['alt' => 'Alt text', 'data-foo'])->toHtml();
-        $expected = '<svg class="icon" alt="Alt text" data-foo><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon" alt="Alt text" data-foo viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
     /** @test */
     public function specifying_class_as_attribute_overrides_default_class()
     {
-        $factory = new SvgFactory(['class' => 'default']);
+        $factory = new SvgFactory(['class' => 'default', 'svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up', ['class' => 'overridden'])->toHtml();
-        $expected = '<svg class="overridden"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="overridden" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
     /** @test */
     public function can_chain_additional_attributes()
     {
-        $factory = new SvgFactory();
+        $factory = new SvgFactory(['svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up')->alt('Alt text')->id('arrow-icon')->toHtml();
-        $expected = '<svg class="icon" alt="Alt text" id="arrow-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon" alt="Alt text" id="arrow-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 
     /** @test */
     public function camelcase_attributes_are_dash_cased_when_chaining()
     {
-        $factory = new SvgFactory();
+        $factory = new SvgFactory(['svg_path' => __DIR__.'/resources/icons/']);
         $result = $factory->svg('arrow-thick-up')->dataFoo('bar')->toHtml();
-        $expected = '<svg class="icon" data-foo="bar"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-thick-up"></use></svg>';
+        $expected = '<svg class="icon" data-foo="bar" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10v8h6v-8h5l-8-8-8 8h5z" fill-rule="evenodd"/></svg>';
         $this->assertEquals($expected, $result);
     }
 

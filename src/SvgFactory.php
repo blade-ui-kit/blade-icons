@@ -13,7 +13,7 @@ class SvgFactory
     private $files;
     private $svgCache;
     private $config = [
-        'inline' => false,
+        'inline' => true,
         'class' => 'icon',
         'sprite_prefix' => '',
     ];
