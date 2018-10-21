@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'svg_path' => 'resources/assets/svg',
+    'svg_path' => 'resources/svg',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'spritesheet_path' => 'resources/assets/svg/spritesheet.svg',
+    'spritesheet_path' => 'resources/svg/spritesheet.svg',
 
     /*
     |--------------------------------------------------------------------------
