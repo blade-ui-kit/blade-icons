@@ -10,23 +10,7 @@ You can install this package via Composer by running this command in your termin
 
 ## Getting started
 
-Add the Blade SVG service provider to your `config/app.php` file:
-
-```php
-<?php
-
-return [
-    // ...
-    'providers' => [
-        // ...
-
-        BladeSvg\BladeSvgServiceProvider::class,
-
-        // ...
-    ],
-    // ...
-];
-```
+The package's service provider will automatically register itself.
 
 Publish the Blade SVG config file:
 
