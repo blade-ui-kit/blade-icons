@@ -4,6 +4,7 @@ namespace BladeSvg;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Htmlable;
 
 class Svg implements Htmlable
@@ -32,9 +33,9 @@ class Svg implements Htmlable
     public function __call($method, $args)
     {
         if (count($args) === 0) {
-            $this->attrs[] = snake_case($method, '-');
+            $this->attrs[] = Str::snake($method, '-');
         } else {
-            $this->attrs[snake_case($method, '-')] = $args[0];
+            $this->attrs[Str::snake($method, '-')] = $args[0];
         }
         return $this;
     }
