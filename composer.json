@@ -8,8 +8,8 @@
         }
     ],
     "require": {
-        "illuminate/support": "^5.3|^6.0",
-        "illuminate/filesystem": "^5.3|^6.0"
+        "illuminate/support": "^5.3|^6.0|^7.0",
+        "illuminate/filesystem": "^5.3|^6.0|^7.0"
     },
     "autoload": {
         "psr-4": {
