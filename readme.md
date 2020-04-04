@@ -6,7 +6,7 @@ Easily inline SVG images in your Blade templates.
 
 You can install this package via Composer by running this command in your terminal in the root of your project:
 
-`composer require nothingworks/blade-svg`
+`composer require jayenne/blade-svg`
 
 ## Getting started
 
@@ -44,9 +44,20 @@ return [
 ];
 ```
 
+You can specify a default "fallback" icon here:
+
+```php
+<?php
+
+return [
+    // ...
+    'svg_default_name' => '',
+    // ...
+];
+```
 ## Basic usage
 
-To insert an SVG in your template, simply use the `@svg` Blade directive, passing the name of the SVG and optionally any additional classes:
+To insert an SVG in your template, simply use the `@svg` Blade directive, passing the name (or array of names) of the SVG/s and optionally any additional classes:
 
 ```html
 <a href="/settings">
@@ -68,6 +79,24 @@ To add additional attributes to the rendered SVG tag, pass an associative array 
 <a href="/settings">
     @svg('cog', 'icon-lg', ['id' => 'settings-icon']) Settings
 </a>
+
+<!-- Renders.. -->
+<a href="/settings">
+    <svg class="icon icon-lg" id="settings-icon">
+        <path d="..." fill-rule="evenodd"></path>
+    </svg>
+    Settings
+</a>
+```
+
+Example with fallback names:
+
+```html
+<a href="/settings">
+    @svg(['cogs','cog','gear'], 'icon-lg', ['id' => 'settings-icon']) Settings
+</a>
+```
+... Assume 'cogs' don't exist. even though both 'cog' and 'gear' do exist, the icon 'cog' will be returned:
 
 <!-- Renders.. -->
 <a href="/settings">
