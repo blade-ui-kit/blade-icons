@@ -99,7 +99,7 @@ Example with fallback names:
 
 ...Assuming 'cogs' doesn't exist. even though both 'cog' and 'gear' do exist, the icon 'cog' will be returned:
 
-```
+```html
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" id="settings-icon">
