@@ -96,16 +96,19 @@ Example with fallback names:
     @svg(['cogs','cog','gear'], 'icon-lg', ['id' => 'settings-icon']) Settings
 </a>
 ```
-... Assume 'cogs' don't exist. even though both 'cog' and 'gear' do exist, the icon 'cog' will be returned:
 
+...Assuming 'cogs' doesn't exist. even though both 'cog' and 'gear' do exist, the icon 'cog' will be returned:
+
+```
 <!-- Renders.. -->
 <a href="/settings">
     <svg class="icon icon-lg" id="settings-icon">
         <path d="..." fill-rule="evenodd"></path>
     </svg>
-    Settings
 </a>
 ```
+
+### Settings
 
 If you have attributes to declare but no additional class, you can pass an associative array as the second parameter instead:
 
