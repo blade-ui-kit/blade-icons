@@ -55,6 +55,11 @@ class SvgFactory
         return $this->config->get('spritesheet_url', '');
     }
 
+    public function svgDefaultName()
+    {  
+        return $this->config->get('svg_default_name', '');
+    }
+
     public function spritesheet()
     {
         return new HtmlString(
@@ -99,10 +104,23 @@ class SvgFactory
         return trim(sprintf('%s %s', $this->config['class'], $class));
     }
 
-    public function getSvg($name)
+    public function getSvg($names)
     {
-        return $this->svgCache->get($name, function () use ($name) {
+        $names = (array) $names;
+        $names[] = $this->svgDefaultName();
+        $name = $names[0];
+        
+        return $this->svgCache->get($name, function () use ( $names) {
+
+            foreach($names as $fallback){
+                $path = sprintf('%s/%s.svg', rtrim($this->svgPath()), str_replace('.', '/', $fallback));
+                if ($this->files->exists($path))
+    {
+                    $name = $fallback;
             return $this->svgCache[$name] = trim($this->files->get(sprintf('%s/%s.svg', rtrim($this->svgPath()), str_replace('.', '/', $name))));
+                }
+            }
+
         });
     }
 }
