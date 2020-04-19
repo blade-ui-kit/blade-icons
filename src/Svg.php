@@ -1,86 +1,45 @@
 <?php
 
-namespace BladeSvg;
+declare(strict_types=1);
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
+namespace BladeUI\Icons;
+
+use BladeUI\Icons\Concerns\RendersAttributes;
 use Illuminate\Contracts\Support\Htmlable;
 
-class Svg implements Htmlable
+final class Svg implements Htmlable
 {
-    private $imageName;
-    private $renderMode;
-    private $factory;
-    private $attrs = [];
+    use RendersAttributes;
 
-    public function __construct($imageName, $renderMode, $factory, $attrs = [])
+    /** @var string */
+    private $name;
+
+    /** @var string */
+    private $contents;
+
+    public function __construct(string $name, string $contents, array $attributes = [])
     {
-        $this->imageName = $imageName;
-        $this->renderMode = $renderMode;
-        $this->factory = $factory;
-        $this->attrs = $attrs;
+        $this->name = $name;
+        $this->contents = $contents;
+        $this->attributes = $attributes;
     }
 
-    public function toHtml()
+    public function name(): string
     {
-        return new HtmlString(call_user_func([
-            'inline' => [$this, 'renderInline'],
-            'sprite' => [$this, 'renderFromSprite'],
-        ][$this->renderMode]));
+        return $this->name;
     }
 
-    public function __call($method, $args)
+    public function contents(): string
     {
-        if (count($args) === 0) {
-            $this->attrs[] = Str::snake($method, '-');
-        } else {
-            $this->attrs[Str::snake($method, '-')] = $args[0];
-        }
-        return $this;
+        return $this->contents;
     }
 
-    public function inline()
-    {
-        $this->renderMode = 'inline';
-        return $this;
-    }
-
-    public function sprite()
-    {
-        $this->renderMode = 'sprite';
-        return $this;
-    }
-
-    public function renderInline()
+    public function toHtml(): string
     {
         return str_replace(
             '<svg',
             sprintf('<svg%s', $this->renderAttributes()),
-            $this->factory->getSvg($this->imageName)
+            $this->contents
         );
-    }
-
-    public function renderFromSprite()
-    {
-        return vsprintf('<svg%s><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="%s#%s"></use></svg>', [
-            $this->renderAttributes(),
-            $this->factory->spritesheetUrl(),
-            $this->factory->spriteId($this->imageName)
-        ]);
-    }
-
-    private function renderAttributes()
-    {
-        if (count($this->attrs) == 0) {
-            return '';
-        }
-
-        return ' '.collect($this->attrs)->map(function ($value, $attr) {
-            if (is_int($attr)) {
-                return $value;
-            }
-            return sprintf('%s="%s"', $attr, $value);
-        })->implode(' ');
     }
 }
