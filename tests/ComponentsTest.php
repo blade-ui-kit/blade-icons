@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Tests;
 
 use BladeUI\Icons\Components\Svg;
-use BladeUI\Icons\Factory;
 
-final class ComponentsTest extends TestCase
+class ComponentsTest extends TestCase
 {
     /** @test */
     public function it_can_render_an_icon()

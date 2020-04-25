@@ -11,7 +11,6 @@ use BladeUI\Icons\Factory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 use Mockery;
-use Orchestra\Testbench\TestCase;
 
 class FactoryTest extends TestCase
 {
@@ -146,23 +145,6 @@ class FactoryTest extends TestCase
         $this->expectExceptionMessage('Svg by name "money" from set "default" not found.');
 
         $factory->svg('money');
-    }
-
-    private function prepareSets(string $defaultClass = ''): Factory
-    {
-        $factory = new Factory(new Filesystem(), $defaultClass);
-
-        $factory->add('default', [
-            'path' => __DIR__ . '/resources/svg',
-            'component-prefix' => 'icon',
-        ]);
-
-        $factory->add('zondicons', [
-            'path' => __DIR__ . '/resources/zondicons',
-            'component-prefix' => 'zondicon',
-        ]);
-
-        return $factory;
     }
 
     protected function getPackageProviders($app): array
