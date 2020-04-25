@@ -57,6 +57,6 @@ return [
     |
     */
 
-    'class' => 'icon icon-default',
+    'class' => '',
 
 ];
