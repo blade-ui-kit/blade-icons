@@ -21,6 +21,7 @@ A package to easily make use of SVG icons in your Laravel Blade views.
     - [Components](#components)
     - [Directives](#directives)
     - [Helper](#helper)
+- [Building Packages](#building-packages)
 - [Changelog](#changelog)
 - [Maintainers](#maintainers)
 - [License](#license)
@@ -98,7 +99,7 @@ Note that by default Blade Icons will render icons from the `default` set. You c
 
 #### Icons In Subdirectories
 
-Icons are loaded recursively and you can reference icons in subdirectories using dot syntax:
+Icons are loaded recursively, and you can reference icons in subdirectories using dot syntax:
 
 ```blade
 @svg('solid.bell')
@@ -118,7 +119,7 @@ return [
 ];
 ```
 
-If you don't want any classes to be applied by default just leave this as an empty string.
+If you don't want any classes to be applied by default then leave this as an empty string.
 
 ## Usage
 
@@ -231,6 +232,24 @@ If you'd like, you can use the `svg` helper to expose a fluent syntax for settin
     <path d="..." fill-rule="evenodd"></path>
 </svg>
 ```
+
+## Building Packages
+
+If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. Make sure to load your SVGs from the `boot` method of your package's service provider. Provide the path to your SVGs and provide your own unique set name and component prefix:
+
+```php
+use BladeUI\Icons\Factory;
+
+public function boot(): void
+{
+    $this->app->make(Factory::class)->add('heroicons', [
+        'path' => __DIR__ . '/../resources/svg',
+        'component-prefix' => 'heroicon',
+    ]);
+}
+```
+
+Also don't forget to make `nothingworks/blade-svg` a requirement of your package's `composer.json`.
 
 ## Changelog
 
