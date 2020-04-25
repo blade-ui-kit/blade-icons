@@ -10,7 +10,7 @@ General steps for every update:
 
 ### Package Renaming
 
-**The package has been renamed to Blade Icons.** For now, it'll keep the `nothingworks/blade-svg` composer package name but it'll be renamed to a new name before we tag 0.4.0 and it'll be moved to a new organisation. More news on that as soon as the 0.4.0 beta period has ended.
+**The package has been renamed to Blade Icons.** For the beta period, it'll keep the `nothingworks/blade-svg` composer package name but it'll be renamed to a new name before we tag 0.4.0 and it'll be moved to a new organisation. More news on that as soon as the 0.4.0 beta period has ended.
 
 ### Minimum Requirements
 
@@ -21,7 +21,7 @@ The package now requires as a minimum:
 
 ### Config Changes
 
-Blade Icons now supports multiple icon sets. This is useful for third party packages that offer different icon sets and allow for apps to make use of different icons from different sets in the same app. As such, the config file has been changed drastically. It's best that you re-publish it using the command below:
+Blade Icons now supports multiple icon sets. This is useful for third party packages that offer different icon sets and allow for apps to make use of different icons from different sets in the same app. As such, the config file has been changed drastically. It's best that you re-publish it with the command below:
 
 ```bash
 php artisan vendor:publish --tag=blade-icons --force
@@ -29,22 +29,12 @@ php artisan vendor:publish --tag=blade-icons --force
 
 This will publish the config as `blade-icons.php`. You should remove the old `blade-svg.php` config file.
 
-The new config file defines a new `sets` config option which is an associative array with different sets. It ships with a `default` set which you should use for your own app. You can add as many different sets as you like. For a full list of options please [refer to the docs](README.md#configuration). 
+The new config file defines a new `sets` config option which is an associative array with different sets. It ships with a `default` set which you should use for your own app. You can add as many sets as you like. For a full list of options please [refer to the docs](README.md#configuration). 
 
-#### Inline Option
+### Sprite Sheets Removed
 
-The `inline` config option has been removed. You should now always directly use the `@svg` or `@sprite` directives to render either an inline icon or a sprite icon.
-
-```blade
-// Before...
-{{ svg_image('cog', 'icon icon-lg')->inline() }}
-{{ svg_image('cog', 'icon icon-lg')->sprite() }}
-
-// After...
-@svg('cog', 'icon icon-lg')
-@sprite('cog', 'icon icon-lg')
-```
+All functionality concerning sprite sheets have been removed. We felt that sprite sheets weren't really used that much anymore. We recommend using individual icon SVG files instead.
 
 ### Helper Renames
 
-The `svg_image() helper has been renamed to `svg()`. Consequently, the `svg_spritesheet()` helper has been renamed to `sprite_sheet()`.
+The `svg_image() helper has been renamed to `svg()`.
