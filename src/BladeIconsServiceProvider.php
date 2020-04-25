@@ -15,43 +15,38 @@ final class BladeIconsServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/blade-icons.php', 'blade-icons');
 
-        $this->app->singleton(Factory::class, function (Container $container) {
-            $class = $container->make('config')->get('blade-icons.class', '');
+        $this->registerFactory();
+    }
 
-            return new Factory(new Filesystem(), $class);
+    private function registerFactory(): void
+    {
+        $this->app->singleton(Factory::class, function (Container $container) {
+            $config = $container->make('config')->get('blade-icons');
+
+            $factory = new Factory(new Filesystem(), $config['class']);
+
+            foreach ($config['sets'] as $set => $options) {
+                if (isset($options['path'])) {
+                    $options['path'] = $this->app->basePath($options['path']);
+                }
+
+                $factory->add($set, $options);
+            }
+
+            return $factory;
         });
     }
 
     public function boot(): void
     {
-        $this->bootFactory();
-        $this->bootDirectives();
+        Blade::directive('svg', function ($expression) {
+            return "<?php echo e(svg($expression)); ?>";
+        });
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/blade-icons.php' => $this->app->configPath('blade-icons.php'),
             ], 'blade-icons');
         }
-    }
-
-    private function bootFactory(): void
-    {
-        $factory = $this->app->make(Factory::class);
-        $config = $this->app->make('config')->get('blade-icons');
-
-        foreach ($config['sets'] as $set => $options) {
-            if (isset($options['path'])) {
-                $options['path'] = $this->app->basePath($options['path']);
-            }
-
-            $factory->add($set, $options);
-        }
-    }
-
-    private function bootDirectives(): void
-    {
-        Blade::directive('svg', function ($expression) {
-            return "<?php echo e(svg($expression)); ?>";
-        });
     }
 }
