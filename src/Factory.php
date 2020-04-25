@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace BladeUI\Icons;
 
 use BladeUI\Icons\Exceptions\SvgNotFound;
-use BladeUI\Icons\Exceptions\SpriteSheetNotFound;
-use BladeUI\Icons\Exceptions\SpriteUrlNotFound;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
@@ -71,39 +69,6 @@ final class Factory
         [$set, $name] = $this->splitSetAndName($name);
 
         return new Svg($name, $this->contents($set, $name), $this->formatAttributes($class, $attributes));
-    }
-
-    /**
-     * @throws SpriteUrlNotFound
-     */
-    public function sprite(string $name, $class = '', array $attributes = []): Sprite
-    {
-        [$set, $name] = $this->splitSetAndName($name);
-
-        if (isset($this->sets[$set]) && $url = $this->sets[$set]['sprite-sheet']['url']) {
-            return new Sprite(
-                $name,
-                $url,
-                $this->formatAttributes($class, $attributes),
-                $this->sets[$set]['sprite-sheet']['prefix'] ?? ''
-            );
-        }
-
-        throw SpriteUrlNotFound::missing($set);
-    }
-
-    /**
-     * @throws SpriteSheetNotFound
-     */
-    public function spriteSheet(string $set = 'default'): SpriteSheet
-    {
-        if (isset($this->sets[$set]['sprite-sheet']['path'])) {
-            if ($path = $this->sets[$set]['sprite-sheet']['path']) {
-                return new SpriteSheet($path);
-            }
-        }
-
-        throw SpriteSheetNotFound::missing($set);
     }
 
     /**

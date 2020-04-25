@@ -44,10 +44,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
                 $options['path'] = $this->app->basePath($options['path']);
             }
 
-            if (isset($options['sprite-sheet']['path'])) {
-                $options['sprite-sheet']['path'] = $this->app->basePath($options['sprite-sheet']['path']);
-            }
-
             $factory->add($set, $options);
         }
     }
@@ -56,14 +52,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
     {
         Blade::directive('svg', function ($expression) {
             return "<?php echo e(svg($expression)); ?>";
-        });
-
-        Blade::directive('sprite', function ($expression) {
-            return "<?php echo e(sprite($expression)); ?>";
-        });
-
-        Blade::directive('spriteSheet', function ($expression) {
-            return "<?php echo e(sprite_sheet($expression)); ?>";
         });
     }
 }

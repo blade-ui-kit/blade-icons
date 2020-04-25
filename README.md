@@ -20,8 +20,7 @@ A package to easily make use of SVG icons in your Laravel Blade views.
 - [Usage](#usage)
     - [Components](#components)
     - [Directives](#directives)
-    - [Sprite Sheets](#sprite-sheets)
-    - [Helpers](#helpers)
+    - [Helper](#helper)
 - [Changelog](#changelog)
 - [Maintainers](#maintainers)
 - [License](#license)
@@ -123,7 +122,7 @@ If you don't want any classes to be applied by default just leave this as an emp
 
 ## Usage
 
-There are several ways of inserting icons into your Blade templates. We personally recommend using Blade components, but you can also make use of Blade directives or sprite sheets if you wish.
+There are several ways of inserting icons into your Blade templates. We personally recommend using Blade components, but you can also make use of Blade directives if you wish.
 
 ### Components
 
@@ -176,7 +175,7 @@ If components aren't really your thing you can make use of the Blade directive i
 </a>
 ```
 
-Any additionally attributes may be passed as a third array argument and they'll be rendered on the `svg` element:
+Any additionally attributes can be passed as a third array argument, and they'll be rendered on the `svg` element:
 
 ```blade
 @svg('cog', 'icon-lg', ['id' => 'settings-icon'])
@@ -209,7 +208,7 @@ If you want to override the default classes, pass in the class as an attribute:
 </svg>
 ```
 
-Attributes without a key are supported too:
+Attributes without a key, are supported too:
 
 ```blade
 @svg('cog', ['data-foo'])
@@ -220,100 +219,7 @@ Attributes without a key are supported too:
 </svg>
 ```
 
-### Sprite Sheets
-
-We recommend [just rendering icons inline](https://css-tricks.com/pretty-good-svg-icon-system/) because it's really simple, has a few advantages over sprite sheets, and has no real disadvantages, but if you really want to use a sprite sheet, who are we to stop you?
-
-So if you'd rather use a sprite sheet instead of rendering your SVGs inline, start by configuring the path to your sprite sheet in the `blade-icons.php` config file:
-
-```php
-<?php
-
-return [
-    'sets' => [
-        'default' => [
-            'sprite-sheet' => [
-                'path' => 'resources/sprite-sheet.svg',
-            ],
-        ],
-    ],
-];
-```
-
-> It's important that you don't define your sprite sheet within your icons directory or it will be loaded as an icon.
-
-You can also define an external resource url instead of a direct path:
-
-```php
-<?php
-
-return [
-    'sets' => [
-        'default' => [
-            'sprite-sheet' => [
-                'url' => 'https://example.com/sprite-sheet.svg',
-            ],
-        ],
-    ],
-];
-```
-
-If the ID attributes of the SVGs in your sprite sheet have a prefix, you can configure that using the `prefix` option:
-
-```php
-<?php
-
-return [
-    'sets' => [
-        'zondicons' => [
-            'sprite-sheet' => [
-                'prefix' => 'zondicon',
-            ],
-        ],
-    ],
-];
-```
-
-Make sure you render the hidden sprite sheet somewhere at the end of any layouts that use SVGs by using the `@spriteSheet` directive:
-
-```blade
-<!-- layout.blade.php -->
-
-<!DOCTYPE html>
-<html lang="en">
-    <head><!-- ... --></head>
-    <body>
-        <!-- ... -->
-
-        @spriteSheet
-    </body>
-</html>
-```
-
-You can optionally render a specific set's sprite sheet by passing the set's name as a parameter:
-
-```blade
-@spriteSheet('set-name')
-```
-
-To render a specific sprite from the `default` set, use the `@sprite` directive:
-
-```blade
-@sprite('cog', 'icon-lg')
-
-<!-- Renders.. -->
-<svg class="icon icon-lg">
-    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
-</svg>
-```
-
-To render a sprite from a specific sprite sheet, you can do so by using the `set-name:icon-name` syntax as the icon name
-
-```blade
-@sprite('zondicons:cog', 'icon-lg')
-```
-
-### Helpers
+### Helper
 
 If you'd like, you can use the `svg` helper to expose a fluent syntax for setting SVG attributes:
 
@@ -323,17 +229,6 @@ If you'd like, you can use the `svg` helper to expose a fluent syntax for settin
 <!-- Renders.. -->
 <svg class="icon" id="settings-icon" data-foo="bar" data-baz>
     <path d="..." fill-rule="evenodd"></path>
-</svg>
-```
-
-The `sprite` helper offers the same but for sprites:
-
-```blade
-{{ sprite('cog')->id('settings-icon')->dataFoo('bar')->dataBaz() }}
-
-<!-- Renders.. -->
-<svg class="icon" id="settings-icon" data-foo="bar" data-baz>
-    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#zondicon-cog"></use>
 </svg>
 ```
 

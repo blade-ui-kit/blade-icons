@@ -43,48 +43,6 @@ return [
 
             'component-prefix' => 'icon',
 
-            'sprite-sheet' => [
-
-                /*
-                |--------------------------------------------------------------------------
-                | Sprite Sheet Path
-                |--------------------------------------------------------------------------
-                |
-                | If you would rather have one sprite sheet than a lot of individual SVG
-                | files, you may specify a path to a sprite sheet. The SVG images are
-                | extracted from this sprite sheet to be rendered out individually.
-                |
-                */
-
-                'path' => 'resources/sprite-sheet.svg',
-
-                /*
-                |--------------------------------------------------------------------------
-                | Sprite Sheet URL
-                |--------------------------------------------------------------------------
-                |
-                | If you don't want to embed the sprite sheet directly in your markup and
-                | would rather reference an external URL, you can specify the path to
-                | the external sprite sheet to use with this configuration option.
-                |
-                */
-
-                'url' => 'http://example.com/sprite-sheet.svg',
-
-                /*
-                |--------------------------------------------------------------------------
-                | Sprite Prefix
-                |--------------------------------------------------------------------------
-                |
-                | If the ID attributes of the SVGs in your sprite sheet have a prefix,
-                | you can configure that using the prefix option.
-                |
-                */
-
-                'prefix' => 'icon',
-
-            ],
-
         ],
 
     ],

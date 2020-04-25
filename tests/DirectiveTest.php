@@ -17,24 +17,4 @@ class DirectiveTest extends TestCase
 
         $this->assertSame($expected, $compiled);
     }
-
-    /** @test */
-    public function views_can_render_the_sprite_directive()
-    {
-        $compiled = Blade::compileString("@sprite('camera', 'text-gray-500', ['style' => 'color: #fff'])");
-
-        $expected = "<?php echo e(sprite('camera', 'text-gray-500', ['style' => 'color: #fff'])); ?>";
-
-        $this->assertSame($expected, $compiled);
-    }
-    /** @test */
-
-    public function views_can_render_the_spriteSheet_directive()
-    {
-        $compiled = Blade::compileString("@spriteSheet('camera')");
-
-        $expected = "<?php echo e(sprite_sheet('camera')); ?>";
-
-        $this->assertSame($expected, $compiled);
-    }
 }

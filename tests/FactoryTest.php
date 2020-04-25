@@ -6,10 +6,8 @@ namespace Tests;
 
 use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Exceptions\SvgNotFound;
-use BladeUI\Icons\Exceptions\SpriteSheetNotFound;
 use BladeUI\Icons\Svg;
 use BladeUI\Icons\Factory;
-use BladeUI\Icons\SpriteSheet;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 use Mockery;
@@ -150,27 +148,6 @@ class FactoryTest extends TestCase
         $factory->svg('money');
     }
 
-    /** @test */
-    public function it_can_retrieve_a_sprite_sheet()
-    {
-        $factory = $this->prepareSets();
-
-        $spriteSheet = $factory->spriteSheet('default');
-
-        $this->assertInstanceOf(SpriteSheet::class, $spriteSheet);
-    }
-
-    /** @test */
-    public function it_throws_an_exception_when_no_sprite_sheet_is_found()
-    {
-        $factory = $this->prepareSets();
-
-        $this->expectException(SpriteSheetNotFound::class);
-        $this->expectExceptionMessage('SpriteSheet for set "invalid-name" not found.');
-
-        $factory->spriteSheet('invalid-name');
-    }
-
     private function prepareSets(string $defaultClass = ''): Factory
     {
         $factory = new Factory(new Filesystem(), $defaultClass);
@@ -178,9 +155,6 @@ class FactoryTest extends TestCase
         $factory->add('default', [
             'path' => __DIR__ . '/resources/svg',
             'component-prefix' => 'icon',
-            'sprite-sheet' => [
-                'path' => __DIR__ . '/resources/sprite-sheet.svg',
-            ],
         ]);
 
         $factory->add('zondicons', [

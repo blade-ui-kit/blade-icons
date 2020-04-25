@@ -18,18 +18,10 @@ abstract class TestCase extends OrchestraTestCase
             ->add('default', [
                 'path' => __DIR__ . '/resources/svg',
                 'component-prefix' => 'icon',
-                'sprite-sheet' => [
-                    'path' => __DIR__ . '/resources/sprite-sheet.svg',
-                ],
             ])
             ->add('zondicons', [
                 'path' => __DIR__ . '/resources/zondicons',
                 'component-prefix' => 'zondicon',
-            ])
-            ->add('test', [
-                'sprite-sheet' => [
-                    'url' => 'http://example.com',
-                ],
             ]);
     }
 
