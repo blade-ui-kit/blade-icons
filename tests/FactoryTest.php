@@ -41,37 +41,25 @@ class FactoryTest extends TestCase
         $this->assertSame('camera', $icon->name());
     }
 
-    /** @test */
-    public function it_can_retrieve_an_icon_from_a_specific_set()
-    {
-        $factory = $this->prepareSets();
-
-        $icon = $factory->svg('zondicons:flag');
-
-        $this->assertInstanceOf(Svg::class, $icon);
-        $this->assertSame('flag', $icon->name());
-    }
-
-    /** @test */
-    public function it_can_retrieve_an_icon_in_a_subdirectory_from_a_specific_set()
-    {
-        $factory = $this->prepareSets();
-
-        $icon = $factory->svg('default:solid.camera');
-
-        $this->assertInstanceOf(Svg::class, $icon);
-        $this->assertSame('solid.camera', $icon->name());
-    }
-
-    /** @test */
+    /**
+     * @test
+     * @group Caching
+     */
     public function icons_are_cached()
     {
-        $filesystem = Mockery::spy(Filesystem::class);
+        $options = [
+            'path' => __DIR__ . '/resources/svg',
+            'prefix' => 'icon',
+        ];
+
+        $filesystem = Mockery::mock(Filesystem::class);
+        $filesystem->shouldReceive('missing')->andReturn(false);
+        $filesystem->shouldReceive('allFiles')->with($options['path'])->andReturn([]);
         $filesystem->shouldReceive('get')->once()->andReturn('<svg></svg>');
 
         $factory = new Factory($filesystem);
 
-        $factory->add('default', ['path' => __DIR__ . '/resources/svg']);
+        $factory->add('default', $options);
 
         $factory->svg('camera');
         $factory->svg('camera');

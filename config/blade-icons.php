@@ -15,35 +15,35 @@ return [
 
     'sets' => [
 
-        'default' => [
-
-            /*
-            |-----------------------------------------------------------------
-            | Icons Path
-            |-----------------------------------------------------------------
-            |
-            | Provide the relative path from your app root to your
-            | SVG icons directory. Icons are loaded recursively
-            | so there's no need to list every sub-directory.
-            |
-            */
-
-            'path' => 'resources/svg',
-
-            /*
-            |--------------------------------------------------------------------------
-            | Default Component Prefix
-            |--------------------------------------------------------------------------
-            |
-            | This config option allows you to define a default component prefix for
-            | your icons when rendered through blade components. The dash separator
-            | will be applied automatically to every component.
-            |
-            */
-
-            'component-prefix' => 'icon',
-
-        ],
+        // 'default' => [
+        //
+        //     /*
+        //     |-----------------------------------------------------------------
+        //     | Icons Path
+        //     |-----------------------------------------------------------------
+        //     |
+        //     | Provide the relative path from your app root to your
+        //     | SVG icons directory. Icons are loaded recursively
+        //     | so there's no need to list every sub-directory.
+        //     |
+        //     */
+        //
+        //     'path' => 'resources/svg',
+        //
+        //     /*
+        //     |--------------------------------------------------------------------------
+        //     | Default Prefix
+        //     |--------------------------------------------------------------------------
+        //     |
+        //     | This config option allows you to define a default prefix for
+        //     | your icons. The dash separator will be applied automatically
+        //      to every icon name. It's required and needs to be unique.
+        //     |
+        //     */
+        //
+        //     'prefix' => 'icon',
+        //
+        // ],
 
     ],
 

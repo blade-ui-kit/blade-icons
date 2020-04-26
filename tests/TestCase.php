@@ -17,11 +17,11 @@ abstract class TestCase extends OrchestraTestCase
         return $this->app->make(Factory::class)
             ->add('default', [
                 'path' => __DIR__ . '/resources/svg',
-                'component-prefix' => 'icon',
+                'prefix' => 'icon',
             ])
             ->add('zondicons', [
                 'path' => __DIR__ . '/resources/zondicons',
-                'component-prefix' => 'zondicon',
+                'prefix' => 'zondicon',
             ]);
     }
 

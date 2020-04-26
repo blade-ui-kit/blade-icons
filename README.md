@@ -13,9 +13,8 @@ A package to easily make use of SVG icons in your Laravel Blade views.
 - [Updating](#updating)
 - [Configuration](#configuration)
     - [Defining Sets](#defining-sets)
-    - [Loading Icons](#loading-icons)
-        - [Referencing Icons](#referencing-icons)
-        - [Icons in Subdirectories](#icons-in-subdirectories)
+    - [Icon Paths](#icon-paths)
+    - [Prefixing Icons](#prefixing-icons)
     - [Default Classes](#default-classes)
 - [Usage](#usage)
     - [Components](#components)
@@ -45,7 +44,7 @@ Feel free to open up an issue on the repo to [request another set](https://githu
 composer require nothingworks/blade-svg
 ```
 
-After installing the package, publish the configuration: 
+After installing the package, publish the configuration and **uncomment** the `default` icon set: 
 
 ```bash
 php artisan vendor:publish --tag=blade-icons
@@ -61,20 +60,6 @@ Please refer to [`the upgrade guide`](UPGRADE.md) when updating the library.
 
 Blade Icons support multiple sets. You can define these by passing a key/value combination in the `blade-icons.php` config file's `sets` setting:
 
-```
-'sets' => [
-    'default' => [
-        'path' => 'resources/svg',
-    ],
-],
-```
-
-Feel free to add as many sets as you wish. Blade Icons ships with a `default` set for your app which you may adjust to your liking.
-
-### Loading Icons
-
-If you wanted to add icons from your app's `resources/svg` directory you can set a path:
-
 ```php
 <?php
 
@@ -87,25 +72,45 @@ return [
 ];
 ```
 
+Feel free to add as many sets as you wish. Blade Icons ships with a `default` set for your app which you may adjust to your liking.
+
+### Icon Paths
+
+If you wanted to add icons from a different directory in your app, say `resources/images/svg`, you can set it like this:
+
+```php
+<?php
+
+return [
+    'sets' => [
+        'default' => [
+            'path' => 'resources/images/svg',
+        ],
+    ],
+];
+```
+
 > Always make sure you're pointing to existing directories.
 
-#### Referencing Icons
+### Prefixing Icons
 
-Note that by default Blade Icons will render icons from the `default` set. You can also reference an icon from any other set by using the `set-name:icon-name` syntax as the icon name: 
+In the default icon set the `icon` prefix will be applied to every icon, but you're free to adjust this in the `blade-icons.php` config file:
 
-```blade
-@svg('heroicons:heroicon-o-bell')
+```php
+<?php
+
+return [
+    'sets' => [
+        'default' => [
+            'prefix' => 'icon',
+        ],
+    ],
+];
 ```
 
-#### Icons In Subdirectories
+Defining a prefix for every set is required and every prefix should be unique.
 
-Icons are loaded recursively, and you can reference icons in subdirectories using dot syntax:
-
-```blade
-@svg('solid.bell')
-```
-
-This will render the `bell` icon from the `solid` subdirectory.
+When referencing icons with the [Blade directive](#directives) or [helper](#helper) you can omit the prefix to reference icons from the `default` set.
 
 ### Default Classes
 
@@ -130,100 +135,59 @@ There are several ways of inserting icons into your Blade templates. We personal
 The easiest way to get started with using icons from sets are Blade components:
 
 ```blade
-<x-icon-cog/>
+<x-icon-camera/>
 ```
 
 Icons in subdirectories can be referenced using dot notation:
 
 ```blade
-<x-icon-solid.cog/>
+<x-icon-solid.camera/>
 ```
 
 You can also pass classes to your icon components (default classes will be applied as well):
 
 ```blade
-<x-icon-cog class="icon-lg"/>
+<x-icon-camera class="icon-lg"/>
 ```
 
 Or any other attributes for that matter:
 
 ```blade
-<x-icon-cog class="icon-lg" id="settings-icon" style="color: #555" data-baz/>
+<x-icon-camera class="icon-lg" id="settings-icon" style="color: #555" data-baz/>
 ```
 
-In the default icon set the `icon-` prefix will be applied to every icon, but you're free to adjust this in the `blade-icons.php` config file:
-
-```
-'sets' => [
-    'default' => [
-        'component-prefix' => 'icon',
-    ],
-],
-```
-
-> Note that for Blade components you cannot use the `set-name:icon-name` syntax to reference icons from specific sets. You can reference icons from specific sets by using their component prefix.
+> Note that with Blade components, using a prefix is always required, even when referencing icons from the default set.
 
 ### Directives
 
-If components aren't really your thing you can make use of the Blade directive instead. If you defined a default `icon` class in your config and want to render a `cog` icon with an `icon-lg` class you can do that like so:
+If components aren't really your thing you can make use of the Blade directive instead. If you defined a default `icon` class in your config and want to render a `camera` icon with an `icon-lg` class you can do that like so:
 
 ```blade
-<a href="/settings">
-    @svg('cog', 'icon-lg') Settings
-</a>
-
-<!-- Renders.. -->
-<a href="/settings">
-    <svg class="icon icon-lg">
-        <path d="..." fill-rule="evenodd"></path>
-    </svg>
-
-    Settings
-</a>
+@svg('camera', 'icon-lg')
 ```
 
 Any additionally attributes can be passed as a third array argument, and they'll be rendered on the `svg` element:
 
 ```blade
-@svg('cog', 'icon-lg', ['id' => 'settings-icon'])
-
-<!-- Renders.. -->
-<svg class="icon icon-lg" id="settings-icon">
-    <path d="..." fill-rule="evenodd"></path>
-</svg>
+@svg('camera', 'icon-lg', ['id' => 'settings-icon'])
 ```
 
 If you don't have a class to be defined you can also pass these attributes as the second parameter:
 
 ```blade
-@svg('cog', ['id' => 'settings-icon'])
-
-<!-- Renders.. -->
-<svg class="icon" id="settings-icon">
-    <path d="..." fill-rule="evenodd"></path>
-</svg>
+@svg('camera', ['id' => 'settings-icon'])
 ```
 
 If you want to override the default classes, pass in the class as an attribute:
 
 ```blade
-@svg('cog', ['class' => 'icon-lg'])
-
-<!-- Renders.. -->
-<svg class="icon-lg">
-    <path d="..." fill-rule="evenodd"></path>
-</svg>
+@svg('camera', ['class' => 'icon-lg'])
 ```
 
 Attributes without a key, are supported too:
 
 ```blade
-@svg('cog', ['data-foo'])
-
-<!-- Renders.. -->
-<svg class="icon" data-foo>
-    <path d="..." fill-rule="evenodd"></path>
-</svg>
+@svg('camera', ['data-foo'])
 ```
 
 ### Helper
@@ -231,12 +195,7 @@ Attributes without a key, are supported too:
 If you'd like, you can use the `svg` helper to expose a fluent syntax for setting SVG attributes:
 
 ```blade
-{{ svg('cog')->id('settings-icon')->dataFoo('bar')->dataBaz() }}
-
-<!-- Renders.. -->
-<svg class="icon" id="settings-icon" data-foo="bar" data-baz>
-    <path d="..." fill-rule="evenodd"></path>
-</svg>
+{{ svg('camera')->id('settings-icon')->dataFoo('bar')->dataBaz() }}
 ```
 
 ## Building Packages
@@ -255,7 +214,17 @@ public function boot(): void
 }
 ```
 
-Also don't forget to make `nothingworks/blade-svg` a requirement of your package's `composer.json`.
+Now your icons can be referenced using a component, directive or helper:
+
+```blade
+<x-heroicon-o-bell />
+
+@svg('heroicon-o-bell')
+
+{{ svg('heroicon-o-bell') }}
+```
+
+Don't forget to make `nothingworks/blade-svg` a requirement of your package's `composer.json`.
 
 ## Changelog
 

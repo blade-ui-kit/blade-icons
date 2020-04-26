@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BladeUI\Icons;
 
 use BladeUI\Icons\Components\Svg as SvgComponent;
+use BladeUI\Icons\Exceptions\CannotRegisterIconSet;
 use BladeUI\Icons\Exceptions\SvgNotFound;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
@@ -36,8 +37,27 @@ final class Factory
         return $this->sets;
     }
 
+    /**
+     * @throws CannotRegisterIconSet
+     */
     public function add(string $set, array $options): self
     {
+        if (! isset($options['path'])) {
+            throw CannotRegisterIconSet::pathNotDefined($set);
+        }
+
+        if (! isset($options['prefix'])) {
+            throw CannotRegisterIconSet::prefixNotDefined($set);
+        }
+
+        if ($collidingSet = $this->getSetByPrefix($options['prefix'])) {
+            throw CannotRegisterIconSet::prefixNotUnique($set, $collidingSet);
+        }
+
+        if ($this->filesystem->missing($options['path'])) {
+            throw CannotRegisterIconSet::nonExistingPath($set, $options['path']);
+        }
+
         $this->sets[$set] = $options;
 
         $this->registerComponents($options);
@@ -49,16 +69,14 @@ final class Factory
 
     private function registerComponents(array $options): void
     {
-        if (isset($options['path']) && isset($options['component-prefix']) && $this->filesystem->exists($options['path'])) {
-            foreach ($this->filesystem->allFiles($options['path']) as $file) {
-                $path = array_filter(explode('/', Str::after($file->getPath(), $options['path'])));
+        foreach ($this->filesystem->allFiles($options['path']) as $file) {
+            $path = array_filter(explode('/', Str::after($file->getPath(), $options['path'])));
 
-                Blade::component(
-                    SvgComponent::class,
-                    implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
-                    $options['component-prefix']
-                );
-            }
+            Blade::component(
+                SvgComponent::class,
+                implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
+                $options['prefix']
+            );
         }
     }
 
@@ -77,15 +95,13 @@ final class Factory
      */
     private function contents(string $set, string $name): string
     {
-        $cacheKey = "$set:$name";
-
-        if (isset($this->cache[$cacheKey])) {
-            return $this->cache[$cacheKey];
+        if (isset($this->cache[$name])) {
+            return $this->cache[$name];
         }
 
-        if (isset($this->sets[$set]['path'])) {
+        if (isset($this->sets[$set])) {
             try {
-                return $this->cache[$cacheKey] = $this->getSvgFromPath($name, $this->sets[$set]['path']);
+                return $this->cache[$name] = $this->getSvgFromPath($name, $this->sets[$set]['path']);
             } catch (FileNotFoundException $exception) {
                 //
             }
@@ -105,13 +121,16 @@ final class Factory
 
     private function splitSetAndName(string $name): array
     {
-        $parts = explode(':', $name);
+        $prefix = Str::before($name, '-');
 
-        if (count($parts) === 2) {
-            return $parts;
-        }
+        $set = $this->getSetByPrefix($prefix);
 
-        return ['default', $parts[0]];
+        return [$set ?? 'default', Str::after($name, '-')];
+    }
+
+    private function getSetByPrefix(string $prefix): ?string
+    {
+        return collect($this->sets)->where('prefix', $prefix)->keys()->first();
     }
 
     private function formatAttributes($class = '', array $attributes = []): array
