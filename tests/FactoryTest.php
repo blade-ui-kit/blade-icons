@@ -41,10 +41,7 @@ class FactoryTest extends TestCase
         $this->assertSame('camera', $icon->name());
     }
 
-    /**
-     * @test
-     * @group Caching
-     */
+    /** @test */
     public function icons_are_cached()
     {
         $options = [
