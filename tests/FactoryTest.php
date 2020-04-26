@@ -9,7 +9,6 @@ use BladeUI\Icons\Exceptions\SvgNotFound;
 use BladeUI\Icons\Svg;
 use BladeUI\Icons\Factory;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Blade;
 use Mockery;
 
 class FactoryTest extends TestCase
@@ -29,18 +28,6 @@ class FactoryTest extends TestCase
         $sets = $factory->all();
 
         $this->assertCount(2, $sets);
-    }
-
-    /** @test */
-    public function components_are_registered_with_their_subdirectories()
-    {
-        $this->prepareSets();
-
-        $this->assertSame([
-            'icon-camera' => Svg::class,
-            'icon-solid.camera' => Svg::class,
-            'zondicon-flag' => Svg::class,
-        ], Blade::getClassComponentAliases());
     }
 
     /** @test */

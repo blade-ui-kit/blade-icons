@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons;
 
+use BladeUI\Icons\Components\Svg as SvgComponent;
 use BladeUI\Icons\Exceptions\SvgNotFound;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
@@ -53,7 +54,7 @@ final class Factory
                 $path = array_filter(explode('/', Str::after($file->getPath(), $options['path'])));
 
                 Blade::component(
-                    Svg::class,
+                    SvgComponent::class,
                     implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
                     $options['component-prefix']
                 );

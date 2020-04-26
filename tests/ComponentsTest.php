@@ -5,9 +5,22 @@ declare(strict_types=1);
 namespace Tests;
 
 use BladeUI\Icons\Components\Svg;
+use Illuminate\Support\Facades\Blade;
 
 class ComponentsTest extends TestCase
 {
+    /** @test */
+    public function components_are_registered_with_their_subdirectories()
+    {
+        $this->prepareSets();
+
+        $this->assertSame([
+            'icon-camera' => Svg::class,
+            'icon-solid.camera' => Svg::class,
+            'zondicon-flag' => Svg::class,
+        ], Blade::getClassComponentAliases());
+    }
+
     /** @test */
     public function it_can_render_an_icon()
     {
