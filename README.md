@@ -133,6 +133,12 @@ The easiest way to get started with using icons from sets are Blade components:
 <x-icon-cog/>
 ```
 
+Icons in subdirectories can be referenced using dot notation:
+
+```blade
+<x-icon-solid.cog/>
+```
+
 You can also pass classes to your icon components (default classes will be applied as well):
 
 ```blade

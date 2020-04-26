@@ -20,7 +20,7 @@ final class Svg extends Component
 
     public function render(): string
     {
-        $attributes = $this->attributes->toHtml();
+        $attributes = $this->attributes ? $this->attributes->toHtml() : '';
 
         $prefix = Str::before($this->componentName, '-');
 
