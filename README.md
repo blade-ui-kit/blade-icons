@@ -112,6 +112,8 @@ Defining a prefix for every set is required and every prefix should be unique.
 
 When referencing icons with the [Blade directive](#directives) or [helper](#helper) you can omit the prefix to reference icons from the `default` set.
 
+When an icon in the default set has a name which collides with a prefix from a set then the icon from the set is retrieved first.
+
 ### Default Classes
 
 You can optionally define classes which will be applied to every icon by filling in the `class` setting in your `blade-icons.php` config file:

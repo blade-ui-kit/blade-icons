@@ -42,14 +42,25 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_retrieve_a_prefixed_icon()
+    public function it_can_retrieve_an_icon_with_default_prefix()
     {
         $factory = $this->prepareSets();
 
-        $icon = $factory->svg('prefixed-camera');
+        $icon = $factory->svg('icon-camera');
 
         $this->assertInstanceOf(Svg::class, $icon);
-        $this->assertSame('prefixed-camera', $icon->name());
+        $this->assertSame('camera', $icon->name());
+    }
+
+    /** @test */
+    public function it_can_retrieve_an_icon_with_a_dash()
+    {
+        $factory = $this->prepareSets();
+
+        $icon = $factory->svg('foo-camera');
+
+        $this->assertInstanceOf(Svg::class, $icon);
+        $this->assertSame('foo-camera', $icon->name());
     }
 
     /** @test */
@@ -57,10 +68,24 @@ class FactoryTest extends TestCase
     {
         $factory = $this->prepareSets();
 
-        $icon = $factory->svg('zondicons-flag');
+        $icon = $factory->svg('zondicon-flag');
 
         $this->assertInstanceOf(Svg::class, $icon);
         $this->assertSame('flag', $icon->name());
+    }
+
+    /** @test */
+    public function icons_from_sets_other_than_default_are_retrieved_first()
+    {
+        $factory = $this->prepareSets();
+
+        $icon = $factory->svg('zondicon-flag');
+
+        $expected = <<<HTML
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
+HTML;
+
+        $this->assertSame($expected, $icon->contents());
     }
 
     /** @test */
