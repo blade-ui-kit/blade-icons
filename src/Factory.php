@@ -125,7 +125,9 @@ final class Factory
 
         $set = $this->getSetByPrefix($prefix);
 
-        return [$set ?? 'default', Str::after($name, '-')];
+        $name = $set ? Str::after($name, '-') : $name;
+
+        return [$set ?? 'default', $name];
     }
 
     private function getSetByPrefix(string $prefix): ?string

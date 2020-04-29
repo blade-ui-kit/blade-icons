@@ -16,6 +16,7 @@ class ComponentsTest extends TestCase
 
         $this->assertSame([
             'icon-camera' => Svg::class,
+            'icon-prefixed-camera' => Svg::class,
             'icon-solid.camera' => Svg::class,
             'zondicon-flag' => Svg::class,
         ], Blade::getClassComponentAliases());

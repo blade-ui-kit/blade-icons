@@ -42,6 +42,28 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function it_can_retrieve_a_prefixed_icon()
+    {
+        $factory = $this->prepareSets();
+
+        $icon = $factory->svg('prefixed-camera');
+
+        $this->assertInstanceOf(Svg::class, $icon);
+        $this->assertSame('prefixed-camera', $icon->name());
+    }
+
+    /** @test */
+    public function it_can_retrieve_an_icon_from_a_specific_set()
+    {
+        $factory = $this->prepareSets();
+
+        $icon = $factory->svg('zondicons-flag');
+
+        $this->assertInstanceOf(Svg::class, $icon);
+        $this->assertSame('flag', $icon->name());
+    }
+
+    /** @test */
     public function icons_are_cached()
     {
         $options = [
