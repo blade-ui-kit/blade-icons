@@ -4,6 +4,10 @@
     "keywords": ["Blade", "Icons", "Laravel", "SVG"],
     "homepage": "https://github.com/nothingworks/blade-svg",
     "license": "MIT",
+    "support": {
+        "issues": "https://github.com/nothingworks/blade-svg/issues",
+        "source": "https://github.com/nothingworks/blade-svg"
+    },
     "authors": [
         {
             "name": "Adam Wathan",

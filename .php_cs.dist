@@ -1,12 +1,9 @@
 <?php
 
 $finder = Symfony\Component\Finder\Finder::create()
-    ->notPath('bootstrap')
-    ->notPath('storage')
     ->notPath('vendor')
     ->in(__DIR__)
-    ->name('*.php')
-    ->notName('*.blade.php');
+    ->name('*.php');
 
 return PhpCsFixer\Config::create()
     ->setRules([
