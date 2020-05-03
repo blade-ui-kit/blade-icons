@@ -1,9 +1,17 @@
 # Blade Icons
 
-<a href="https://github.com/adamwathan/blade-svg/actions"><img src="https://github.com/adamwathan/blade-svg/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/nothingworks/blade-svg"><img src="https://poser.pugx.org/nothingworks/blade-svg/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/nothingworks/blade-svg"><img src="https://poser.pugx.org/nothingworks/blade-svg/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/nothingworks/blade-svg"><img src="https://poser.pugx.org/nothingworks/blade-svg/license.svg" alt="License"></a>
+<a href="https://github.com/adamwathan/blade-svg/actions?query=workflow%3ATests">
+    <img src="https://github.com/adamwathan/blade-svg/workflows/Tests/badge.svg" alt="Tests">
+</a>
+<a href="https://github.com/adamwathan/blade-svg/actions?query=workflow%3A%22Code+Style%22">
+    <img src="https://github.com/adamwathan/blade-svg/workflows/Code%20Style/badge.svg" alt="Code Style">
+</a>
+<a href="https://packagist.org/packages/nothingworks/blade-svg">
+    <img src="https://poser.pugx.org/nothingworks/blade-svg/v/stable.svg" alt="Latest Stable Version">
+</a>
+<a href="https://packagist.org/packages/nothingworks/blade-svg">
+    <img src="https://poser.pugx.org/nothingworks/blade-svg/d/total.svg" alt="Total Downloads">
+</a>
 
 A package to easily make use of SVG icons in your Laravel Blade views.
 

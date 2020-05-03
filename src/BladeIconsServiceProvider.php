@@ -13,7 +13,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/blade-icons.php', 'blade-icons');
+        $this->mergeConfigFrom(__DIR__ . '/../config/blade-icons.php', 'blade-icons');
 
         $this->registerFactory();
     }

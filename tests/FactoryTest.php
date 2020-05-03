@@ -6,8 +6,8 @@ namespace Tests;
 
 use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Exceptions\SvgNotFound;
-use BladeUI\Icons\Svg;
 use BladeUI\Icons\Factory;
+use BladeUI\Icons\Svg;
 use Illuminate\Filesystem\Filesystem;
 use Mockery;
 
