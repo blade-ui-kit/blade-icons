@@ -17,7 +17,7 @@ General steps for every update:
 The package now requires as a minimum:
 
 - PHP 7.2
-- Laravel 7.6
+- Laravel 7.10
 
 ### Config Changes
 

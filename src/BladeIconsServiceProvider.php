@@ -37,6 +37,8 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'blade-icons');
+
         Blade::directive('svg', function ($expression) {
             return "<?php echo e(svg($expression)); ?>";
         });
