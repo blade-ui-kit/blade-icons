@@ -121,6 +121,16 @@ HTML;
     }
 
     /** @test */
+    public function default_classes_are_always_applied()
+    {
+        $factory = $this->prepareSets('icon icon-default');
+
+        $icon = $factory->svg('camera');
+
+        $this->assertSame('icon icon-default', $icon->attributes()['class']);
+    }
+
+    /** @test */
     public function passing_classes_as_attributes_will_override_default_classes()
     {
         $factory = $this->prepareSets('icon icon-default');

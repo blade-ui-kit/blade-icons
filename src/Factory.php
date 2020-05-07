@@ -137,8 +137,10 @@ final class Factory
 
     private function formatAttributes($class = '', array $attributes = []): array
     {
-        if (is_string($class) && $class !== '') {
-            $attributes['class'] = $this->buildClass($class);
+        if (is_string($class)) {
+            if ($class = $this->buildClass($class)) {
+                $attributes['class'] = $attributes['class'] ?? $class;
+            }
         } elseif (is_array($class)) {
             $attributes = $class;
         }
