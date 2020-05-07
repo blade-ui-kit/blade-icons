@@ -43,6 +43,18 @@ return [
         //
         //     'prefix' => 'icon',
         //
+        //     /*
+        //     |--------------------------------------------------------------------------
+        //     | Default Set Class
+        //     |--------------------------------------------------------------------------
+        //     |
+        //     | This config option allows you to define some classes which
+        //     | will be applied to all icons by default within this set.
+        //     |
+        //     */
+        //
+        //     'class' => '',
+        //
         // ],
 
     ],

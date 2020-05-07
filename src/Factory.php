@@ -87,7 +87,7 @@ final class Factory
     {
         [$set, $name] = $this->splitSetAndName($name);
 
-        return new Svg($name, $this->contents($set, $name), $this->formatAttributes($class, $attributes));
+        return new Svg($name, $this->contents($set, $name), $this->formatAttributes($set, $class, $attributes));
     }
 
     /**
@@ -135,10 +135,10 @@ final class Factory
         return collect($this->sets)->where('prefix', $prefix)->keys()->first();
     }
 
-    private function formatAttributes($class = '', array $attributes = []): array
+    private function formatAttributes(string $set, $class = '', array $attributes = []): array
     {
         if (is_string($class)) {
-            if ($class = $this->buildClass($class)) {
+            if ($class = $this->buildClass($set, $class)) {
                 $attributes['class'] = $attributes['class'] ?? $class;
             }
         } elseif (is_array($class)) {
@@ -148,8 +148,12 @@ final class Factory
         return $attributes;
     }
 
-    private function buildClass(string $class): string
+    private function buildClass(string $set, string $class): string
     {
-        return trim(sprintf('%s %s', $this->defaultClass, $class));
+        return trim(sprintf(
+            '%s %s',
+            trim(sprintf('%s %s', $this->defaultClass, $this->sets[$set]['class'] ?? '')),
+            $class
+        ));
     }
 }

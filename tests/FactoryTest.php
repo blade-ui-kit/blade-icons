@@ -131,6 +131,20 @@ HTML;
     }
 
     /** @test */
+    public function icons_can_have_default_classes_from_sets()
+    {
+        $factory = $this->prepareSets('icon icon-default', ['zondicons' => 'zondicon-class']);
+
+        $icon = $factory->svg('camera');
+
+        $this->assertSame('icon icon-default', $icon->attributes()['class']);
+
+        $icon = $factory->svg('zondicon-flag');
+
+        $this->assertSame('icon icon-default zondicon-class', $icon->attributes()['class']);
+    }
+
+    /** @test */
     public function passing_classes_as_attributes_will_override_default_classes()
     {
         $factory = $this->prepareSets('icon icon-default');
