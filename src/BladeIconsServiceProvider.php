@@ -13,9 +13,21 @@ final class BladeIconsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/blade-icons.php', 'blade-icons');
-
+        $this->registerConfig();
         $this->registerFactory();
+    }
+
+    public function boot(): void
+    {
+        $this->bootIconSets();
+        $this->bootViews();
+        $this->bootDirectives();
+        $this->bootPublishing();
+    }
+
+    private function registerConfig(): void
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/blade-icons.php', 'blade-icons');
     }
 
     private function registerFactory(): void
@@ -23,26 +35,36 @@ final class BladeIconsServiceProvider extends ServiceProvider
         $this->app->singleton(Factory::class, function (Container $container) {
             $config = $container->make('config')->get('blade-icons');
 
-            $factory = new Factory(new Filesystem(), $config['class']);
-
-            foreach ($config['sets'] as $set => $options) {
-                $options['path'] = $this->app->basePath($options['path']);
-
-                $factory->add($set, $options);
-            }
-
-            return $factory;
+            return new Factory(new Filesystem(), $config['class']);
         });
     }
 
-    public function boot(): void
+    private function bootIconSets(): void
+    {
+        $config = $this->app->make('config')->get('blade-icons');
+        $factory = $this->app->make(Factory::class);
+
+        foreach ($config['sets'] as $set => $options) {
+            $options['path'] = $this->app->basePath($options['path']);
+
+            $factory->add($set, $options);
+        }
+    }
+
+    private function bootViews(): void
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'blade-icons');
+    }
 
+    private function bootDirectives(): void
+    {
         Blade::directive('svg', function ($expression) {
             return "<?php echo e(svg($expression)); ?>";
         });
+    }
 
+    private function bootPublishing(): void
+    {
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/blade-icons.php' => $this->app->configPath('blade-icons.php'),

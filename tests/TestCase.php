@@ -6,15 +6,14 @@ namespace Tests;
 
 use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Factory;
+use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
     protected function prepareSets(string $defaultClass = '', array $setClasses = []): Factory
     {
-        $this->app->make('config')->set('blade-icons.class', $defaultClass);
-
-        return $this->app->make(Factory::class)
+        $factory = (new Factory(new Filesystem(), $defaultClass))
             ->add('default', [
                 'path' => __DIR__ . '/resources/svg',
                 'prefix' => 'icon',
@@ -25,6 +24,12 @@ abstract class TestCase extends OrchestraTestCase
                 'prefix' => 'zondicon',
                 'class' => $setClasses['zondicons'] ?? '',
             ]);
+
+        $this->app->singleton(Factory::class, function () use ($factory) {
+            return $factory;
+        });
+
+        return $factory;
     }
 
     protected function getPackageProviders($app): array
