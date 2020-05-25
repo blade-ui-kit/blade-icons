@@ -25,11 +25,7 @@ abstract class TestCase extends OrchestraTestCase
                 'class' => $setClasses['zondicons'] ?? '',
             ]);
 
-        $this->app->singleton(Factory::class, function () use ($factory) {
-            return $factory;
-        });
-
-        return $factory;
+        return $this->app->instance(Factory::class, $factory);
     }
 
     protected function getPackageProviders($app): array

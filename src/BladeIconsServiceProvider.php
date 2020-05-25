@@ -19,7 +19,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->bootIconSets();
         $this->bootViews();
         $this->bootDirectives();
         $this->bootPublishing();
@@ -32,23 +31,17 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     private function registerFactory(): void
     {
-        $this->app->singleton(Factory::class, function (Container $container) {
-            $config = $container->make('config')->get('blade-icons');
-
-            return new Factory(new Filesystem(), $config['class']);
-        });
-    }
-
-    private function bootIconSets(): void
-    {
         $config = $this->app->make('config')->get('blade-icons');
-        $factory = $this->app->make(Factory::class);
+
+        $factory = new Factory(new Filesystem(), $config['class']);
 
         foreach ($config['sets'] as $set => $options) {
             $options['path'] = $this->app->basePath($options['path']);
 
             $factory->add($set, $options);
         }
+
+        $this->app->instance(Factory::class, $factory);
     }
 
     private function bootViews(): void
