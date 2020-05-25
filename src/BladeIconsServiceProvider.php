@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons;
 
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
