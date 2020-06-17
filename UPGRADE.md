@@ -37,4 +37,4 @@ All functionality concerning sprite sheets have been removed. We felt that sprit
 
 ### Helper Renames
 
-The `svg_image() helper has been renamed to `svg()`.
+The `svg_image()` helper has been renamed to `svg()`.
