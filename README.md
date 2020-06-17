@@ -37,9 +37,10 @@ A package to easily make use of SVG icons in your Laravel Blade views.
 
 This package is a base package to make it easy for you to use SVG icons in your app. If you want to start using a specific icon set, we offer the following ones below:
 
-- Coming soon...
+- [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons)
+- [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons)
 
-Feel free to open up an issue on the repo to [request another set](https://github.com/nothingworks/blade-svg/issues/new).
+We're not accepting requests to build new icon packages ourselves but you can [start building your own](#building-packages).
 
 ## Requirements
 
