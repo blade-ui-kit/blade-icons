@@ -111,6 +111,42 @@ HTML;
     }
 
     /** @test */
+    public function default_icon_set_is_optional()
+    {
+        $factory = (new Factory(new Filesystem(), 'icon icon-default'))
+            ->add('zondicons', [
+                'path' => __DIR__ . '/resources/zondicons',
+                'prefix' => 'zondicon',
+                'class' => 'zondicon-class',
+            ]);
+
+        $factory = $this->app->instance(Factory::class, $factory);
+
+        $icon = $factory->svg('zondicon-flag');
+
+        $this->assertSame('icon icon-default zondicon-class', $icon->attributes()['class']);
+    }
+
+    /** @test */
+    public function icon_not_found_without_default_set_throws_proper_exception()
+    {
+        $factory = (new Factory(new Filesystem(), 'icon icon-default'))
+            ->add('zondicons', [
+                'path' => __DIR__ . '/resources/zondicons',
+                'prefix' => 'zondicon',
+                'class' => 'zondicon-class',
+            ]);
+
+        $factory = $this->app->instance(Factory::class, $factory);
+
+        $this->expectExceptionObject(new SvgNotFound(
+            'Svg by name "foo" from set "zondicons" not found.'
+        ));
+
+        $factory->svg('zondicon-foo');
+    }
+
+    /** @test */
     public function icons_can_have_default_classes()
     {
         $factory = $this->prepareSets('icon icon-default');
