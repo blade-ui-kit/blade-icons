@@ -119,7 +119,7 @@ return [
 
 Defining a prefix for every set is required and every prefix should be unique.
 
-When referencing icons with the [Blade directive](#directives) or [helper](#helper) you can omit the prefix to reference icons from the `default` set.
+When referencing icons with the [Blade directive](#directives) or [helper](#helper) you can omit the prefix to reference icons from the `default` set. When referencing icons from other sets, using the prefix is required.
 
 When an icon in the default set has a name which collides with a prefix from a set then the icon from the set is retrieved first.
 
