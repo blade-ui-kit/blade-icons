@@ -1,19 +1,19 @@
 # Blade Icons
 
-<a href="https://github.com/adamwathan/blade-svg/actions?query=workflow%3ATests">
-    <img src="https://github.com/adamwathan/blade-svg/workflows/Tests/badge.svg" alt="Tests">
+<a href="https://github.com/blade-ui-kit/blade-icons/actions?query=workflow%3ATests">
+    <img src="https://github.com/blade-ui-kit/blade-icons/workflows/Tests/badge.svg" alt="Tests">
 </a>
-<a href="https://github.com/adamwathan/blade-svg/actions?query=workflow%3A%22Code+Style%22">
-    <img src="https://github.com/adamwathan/blade-svg/workflows/Code%20Style/badge.svg" alt="Code Style">
+<a href="https://github.com/blade-ui-kit/blade-icons/actions?query=workflow%3A%22Code+Style%22">
+    <img src="https://github.com/blade-ui-kit/blade-icons/workflows/Code%20Style/badge.svg" alt="Code Style">
 </a>
-<a href="https://packagist.org/packages/nothingworks/blade-svg">
-    <img src="https://poser.pugx.org/nothingworks/blade-svg/v/stable.svg" alt="Latest Stable Version">
+<a href="https://packagist.org/packages/blade-ui-kit/blade-icons">
+    <img src="https://poser.pugx.org/blade-ui-kit/blade-icons/v/stable.svg" alt="Latest Stable Version">
 </a>
-<a href="https://packagist.org/packages/nothingworks/blade-svg">
-    <img src="https://poser.pugx.org/nothingworks/blade-svg/d/total.svg" alt="Total Downloads">
+<a href="https://packagist.org/packages/blade-ui-kit/blade-icons">
+    <img src="https://poser.pugx.org/blade-ui-kit/blade-icons/d/total.svg" alt="Total Downloads">
 </a>
 
-A package to easily make use of SVG icons in your Laravel Blade views.
+A package to easily make use of SVG icons in your Laravel Blade views. Originally "Blade SVG" by [Adam Wathan](https://twitter.com/adamwathan).
 
 - [Icon Packages](#icon-packages)
 - [Requirements](#requirements)
@@ -50,7 +50,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 ## Installation
 
 ```bash
-composer require nothingworks/blade-svg
+composer require blade-ui-kit/blade-icons
 ```
 
 After installing the package, publish the configuration and **uncomment** the `default` icon set: 
@@ -237,7 +237,7 @@ Now your icons can be referenced using a component, directive or helper:
 {{ svg('heroicon-o-bell') }}
 ```
 
-Don't forget to make `nothingworks/blade-svg` a requirement of your package's `composer.json`.
+Don't forget to make `blade-ui-kit/blade-icons` a requirement of your package's `composer.json`.
 
 ## Changelog
 
@@ -246,8 +246,6 @@ Check out the [CHANGELOG](CHANGELOG.md) in this repository for all the recent ch
 ## Maintainers
 
 Blade Icons is developed and maintained by [Dries Vints](https://driesvints.com).
-
-It draws inspiration from the original [Blade SVG](https://github.com/adamwathan/blade-svg) package by [Adam Wathan](https://twitter.com/adamwathan).
 
 ## License
 

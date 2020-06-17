@@ -6,11 +6,11 @@ General steps for every update:
 
 ## Upgrading from v0.3.4 to 0.4.0
 
-0.4.0 is a complete rewrite. If you haven't yet, [read the announcement pr](https://github.com/adamwathan/blade-svg/pull/50). The package has been rewritten from the ground up and the public API has drastically changed. Most notable is the added support for Blade component syntax. While it'd be impossible to reference to every single breaking change, please refer below for the most notable ones:
+0.4.0 is a complete rewrite. If you haven't yet, [read the announcement pr](https://github.com/blade-ui-kit/blade-icons/pull/50). The package has been rewritten from the ground up and the public API has drastically changed. Most notable is the added support for Blade component syntax. While it'd be impossible to reference to every single breaking change, please refer below for the most notable ones:
 
 ### Package Renaming
 
-**The package has been renamed to Blade Icons.** For the beta period, it'll keep the `nothingworks/blade-svg` composer package name but it'll be renamed to a new name before we tag 0.4.0 and it'll be moved to a new organisation. More news on that as soon as the 0.4.0 beta period has ended.
+**The package has been renamed to Blade Icons.** It's also been moved to the Blade UI Kit organisation. You should update your reference in your `composer.json` to `blade-ui-kit/blade-icons`.
 
 ### Minimum Requirements
 

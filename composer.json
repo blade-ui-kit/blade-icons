@@ -1,12 +1,12 @@
 {
-    "name": "nothingworks/blade-svg",
+    "name": "blade-ui-kit/blade-icons",
     "description": "A package to easily make use of icons in your Laravel Blade views.",
     "keywords": ["Blade", "Icons", "Laravel", "SVG"],
-    "homepage": "https://github.com/nothingworks/blade-svg",
+    "homepage": "https://github.com/blade-ui-kit/blade-icons",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/nothingworks/blade-svg/issues",
-        "source": "https://github.com/nothingworks/blade-svg"
+        "issues": "https://github.com/blade-ui-kit/blade-icons/issues",
+        "source": "https://github.com/blade-ui-kit/blade-icons"
     },
     "authors": [
         {
