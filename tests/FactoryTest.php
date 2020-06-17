@@ -145,6 +145,20 @@ HTML;
     }
 
     /** @test */
+    public function default_classes_from_sets_are_applied_even_when_main_default_class_is_empty()
+    {
+        $factory = $this->prepareSets('', ['zondicons' => 'zondicon-class']);
+
+        $icon = $factory->svg('camera');
+
+        $this->assertArrayNotHasKey('class', $icon->attributes());
+
+        $icon = $factory->svg('zondicon-flag');
+
+        $this->assertSame('zondicon-class', $icon->attributes()['class']);
+    }
+
+    /** @test */
     public function passing_classes_as_attributes_will_override_default_classes()
     {
         $factory = $this->prepareSets('icon icon-default');
@@ -165,7 +179,7 @@ HTML;
 
         $icon = $factory->svg('camera', ['style' => 'color: #fff']);
 
-        $this->assertSame(['style' => 'color: #fff'], $icon->attributes());
+        $this->assertSame(['style' => 'color: #fff', 'class' => 'icon icon-default'], $icon->attributes());
     }
 
     /** @test */

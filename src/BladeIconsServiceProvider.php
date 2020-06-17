@@ -18,7 +18,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->bootViews();
         $this->bootDirectives();
         $this->bootPublishing();
     }
@@ -41,11 +40,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
         }
 
         $this->app->instance(Factory::class, $factory);
-    }
-
-    private function bootViews(): void
-    {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'blade-icons');
     }
 
     private function bootDirectives(): void

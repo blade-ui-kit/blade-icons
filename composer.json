@@ -22,10 +22,10 @@
     ],
     "require": {
         "php": "^7.2",
-        "illuminate/contracts": "^7.10",
-        "illuminate/filesystem": "^7.10",
-        "illuminate/support": "^7.10",
-        "illuminate/view": "^7.10"
+        "illuminate/contracts": "^7.14",
+        "illuminate/filesystem": "^7.14",
+        "illuminate/support": "^7.14",
+        "illuminate/view": "^7.14"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",

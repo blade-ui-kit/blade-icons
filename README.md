@@ -44,7 +44,7 @@ Feel free to open up an issue on the repo to [request another set](https://githu
 ## Requirements
 
 - PHP 7.2 or higher
-- Laravel 7.10 or higher
+- Laravel 7.14 or higher
 
 ## Installation
 

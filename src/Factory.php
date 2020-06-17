@@ -143,6 +143,10 @@ final class Factory
             }
         } elseif (is_array($class)) {
             $attributes = $class;
+
+            if (! isset($attributes['class']) && $class = $this->buildClass($set, '')) {
+                $attributes['class'] = $class;
+            }
         }
 
         return $attributes;

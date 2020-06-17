@@ -10,6 +10,8 @@ final class Svg extends Component
 {
     public function render()
     {
-        return view('blade-icons::components.svg');
+        return function (array $data) {
+            return svg($this->componentName, $data['attributes']->getIterator()->getArrayCopy())->toHtml();
+        };
     }
 }
