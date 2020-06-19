@@ -42,6 +42,10 @@ This package is a base package to make it easy for you to use SVG icons in your 
 
 We're not accepting requests to build new icon packages ourselves but you can [start building your own](#building-packages).
 
+### Third Party
+
+- [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons)
+
 ## Requirements
 
 - PHP 7.2 or higher
