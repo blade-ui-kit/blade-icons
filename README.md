@@ -45,6 +45,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 ### Third Party
 
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons)
+- [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons)
 - [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons)
 
 ## Requirements
