@@ -45,6 +45,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 ### Third Party
 
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons)
+- [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons)
 
 ## Requirements
 
@@ -57,7 +58,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 composer require blade-ui-kit/blade-icons
 ```
 
-After installing the package, publish the configuration and **uncomment** the `default` icon set: 
+After installing the package, publish the configuration and **uncomment** the `default` icon set:
 
 ```bash
 php artisan vendor:publish --tag=blade-icons
@@ -140,7 +141,7 @@ return [
 ```
 
 If you don't want any classes to be applied by default then leave this as an empty string. Additionally, the same option is available in sets so you can set default classes on every set.
- 
+
 The sequence in which classes get applied is `<global classes> <set classes> <explicit classes>`. You can always override this by passing an explicit class with your attributes.
 
 ## Usage
