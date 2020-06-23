@@ -129,6 +129,8 @@ When referencing icons with the [Blade directive](#directives) or [helper](#help
 
 When an icon in the default set has a name which collides with a prefix from a set then the icon from the set is retrieved first.
 
+Please note that it's best practice that your icons themselves do not have the prefix in their name. So if you have a prefix in your set called `icon` and your icons are named `icon-example.svg` you should rename them to `example.svg`. Otherwise you can run into unexpected name resolving issues.
+
 ### Default Classes
 
 You can optionally define classes which will be applied to every icon by filling in the `class` setting in your `blade-icons.php` config file:
