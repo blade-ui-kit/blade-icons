@@ -38,3 +38,7 @@ All functionality concerning sprite sheets have been removed. We felt that sprit
 ### Helper Renames
 
 The `svg_image()` helper has been renamed to `svg()`.
+
+### Prefixes
+
+The new release introduces the concept of prefixes in your config file. If you want to continue to use your current icon set and were prefixing your icons like `icon-cloud.svg` it's best that you set the prefix in your config file and remove the prefix from your icons themselves. Otherwise you can run into unexpected name resolving issues.
