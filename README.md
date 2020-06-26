@@ -48,6 +48,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons)
 - [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons)
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome)
+- [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons)
 
 ## Requirements
 
