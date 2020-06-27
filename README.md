@@ -69,17 +69,17 @@ Then install the package with composer:
 composer require blade-ui-kit/blade-icons
 ```
 
+After installing the package, publish the configuration and **uncomment** the `default` icon set:
+
+```bash
+php artisan vendor:publish --tag=blade-icons
+```
+
 ## Updating
 
 Please refer to [`the upgrade guide`](UPGRADE.md) when updating the library.
 
 ## Configuration
-
-If you want to modify any of the default configuration, you'll have to publish the configuration file:
-
-```bash
-php artisan vendor:publish --tag=blade-icons
-```
 
 ### Defining Sets
 
