@@ -11,7 +11,13 @@ final class Svg extends Component
     public function render()
     {
         return function (array $data) {
-            return svg($this->componentName, $data['attributes']->getIterator()->getArrayCopy())->toHtml();
+            $attributes = $data['attributes']->getIterator()->getArrayCopy();
+
+            $class = $attributes['class'] ?? '';
+
+            unset($attributes['class']);
+
+            return svg($this->componentName, $class, $attributes)->toHtml();
         };
     }
 }
