@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BladeUI\Icons;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,17 +30,19 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     private function registerFactory(): void
     {
-        $config = $this->app->make('config')->get('blade-icons');
+        $this->app->singleton(Factory::class, function (Application $app) {
+            $config = $app->make('config')->get('blade-icons');
 
-        $factory = new Factory(new Filesystem(), $config['class']);
+            $factory = new Factory(new Filesystem(), $config['class'] ?? '');
 
-        foreach ($config['sets'] as $set => $options) {
-            $options['path'] = $this->app->basePath($options['path']);
+            foreach ($config['sets'] ?? [] as $set => $options) {
+                $options['path'] = $app->basePath($options['path']);
 
-            $factory->add($set, $options);
-        }
+                $factory->add($set, $options);
+            }
 
-        $this->app->instance(Factory::class, $factory);
+            return $factory;
+        });
     }
 
     private function bootDirectives(): void
