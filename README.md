@@ -231,7 +231,7 @@ If you'd like, you can use the `svg` helper to expose a fluent syntax for settin
 
 ## Building Packages
 
-If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. If want to learn how to create packages first I can recommend these excellent two courses:
+If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. If want to learn how to create packages first I can recommend these two excellent courses:
 
 - [PHP Package Development](https://phppackagedevelopment.com) by [Marcel Pociot](https://twitter.com/marcelpociot)
 - [Laravel Package Training](https://laravelpackage.training) by [Freek Van der Herten](https://twitter.com/freekmurze)
