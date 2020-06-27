@@ -26,7 +26,7 @@ A package to easily make use of SVG icons in your Laravel Blade views. Originall
     - [Default Classes](#default-classes)
 - [Usage](#usage)
     - [Components](#components)
-    - [Directives](#directives)
+    - [Directive](#directive)
     - [Helper](#helper)
 - [Building Packages](#building-packages)
 - [Changelog](#changelog)
@@ -135,7 +135,7 @@ return [
 
 Defining a prefix for every set is required and every prefix should be unique.
 
-When referencing icons with the [Blade directive](#directives) or [helper](#helper) you can omit the prefix to reference icons from the `default` set. When referencing icons from other sets, using the prefix is required.
+When referencing icons with the [Blade directive](#directive) or [helper](#helper) you can omit the prefix to reference icons from the `default` set. When referencing icons from other sets, using the prefix is required.
 
 When an icon in the default set has a name which collides with a prefix from a set then the icon from the set is retrieved first.
 
@@ -159,7 +159,7 @@ The sequence in which classes get applied is `<global classes> <set classes> <ex
 
 ## Usage
 
-There are several ways of inserting icons into your Blade templates. We personally recommend using Blade components, but you can also make use of Blade directives if you wish.
+There are several ways of inserting icons into your Blade templates. We personally recommend using Blade components, but you can also make use of a Blade directive if you wish.
 
 ### Components
 
@@ -189,7 +189,7 @@ Or any other attributes for that matter:
 
 > Note that with Blade components, using a prefix is always required, even when referencing icons from the default set.
 
-### Directives
+### Directive
 
 If components aren't really your thing you can make use of the Blade directive instead. If you defined a default `icon` class in your config and want to render a `camera` icon with an `icon-lg` class you can do that like so:
 
