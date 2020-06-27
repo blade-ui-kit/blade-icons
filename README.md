@@ -230,10 +230,12 @@ use BladeUI\Icons\Factory;
 
 public function boot(): void
 {
-    $this->app->make(Factory::class)->add('heroicons', [
-        'path' => __DIR__ . '/../resources/svg',
-        'prefix' => 'heroicon',
-    ]);
+    $this->callAfterResolving(Factory::class, function (Factory $factory) {
+        $factory->add('heroicons', [
+            'path' => __DIR__ . '/../resources/svg',
+            'prefix' => 'heroicon',
+        ]);
+    });
 }
 ```
 
