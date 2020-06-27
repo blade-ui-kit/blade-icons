@@ -61,7 +61,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 composer require blade-ui-kit/blade-icons
 ```
 
-After installing the package, publish the configuration and **uncomment** the `default` icon set:
+After installing the package, publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag=blade-icons
