@@ -13,7 +13,9 @@ class ComponentsTest extends TestCase
     /** @test */
     public function components_are_registered_with_their_subdirectories()
     {
-        $this->prepareSets();
+        $factory = $this->prepareSets();
+
+        $factory->registerComponents();
 
         $this->assertSame([
             'icon-camera' => Svg::class,

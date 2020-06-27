@@ -60,23 +60,23 @@ final class Factory
 
         $this->sets[$set] = $options;
 
-        $this->registerComponents($options);
-
         $this->cache = [];
 
         return $this;
     }
 
-    private function registerComponents(array $options): void
+    public function registerComponents(): void
     {
-        foreach ($this->filesystem->allFiles($options['path']) as $file) {
-            $path = array_filter(explode('/', Str::after($file->getPath(), $options['path'])));
+        foreach ($this->sets as $set) {
+            foreach ($this->filesystem->allFiles($set['path']) as $file) {
+                $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
 
-            Blade::component(
-                SvgComponent::class,
-                implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
-                $options['prefix']
-            );
+                Blade::component(
+                    SvgComponent::class,
+                    implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
+                    $set['prefix']
+                );
+            }
         }
     }
 
