@@ -6,6 +6,12 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 ## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.1...master)
 
 
+## [0.4.2 (2020-06-27)](https://github.com/blade-ui-kit/blade-icons/compare/v0.4.1...0.4.2)
+
+### Fixed
+- Revert uncomment of default set ([62357bc](https://github.com/blade-ui-kit/blade-icons/commit/62357bc45cff8e78ec8cdda96581574fc85503fe))
+
+
 ## [0.4.1 (2020-06-27)](https://github.com/blade-ui-kit/blade-icons/compare/v0.4.0...0.4.1)
 
 ### Changed
