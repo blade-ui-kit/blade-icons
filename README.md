@@ -70,6 +70,13 @@ Then install the package with composer:
 composer require blade-ui-kit/blade-icons
 ```
 
+This package uses auto-discovery, so doesn't require you to manually add the ServiceProvider.
+If you don't use auto-discovery, add the ServiceProvider to the providers array in config/app.php;
+
+```
+BladeUI\Icons\BladeIconsServiceProvider::class
+```
+
 After installing the package, publish the configuration and **uncomment** the `default` icon set:
 
 ```bash
