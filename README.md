@@ -250,6 +250,8 @@ public function boot(): void
             'path' => __DIR__ . '/../resources/svg',
             'prefix' => 'heroicon',
         ]);
+
+        $factory->registerComponents();
     });
 }
 ```
