@@ -3,7 +3,13 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.1...master)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.3...master)
+
+
+## [0.4.3 (2020-07-09)](https://github.com/blade-ui-kit/blade-icons/compare/v0.4.2...0.4.3)
+
+### Fixed
+- Properly register `callAfterResolving` callback ([bdd6e59](https://github.com/blade-ui-kit/blade-icons/commit/bdd6e59980caa63865da6ce82ed2590c26790efd))
 
 
 ## [0.4.2 (2020-06-27)](https://github.com/blade-ui-kit/blade-icons/compare/v0.4.1...0.4.2)
