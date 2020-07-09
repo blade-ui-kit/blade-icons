@@ -243,7 +243,7 @@ Make sure to load your SVGs from the `boot` method of your package's service pro
 ```php
 use BladeUI\Icons\Factory;
 
-public function boot(): void
+public function register(): void
 {
     $this->callAfterResolving(Factory::class, function (Factory $factory) {
         $factory->add('heroicons', [
