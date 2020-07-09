@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons;
 
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Blade;
@@ -19,7 +20,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->bootComponents();
         $this->bootDirectives();
         $this->bootPublishing();
     }
@@ -44,11 +44,8 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
             return $factory;
         });
-    }
 
-    private function bootComponents(): void
-    {
-        $this->callAfterResolving('view', function ($view, Application $app) {
+        $this->callAfterResolving(ViewFactory::class, function ($view, Application $app) {
             $app->make(Factory::class)->registerComponents();
         });
     }
