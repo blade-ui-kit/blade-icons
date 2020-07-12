@@ -46,13 +46,13 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 
 Thanks to the community for contributing these!
 
-- [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons)
-- [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons)
-- [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons)
-- [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons)
-- [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome)
-- [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons)
-- [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons)
+- [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
+- [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
+- [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
+- [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons) by [Bruno Falcão](https://github.com/brunocfalcao)
+- [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
+- [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
+- [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
 
 ## Requirements
 
