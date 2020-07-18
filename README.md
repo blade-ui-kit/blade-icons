@@ -44,7 +44,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 
 ### Third Party
 
-Thanks to the community for contributing these!
+In addition to the official packages from above there's also quite some third party ones. Thanks to the community for contributing these!
 
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
