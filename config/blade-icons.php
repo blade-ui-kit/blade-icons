@@ -37,7 +37,7 @@ return [
         //     |
         //     | This config option allows you to define a default prefix for
         //     | your icons. The dash separator will be applied automatically
-        //      to every icon name. It's required and needs to be unique.
+        //     | to every icon name. It's required and needs to be unique.
         //     |
         //     */
         //
