@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://github.com/blade-ui-kit/art/blob/master/socialcard-blade-icons.png" width="1280" title="Social Card Blade UI Kit">
+</p>
+
 # Blade Icons
 
 <a href="https://github.com/blade-ui-kit/blade-icons/actions?query=workflow%3ATests">
