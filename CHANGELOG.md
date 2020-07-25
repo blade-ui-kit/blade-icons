@@ -3,7 +3,7 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.3...master)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.3...main)
 
 
 ## [0.4.3 (2020-07-09)](https://github.com/blade-ui-kit/blade-icons/compare/v0.4.2...0.4.3)
@@ -31,4 +31,4 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [0.4.0 (2020-06-17)](https://github.com/blade-ui-kit/blade-icons/compare/v0.3.4...0.4.0)
 
-Refactor to Blade Icons. See the [upgrade guide](https://github.com/blade-ui-kit/blade-icons/blob/master/UPGRADE.md#upgrading-from-v034-to-040) for relevant upgrade notes.
+Refactor to Blade Icons. See the [upgrade guide](https://github.com/blade-ui-kit/blade-icons/blob/main/UPGRADE.md#upgrading-from-v034-to-040) for relevant upgrade notes.
