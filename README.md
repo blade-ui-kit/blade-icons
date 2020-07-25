@@ -56,6 +56,7 @@ In addition to the official packages from above there's also quite some third pa
 - [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons) by [Bruno Falcão](https://github.com/brunocfalcao)
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
+- [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
 
 ## Requirements
