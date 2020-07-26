@@ -58,6 +58,7 @@ In addition to the official packages from above there's also quite some third pa
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
+- [Blade Icons Remix](https://github.com/skydiver/blade-icons-remix)
 
 ## Requirements
 
