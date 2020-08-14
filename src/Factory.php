@@ -95,13 +95,13 @@ final class Factory
      */
     private function contents(string $set, string $name): string
     {
-        if (isset($this->cache[$name])) {
-            return $this->cache[$name];
+        if (isset($this->cache[$set][$name])) {
+            return $this->cache[$set][$name];
         }
 
         if (isset($this->sets[$set])) {
             try {
-                return $this->cache[$name] = $this->getSvgFromPath($name, $this->sets[$set]['path']);
+                return $this->cache[$set][$name] = $this->getSvgFromPath($name, $this->sets[$set]['path']);
             } catch (FileNotFoundException $exception) {
                 //
             }
