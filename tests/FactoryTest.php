@@ -93,8 +93,14 @@ HTML;
     {
         $filesystem = Mockery::mock(Filesystem::class);
         $filesystem->shouldReceive('missing')->andReturn(false);
-        $filesystem->shouldReceive('get')->once()->with('/default/svg/camera.svg')->andReturn('<svg></svg>');
-        $filesystem->shouldReceive('get')->once()->with('/heroicon/svg/camera.svg')->andReturn('<svg></svg>');
+        $filesystem->shouldReceive('get')
+            ->once()
+            ->with('/default/svg/camera.svg')
+            ->andReturn($defaultIcon = '<svg>Foo</svg>');
+        $filesystem->shouldReceive('get')
+            ->once()
+            ->with('/heroicon/svg/camera.svg')
+            ->andReturn($heroicon = '<svg>Bar</svg>');
 
         $factory = new Factory($filesystem);
 
@@ -107,10 +113,10 @@ HTML;
             'prefix' => 'heroicon',
         ]);
 
-        $factory->svg('camera');
-        $factory->svg('camera');
-        $factory->svg('heroicon-camera');
-        $factory->svg('heroicon-camera');
+        $this->assertSame($defaultIcon, $factory->svg('camera')->contents());
+        $this->assertSame($defaultIcon, $factory->svg('camera')->contents());
+        $this->assertSame($heroicon, $factory->svg('heroicon-camera')->contents());
+        $this->assertSame($heroicon, $factory->svg('heroicon-camera')->contents());
     }
 
     /** @test */
