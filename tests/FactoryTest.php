@@ -91,23 +91,26 @@ HTML;
     /** @test */
     public function icons_are_cached()
     {
-        $options = [
-            'path' => __DIR__ . '/resources/svg',
-            'prefix' => 'icon',
-        ];
-
         $filesystem = Mockery::mock(Filesystem::class);
         $filesystem->shouldReceive('missing')->andReturn(false);
-        $filesystem->shouldReceive('allFiles')->with($options['path'])->andReturn([]);
-        $filesystem->shouldReceive('get')->once()->andReturn('<svg></svg>');
+        $filesystem->shouldReceive('get')->once()->with('/default/svg/camera.svg')->andReturn('<svg></svg>');
+        $filesystem->shouldReceive('get')->once()->with('/heroicon/svg/camera.svg')->andReturn('<svg></svg>');
 
         $factory = new Factory($filesystem);
 
-        $factory->add('default', $options);
+        $factory->add('default', [
+            'path' => '/default/svg',
+            'prefix' => 'default',
+        ]);
+        $factory->add('heroicon', [
+            'path' => '/heroicon/svg',
+            'prefix' => 'heroicon',
+        ]);
 
         $factory->svg('camera');
         $factory->svg('camera');
-        $factory->svg('camera');
+        $factory->svg('heroicon-camera');
+        $factory->svg('heroicon-camera');
     }
 
     /** @test */
