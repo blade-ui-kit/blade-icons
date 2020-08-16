@@ -23,6 +23,8 @@ class ComponentsTest extends TestCase
             'icon-solid.camera' => Svg::class,
             'icon-zondicon-flag' => Svg::class,
             'zondicon-flag' => Svg::class,
+            'disk-camera' => Svg::class,
+            'disk-solid.camera' => Svg::class,
         ], Blade::getClassComponentAliases());
     }
 
@@ -32,6 +34,23 @@ class ComponentsTest extends TestCase
         $this->prepareSets();
 
         $compiled = $this->renderView('icon');
+
+        $expected = <<<HTML
+<svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+</svg>
+HTML;
+
+        $this->assertSame($expected, $compiled);
+    }
+
+    /** @test */
+    public function it_can_render_an_icon_by_disk()
+    {
+        $this->prepareSets();
+
+        $compiled = $this->renderView('disk/icon');
 
         $expected = <<<HTML
 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,6 +80,23 @@ HTML;
     }
 
     /** @test */
+    public function it_can_render_an_icon_with_default_classes_by_disk()
+    {
+        $this->prepareSets('', ['disk' => 'w-6 h-6']);
+
+        $compiled = $this->renderView('disk/icon');
+
+        $expected = <<<HTML
+<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+</svg>
+HTML;
+
+        $this->assertSame($expected, $compiled);
+    }
+
+    /** @test */
     public function it_can_render_an_icon_with_default_classes_and_added_classes()
     {
         $this->prepareSets('text-blue-500', ['default' => 'w-6 h-6']);
@@ -78,11 +114,44 @@ HTML;
     }
 
     /** @test */
+    public function it_can_render_an_icon_with_default_classes_and_added_classes_by_disk()
+    {
+        $this->prepareSets('text-blue-500', ['disk' => 'w-6 h-6']);
+
+        $compiled = $this->renderView('disk/icon-with-attributes');
+
+        $expected = <<<HTML
+<svg data-foo="1" class="text-blue-500 w-6 h-6 icon icon-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+</svg>
+HTML;
+
+        $this->assertSame($expected, $compiled);
+    }
+
+    /** @test */
     public function it_can_render_an_icon_from_a_subdirectory()
     {
         $this->prepareSets();
 
         $compiled = $this->renderView('icon-subdirectory');
+
+        $expected = <<<HTML
+<svg viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+</svg>
+HTML;
+
+        $this->assertSame($expected, $compiled);
+    }
+
+    /** @test */
+    public function it_can_render_an_icon_from_a_subdirectory_by_disk()
+    {
+        $this->prepareSets();
+
+        $compiled = $this->renderView('disk/icon-subdirectory');
 
         $expected = <<<HTML
 <svg viewBox="0 0 20 20" fill="currentColor">
@@ -113,6 +182,23 @@ HTML;
         $this->prepareSets();
 
         $compiled = $this->renderView('icon-with-attributes');
+
+        $expected = <<<HTML
+<svg data-foo="1" class="icon icon-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+</svg>
+HTML;
+
+        $this->assertSame($expected, $compiled);
+    }
+
+    /** @test */
+    public function it_can_render_attributes_by_disk()
+    {
+        $this->prepareSets();
+
+        $compiled = $this->renderView('disk/icon-with-attributes');
 
         $expected = <<<HTML
 <svg data-foo="1" class="icon icon-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

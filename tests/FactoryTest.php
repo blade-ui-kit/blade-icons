@@ -27,7 +27,7 @@ class FactoryTest extends TestCase
 
         $sets = $factory->all();
 
-        $this->assertCount(2, $sets);
+        $this->assertCount(3, $sets);
     }
 
     /** @test */

@@ -37,8 +37,9 @@ final class BladeIconsServiceProvider extends ServiceProvider
             $factory = new Factory(new Filesystem(), $config['class'] ?? '');
 
             foreach ($config['sets'] ?? [] as $set => $options) {
-                $options['path'] = $app->basePath($options['path']);
-
+                if (! empty($options['path'])) {
+                    $options['path'] = $app->basePath($options['path']);
+                }
                 $factory->add($set, $options);
             }
 

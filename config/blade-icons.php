@@ -29,6 +29,18 @@ return [
         //     */
         //
         //     'path' => 'resources/svg',
+
+        //     /*
+        //     |-----------------------------------------------------------------
+        //     | Icons disk
+        //     |-----------------------------------------------------------------
+        //     |
+        //     | Provide disk where placed SVG icons. Icons are loaded recursively
+        //     | so there's no need to list every sub-directory.
+        //     |
+        //     */
+        //
+        //     'path' => 'resources/svg',
         //
         //     /*
         //     |--------------------------------------------------------------------------

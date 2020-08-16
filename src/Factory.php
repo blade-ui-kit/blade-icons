@@ -10,6 +10,7 @@ use BladeUI\Icons\Exceptions\SvgNotFound;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 final class Factory
@@ -42,8 +43,8 @@ final class Factory
      */
     public function add(string $set, array $options): self
     {
-        if (! isset($options['path'])) {
-            throw CannotRegisterIconSet::pathNotDefined($set);
+        if (! isset($options['path']) && !isset($options['disk'])) {
+            throw CannotRegisterIconSet::pathOrDiskNotDefined($set);
         }
 
         if (! isset($options['prefix'])) {
@@ -54,7 +55,7 @@ final class Factory
             throw CannotRegisterIconSet::prefixNotUnique($set, $collidingSet);
         }
 
-        if ($this->filesystem->missing($options['path'])) {
+        if (isset($options['path']) && $this->filesystem->missing($options['path'])) {
             throw CannotRegisterIconSet::nonExistingPath($set, $options['path']);
         }
 
@@ -68,15 +69,40 @@ final class Factory
     public function registerComponents(): void
     {
         foreach ($this->sets as $set) {
-            foreach ($this->filesystem->allFiles($set['path']) as $file) {
-                $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
-
-                Blade::component(
-                    SvgComponent::class,
-                    implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
-                    $set['prefix']
-                );
+            if (isset($set['path'])) {
+                $this->registerComponentsByPath($set);
+            } else {
+                $this->registerComponentsByDisk($set);
             }
+        }
+    }
+
+    protected function registerComponentsByPath($set) : void
+    {
+        foreach ($this->filesystem->allFiles($set['path']) as $file) {
+            $relativePath = Str::after($file->getPath(), $set['path']);
+            $relativePath = str_replace(DIRECTORY_SEPARATOR, '/', $relativePath);
+            $path = array_filter(explode('/', $relativePath));
+            Blade::component(
+                SvgComponent::class,
+                implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
+                $set['prefix']
+            );
+        }
+    }
+
+    protected function registerComponentsByDisk($set) : void
+    {
+        $allFiles = Storage::disk($set['disk'])->allFiles();
+        foreach ($allFiles as $file) {
+            $file = str_replace('/', '.', $file);
+            $path = pathinfo($file, PATHINFO_FILENAME);
+
+            Blade::component(
+                SvgComponent::class,
+                $path,
+                $set['prefix']
+            );
         }
     }
 
@@ -101,7 +127,9 @@ final class Factory
 
         if (isset($this->sets[$set])) {
             try {
-                return $this->cache[$set][$name] = $this->getSvgFromPath($name, $this->sets[$set]['path']);
+                return $this->cache[$set][$name] = isset($this->sets[$set]['path'])
+                    ? $this->getSvgFromPath($name, $this->sets[$set]['path'])
+                    : $this->getSvgFromDisk($name, $this->sets[$set]['disk']);
             } catch (FileNotFoundException $exception) {
                 //
             }
@@ -117,6 +145,12 @@ final class Factory
             rtrim($path),
             str_replace('.', '/', $name)
         )));
+    }
+
+    private function getSvgFromDisk(string $name, string $disk): string
+    {
+        $path = str_replace('.', DIRECTORY_SEPARATOR, $name) . '.svg';
+        return Storage::disk($disk)->get($path);
     }
 
     private function splitSetAndName(string $name): array

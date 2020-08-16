@@ -13,6 +13,11 @@ final class CannotRegisterIconSet extends Exception
         return new static("The options for the \"$set\" set don't have a path defined.");
     }
 
+    public static function pathOrDiskNotDefined(string $set): self
+    {
+        return new static("The options for the \"$set\" set don't have a path or disk defined.");
+    }
+
     public static function nonExistingPath(string $set, string $path): self
     {
         return new static("The [$path] path for the \"$set\" set does not exist.");

@@ -13,6 +13,13 @@ abstract class TestCase extends OrchestraTestCase
 {
     protected function prepareSets(string $defaultClass = '', array $setClasses = []): Factory
     {
+        $disks = config('filesystems.disks');
+        $disks['svg'] = [
+            'driver' => 'local',
+            'root' =>  __DIR__ . '/resources/disk-svg',
+        ];
+        config(['filesystems.disks' => $disks]);
+
         $factory = (new Factory(new Filesystem(), $defaultClass))
             ->add('default', [
                 'path' => __DIR__ . '/resources/svg',
@@ -23,6 +30,10 @@ abstract class TestCase extends OrchestraTestCase
                 'path' => __DIR__ . '/resources/zondicons',
                 'prefix' => 'zondicon',
                 'class' => $setClasses['zondicons'] ?? '',
+            ])->add('disk', [
+                'disk' => 'svg',
+                'prefix' => 'disk',
+                'class' => $setClasses['disk'] ?? '',
             ]);
 
         return $this->app->instance(Factory::class, $factory);
