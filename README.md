@@ -52,6 +52,7 @@ In addition to the official packages from above there's also quite some third pa
 
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
+- [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
 - [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons) by [Bruno Falcão](https://github.com/brunocfalcao)
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
