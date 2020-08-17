@@ -98,11 +98,7 @@ final class Factory
             $file = str_replace('/', '.', $file);
             $path = pathinfo($file, PATHINFO_FILENAME);
 
-            Blade::component(
-                SvgComponent::class,
-                $path,
-                $set['prefix']
-            );
+            Blade::component(SvgComponent::class, $path, $set['prefix']);
         }
     }
 
@@ -150,6 +146,7 @@ final class Factory
     private function getSvgFromDisk(string $name, string $disk): string
     {
         $path = str_replace('.', DIRECTORY_SEPARATOR, $name) . '.svg';
+
         return Storage::disk($disk)->get($path);
     }
 
