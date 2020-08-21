@@ -267,7 +267,7 @@ public function register(): void
 Now your icons can be referenced using a component, directive or helper:
 
 ```blade
-<x-heroicon-o-bell />
+<x-heroicon-o-bell/>
 
 @svg('heroicon-o-bell')
 
