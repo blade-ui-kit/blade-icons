@@ -250,7 +250,7 @@ If you're interested in building your own third party package to integrate an ic
 - [PHP Package Development](https://phppackagedevelopment.com) by [Marcel Pociot](https://twitter.com/marcelpociot)
 - [Laravel Package Training](https://laravelpackage.training) by [Freek Van der Herten](https://twitter.com/freekmurze)
 
-Make sure to load your SVGs from the `boot` method of your package's service provider. Provide the path to your SVGs and provide your own unique set name and component prefix:
+Make sure to load your SVGs from the `register` method of your package's service provider. Provide the path to your SVGs and provide your own unique set name and component prefix:
 
 ```php
 use BladeUI\Icons\Factory;
