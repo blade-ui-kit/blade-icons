@@ -77,7 +77,7 @@ final class Factory
     public function registerComponents(): void
     {
         foreach ($this->sets as $set => $options) {
-            foreach ($this->getSetFiles($set) as $file) {
+            foreach ($this->getFiles($set) as $file) {
                 $path = array_filter(explode('/', Str::after($file->getPath(), $options['path'])));
 
                 Blade::component(
@@ -89,7 +89,7 @@ final class Factory
         }
     }
 
-    public function getSetFiles($set): array
+    public function getFiles($set): array
     {
         $options = $this->sets[$set];
 
@@ -97,7 +97,7 @@ final class Factory
 
         if ($filters->count() > 0) {
             return $filters->map(function ($filter) use ($set, $options) {
-                return $this->getSetFile($set, $options, $filter);
+                return $this->getFile($set, $options['path'], $filter);
             })->toArray();
         }
 
@@ -107,16 +107,16 @@ final class Factory
     /**
      * @throws SvgNotFound
      */
-    public function getSetFile($set, $options, $filter): SplFileInfo
+    public function getFile($set, $path, $name): SplFileInfo
     {
         $file = new SplFileInfo(sprintf(
             '%s/%s.svg',
-            rtrim($options['path']),
-            str_replace('.', '/', $filter)
+            rtrim($path),
+            str_replace('.', '/', $name)
         ), '', '');
 
         if (! $file->isFile()) {
-            throw SvgNotFound::missing($set, $filter);
+            throw SvgNotFound::missing($set, $name);
         }
 
         return $file;

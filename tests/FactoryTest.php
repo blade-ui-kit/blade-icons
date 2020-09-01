@@ -43,7 +43,7 @@ class FactoryTest extends TestCase
         $factory = (new Factory(new Filesystem(), ''))
             ->add($set, $options);
 
-        $files = $factory->getSetFiles($set, $options);
+        $files = $factory->getFiles($set, $options);
 
         $this->assertCount(4, $files);
     }
@@ -60,7 +60,7 @@ class FactoryTest extends TestCase
             ]
         ]);
 
-        $this->assertCount(2, $factory->getSetFiles('default'));
+        $this->assertCount(2, $factory->getFiles('default'));
     }
 
     /** @test */
@@ -77,7 +77,7 @@ class FactoryTest extends TestCase
         $this->expectException(SvgNotFound::class);
         $this->expectExceptionMessage('Svg by name "money" from set "default" not found.');
 
-        $factory->getSetFiles('default');
+        $factory->getFiles('default');
     }
 
     /** @test */
