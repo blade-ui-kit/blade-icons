@@ -27,10 +27,18 @@ final class Factory
     /** @var array */
     private $cache = [];
 
+    /** @var array */
+    private $filters = [];
+
     public function __construct(Filesystem $filesystem, string $defaultClass = '')
     {
         $this->filesystem = $filesystem;
         $this->defaultClass = $defaultClass;
+    }
+
+    public function addFilters($filters = []): void
+    {
+        $this->filters = $filters;
     }
 
     public function all(): array
@@ -59,6 +67,10 @@ final class Factory
             throw CannotRegisterIconSet::nonExistingPath($set, $options['path']);
         }
 
+        if (isset($this->filters[$set])) {
+            $options['filter'] = $this->filters[$set];
+        }
+
         $this->sets[$set] = $options;
 
         $this->cache = [];
@@ -69,7 +81,7 @@ final class Factory
     public function registerComponents(): void
     {
         foreach ($this->sets as $set => $options) {
-            foreach ($this->getSetFiles($set, $options) as $file) {
+            foreach ($this->getSetFiles($set) as $file) {
                 $path = array_filter(explode('/', Str::after($file->getPath(), $options['path'])));
 
                 Blade::component(
@@ -81,8 +93,10 @@ final class Factory
         }
     }
 
-    public function getSetFiles($set, $options): array
+    public function getSetFiles($set): array
     {
+        $options = $this->sets[$set];
+
         $filters = collect($options['filter'] ?? []);
 
         if ($filters->count() > 0) {

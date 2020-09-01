@@ -38,7 +38,6 @@ class FactoryTest extends TestCase
             'path' => __DIR__ . '/resources/svg',
             'prefix' => 'icon',
             'class' => '',
-            'filtered' => [],
         ];
 
         $factory = (new Factory(new Filesystem(), ''))
@@ -57,16 +56,20 @@ class FactoryTest extends TestCase
             'path' => __DIR__ . '/resources/svg',
             'prefix' => 'icon',
             'class' => '',
-            'filter' => [
-                'zondicon-flag',
-                'solid.camera'
-            ],
         ];
 
-        $factory = (new Factory(new Filesystem(), ''))
-            ->add($set, $options);
+        $factory = new Factory(new Filesystem(), '');
 
-        $this->assertCount(2, $factory->getSetFiles($set, $options));
+        $factory->addFilters(
+            [$set => [
+                'zondicon-flag',
+                'solid.camera'
+            ]]
+        );
+
+        $factory->add($set, $options);
+
+        $this->assertCount(2, $factory->getSetFiles($set));
     }
 
     /** @test */
@@ -77,13 +80,17 @@ class FactoryTest extends TestCase
             'path' => __DIR__ . '/resources/svg',
             'prefix' => 'icon',
             'class' => '',
-            'filter' => [
-                'money'
-            ],
         ];
 
-        $factory = (new Factory(new Filesystem(), ''))
-            ->add($set, $options);
+        $factory = new Factory(new Filesystem(), '');
+
+        $factory->addFilters([
+            $set => [
+                'money'
+            ],
+        ]);
+
+        $factory->add($set, $options);
 
         $this->expectException(SvgNotFound::class);
         $this->expectExceptionMessage('Svg by name "money" from set "default" not found.');
