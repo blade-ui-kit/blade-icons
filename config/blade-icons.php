@@ -71,12 +71,12 @@ return [
     | If a set is not listed below, all icons in that set will be loaded.
     */
 
-    // 'filter' => [
+    'filter' => [
     //     'default' => [
     //         'icon1',
     //         'icon3'
     //     ]
-    // ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
