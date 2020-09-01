@@ -68,7 +68,7 @@ final class Factory
         }
 
         if (isset($this->filters[$set])) {
-            $options['filter'] = $this->filters[$set];
+            $options['filters'] = $this->filters[$set];
         }
 
         $this->sets[$set] = $options;
@@ -97,7 +97,7 @@ final class Factory
     {
         $options = $this->sets[$set];
 
-        $filters = collect($options['filter'] ?? []);
+        $filters = collect($options['filters'] ?? []);
 
         if ($filters->count() > 0) {
             return $filters->map(function ($filter) use ($set, $options) {
