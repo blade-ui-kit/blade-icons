@@ -67,10 +67,6 @@ final class Factory
             throw CannotRegisterIconSet::nonExistingPath($set, $options['path']);
         }
 
-        if (isset($this->filters[$set])) {
-            $options['filters'] = $this->filters[$set];
-        }
-
         $this->sets[$set] = $options;
 
         $this->cache = [];
@@ -97,7 +93,7 @@ final class Factory
     {
         $options = $this->sets[$set];
 
-        $filters = collect($options['filters'] ?? []);
+        $filters = collect($this->filters[$set] ?? []);
 
         if ($filters->count() > 0) {
             return $filters->map(function ($filter) use ($set, $options) {

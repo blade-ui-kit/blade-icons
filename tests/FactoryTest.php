@@ -51,51 +51,33 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_can_get_only_filtered_icons_in_a_set()
     {
-        $set = 'default';
-        $options = [
-            'path' => __DIR__ . '/resources/svg',
-            'prefix' => 'icon',
-            'class' => '',
-        ];
+        $factory = $this->prepareSets();
 
-        $factory = new Factory(new Filesystem(), '');
-
-        $factory->addFilters(
-            [$set => [
+        $factory->addFilters([
+            'default' => [
                 'zondicon-flag',
                 'solid.camera'
-            ]]
-        );
+            ]
+        ]);
 
-        $factory->add($set, $options);
-
-        $this->assertCount(2, $factory->getSetFiles($set));
+        $this->assertCount(2, $factory->getSetFiles('default'));
     }
 
     /** @test */
     public function it_throws_an_exception_when_filtered_icon_is_not_found()
     {
-        $set = 'default';
-        $options = [
-            'path' => __DIR__ . '/resources/svg',
-            'prefix' => 'icon',
-            'class' => '',
-        ];
-
-        $factory = new Factory(new Filesystem(), '');
+        $factory = $this->prepareSets();
 
         $factory->addFilters([
-            $set => [
+            'default' => [
                 'money'
             ],
         ]);
 
-        $factory->add($set, $options);
-
         $this->expectException(SvgNotFound::class);
         $this->expectExceptionMessage('Svg by name "money" from set "default" not found.');
 
-        $factory->getSetFiles($set, $options);
+        $factory->getSetFiles('default');
     }
 
     /** @test */
