@@ -68,45 +68,45 @@ final class Factory
 
     public function registerComponents(): void
     {
-        foreach ($this->sets as $set) {
-            foreach ($this->getFiles($set) as $file) {
-                $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
+        foreach ($this->sets as $set => $options) {
+            foreach ($this->getSetFiles($set, $options) as $file) {
+                $path = array_filter(explode('/', Str::after($file->getPath(), $options['path'])));
 
                 Blade::component(
                     SvgComponent::class,
                     implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
-                    $set['prefix']
+                    $options['prefix']
                 );
             }
         }
     }
 
-    public function getFiles($set): array
+    public function getSetFiles($set, $options): array
     {
-        $filters = collect($set['filter'] ?? []);
+        $filters = collect($options['filter'] ?? []);
 
         if ($filters->count() > 0) {
-            return $filters->map(function ($filter) use ($set) {
-                return $this->getFile($set['path'], $filter);
+            return $filters->map(function ($filter) use ($set, $options) {
+                return $this->getSetFile($set, $options, $filter);
             })->toArray();
         }
 
-        return $this->filesystem->allFiles($set['path']);
+        return $this->filesystem->allFiles($options['path']);
     }
 
     /**
      * @throws SvgNotFound
      */
-    public function getFile($path, $fileName): SplFileInfo
+    public function getSetFile($set, $options, $filter): SplFileInfo
     {
         $file = new SplFileInfo(sprintf(
             '%s/%s.svg',
-            rtrim($path),
-            str_replace('.', '/', $fileName)
+            rtrim($options['path']),
+            str_replace('.', '/', $filter)
         ), '', '');
 
         if (! $file->isFile()) {
-            throw SvgNotFound::missing($path, $fileName);
+            throw SvgNotFound::missing($set, $filter);
         }
 
         return $file;

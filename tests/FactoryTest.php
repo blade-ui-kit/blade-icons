@@ -33,16 +33,18 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_can_get_all_icons_in_a_set()
     {
-        $set = [
+        $set = 'default';
+        $options = [
             'path' => __DIR__ . '/resources/svg',
             'prefix' => 'icon',
             'class' => '',
+            'filtered' => [],
         ];
 
         $factory = (new Factory(new Filesystem(), ''))
-            ->add('default', $set);
+            ->add($set, $options);
 
-        $files = $factory->getFiles($set);
+        $files = $factory->getSetFiles($set, $options);
 
         $this->assertCount(4, $files);
     }
@@ -50,7 +52,8 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_can_get_only_filtered_icons_in_a_set()
     {
-        $set = [
+        $set = 'default';
+        $options = [
             'path' => __DIR__ . '/resources/svg',
             'prefix' => 'icon',
             'class' => '',
@@ -61,9 +64,31 @@ class FactoryTest extends TestCase
         ];
 
         $factory = (new Factory(new Filesystem(), ''))
-            ->add('default', $set);
+            ->add($set, $options);
 
-        $this->assertCount(2, $factory->getFiles($set));
+        $this->assertCount(2, $factory->getSetFiles($set, $options));
+    }
+
+    /** @test */
+    public function it_throws_an_exception_when_filtered_icon_is_not_found()
+    {
+        $set = 'default';
+        $options = [
+            'path' => __DIR__ . '/resources/svg',
+            'prefix' => 'icon',
+            'class' => '',
+            'filter' => [
+                'money'
+            ],
+        ];
+
+        $factory = (new Factory(new Filesystem(), ''))
+            ->add($set, $options);
+
+        $this->expectException(SvgNotFound::class);
+        $this->expectExceptionMessage('Svg by name "money" from set "default" not found.');
+
+        $factory->getSetFiles($set, $options);
     }
 
     /** @test */
