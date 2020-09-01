@@ -11,6 +11,7 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
+use Symfony\Component\Finder\SplFileInfo;
 
 final class Factory
 {
@@ -68,7 +69,7 @@ final class Factory
     public function registerComponents(): void
     {
         foreach ($this->sets as $set) {
-            foreach ($this->filesystem->allFiles($set['path']) as $file) {
+            foreach ($this->getFiles($set) as $file) {
                 $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
 
                 Blade::component(
@@ -78,6 +79,26 @@ final class Factory
                 );
             }
         }
+    }
+
+    public function getFiles($set): array
+    {
+        $filters = collect($set['filter'] ?? []);
+
+        if ($filters->count() > 0) {
+            $files = collect();
+
+            foreach ($filters as $filter) {
+                $files->push(new SplFileInfo(sprintf(
+                    '%s/%s.svg',
+                    rtrim($set['path']),
+                    str_replace('.', '/', $filter)
+                ), "", ""));
+            }
+
+            return $files->toArray();
+        }
+        return $this->filesystem->allFiles($set['path']);
     }
 
     /**

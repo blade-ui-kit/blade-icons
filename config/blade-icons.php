@@ -55,6 +55,18 @@ return [
         //
         //     'class' => '',
         //
+        //     /*
+        //     |--------------------------------------------------------------------------
+        //     | Filter Set Icons
+        //     |--------------------------------------------------------------------------
+        //     |
+        //     | This config option allows you to define a filtered list of
+        //     | icons that will be loaded out of this set
+        //     |
+        //     */
+        //
+        //     'filter' => [],
+        //
         // ],
 
     ],

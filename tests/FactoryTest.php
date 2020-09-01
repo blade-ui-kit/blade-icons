@@ -31,6 +31,42 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function it_can_get_all_icons_in_a_set()
+    {
+        $set = [
+            'path' => __DIR__ . '/resources/svg',
+            'prefix' => 'icon',
+            'class' => '',
+        ];
+
+        $factory = (new Factory(new Filesystem(), ''))
+            ->add('default', $set);
+
+        $files = $factory->getFiles($set);
+
+        $this->assertCount(4, $files);
+    }
+
+    /** @test */
+    public function it_can_get_only_filtered_icons_in_a_set()
+    {
+        $set = [
+            'path' => __DIR__ . '/resources/svg',
+            'prefix' => 'icon',
+            'class' => '',
+            'filter' => [
+                'zondicon-flag',
+                'solid.camera'
+            ],
+        ];
+
+        $factory = (new Factory(new Filesystem(), ''))
+            ->add('default', $set);
+
+        $this->assertCount(2, $factory->getFiles($set));
+    }
+
+    /** @test */
     public function it_can_retrieve_an_icon()
     {
         $factory = $this->prepareSets();
