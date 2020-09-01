@@ -88,20 +88,32 @@ final class Factory
         if ($filters->count() > 0) {
             $files = collect();
 
-            foreach ($filters as $filter) {
-                $files->push(
-                    new SplFileInfo(sprintf(
-                        '%s/%s.svg',
-                        rtrim($set['path']),
-                        str_replace('.', '/', $filter)
-                    ), '', '')
-                );
-            }
+            $files = $filters->map(function ($filter) use ($set){
+                return $this->getFile($set['path'], $filter);
+            });
 
             return $files->toArray();
         }
 
         return $this->filesystem->allFiles($set['path']);
+    }
+
+    /**
+     * @throws SvgNotFound
+     */
+    public function getFile($path, $fileName): SplFileInfo
+    {
+        $file = new SplFileInfo(sprintf(
+            '%s/%s.svg',
+            rtrim($path),
+            str_replace('.', '/', $fileName)
+        ), '', '');
+
+        if (! $file->isFile()) {
+            throw SvgNotFound::missing($path, $fileName);
+        }
+
+        return $file;
     }
 
     /**
