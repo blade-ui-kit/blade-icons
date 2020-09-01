@@ -89,15 +89,18 @@ final class Factory
             $files = collect();
 
             foreach ($filters as $filter) {
-                $files->push(new SplFileInfo(sprintf(
-                    '%s/%s.svg',
-                    rtrim($set['path']),
-                    str_replace('.', '/', $filter)
-                ), "", ""));
+                $files->push(
+                    new SplFileInfo(sprintf(
+                        '%s/%s.svg',
+                        rtrim($set['path']),
+                        str_replace('.', '/', $filter)
+                    ), '', '')
+                );
             }
 
             return $files->toArray();
         }
+
         return $this->filesystem->allFiles($set['path']);
     }
 
