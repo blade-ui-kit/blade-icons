@@ -86,13 +86,9 @@ final class Factory
         $filters = collect($set['filter'] ?? []);
 
         if ($filters->count() > 0) {
-            $files = collect();
-
-            $files = $filters->map(function ($filter) use ($set){
+            return $filters->map(function ($filter) use ($set) {
                 return $this->getFile($set['path'], $filter);
-            });
-
-            return $files->toArray();
+            })->toArray();
         }
 
         return $this->filesystem->allFiles($set['path']);
