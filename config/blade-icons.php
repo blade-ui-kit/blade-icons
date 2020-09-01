@@ -16,7 +16,7 @@ return [
     'sets' => [
 
         // 'default' => [
-
+        //
         //     /*
         //     |-----------------------------------------------------------------
         //     | Icons Path
@@ -27,9 +27,9 @@ return [
         //     | so there's no need to list every sub-directory.
         //     |
         //     */
-
+        //
         //     'path' => 'resources/svg',
-
+        //
         //     /*
         //     |--------------------------------------------------------------------------
         //     | Default Prefix
@@ -40,9 +40,9 @@ return [
         //     | to every icon name. It's required and needs to be unique.
         //     |
         //     */
-
+        //
         //     'prefix' => 'icon',
-
+        //
         //     /*
         //     |--------------------------------------------------------------------------
         //     | Default Set Class
@@ -52,30 +52,34 @@ return [
         //     | will be applied to all icons by default within this set.
         //     |
         //     */
-
+        //
         //     'class' => '',
-
+        //
         // ],
 
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Filter Set Icons
+    | Icon Set Filters
     |--------------------------------------------------------------------------
     |
-    | This config option allows you to define a filtered list of
-    | icons that will be loaded out of each speficied. Provide a key name for your icon
-    | set and a combination from the options below.
+    | This config option allows you to define a filtered list of icons that will be
+    | loaded from each specified set, including other packages icon sets.
+    | Provide a key name for your icon set and a combination from the options below.
     |
     | If a set is not listed below, all icons in that set will be loaded.
     */
 
     'filters' => [
-    //     'default' => [
-    //         'icon1',
-    //         'icon3'
-    //     ]
+
+        // 'default' => [
+        //
+        //     'icon1',
+        //     'outline.icon3',
+        //
+        // ]
+
     ],
 
     /*
