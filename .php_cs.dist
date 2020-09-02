@@ -3,6 +3,7 @@
 $finder = Symfony\Component\Finder\Finder::create()
     ->notPath('vendor')
     ->in(__DIR__)
+    ->exclude('tests/fixtures')
     ->name('*.php');
 
 return PhpCsFixer\Config::create()
