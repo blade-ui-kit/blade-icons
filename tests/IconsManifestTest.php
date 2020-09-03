@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Exception;
 use BladeUI\Icons\IconsManifest;
+use Exception;
 use Illuminate\Filesystem\Filesystem;
 
 class IconsManifestTest extends TestCase
