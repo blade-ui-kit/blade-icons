@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Exception;
 use BladeUI\Icons\IconsManifest;
 use Illuminate\Filesystem\Filesystem;
 
@@ -56,5 +57,21 @@ class IconsManifestTest extends TestCase
         $this->assertTrue(file_exists($this->manifestPath));
         $this->assertTrue($manifest->delete());
         $this->assertFalse(file_exists($this->manifestPath));
+    }
+
+    /** @test */
+    public function it_throws_an_exceptiion_when_the_manifest_path_is_not_present_or_writable()
+    {
+        $manifest = new IconsManifest(new Filesystem(), '/foo/bar.php', []);
+
+        try {
+            $manifest->build();
+        } catch (Exception $e) {
+            $this->assertSame('The /foo directory must be present and writable.', $e->getMessage());
+
+            return;
+        }
+
+        $this->fail('Trying to write to an unpresent or unwritable directory succeeded.');
     }
 }

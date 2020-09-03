@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons;
 
+use Exception;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\SplFileInfo;
@@ -56,6 +57,10 @@ final class IconsManifest
 
     private function write(array $manifest): void
     {
+        if (! is_writable($dirname = dirname($this->manifestPath))) {
+            throw new Exception("The {$dirname} directory must be present and writable.");
+        }
+
         $this->filesystem->replace(
             $this->manifestPath,
             '<?php return ' . var_export($manifest, true) . ';'
