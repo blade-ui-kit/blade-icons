@@ -1,7 +1,7 @@
 <?php return array (
   'default' => 
   array (
-    'path' => '{{ DIR }}/resources/svg',
+    'path' => '{{ dir }}/resources/svg',
     'prefix' => 'icon',
     'class' => '',
     'icons' => 
@@ -14,7 +14,7 @@
   ),
   'zondicons' => 
   array (
-    'path' => '{{ DIR }}/resources/zondicons',
+    'path' => '{{ dir }}/resources/zondicons',
     'prefix' => 'zondicon',
     'class' => '',
     'icons' => 
