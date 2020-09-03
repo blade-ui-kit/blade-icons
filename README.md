@@ -19,6 +19,8 @@
 
 A package to easily make use of SVG icons in your Laravel Blade views. Originally "Blade SVG" by [Adam Wathan](https://twitter.com/adamwathan).
 
+Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade-icons#search
+
 *Join the Discord server: https://discord.gg/Vev5CyE*
 
 - [Icon Packages](#icon-packages)
