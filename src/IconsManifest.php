@@ -6,6 +6,7 @@ namespace BladeUI\Icons;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
+use Symfony\Component\Finder\SplFileInfo;
 
 final class IconsManifest
 {
@@ -31,9 +32,7 @@ final class IconsManifest
 
         foreach ($this->sets as $name => $set) {
             foreach ($this->filesystem->allFiles($set['path']) as $file) {
-                $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
-
-                $set['icons'][] = implode('.', array_filter($path + [$file->getFilenameWithoutExtension()]));
+                $set['icons'][] = $this->format($file, $set['path']);
             }
 
             $compiled[$name] = $set;
@@ -45,6 +44,14 @@ final class IconsManifest
     public function delete(): bool
     {
         return $this->filesystem->delete($this->manifestPath);
+    }
+
+    private function format(SplFileInfo $file, string $path): string
+    {
+        return (string) Str::of($file->getPathName())
+            ->after($path . '/')
+            ->replace('/', '.')
+            ->basename('.' . $file->getExtension());
     }
 
     private function write(array $manifest): void
