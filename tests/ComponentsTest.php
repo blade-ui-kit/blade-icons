@@ -17,13 +17,20 @@ class ComponentsTest extends TestCase
 
         $factory->registerComponents();
 
-        $this->assertSame([
+        $compiled = Blade::getClassComponentAliases();
+
+        $expected = [
             'icon-camera' => Svg::class,
             'icon-foo-camera' => Svg::class,
             'icon-solid.camera' => Svg::class,
             'icon-zondicon-flag' => Svg::class,
             'zondicon-flag' => Svg::class,
-        ], Blade::getClassComponentAliases());
+        ];
+
+        foreach ($expected as $alias => $component) {
+            $this->assertArrayHasKey($alias, $compiled);
+            $this->assertSame(Svg::class, $component);
+        }
     }
 
     /** @test */
