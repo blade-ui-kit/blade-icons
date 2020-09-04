@@ -17,11 +17,7 @@ class ComponentsTest extends TestCase
 
         $factory->registerComponents();
 
-        $compiled = collect(Blade::getClassComponentAliases())
-            ->filter(function (string $value) {
-                return $value === Svg::class;
-            })
-            ->all();
+        $compiled = Blade::getClassComponentAliases();
 
         $expected = [
             'icon-camera' => Svg::class,
@@ -31,7 +27,10 @@ class ComponentsTest extends TestCase
             'zondicon-flag' => Svg::class,
         ];
 
-        $this->assertSame($expected, $compiled);
+        foreach ($expected as $alias => $component) {
+            $this->assertArrayHasKey($alias, $compiled);
+            $this->assertSame(Svg::class, $component);
+        }
     }
 
     /** @test */
