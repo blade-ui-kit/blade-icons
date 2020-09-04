@@ -3,7 +3,13 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.4...main)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.5...main)
+
+
+## [0.4.5 (2020-09-04)](https://github.com/blade-ui-kit/blade-icons/compare/0.4.4...0.4.5)
+
+### Added
+- Laravel 8 support ([#87](https://github.com/blade-ui-kit/blade-icons/pull/87))
 
 
 ## [0.4.4 (2020-08-14)](https://github.com/blade-ui-kit/blade-icons/compare/0.4.3...0.4.4)
