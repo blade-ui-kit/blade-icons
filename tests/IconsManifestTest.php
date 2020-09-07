@@ -38,11 +38,11 @@ class IconsManifestTest extends TestCase
     }
 
     /** @test */
-    public function it_can_build_the_manifest_file()
+    public function it_can_write_the_manifest_file()
     {
         $factory = $this->prepareSets();
         $manifest = new IconsManifest(new Filesystem(), $this->manifestPath, $factory->all());
-        $manifest->build();
+        $manifest->write();
 
         $this->assertTrue(file_exists($this->manifestPath));
         $this->assertSame($this->expectedManifest(), file_get_contents($this->manifestPath));
@@ -52,7 +52,7 @@ class IconsManifestTest extends TestCase
     public function it_can_delete_the_manifest_file()
     {
         $manifest = new IconsManifest(new Filesystem(), $this->manifestPath, []);
-        $manifest->build();
+        $manifest->write();
 
         $this->assertTrue(file_exists($this->manifestPath));
         $this->assertTrue($manifest->delete());
@@ -65,7 +65,7 @@ class IconsManifestTest extends TestCase
         $manifest = new IconsManifest(new Filesystem(), '/foo/bar.php', []);
 
         try {
-            $manifest->build();
+            $manifest->write();
         } catch (Exception $e) {
             $this->assertSame('The /foo directory must be present and writable.', $e->getMessage());
 
@@ -73,5 +73,13 @@ class IconsManifestTest extends TestCase
         }
 
         $this->fail('Trying to write to an unpresent or unwritable directory succeeded.');
+    }
+
+    /** @test */
+    public function it_can_get_the_manifest()
+    {
+        $manifest = new IconsManifest(new Filesystem(), $this->manifestPath, []);
+
+        $this->assertSame([], $manifest->getManifest());
     }
 }

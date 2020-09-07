@@ -14,6 +14,9 @@ final class IconsManifest
     /** @var Filesystem */
     private $filesystem;
 
+    /** @var array */
+    private $manifest;
+
     /** @var string */
     private $manifestPath;
 
@@ -27,7 +30,7 @@ final class IconsManifest
         $this->sets = $sets;
     }
 
-    public function build(): void
+    private function build(): array
     {
         $compiled = [];
 
@@ -39,7 +42,7 @@ final class IconsManifest
             $compiled[$name] = $set;
         }
 
-        $this->write($compiled);
+        return $compiled;
     }
 
     public function delete(): bool
@@ -55,7 +58,23 @@ final class IconsManifest
             ->basename('.' . $file->getExtension());
     }
 
-    private function write(array $manifest): void
+    public function getManifest(): array
+    {
+        if (! is_null($this->manifest)) {
+            return $this->manifest;
+        }
+
+        if (! $this->filesystem->exists($this->manifestPath)) {
+            return $this->manifest = $this->build();
+        }
+
+        return $this->manifest = $this->files->getRequire($this->manifestPath);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function write(): void
     {
         if (! is_writable($dirname = dirname($this->manifestPath))) {
             throw new Exception("The {$dirname} directory must be present and writable.");
@@ -63,7 +82,7 @@ final class IconsManifest
 
         $this->filesystem->replace(
             $this->manifestPath,
-            '<?php return ' . var_export($manifest, true) . ';'
+            '<?php return ' . var_export($this->build(), true) . ';'
         );
     }
 }

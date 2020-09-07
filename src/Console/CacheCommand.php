@@ -35,7 +35,7 @@ final class CacheCommand extends Command
 
     public function handle(): int
     {
-        $this->manifest->build();
+        $this->manifest->write();
 
         $this->info('Blade icons manifest file generated successfully!');
 
