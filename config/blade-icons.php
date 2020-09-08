@@ -71,4 +71,17 @@ return [
 
     'class' => '',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Blade Component Tags
+    |--------------------------------------------------------------------------
+    |
+    | When this option is enabled Blade components will not be registered.
+    | You may enable this when you are not using the "x-" tag syntax
+    | and only want to use the Blade directive or svg helper.
+    |
+    */
+
+    'disable_tags' => false,
+
 ];

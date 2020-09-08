@@ -67,6 +67,10 @@ final class Factory
 
     public function registerComponents(): void
     {
+        if (! $this->shouldRegisterComponents()) {
+            return;
+        }
+
         foreach ($this->sets as $set) {
             foreach ($this->filesystem->allFiles($set['path']) as $file) {
                 $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
@@ -159,5 +163,10 @@ final class Factory
             trim(sprintf('%s %s', $this->defaultClass, $this->sets[$set]['class'] ?? '')),
             $class
         ));
+    }
+
+    private function shouldRegisterComponents(): bool
+    {
+        return ! config('blade-icons.disable_tags', false);
     }
 }

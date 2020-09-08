@@ -34,6 +34,18 @@ class ComponentsTest extends TestCase
     }
 
     /** @test */
+    public function componenets_are_not_registerd_when_disabled()
+    {
+        $this->app->config->set('blade-icons.disable_tags', true);
+
+        $this->prepareSets()->registerComponents();
+
+        $compiled = Blade::getClassComponentAliases();
+
+        $this->assertNotContains(Svg::class, $compiled);
+    }
+
+    /** @test */
     public function it_can_render_an_icon()
     {
         $this->prepareSets();
