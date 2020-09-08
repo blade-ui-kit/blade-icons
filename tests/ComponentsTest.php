@@ -13,9 +13,7 @@ class ComponentsTest extends TestCase
     /** @test */
     public function components_are_registered_with_their_subdirectories()
     {
-        $factory = $this->prepareSets();
-
-        $factory->registerComponents();
+        $this->prepareSets()->registerComponents();
 
         $compiled = Blade::getClassComponentAliases();
 
