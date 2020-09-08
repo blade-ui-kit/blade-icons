@@ -19,6 +19,8 @@
 
 A package to easily make use of SVG icons in your Laravel Blade views. Originally "Blade SVG" by [Adam Wathan](https://twitter.com/adamwathan).
 
+Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade-icons#search
+
 *Join the Discord server: https://discord.gg/Vev5CyE*
 
 - [Icon Packages](#icon-packages)
@@ -53,6 +55,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 In addition to the official packages from above there's also quite some third party ones. Thanks to the community for contributing these!
 
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
+- [Blade Boxicons](https://github.com/jfvoliveira/blade-boxicons) by [João Oliveira](https://github.com/jfvoliveira)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
