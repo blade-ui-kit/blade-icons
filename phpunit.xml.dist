@@ -5,7 +5,7 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Package Test Suite">
+        <testsuite name="Blade Icons Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
