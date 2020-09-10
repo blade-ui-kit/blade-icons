@@ -68,7 +68,7 @@ final class IconsManifest
             return $this->manifest = $this->build();
         }
 
-        return $this->manifest = $this->files->getRequire($this->manifestPath);
+        return $this->manifest = $this->filesystem->getRequire($this->manifestPath);
     }
 
     /**
