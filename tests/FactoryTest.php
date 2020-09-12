@@ -249,6 +249,19 @@ HTML;
         $factory->svg('money');
     }
 
+    /** @test */
+    public function it_trims_the_trailing_slash_from_the_path()
+    {
+        $factory = $this->prepareSets();
+
+        $factory->add('default', [
+            'path' => __DIR__ . '/resources/svg/',
+            'prefix' => '',
+        ]);
+
+        $this->assertSame(__DIR__ . '/resources/svg', $factory->all()['default']['path']);
+    }
+
     protected function getPackageProviders($app): array
     {
         return [BladeIconsServiceProvider::class];

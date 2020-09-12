@@ -54,6 +54,8 @@ final class Factory
             throw CannotRegisterIconSet::prefixNotUnique($set, $collidingSet);
         }
 
+        $options['path'] = rtrim($options['path'], '/');
+
         if ($this->filesystem->missing($options['path'])) {
             throw CannotRegisterIconSet::nonExistingPath($set, $options['path']);
         }
