@@ -281,6 +281,12 @@ Now your icons can be referenced using a component, directive or helper:
 
 Don't forget to make `blade-ui-kit/blade-icons` a requirement of your package's `composer.json`.
 
+## Performance
+
+The package registers a Blade component for each icon. If you install a set of icons such us `owenvoke/blade-fontawesome`, then 1600 components are going to be scanned and created. 
+
+To avoid the performance cost, it is **highly recommended** to reduce the number of icons and copy the SVG files to the project local resources, and update the `config/blade-icons.php` accordingly.
+
 ## Changelog
 
 Check out the [CHANGELOG](CHANGELOG.md) in this repository for all the recent changes.
