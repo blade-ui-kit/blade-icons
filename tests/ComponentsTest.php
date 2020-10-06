@@ -34,7 +34,7 @@ class ComponentsTest extends TestCase
     }
 
     /** @test */
-    public function componenets_are_not_registerd_when_disabled()
+    public function components_are_not_registerd_when_disabled()
     {
         $this->app->config->set('blade-icons.disable_tags', true);
 
