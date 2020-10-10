@@ -44,6 +44,10 @@ final class BladeIconsServiceProvider extends ServiceProvider
                     $options['path'] = $app->basePath($options['path']);
                 }
 
+                $options['paths'] = array_map(function ($path) use ($app) {
+                    return $app->basePath($path);
+                }, $options['paths'] ?? (array) $options['path']);
+
                 $factory->add($set, $options);
             }
 
