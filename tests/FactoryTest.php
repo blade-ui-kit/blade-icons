@@ -262,6 +262,23 @@ HTML;
         $this->assertSame(__DIR__ . '/resources/svg', $factory->all()['default']['path']);
     }
 
+    /** @test */
+    public function it_trims_the_trailing_slash_from_all_paths()
+    {
+        $factory = $this->prepareSets();
+
+        $factory->add('default', [
+            'paths' => [
+                __DIR__ . '/resources/svg/',
+                __DIR__ . '/resources/zondicons/',
+            ],
+            'prefix' => '',
+        ]);
+
+        $this->assertSame(__DIR__ . '/resources/svg', $factory->all()['default']['paths'][0]);
+        $this->assertSame(__DIR__ . '/resources/zondicons', $factory->all()['default']['paths'][1]);
+    }
+
     protected function getPackageProviders($app): array
     {
         return [BladeIconsServiceProvider::class];
