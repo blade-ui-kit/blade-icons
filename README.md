@@ -11,10 +11,10 @@
     <img src="https://github.com/blade-ui-kit/blade-icons/workflows/Code%20Style/badge.svg" alt="Code Style">
 </a>
 <a href="https://packagist.org/packages/blade-ui-kit/blade-icons">
-    <img src="https://poser.pugx.org/blade-ui-kit/blade-icons/v/stable.svg" alt="Latest Stable Version">
+    <img src="https://img.shields.io/packagist/v/blade-ui-kit/blade-icons" alt="Latest Stable Version">
 </a>
 <a href="https://packagist.org/packages/blade-ui-kit/blade-icons">
-    <img src="https://poser.pugx.org/blade-ui-kit/blade-icons/d/total.svg" alt="Total Downloads">
+    <img src="https://img.shields.io/packagist/dt/blade-ui-kit/blade-icons" alt="Total Downloads">
 </a>
 
 A package to easily make use of SVG icons in your Laravel Blade views. Originally "Blade SVG" by [Adam Wathan](https://twitter.com/adamwathan).
