@@ -3,7 +3,19 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.4.5...main)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.5.0...main)
+
+
+## [0.5.0 (2020-10-31)](https://github.com/blade-ui-kit/blade-icons/compare/0.4.5...0.5.0)
+
+### Added
+- PHP 8 Support ([#101](https://github.com/blade-ui-kit/blade-icons/pull/101))
+
+### Removed
+- Drop PHP 7.2 support ([b36f216](https://github.com/blade-ui-kit/blade-icons/commit/b36f216c03f096cd59cc8b1ebfa41a926bfe8e78))
+
+### Fixed
+- Strip trailing slash from path ([#88](https://github.com/blade-ui-kit/blade-icons/pull/88))
 
 
 ## [0.4.5 (2020-09-04)](https://github.com/blade-ui-kit/blade-icons/compare/0.4.4...0.4.5)
