@@ -81,7 +81,7 @@ class FactoryTest extends TestCase
 
         $icon = $factory->svg('zondicon-flag');
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
 HTML;
 
@@ -124,7 +124,7 @@ HTML;
     {
         $factory = (new Factory(new Filesystem(), 'icon icon-default'))
             ->add('zondicons', [
-                'path' => __DIR__ . '/resources/zondicons',
+                'path' => __DIR__.'/resources/zondicons',
                 'prefix' => 'zondicon',
                 'class' => 'zondicon-class',
             ]);
@@ -141,7 +141,7 @@ HTML;
     {
         $factory = (new Factory(new Filesystem(), 'icon icon-default'))
             ->add('zondicons', [
-                'path' => __DIR__ . '/resources/zondicons',
+                'path' => __DIR__.'/resources/zondicons',
                 'prefix' => 'zondicon',
                 'class' => 'zondicon-class',
             ]);
@@ -255,11 +255,11 @@ HTML;
         $factory = $this->prepareSets();
 
         $factory->add('default', [
-            'path' => __DIR__ . '/resources/svg/',
+            'path' => __DIR__.'/resources/svg/',
             'prefix' => '',
         ]);
 
-        $this->assertSame(__DIR__ . '/resources/svg', $factory->all()['default']['path']);
+        $this->assertSame(__DIR__.'/resources/svg', $factory->all()['default']['path']);
     }
 
     protected function getPackageProviders($app): array
