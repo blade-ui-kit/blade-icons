@@ -149,7 +149,7 @@ class FactoryTest extends TestCase
         $factory = $this->app->instance(Factory::class, $factory);
 
         $this->expectExceptionObject(new SvgNotFound(
-            'Svg by name "foo" from set "zondicons" not found.'
+            'Svg by name "foo" from set "zondicons" not found.',
         ));
 
         $factory->svg('zondicon-foo');

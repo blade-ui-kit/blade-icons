@@ -117,7 +117,7 @@ final class Factory
         return trim($this->filesystem->get(sprintf(
             '%s/%s.svg',
             rtrim($path),
-            str_replace('.', '/', $name)
+            str_replace('.', '/', $name),
         )));
     }
 
