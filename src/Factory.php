@@ -71,6 +71,10 @@ final class Factory
     {
         foreach ($this->sets as $set) {
             foreach ($this->filesystem->allFiles($set['path']) as $file) {
+                if ($file->getExtension() !== 'svg') {
+                    continue;
+                }
+
                 $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
 
                 Blade::component(
