@@ -239,6 +239,17 @@ HTML;
     }
 
     /** @test */
+    public function it_excludes_files_without_an_svg_extension()
+    {
+        $factory = $this->prepareSets();
+
+        $this->expectException(SvgNotFound::class);
+        $this->expectExceptionMessage('Svg by name "invalid-extension" from set "default" not found.');
+
+        $factory->svg('invalid-extension');
+    }
+
+    /** @test */
     public function it_throws_an_exception_when_no_icon_is_found()
     {
         $factory = $this->prepareSets();
