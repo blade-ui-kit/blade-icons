@@ -26,7 +26,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     private function registerConfig(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/blade-icons.php', 'blade-icons');
+        $this->mergeConfigFrom(__DIR__.'/../config/blade-icons.php', 'blade-icons');
     }
 
     private function registerFactory(): void
@@ -67,7 +67,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/blade-icons.php' => $this->app->configPath('blade-icons.php'),
+                __DIR__.'/../config/blade-icons.php' => $this->app->configPath('blade-icons.php'),
             ], 'blade-icons');
         }
     }

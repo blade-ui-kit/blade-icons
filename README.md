@@ -7,14 +7,14 @@
 <a href="https://github.com/blade-ui-kit/blade-icons/actions?query=workflow%3ATests">
     <img src="https://github.com/blade-ui-kit/blade-icons/workflows/Tests/badge.svg" alt="Tests">
 </a>
-<a href="https://github.com/blade-ui-kit/blade-icons/actions?query=workflow%3A%22Code+Style%22">
-    <img src="https://github.com/blade-ui-kit/blade-icons/workflows/Code%20Style/badge.svg" alt="Code Style">
+<a href="https://github.styleci.io/repos/66956607">
+    <img src="https://github.styleci.io/repos/66956607/shield?style=flat" alt="Code Style">
 </a>
 <a href="https://packagist.org/packages/blade-ui-kit/blade-icons">
-    <img src="https://poser.pugx.org/blade-ui-kit/blade-icons/v/stable.svg" alt="Latest Stable Version">
+    <img src="https://img.shields.io/packagist/v/blade-ui-kit/blade-icons" alt="Latest Stable Version">
 </a>
 <a href="https://packagist.org/packages/blade-ui-kit/blade-icons">
-    <img src="https://poser.pugx.org/blade-ui-kit/blade-icons/d/total.svg" alt="Total Downloads">
+    <img src="https://img.shields.io/packagist/dt/blade-ui-kit/blade-icons" alt="Total Downloads">
 </a>
 
 A package to easily make use of SVG icons in your Laravel Blade views. Originally "Blade SVG" by [Adam Wathan](https://twitter.com/adamwathan).
@@ -69,7 +69,7 @@ In addition to the official packages from above there's also quite some third pa
 
 ## Requirements
 
-- PHP 7.2 or higher
+- PHP 7.3 or higher
 - Laravel 7.14 or higher
 
 ## Installation

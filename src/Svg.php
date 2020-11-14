@@ -39,7 +39,7 @@ final class Svg implements Htmlable
         return str_replace(
             '<svg',
             sprintf('<svg%s', $this->renderAttributes()),
-            $this->contents
+            $this->contents,
         );
     }
 }

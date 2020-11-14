@@ -88,6 +88,10 @@ final class Factory
         foreach ($this->sets as $set) {
             foreach ($set['paths'] as $path) {
                 foreach ($this->filesystem->allFiles($path) as $file) {
+                    if ($file->getExtension() !== 'svg') {
+                        continue;
+                    }
+
                     $filePath = array_filter(explode('/', Str::after($file->getPath(), $path)));
 
                     Blade::component(
@@ -137,7 +141,7 @@ final class Factory
         return trim($this->filesystem->get(sprintf(
             '%s/%s.svg',
             rtrim($path),
-            str_replace('.', '/', $name)
+            str_replace('.', '/', $name),
         )));
     }
 
@@ -179,7 +183,7 @@ final class Factory
         return trim(sprintf(
             '%s %s',
             trim(sprintf('%s %s', $this->defaultClass, $this->sets[$set]['class'] ?? '')),
-            $class
+            $class,
         ));
     }
 }

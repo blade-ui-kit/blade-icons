@@ -13,23 +13,14 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.2, 7.3, 7.4]
+        php: [7.3, 7.4, 8.0]
         laravel: [^7.0, ^8.0]
-        exclude:
-          - php: 7.2
-            laravel: ^8.0
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.composer/cache/files
-          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -39,7 +30,9 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer require "illuminate/contracts=${{ matrix.laravel }}" --prefer-dist --no-interaction
+        run: |
+          composer require "illuminate/contracts=${{ matrix.laravel }}" --prefer-dist --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose

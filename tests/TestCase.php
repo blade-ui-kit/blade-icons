@@ -15,12 +15,12 @@ abstract class TestCase extends OrchestraTestCase
     {
         $factory = (new Factory(new Filesystem(), $defaultClass))
             ->add('default', [
-                'path' => __DIR__ . '/resources/svg',
+                'path' => __DIR__.'/resources/svg',
                 'prefix' => 'icon',
                 'class' => $setClasses['default'] ?? '',
             ])
             ->add('zondicons', [
-                'path' => __DIR__ . '/resources/zondicons',
+                'path' => __DIR__.'/resources/zondicons',
                 'prefix' => 'zondicon',
                 'class' => $setClasses['zondicons'] ?? '',
             ]);
