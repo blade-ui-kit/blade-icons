@@ -168,17 +168,17 @@ final class Factory
         ));
     }
 
-    private function registerComponent(array $set, string $extension, string $iconPath, string $filename)
+    private function registerComponent(array $set, string $extension, string $path, string $filename)
     {
         if ($extension !== 'svg') {
             return;
         }
 
-        $iconPath = array_filter(explode('/', Str::after($iconPath, $set['path'])));
+        $path = array_filter(explode('/', Str::after($path, $set['path'])));
 
         Blade::component(
             SvgComponent::class,
-            implode('.', array_filter($iconPath + [$filename])),
+            implode('.', array_filter($path + [$filename])),
             $set['prefix'],
         );
     }
