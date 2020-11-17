@@ -26,10 +26,14 @@ final class Factory
     /** @var array */
     private $cache = [];
 
-    public function __construct(Filesystem $filesystem, string $defaultClass = '')
+    /** @var \BladeUI\Icons\Cache */
+    private $fileCache;
+
+    public function __construct(Filesystem $filesystem, Cache $fileCache, string $defaultClass = '')
     {
         $this->filesystem = $filesystem;
         $this->defaultClass = $defaultClass;
+        $this->fileCache = $fileCache;
     }
 
     public function all(): array
@@ -69,18 +73,15 @@ final class Factory
 
     public function registerComponents(): void
     {
-        foreach ($this->sets as $set) {
-            foreach ($this->filesystem->allFiles($set['path']) as $file) {
-                if ($file->getExtension() !== 'svg') {
-                    continue;
-                }
+        foreach ($this->sets as $name => $set) {
+            $meta = $this->fileCache->get($name, $set);
 
-                $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
-
-                Blade::component(
-                    SvgComponent::class,
-                    implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
-                    $set['prefix'],
+            foreach ($meta as $icon) {
+                $this->registerComponent(
+                    $set,
+                    $icon['extension'],
+                    $icon['path'],
+                    $icon['filename'],
                 );
             }
         }
@@ -165,5 +166,20 @@ final class Factory
             trim(sprintf('%s %s', $this->defaultClass, $this->sets[$set]['class'] ?? '')),
             $class,
         ));
+    }
+
+    private function registerComponent(array $set, string $extension, string $iconPath, string $filename)
+    {
+        if ($extension !== 'svg') {
+            return;
+        }
+
+        $iconPath = array_filter(explode('/', Str::after($iconPath, $set['path'])));
+
+        Blade::component(
+            SvgComponent::class,
+            implode('.', array_filter($iconPath + [$filename])),
+            $set['prefix'],
+        );
     }
 }

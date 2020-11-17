@@ -34,7 +34,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
         $this->app->singleton(Factory::class, function (Application $app) {
             $config = $app->make('config')->get('blade-icons');
 
-            $factory = new Factory(new Filesystem(), $config['class'] ?? '');
+            $factory = new Factory(new Filesystem(), $app->make(Cache::class), $config['class'] ?? '');
 
             foreach ($config['sets'] ?? [] as $set => $options) {
                 $options['path'] = $app->basePath($options['path']);
