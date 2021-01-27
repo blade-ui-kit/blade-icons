@@ -11,8 +11,7 @@
     "authors": [
         {
             "name": "Dries Vints",
-            "homepage": "https://driesvints.com",
-            "role": "Developer"
+            "homepage": "https://driesvints.com"
         }
     ],
     "require": {
