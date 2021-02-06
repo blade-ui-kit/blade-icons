@@ -300,7 +300,7 @@ class FactoryTest extends TestCase
     public function it_uses_the_default_fallback_when_set_fallback_does_not_exist(): void
     {
         $expectedSvg = 'camera';
-        $factory = $this->prepareSets('', [],$expectedSvg, ['default' => 'fallback-that-does-not-exist']);
+        $factory = $this->prepareSets('', [], $expectedSvg, ['default' => 'fallback-that-does-not-exist']);
 
         $icon = $factory->svg('some-icon-that-does-not-exist');
 

@@ -200,5 +200,4 @@ final class Factory
             str_replace('.', '/', $name),
         );
     }
-
 }
