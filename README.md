@@ -175,6 +175,28 @@ If you don't want any classes to be applied by default then leave this as an emp
 
 The sequence in which classes get applied is `<global classes> <set classes> <explicit classes>`. You can always override this by passing an explicit class with your attributes. Component classes cannot be overriden.
 
+### Fallbacks
+
+You can optionally define a fallback icon which will be applied when the requested icon does not exist.
+This can be configured by setting the `fallback` setting in your `blade-icons.php` config file and can be configured 
+o both set and global level:
+
+```php
+<?php
+
+return [
+    'fallback' => 'default-icon-name',
+    
+    'sets' => [
+        'default' => [
+            'fallback' => 'set-fallback-icon-name',
+        ],
+    ],
+];
+```
+
+If this is not configured, or the fallback icon also does not exist, an `Exception` will be thrown.
+
 ## Usage
 
 There are several ways of inserting icons into your Blade templates. We personally recommend using Blade components, but you can also make use of a Blade directive if you wish.
