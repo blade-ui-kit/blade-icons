@@ -55,6 +55,18 @@ return [
         //
         //     'class' => '',
         //
+        //     /*
+        //     |--------------------------------------------------------------------------
+        //     | Default Set Fallback
+        //     |--------------------------------------------------------------------------
+        //     |
+        //     | This config option allows you to define the icon name that is
+        //     | used as a fallback within this set.
+        //     |
+        //     */
+        //
+        //     'fallback' => '',
+        //
         // ],
 
     ],
@@ -70,5 +82,17 @@ return [
     */
 
     'class' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Fallback
+    |--------------------------------------------------------------------------
+    |
+    | This config option allows you to define the icon name that is
+    | used as a fallback when a set fallback is missing or invalid.
+    |
+    */
+
+    'fallback' => '',
 
 ];

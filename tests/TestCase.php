@@ -11,18 +11,20 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
-    protected function prepareSets(string $defaultClass = '', array $setClasses = []): Factory
+    protected function prepareSets(string $defaultClass = '', array $setClasses = [], string $defaultFallback = '', array $fallbacks = []): Factory
     {
-        $factory = (new Factory(new Filesystem(), $defaultClass))
+        $factory = (new Factory(new Filesystem(), $defaultClass, $defaultFallback))
             ->add('default', [
                 'path' => __DIR__.'/resources/svg',
                 'prefix' => 'icon',
                 'class' => $setClasses['default'] ?? '',
+                'fallback' => $fallbacks['default'] ?? '',
             ])
             ->add('zondicons', [
                 'path' => __DIR__.'/resources/zondicons',
                 'prefix' => 'zondicon',
                 'class' => $setClasses['zondicons'] ?? '',
+                'fallback' => $fallbacks['zondicons'] ?? '',
             ]);
 
         return $this->app->instance(Factory::class, $factory);

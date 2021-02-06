@@ -92,6 +92,7 @@ class FactoryTest extends TestCase
     public function icons_are_cached()
     {
         $filesystem = Mockery::mock(Filesystem::class);
+        $filesystem->shouldReceive('exists')->andReturn(true);
         $filesystem->shouldReceive('missing')->andReturn(false);
         $filesystem->shouldReceive('get')
             ->once()
@@ -271,6 +272,39 @@ class FactoryTest extends TestCase
         ]);
 
         $this->assertSame(__DIR__.'/resources/svg', $factory->all()['default']['path']);
+    }
+
+    /** @test */
+    public function it_uses_the_set_fallback_when_configured(): void
+    {
+        $fallbackSvg = 'camera';
+        $factory = $this->prepareSets('', [], '', ['default' => $fallbackSvg]);
+
+        $icon = $factory->svg('foobar-i-do-not-exist');
+
+        $this->assertSame($fallbackSvg, $icon->name());
+    }
+
+    /** @test */
+    public function it_uses_the_default_fallback_when_configured(): void
+    {
+        $fallbackSvg = 'camera';
+        $factory = $this->prepareSets('', [], $fallbackSvg, []);
+
+        $icon = $factory->svg('some-icon-that-does-not-exist');
+
+        $this->assertSame($fallbackSvg, $icon->name());
+    }
+
+    /** @test */
+    public function it_uses_the_default_fallback_when_set_fallback_does_not_exist(): void
+    {
+        $expectedSvg = 'camera';
+        $factory = $this->prepareSets('', [],$expectedSvg, ['default' => 'fallback-that-does-not-exist']);
+
+        $icon = $factory->svg('some-icon-that-does-not-exist');
+
+        $this->assertSame($expectedSvg, $icon->name());
     }
 
     protected function getPackageProviders($app): array

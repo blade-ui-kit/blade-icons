@@ -20,16 +20,20 @@ final class Factory
     /** @var string */
     private $defaultClass;
 
+    /** @var string */
+    private $fallbackSvg;
+
     /** @var array */
     private $sets = [];
 
     /** @var array */
     private $cache = [];
 
-    public function __construct(Filesystem $filesystem, string $defaultClass = '')
+    public function __construct(Filesystem $filesystem, string $defaultClass = '', string $fallbackSvg = '')
     {
         $this->filesystem = $filesystem;
         $this->defaultClass = $defaultClass;
+        $this->fallbackSvg = $fallbackSvg;
     }
 
     public function all(): array
@@ -91,7 +95,7 @@ final class Factory
      */
     public function svg(string $name, $class = '', array $attributes = []): Svg
     {
-        [$set, $name] = $this->splitSetAndName($name);
+        [$set, $name] = $this->resolveSetAndName($name);
 
         return new Svg($name, $this->contents($set, $name), $this->formatAttributes($set, $class, $attributes));
     }
@@ -118,11 +122,32 @@ final class Factory
 
     private function getSvgFromPath(string $name, string $path): string
     {
-        return trim($this->filesystem->get(sprintf(
-            '%s/%s.svg',
-            rtrim($path),
-            str_replace('.', '/', $name),
-        )));
+        return trim($this->filesystem->get($this->getFullPath($path, $name)));
+    }
+
+    private function svgExists(string $name, string $path): bool
+    {
+        return $this->filesystem->exists($this->getFullPath($path, $name));
+    }
+
+    private function resolveSetAndName(string $name): array
+    {
+        [$set, $requestedName] = $this->splitSetAndName($name);
+        if ($this->svgExists($requestedName, $this->sets[$set]['path'])) {
+            return [$set, $requestedName];
+        }
+
+        $name = $this->sets[$set]['fallback'] ?? '';
+        if ($name !== '' && $this->svgExists($name, $this->sets[$set]['path'])) {
+            return [$set, $name];
+        }
+
+        $name = $this->fallbackSvg;
+        if ($name !== '' && $this->svgExists($name, $this->sets['default']['path'])) {
+            return ['default', $name];
+        }
+
+        throw SvgNotFound::missing($set, $requestedName);
     }
 
     private function splitSetAndName(string $name): array
@@ -166,4 +191,14 @@ final class Factory
             $class,
         ));
     }
+
+    private function getFullPath(string $path, string $name): string
+    {
+        return sprintf(
+            '%s/%s.svg',
+            rtrim($path),
+            str_replace('.', '/', $name),
+        );
+    }
+
 }
