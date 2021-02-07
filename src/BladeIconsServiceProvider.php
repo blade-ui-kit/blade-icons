@@ -41,7 +41,11 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
             foreach ($config['sets'] ?? [] as $set => $options) {
                 if (! isset($options['disk'])) {
-                    $options['path'] = $app->basePath($options['path']);
+                    $paths = $options['paths'] ?? $options['path'] ?? [];
+
+                    $options['paths'] = array_map(function ($path) use ($app) {
+                        return $app->basePath($path);
+                    }, (array) $paths);
                 }
 
                 $factory->add($set, $options);
