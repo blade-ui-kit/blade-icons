@@ -31,9 +31,9 @@ return [
         //     'path' => 'resources/svg',
         //
         //     /*
-        //     |--------------------------------------------------------------------------
+        //     |-----------------------------------------------------------------
         //     | Default Prefix
-        //     |--------------------------------------------------------------------------
+        //     |-----------------------------------------------------------------
         //     |
         //     | This config option allows you to define a default prefix for
         //     | your icons. The dash separator will be applied automatically
@@ -44,12 +44,12 @@ return [
         //     'prefix' => 'icon',
         //
         //     /*
-        //     |--------------------------------------------------------------------------
+        //     |-----------------------------------------------------------------
         //     | Default Set Class
-        //     |--------------------------------------------------------------------------
+        //     |-----------------------------------------------------------------
         //     |
         //     | This config option allows you to define some classes which
-        //     | will be applied to all icons by default within this set.
+        //     | will be applied by default to all icons within this set.
         //     |
         //     */
         //
@@ -65,10 +65,36 @@ return [
     |--------------------------------------------------------------------------
     |
     | This config option allows you to define some classes which
-    | will be applied to all icons by default.
+    | will be applied by default to all icons.
     |
     */
 
     'class' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Components
+    |--------------------------------------------------------------------------
+    |
+    | These config options allow you to define some
+    | settings related to Blade Components.
+    |
+    */
+
+    'components' => [
+
+        /*
+        |----------------------------------------------------------------------
+        | Default Icon Name
+        |----------------------------------------------------------------------
+        |
+        | This config option allows you to define the name
+        | for the default Icon class component.
+        |
+        */
+
+        'default' => 'icon',
+
+    ],
 
 ];

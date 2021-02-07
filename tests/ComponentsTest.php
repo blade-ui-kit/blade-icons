@@ -129,6 +129,37 @@ class ComponentsTest extends TestCase
         $this->assertSame($expected, $compiled);
     }
 
+    /** @test */
+    public function it_can_render_an_icon_with_the_icon_component()
+    {
+        $this->prepareSets();
+
+        $compiled = $this->renderView('icon-component');
+
+        $expected = <<<'HTML'
+            <svg data-foo="1" class="icon icon-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            HTML;
+
+        $this->assertSame($expected, $compiled);
+    }
+
+    /** @test */
+    public function it_can_render_an_icon_from_a_specific_set_with_the_icon_component()
+    {
+        $this->prepareSets();
+
+        $compiled = $this->renderView('icon-component-from-set');
+
+        $expected = <<<'HTML'
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
+            HTML;
+
+        $this->assertSame($expected, $compiled);
+    }
+
     private function renderView(string $view): string
     {
         return trim(View::file(__DIR__."/resources/views/{$view}.blade.php")->render());
