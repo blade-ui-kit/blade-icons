@@ -30,6 +30,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 - [Configuration](#configuration)
   - [Defining Sets](#defining-sets)
   - [Icon Paths](#icon-paths)
+    - [Multiple Paths](#multiple-paths)
   - [Filesystem Disk](#filesystem-disk)
   - [Prefixing Icons](#prefixing-icons)
   - [Default Classes](#default-classes)
@@ -136,6 +137,27 @@ return [
 ```
 
 > Always make sure you're pointing to existing directories.
+
+#### Multiple Paths
+
+In addition to a single path, you may define multiple paths for a single set with the `paths` option instead:
+
+```php
+<?php
+
+return [
+    'sets' => [
+        'default' => [
+            'paths' => [
+                'resources/images/icon-set',
+                'resources/images/other-icon-set',
+            ],
+        ],
+    ],
+];
+```
+
+This gives you the benefit from grouping icons from different paths under a single set where you can define the same prefix and default classes.
 
 ### Filesystem Disk
 

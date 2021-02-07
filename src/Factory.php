@@ -13,9 +13,6 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
-/**
- * @internal This class does not fall under the package's BC promise. Use at own risk.
- */
 final class Factory
 {
     /** @var Filesystem */
@@ -44,6 +41,9 @@ final class Factory
         $this->fallback = $config['fallback'] ?? '';
     }
 
+    /**
+     * @internal This method is only meant for testing purposes and does not fall under the package's BC promise.
+     */
     public function all(): array
     {
         return $this->sets;
@@ -54,14 +54,6 @@ final class Factory
      */
     public function add(string $set, array $options): self
     {
-        if (empty($options['paths'])) {
-            $options['paths'] = [$options['path']];
-        }
-
-        if (empty($options['paths'])) {
-            throw CannotRegisterIconSet::pathNotDefined($set);
-        }
-
         if (! isset($options['prefix'])) {
             throw CannotRegisterIconSet::prefixNotDefined($set);
         }
@@ -70,24 +62,22 @@ final class Factory
             throw CannotRegisterIconSet::prefixNotUnique($set, $collidingSet);
         }
 
-        // @TODO
-        // We could remove this because we internally will always use
-        // the "paths" array which wraps "path" if it is used instead of
-        // the "paths" array. This guarantees that we always handle all paths.
-        if (isset($options['path'])) {
-            $options['path'] = rtrim($options['path'], '/');
+        $paths = (array) ($options['paths'] ?? $options['path'] ?? []);
+
+        $options['paths'] = array_filter(array_map(function ($path) {
+            return $path !== '/' ? rtrim($path, '/') : $path;
+        }, $paths));
+
+        if (empty($options['paths'])) {
+            throw CannotRegisterIconSet::pathsNotDefined($set);
         }
 
-        if ($options['path'] && $this->filesystem($options['disk'] ?? null)->missing($options['path'])) {
-            throw CannotRegisterIconSet::nonExistingPath($set, $options['path']);
-        }
+        unset($options['path']);
 
-        $options['paths'] = array_map(function ($path) {
-            return rtrim($path, '/');
-        }, $options['paths']);
+        $filesystem = $this->filesystem($options['disk'] ?? null);
 
         foreach ($options['paths'] as $path) {
-            if ($this->filesystem->missing($path)) {
+            if ($path !== '/' && $filesystem->missing($path)) {
                 throw CannotRegisterIconSet::nonExistingPath($set, $path);
             }
         }
@@ -102,31 +92,21 @@ final class Factory
     public function registerComponents(): void
     {
         foreach ($this->sets as $set) {
-            foreach ($this->filesystem($options['disk'] ?? null)->allFiles($set['path']) as $file) {
-                if ($file->getExtension() !== 'svg') {
-                    continue;
+            foreach ($set['paths'] as $path) {
+                foreach ($this->filesystem($options['disk'] ?? null)->allFiles($path) as $file) {
+                    if ($file->getExtension() !== 'svg') {
+                        continue;
+                    }
+
+                    $parts = array_filter(explode('/', Str::after($file->getPath(), $path)));
+
+                    Blade::component(
+                        SvgComponent::class,
+                        implode('.', array_filter($parts + [$file->getFilenameWithoutExtension()])),
+                        $set['prefix'],
+                    );
                 }
-
-                $path = array_filter(explode('/', Str::after($file->getPath(), $set['path'])));
-
-                Blade::component(
-                    SvgComponent::class,
-                    implode('.', array_filter($path + [$file->getFilenameWithoutExtension()])),
-                    $set['prefix'],
-                );
             }
-
-            // foreach ($set['paths'] as $path) {
-            //     foreach ($this->filesystem->allFiles($path) as $file) {
-            //         $filePath = array_filter(explode('/', Str::after($file->getPath(), $path)));
-            //
-            //         Blade::component(
-            //             SvgComponent::class,
-            //             implode('.', array_filter($filePath + [$file->getFilenameWithoutExtension()])),
-            //             $set['prefix']
-            //         );
-            //     }
-            // }
         }
     }
 
@@ -176,29 +156,27 @@ final class Factory
         }
 
         if (isset($this->sets[$set])) {
-            try {
-                return $this->cache[$set][$name] = $this->getSvgFromPath($name, $this->sets[$set]);
-            } catch (FileNotFoundException $exception) {
-                //
+            foreach ($this->sets[$set]['paths'] as $path) {
+                try {
+                    return $this->cache[$set][$name] = $this->getSvgFromPath(
+                        $name,
+                        $path,
+                        $this->sets[$set]['disk'] ?? null
+                    );
+                } catch (FileNotFoundException $exception) {
+                    //
+                }
             }
-
-            // foreach ($this->sets[$set]['paths'] as $path) {
-            //     try {
-            //         return $this->cache[$set][$name] = $this->getSvgFromPath($name, $path);
-            //     } catch (FileNotFoundException $exception) {
-            //         //
-            //     }
-            // }
         }
 
         throw SvgNotFound::missing($set, $name);
     }
 
-    private function getSvgFromPath(string $name, array $set): string
+    private function getSvgFromPath(string $name, string $path, ?string $disk = null): string
     {
-        return trim($this->filesystem($set['disk'] ?? null)->get(sprintf(
+        return trim($this->filesystem($disk)->get(sprintf(
             '%s/%s.svg',
-            rtrim($set['path']),
+            rtrim($path),
             str_replace('.', '/', $name),
         )));
     }
