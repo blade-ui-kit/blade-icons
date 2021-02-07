@@ -6,24 +6,23 @@ namespace Tests;
 
 use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Factory;
+use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
-    protected function prepareSets(string $defaultClass = '', array $setClasses = []): Factory
+    protected function prepareSets(array $config = [], array $setOptions = []): Factory
     {
-        $factory = (new Factory(new Filesystem(), $defaultClass))
-            ->add('default', [
+        $factory = (new Factory(new Filesystem(), $this->app->make(FilesystemFactory::class), $config))
+            ->add('default', array_merge([
                 'path' => __DIR__.'/resources/svg',
                 'prefix' => 'icon',
-                'class' => $setClasses['default'] ?? '',
-            ])
-            ->add('zondicons', [
+            ], $setOptions['default'] ?? []))
+            ->add('zondicons', array_merge([
                 'path' => __DIR__.'/resources/zondicons',
                 'prefix' => 'zondicon',
-                'class' => $setClasses['zondicons'] ?? '',
-            ]);
+            ], $setOptions['zondicons'] ?? []));
 
         return $this->app->instance(Factory::class, $factory);
     }

@@ -35,9 +35,9 @@ final class BladeIconsServiceProvider extends ServiceProvider
     private function registerFactory(): void
     {
         $this->app->singleton(Factory::class, function (Application $app) {
-            $config = $app->make('config')->get('blade-icons');
+            $config = $app->make('config')->get('blade-icons', []);
 
-            $factory = new Factory(new Filesystem(), $config['class'] ?? '', $app->make(FilesystemFactory::class));
+            $factory = new Factory(new Filesystem(), $app->make(FilesystemFactory::class), $config);
 
             foreach ($config['sets'] ?? [] as $set => $options) {
                 if (! isset($options['disk'])) {

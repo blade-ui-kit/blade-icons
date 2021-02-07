@@ -43,7 +43,7 @@ return [
         //     |
         //     */
         //
-        //     'disk' => null,
+        //     'disk' => '',
         //
         //     /*
         //     |-----------------------------------------------------------------
@@ -57,6 +57,18 @@ return [
         //     */
         //
         //     'prefix' => 'icon',
+        //
+        //     /*
+        //     |-----------------------------------------------------------------
+        //     | Fallback Icon
+        //     |-----------------------------------------------------------------
+        //     |
+        //     | This config option allows you to define a fallback
+        //     | icon when an icon in this set cannot be found.
+        //     |
+        //     */
+        //
+        //     'fallback' => '',
         //
         //     /*
         //     |-----------------------------------------------------------------
@@ -76,7 +88,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Class
+    | Global Default Class
     |--------------------------------------------------------------------------
     |
     | This config option allows you to define some classes which
@@ -85,6 +97,19 @@ return [
     */
 
     'class' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Global Fallback Icon
+    |--------------------------------------------------------------------------
+    |
+    | This config option allows you to define a global fallback
+    | icon when an icon in any set cannot be found. It can
+    | reference any icon from any configured set.
+    |
+    */
+
+    'fallback' => '',
 
     /*
     |--------------------------------------------------------------------------
