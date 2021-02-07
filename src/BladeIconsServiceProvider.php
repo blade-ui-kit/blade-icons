@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BladeUI\Icons;
 
 use BladeUI\Icons\Components\Icon;
+use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Application;
@@ -36,10 +37,12 @@ final class BladeIconsServiceProvider extends ServiceProvider
         $this->app->singleton(Factory::class, function (Application $app) {
             $config = $app->make('config')->get('blade-icons');
 
-            $factory = new Factory(new Filesystem(), $config['class'] ?? '');
+            $factory = new Factory(new Filesystem(), $config['class'] ?? '', $app->make(FilesystemFactory::class));
 
             foreach ($config['sets'] ?? [] as $set => $options) {
-                $options['path'] = $app->basePath($options['path']);
+                if (! isset($options['disk'])) {
+                    $options['path'] = $app->basePath($options['path']);
+                }
 
                 $factory->add($set, $options);
             }

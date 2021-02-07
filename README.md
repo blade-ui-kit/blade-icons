@@ -30,6 +30,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 - [Configuration](#configuration)
   - [Defining Sets](#defining-sets)
   - [Icon Paths](#icon-paths)
+  - [Filesystem Disk](#filesystem-disk)
   - [Prefixing Icons](#prefixing-icons)
   - [Default Classes](#default-classes)
 - [Usage](#usage)
@@ -135,6 +136,44 @@ return [
 ```
 
 > Always make sure you're pointing to existing directories.
+
+### Filesystem Disk
+
+If you host you icons on an external filesystem storage you can set the `disk` option for an icon set to a disk defined in your `filesystems.php` config file. For example, you might store your icons on an AWS S3 bucket which is set in your `filesystems.php` config file with a disk key of `s3-icons:
+
+```php
+<?php
+
+return [
+    'sets' => [
+        'default' => [
+            'path' => '/',
+            'disk' => 's3-icons',
+        ],
+    ],
+];
+```
+
+And from now on our default set will pull the icons from the S3 bucket. Also notice we've adjusted the path to `/` because we store our icons in the root directory of this S3 bucket. If you have several icon sets uploaded to the same disk you can set your paths accordingly:
+
+```php
+<?php
+
+return [
+    'sets' => [
+        'heroicons' => [
+            'path' => 'heroicons',
+            'disk' => 's3-icons',
+            'prefix' => 'heroicon',
+        ],
+        'zondicons' => [
+            'path' => 'zondicons',
+            'disk' => 's3-icons',
+            'prefix' => 'zondicon',
+        ],
+    ],
+];
+```
 
 ### Prefixing Icons
 
