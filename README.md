@@ -28,14 +28,15 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 - [Installation](#installation)
 - [Updating](#updating)
 - [Configuration](#configuration)
-    - [Defining Sets](#defining-sets)
-    - [Icon Paths](#icon-paths)
-    - [Prefixing Icons](#prefixing-icons)
-    - [Default Classes](#default-classes)
+  - [Defining Sets](#defining-sets)
+  - [Icon Paths](#icon-paths)
+  - [Prefixing Icons](#prefixing-icons)
+  - [Default Classes](#default-classes)
 - [Usage](#usage)
-    - [Components](#components)
-    - [Directive](#directive)
-    - [Helper](#helper)
+  - [Components](#components)
+    - [Default Component](#default-component)
+  - [Directive](#directive)
+  - [Helper](#helper)
 - [Building Packages](#building-packages)
 - [Changelog](#changelog)
 - [Maintainers](#maintainers)
@@ -173,7 +174,7 @@ return [
 
 If you don't want any classes to be applied by default then leave this as an empty string. Additionally, the same option is available in sets so you can set default classes on every set.
 
-The sequence in which classes get applied is `<global classes> <set classes> <explicit classes>`. You can always override this by passing an explicit class with your attributes. Component classes cannot be overriden.
+The sequence in which classes get applied is `<global classes> <set classes> <explicit classes>`. You can always override this by passing an explicit class with your attributes. Component classes cannot be overridden.
 
 ## Usage
 
@@ -206,6 +207,44 @@ Or any other attributes for that matter:
 ```
 
 > Note that with Blade components, using a prefix is always required, even when referencing icons from the default set.
+
+#### Default Component
+
+If you don't want to use the component syntax from above you can also make use of the default `Icon` component that ships with Blade Icons. Simply pass the icon name through the `$name` attribute:
+
+```blade
+<x-icon name="camera"/>
+```
+
+If you want to use a different name for this component instead you can customize the `components.default` option in your `blade-icons.php` config file:
+
+```php
+<?php
+
+return [
+    'components' => [
+        'default' => 'svg',
+    ],
+];
+```
+
+Then reference the default icon as follow:
+
+```blade
+<x-svg name="camera"/>
+```
+
+You can also completely disable this default component if you want by setting its name to `null`:
+
+```php
+<?php
+
+return [
+    'components' => [
+        'default' => null,
+    ],
+];
+```
 
 ### Directive
 
