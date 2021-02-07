@@ -109,7 +109,7 @@ final class Factory
             return new Svg(
                 $name,
                 $this->contents($set, $name),
-                $this->formatAttributes($set, $class, $attributes)
+                $this->formatAttributes($set, $class, $attributes),
             );
         } catch (SvgNotFound $exception) {
             if (isset($this->sets[$set]['fallback']) && $this->sets[$set]['fallback'] !== '') {
@@ -119,7 +119,7 @@ final class Factory
                     return new Svg(
                         $name,
                         $this->contents($set, $name),
-                        $this->formatAttributes($set, $class, $attributes)
+                        $this->formatAttributes($set, $class, $attributes),
                     );
                 } catch (SvgNotFound $exception) {
                     //

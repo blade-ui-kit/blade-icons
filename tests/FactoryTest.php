@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Exceptions\SvgNotFound;
 use BladeUI\Icons\Factory;
 use BladeUI\Icons\Svg;
