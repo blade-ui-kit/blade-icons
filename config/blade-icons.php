@@ -93,7 +93,7 @@ return [
         |
         */
 
-        'default' => '',
+        'default' => 'icon',
 
     ],
 
