@@ -5,6 +5,12 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.5.1...main)
 
+### Added
+- Default Icon class ([#110](https://github.com/blade-ui-kit/blade-icons/pull/110))
+- Filesystem Disks ([#111](https://github.com/blade-ui-kit/blade-icons/pull/111))
+- Fallback icons ([#112](https://github.com/blade-ui-kit/blade-icons/pull/112))
+- Multiple paths per icon set ([#113](https://github.com/blade-ui-kit/blade-icons/pull/113))
+
 
 ## [0.5.1 (2020-11-05)](https://github.com/blade-ui-kit/blade-icons/compare/0.5.0...0.5.1)
 
