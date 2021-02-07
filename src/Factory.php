@@ -7,6 +7,7 @@ namespace BladeUI\Icons;
 use BladeUI\Icons\Components\Svg as SvgComponent;
 use BladeUI\Icons\Exceptions\CannotRegisterIconSet;
 use BladeUI\Icons\Exceptions\SvgNotFound;
+use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
@@ -20,16 +21,20 @@ final class Factory
     /** @var string */
     private $defaultClass;
 
+    /** @var FilesystemFactory|null */
+    private $disks;
+
     /** @var array */
     private $sets = [];
 
     /** @var array */
     private $cache = [];
 
-    public function __construct(Filesystem $filesystem, string $defaultClass = '')
+    public function __construct(Filesystem $filesystem, string $defaultClass = '', FilesystemFactory $disks = null)
     {
         $this->filesystem = $filesystem;
         $this->defaultClass = $defaultClass;
+        $this->disks = $disks;
     }
 
     public function all(): array
@@ -56,7 +61,7 @@ final class Factory
 
         $options['path'] = rtrim($options['path'], '/');
 
-        if ($this->filesystem->missing($options['path'])) {
+        if ($options['path'] && $this->filesystem($options['disk'] ?? null)->missing($options['path'])) {
             throw CannotRegisterIconSet::nonExistingPath($set, $options['path']);
         }
 
@@ -70,7 +75,7 @@ final class Factory
     public function registerComponents(): void
     {
         foreach ($this->sets as $set) {
-            foreach ($this->filesystem->allFiles($set['path']) as $file) {
+            foreach ($this->filesystem($options['disk'] ?? null)->allFiles($set['path']) as $file) {
                 if ($file->getExtension() !== 'svg') {
                     continue;
                 }
@@ -107,7 +112,7 @@ final class Factory
 
         if (isset($this->sets[$set])) {
             try {
-                return $this->cache[$set][$name] = $this->getSvgFromPath($name, $this->sets[$set]['path']);
+                return $this->cache[$set][$name] = $this->getSvgFromPath($name, $this->sets[$set]);
             } catch (FileNotFoundException $exception) {
                 //
             }
@@ -116,11 +121,11 @@ final class Factory
         throw SvgNotFound::missing($set, $name);
     }
 
-    private function getSvgFromPath(string $name, string $path): string
+    private function getSvgFromPath(string $name, array $set): string
     {
-        return trim($this->filesystem->get(sprintf(
+        return trim($this->filesystem($set['disk'] ?? null)->get(sprintf(
             '%s/%s.svg',
-            rtrim($path),
+            rtrim($set['path']),
             str_replace('.', '/', $name),
         )));
     }
@@ -165,5 +170,13 @@ final class Factory
             trim(sprintf('%s %s', $this->defaultClass, $this->sets[$set]['class'] ?? '')),
             $class,
         ));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Filesystem\Filesystem|Filesystem
+     */
+    private function filesystem(?string $disk = null)
+    {
+        return $this->disks && $disk ? $this->disks->disk($disk) : $this->filesystem;
     }
 }

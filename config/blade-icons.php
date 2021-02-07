@@ -22,13 +22,28 @@ return [
         //     | Icons Path
         //     |-----------------------------------------------------------------
         //     |
-        //     | Provide the relative path from your app root to your
-        //     | SVG icons directory. Icons are loaded recursively
-        //     | so there's no need to list every sub-directory.
+        //     | Provide the relative path from your app root to your SVG icons
+        //     | directory. Icons are loaded recursively so there's no need to
+        //     | list every sub-directory.
+        //     |
+        //     | Relative to the disk root when the disk option is set.
         //     |
         //     */
         //
         //     'path' => 'resources/svg',
+        //
+        //     /*
+        //     |-----------------------------------------------------------------
+        //     | Filesystem Disk
+        //     |-----------------------------------------------------------------
+        //     |
+        //     | Optionally, provide a specific filesystem disk to read
+        //     | icons from. When defining a disk, the "path" option
+        //     | starts relatively from the disk root.
+        //     |
+        //     */
+        //
+        //     'disk' => null,
         //
         //     /*
         //     |-----------------------------------------------------------------
