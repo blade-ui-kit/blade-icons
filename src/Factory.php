@@ -161,7 +161,7 @@ final class Factory
                     return $this->cache[$set][$name] = $this->getSvgFromPath(
                         $name,
                         $path,
-                        $this->sets[$set]['disk'] ?? null
+                        $this->sets[$set]['disk'] ?? null,
                     );
                 } catch (FileNotFoundException $exception) {
                     //

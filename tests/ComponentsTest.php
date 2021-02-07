@@ -167,8 +167,8 @@ class ComponentsTest extends TestCase
 
         $factory->add('mixed', [
             'paths' => [
-                __DIR__ . '/resources/svg/',
-                __DIR__ . '/resources/zondicons/',
+                __DIR__.'/resources/svg/',
+                __DIR__.'/resources/zondicons/',
             ],
             'prefix' => 'mixed',
         ]);

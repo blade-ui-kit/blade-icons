@@ -279,14 +279,14 @@ class FactoryTest extends TestCase
 
         $factory->add('default', [
             'paths' => [
-                __DIR__ . '/resources/svg/',
-                __DIR__ . '/resources/zondicons/',
+                __DIR__.'/resources/svg/',
+                __DIR__.'/resources/zondicons/',
             ],
             'prefix' => '',
         ]);
 
-        $this->assertSame(__DIR__ . '/resources/svg', $factory->all()['default']['paths'][0]);
-        $this->assertSame(__DIR__ . '/resources/zondicons', $factory->all()['default']['paths'][1]);
+        $this->assertSame(__DIR__.'/resources/svg', $factory->all()['default']['paths'][0]);
+        $this->assertSame(__DIR__.'/resources/zondicons', $factory->all()['default']['paths'][1]);
     }
 
     /** @test */
