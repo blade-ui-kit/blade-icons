@@ -13,16 +13,22 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
+/**
+ * @internal This class does not fall under the package's BC promise. Use at own risk.
+ */
 final class Factory
 {
     /** @var Filesystem */
     private $filesystem;
 
+    /** @var FilesystemFactory|null */
+    private $disks;
+
     /** @var string */
     private $defaultClass;
 
-    /** @var FilesystemFactory|null */
-    private $disks;
+    /** @var string */
+    private $fallback;
 
     /** @var array */
     private $sets = [];
@@ -30,11 +36,12 @@ final class Factory
     /** @var array */
     private $cache = [];
 
-    public function __construct(Filesystem $filesystem, string $defaultClass = '', FilesystemFactory $disks = null)
+    public function __construct(Filesystem $filesystem, FilesystemFactory $disks = null, array $config = [])
     {
         $this->filesystem = $filesystem;
-        $this->defaultClass = $defaultClass;
         $this->disks = $disks;
+        $this->defaultClass = $config['class'] ?? '';
+        $this->fallback = $config['fallback'] ?? '';
     }
 
     public function all(): array
@@ -98,7 +105,33 @@ final class Factory
     {
         [$set, $name] = $this->splitSetAndName($name);
 
-        return new Svg($name, $this->contents($set, $name), $this->formatAttributes($set, $class, $attributes));
+        try {
+            return new Svg(
+                $name,
+                $this->contents($set, $name),
+                $this->formatAttributes($set, $class, $attributes),
+            );
+        } catch (SvgNotFound $exception) {
+            if (isset($this->sets[$set]['fallback']) && $this->sets[$set]['fallback'] !== '') {
+                $name = $this->sets[$set]['fallback'];
+
+                try {
+                    return new Svg(
+                        $name,
+                        $this->contents($set, $name),
+                        $this->formatAttributes($set, $class, $attributes),
+                    );
+                } catch (SvgNotFound $exception) {
+                    //
+                }
+            }
+
+            if ($this->fallback) {
+                return $this->svg($this->fallback, $class, $attributes);
+            }
+
+            throw $exception;
+        }
     }
 
     /**

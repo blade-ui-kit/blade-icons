@@ -175,6 +175,36 @@ return [
 ];
 ```
 
+### Fallback Icons
+
+If you want to provide a fallback icon when an icon cannot be found, you may define the `fallback` option on a specific set:
+
+```php
+<?php
+
+return [
+    'sets' => [
+        'default' => [
+            'fallback' => 'cake',
+        ],
+    ],
+];
+```
+
+Now when you try to resolve a non-existing icon for the default icon set, it'll return the rendered "cake" icon instead.
+
+You can also provide a global fallback icon instead. This icon will be used when an icon cannot be found and the set doesn't have its own fallback icon defined. It can reference any icon from any registered icon set.
+
+```php
+<?php
+
+return [
+    'default' => 'heroicon-cake',
+];
+```
+
+> There's one caveat when using fallback icons and that is that they don't work when using [Blade Components](#components). In this case, Laravel will throw an exception that the component cannot be found. If you want to make use of fallback icons please consider one of the other usages.
+
 ### Prefixing Icons
 
 In the default icon set the `icon` prefix will be applied to every icon, but you're free to adjust this in the `blade-icons.php` config file:

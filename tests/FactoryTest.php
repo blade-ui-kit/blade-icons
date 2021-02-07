@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Exceptions\SvgNotFound;
 use BladeUI\Icons\Factory;
 use BladeUI\Icons\Svg;
@@ -122,7 +121,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function default_icon_set_is_optional()
     {
-        $factory = (new Factory(new Filesystem(), 'icon icon-default'))
+        $factory = (new Factory(new Filesystem(), null, ['class' => 'icon icon-default']))
             ->add('zondicons', [
                 'path' => __DIR__.'/resources/zondicons',
                 'prefix' => 'zondicon',
@@ -139,7 +138,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function icon_not_found_without_default_set_throws_proper_exception()
     {
-        $factory = (new Factory(new Filesystem(), 'icon icon-default'))
+        $factory = (new Factory(new Filesystem(), null, ['class' => 'icon icon-default']))
             ->add('zondicons', [
                 'path' => __DIR__.'/resources/zondicons',
                 'prefix' => 'zondicon',
@@ -158,7 +157,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function icons_can_have_default_classes()
     {
-        $factory = $this->prepareSets('icon icon-default');
+        $factory = $this->prepareSets(['class' => 'icon icon-default']);
 
         $icon = $factory->svg('camera', 'custom-class');
 
@@ -168,7 +167,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function default_classes_are_always_applied()
     {
-        $factory = $this->prepareSets('icon icon-default');
+        $factory = $this->prepareSets(['class' => 'icon icon-default']);
 
         $icon = $factory->svg('camera');
 
@@ -178,7 +177,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function icons_can_have_default_classes_from_sets()
     {
-        $factory = $this->prepareSets('icon icon-default', ['zondicons' => 'zondicon-class']);
+        $factory = $this->prepareSets(['class' => 'icon icon-default'], ['zondicons' =>  ['class' => 'zondicon-class']]);
 
         $icon = $factory->svg('camera');
 
@@ -192,7 +191,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function default_classes_from_sets_are_applied_even_when_main_default_class_is_empty()
     {
-        $factory = $this->prepareSets('', ['zondicons' => 'zondicon-class']);
+        $factory = $this->prepareSets([], ['zondicons' =>  ['class' => 'zondicon-class']]);
 
         $icon = $factory->svg('camera');
 
@@ -206,7 +205,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function passing_classes_as_attributes_will_override_default_classes()
     {
-        $factory = $this->prepareSets('icon icon-default');
+        $factory = $this->prepareSets(['class' => 'icon icon-default']);
 
         $icon = $factory->svg('camera', '', ['class' => 'custom-class']);
 
@@ -220,7 +219,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function icons_can_have_attributes()
     {
-        $factory = $this->prepareSets('icon icon-default');
+        $factory = $this->prepareSets(['class' => 'icon icon-default']);
 
         $icon = $factory->svg('camera', ['style' => 'color: #fff']);
 
@@ -273,8 +272,53 @@ class FactoryTest extends TestCase
         $this->assertSame(__DIR__.'/resources/svg', $factory->all()['default']['path']);
     }
 
-    protected function getPackageProviders($app): array
+    /** @test */
+    public function it_uses_the_fallback_icon_from_a_set_when_configured(): void
     {
-        return [BladeIconsServiceProvider::class];
+        $factory = $this->prepareSets([], ['zondicons' => ['fallback' => 'flag']]);
+
+        $icon = $factory->svg('zondicon-non-existing-icon');
+
+        $this->assertSame('flag', $icon->name());
+    }
+
+    /** @test */
+    public function it_uses_the_fallback_icon_from_the_default_set_when_configured(): void
+    {
+        $factory = $this->prepareSets([], ['default' => ['fallback' => 'camera']]);
+
+        $icon = $factory->svg('non-existing-icon');
+
+        $this->assertSame('camera', $icon->name());
+    }
+
+    /** @test */
+    public function it_does_not_use_the_fallback_icon_from_the_default_set_when_a_specific_set_is_targeted(): void
+    {
+        $factory = $this->prepareSets([], ['default' => ['fallback' => 'camera']]);
+
+        $this->expectException(SvgNotFound::class);
+
+        $factory->svg('zondicon-non-existing-icon');
+    }
+
+    /** @test */
+    public function it_uses_the_global_fallback_icon_when_configured(): void
+    {
+        $factory = $this->prepareSets(['fallback' => 'camera']);
+
+        $icon = $factory->svg('zondicon-non-existing-icon');
+
+        $this->assertSame('camera', $icon->name());
+    }
+
+    /** @test */
+    public function it_can_use_a_specific_set_icon_as_the_global_fallback(): void
+    {
+        $factory = $this->prepareSets(['fallback' => 'zondicon-flag']);
+
+        $icon = $factory->svg('non-existing-icon');
+
+        $this->assertSame('flag', $icon->name());
     }
 }
