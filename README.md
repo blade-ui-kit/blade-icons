@@ -139,7 +139,7 @@ return [
 
 ### Filesystem Disk
 
-If you host your icons on an external filesystem storage you can set the `disk` option for an icon set to a disk defined in your `filesystems.php` config file. For example, you might store your icons on an AWS S3 bucket which is set in your `filesystems.php` config file with a disk key of `s3-icons:
+If you host your icons on an external filesystem storage you can set the `disk` option for an icon set to a disk defined in your `filesystems.php` config file. For example, you might store your icons on an AWS S3 bucket which is set in your `filesystems.php` config file with a disk key of `s3-icons`:
 
 ```php
 <?php
