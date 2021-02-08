@@ -159,6 +159,8 @@ return [
 
 This gives you the benefit from grouping icons from different paths under a single set where you can define the same prefix and default classes.
 
+> When using multiple paths instead of one, Blade Icons will return the first icon it finds when an icon name is present in more than one path. Please ensure you use unique icon names when registering multiple paths if you want to retrieve the correct icon.
+
 ### Filesystem Disk
 
 If you host your icons on an external filesystem storage you can set the `disk` option for an icon set to a disk defined in your `filesystems.php` config file. For example, you might store your icons on an AWS S3 bucket which is set in your `filesystems.php` config file with a disk key of `s3-icons`:
