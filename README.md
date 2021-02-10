@@ -75,7 +75,7 @@ In addition to the official packages from above there's also quite some third pa
 ## Requirements
 
 - PHP 7.3 or higher
-- Laravel 7.14 or higher
+- Laravel 8.0 or higher
 
 ## Installation
 

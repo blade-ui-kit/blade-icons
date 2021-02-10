@@ -1,1 +1,0 @@
-<x-icon-solid.camera/>
