@@ -155,7 +155,20 @@ return [
 
         /*
         |----------------------------------------------------------------------
-        | Default Icon Name
+        | Disable Components
+        |----------------------------------------------------------------------
+        |
+        | This config option allows you to disable Blade components
+        | completely. It's useful to avoid performance problems
+        | when working with large icon libraries.
+        |
+        */
+
+        'disabled' => false,
+
+        /*
+        |----------------------------------------------------------------------
+        | Default Icon Component Name
         |----------------------------------------------------------------------
         |
         | This config option allows you to define the name

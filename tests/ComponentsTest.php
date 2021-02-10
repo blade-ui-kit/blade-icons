@@ -31,6 +31,16 @@ class ComponentsTest extends TestCase
     }
 
     /** @test */
+    public function components_are_not_registered_when_disabled()
+    {
+        $this->prepareSets(['components' => ['disabled' => true]])->registerComponents();
+
+        $compiled = Blade::getClassComponentAliases();
+
+        $this->assertNotContains(Svg::class, $compiled);
+    }
+
+    /** @test */
     public function it_can_render_an_icon()
     {
         $this->prepareSets();

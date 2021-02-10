@@ -21,14 +21,8 @@ final class Factory
     /** @var FilesystemFactory|null */
     private $disks;
 
-    /** @var string */
-    private $defaultClass;
-
     /** @var array */
-    private $defaultAttributes;
-
-    /** @var string */
-    private $fallback;
+    private $config;
 
     /** @var array */
     private $sets = [];
@@ -40,9 +34,15 @@ final class Factory
     {
         $this->filesystem = $filesystem;
         $this->disks = $disks;
-        $this->defaultClass = $config['class'] ?? '';
-        $this->defaultAttributes = (array) ($config['attributes'] ?? []);
-        $this->fallback = $config['fallback'] ?? '';
+        $this->config = $config;
+
+        $this->config['class'] = $config['class'] ?? '';
+        $this->config['attributes'] = (array) ($config['attributes'] ?? []);
+        $this->config['fallback'] = $config['fallback'] ?? '';
+        $this->config['components'] = [
+            'disabled' => $config['components']['disabled'] ?? false,
+            'default' => $config['components']['default'] ?? 'icon',
+        ];
     }
 
     /**
@@ -95,6 +95,10 @@ final class Factory
 
     public function registerComponents(): void
     {
+        if ($this->config['components']['disabled']) {
+            return;
+        }
+
         foreach ($this->sets as $set) {
             foreach ($set['paths'] as $path) {
                 foreach ($this->filesystem($options['disk'] ?? null)->allFiles($path) as $file) {
@@ -142,8 +146,8 @@ final class Factory
                 }
             }
 
-            if ($this->fallback) {
-                return $this->svg($this->fallback, $class, $attributes);
+            if ($this->config['fallback']) {
+                return $this->svg($this->config['fallback'], $class, $attributes);
             }
 
             throw $exception;
@@ -217,14 +221,14 @@ final class Factory
             }
         }
 
-        return array_merge($attributes, $this->defaultAttributes, (array) ($this->sets[$set]['attributes'] ?? []));
+        return array_merge($attributes, $this->config['attributes'], (array) ($this->sets[$set]['attributes'] ?? []));
     }
 
     private function buildClass(string $set, string $class): string
     {
         return trim(sprintf(
             '%s %s',
-            trim(sprintf('%s %s', $this->defaultClass, $this->sets[$set]['class'] ?? '')),
+            trim(sprintf('%s %s', $this->config['class'], $this->sets[$set]['class'] ?? '')),
             $class,
         ));
     }
