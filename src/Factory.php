@@ -24,6 +24,9 @@ final class Factory
     /** @var string */
     private $defaultClass;
 
+    /** @var array */
+    private $defaultAttributes;
+
     /** @var string */
     private $fallback;
 
@@ -38,6 +41,7 @@ final class Factory
         $this->filesystem = $filesystem;
         $this->disks = $disks;
         $this->defaultClass = $config['class'] ?? '';
+        $this->defaultAttributes = (array) ($config['attributes'] ?? []);
         $this->fallback = $config['fallback'] ?? '';
     }
 
@@ -211,7 +215,7 @@ final class Factory
             }
         }
 
-        return $attributes;
+        return array_merge($attributes, $this->defaultAttributes, (array) ($this->sets[$set]['attributes'] ?? []));
     }
 
     private function buildClass(string $set, string $class): string
