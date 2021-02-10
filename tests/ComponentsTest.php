@@ -244,6 +244,21 @@ class ComponentsTest extends TestCase
         $this->assertSame($expected, $compiled);
     }
 
+    /** @test */
+    public function it_strips_the_xml_tag_if_resent()
+    {
+        $this->prepareSets();
+
+        $compiled = $this->renderView('xml');
+
+        $expected = <<<'HTML'
+            <!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 665 638" style="enable-background:new 0 0 665 638;" xml:space="preserve">
+            HTML;
+
+        $this->assertStringStartsWith($expected, $compiled);
+    }
+
     private function renderView(string $view): string
     {
         return trim(View::file(__DIR__."/resources/views/{$view}.blade.php")->render());

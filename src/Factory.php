@@ -178,11 +178,13 @@ final class Factory
 
     private function getSvgFromPath(string $name, string $path, ?string $disk = null): string
     {
-        return trim($this->filesystem($disk)->get(sprintf(
+        $contents = trim($this->filesystem($disk)->get(sprintf(
             '%s/%s.svg',
             rtrim($path),
             str_replace('.', '/', $name),
         )));
+
+        return trim(preg_replace('/^(<\?xml.+?\?>)/', '', $contents));
     }
 
     private function splitSetAndName(string $name): array
