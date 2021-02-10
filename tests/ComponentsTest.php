@@ -6,7 +6,6 @@ namespace Tests;
 
 use BladeUI\Icons\Components\Svg;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\View;
 
 class ComponentsTest extends TestCase
 {
@@ -36,7 +35,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets();
 
-        $compiled = $this->renderView('icon');
+        $view = $this->blade('<x-icon-camera/>');
 
         $expected = <<<'HTML'
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -45,7 +44,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -53,7 +52,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets([], ['default' => ['class' => 'w-6 h-6']]);
 
-        $compiled = $this->renderView('icon');
+        $view = $this->blade('<x-icon-camera/>');
 
         $expected = <<<'HTML'
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,7 +61,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -70,7 +69,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets(['class' => 'text-blue-500'], ['default' =>  ['class' => 'w-6 h-6']]);
 
-        $compiled = $this->renderView('icon-with-attributes');
+        $view = $this->blade('<x-icon-camera class="icon icon-lg" data-foo/>');
 
         $expected = <<<'HTML'
             <svg data-foo="1" class="text-blue-500 w-6 h-6 icon icon-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -79,7 +78,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -87,7 +86,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets(['attributes' => ['width' => 50, 'height' => 50]]);
 
-        $compiled = $this->renderView('icon');
+        $view = $this->blade('<x-icon-camera/>');
 
         $expected = <<<'HTML'
             <svg width="50" height="50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -96,7 +95,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -104,7 +103,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets(['attributes' => ['width' => 50]], ['default' => ['attributes' => ['height' => 50]]]);
 
-        $compiled = $this->renderView('icon');
+        $view = $this->blade('<x-icon-camera/>');
 
         $expected = <<<'HTML'
             <svg width="50" height="50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,7 +112,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -121,7 +120,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets(['attributes' => ['height' => 50]], ['default' => ['attributes' => ['height' => 50]]]);
 
-        $compiled = $this->renderView('icon');
+        $view = $this->blade('<x-icon-camera/>');
 
         $expected = <<<'HTML'
             <svg height="50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,7 +129,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -138,7 +137,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets();
 
-        $compiled = $this->renderView('icon-subdirectory');
+        $view = $this->blade('<x-icon-solid.camera/>');
 
         $expected = <<<'HTML'
             <svg viewBox="0 0 20 20" fill="currentColor">
@@ -146,7 +145,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -154,13 +153,13 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets();
 
-        $compiled = $this->renderView('icon-from-set');
+        $view = $this->blade('<x-zondicon-flag/>');
 
         $expected = <<<'HTML'
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -168,7 +167,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets();
 
-        $compiled = $this->renderView('icon-with-attributes');
+        $view = $this->blade('<x-icon-camera class="icon icon-lg" data-foo/>');
 
         $expected = <<<'HTML'
             <svg data-foo="1" class="icon icon-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -177,7 +176,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -185,7 +184,7 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets();
 
-        $compiled = $this->renderView('icon-component');
+        $view = $this->blade('<x-icon name="camera" class="icon icon-lg" data-foo/>');
 
         $expected = <<<'HTML'
             <svg data-foo="1" class="icon icon-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -194,7 +193,7 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -202,13 +201,13 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets();
 
-        $compiled = $this->renderView('icon-component-from-set');
+        $view = $this->blade('<x-icon name="zondicon-flag"/>');
 
         $expected = <<<'HTML'
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -224,7 +223,7 @@ class ComponentsTest extends TestCase
             'prefix' => 'mixed',
         ]);
 
-        $compiled = $this->renderView('mixed-icon');
+        $view = $this->blade('<x-mixed-camera/>');
 
         $expected = <<<'HTML'
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -233,15 +232,15 @@ class ComponentsTest extends TestCase
             </svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
 
-        $compiled = $this->renderView('mixed-zondicon');
+        $view = $this->blade('<x-mixed-flag/>');
 
         $expected = <<<'HTML'
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
             HTML;
 
-        $this->assertSame($expected, $compiled);
+        $view->assertSee($expected, false);
     }
 
     /** @test */
@@ -249,18 +248,13 @@ class ComponentsTest extends TestCase
     {
         $this->prepareSets();
 
-        $compiled = $this->renderView('xml');
+        $view = $this->blade('<x-icon-xml/>');
 
         $expected = <<<'HTML'
             <!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 665 638" style="enable-background:new 0 0 665 638;" xml:space="preserve">
             HTML;
 
-        $this->assertStringStartsWith($expected, $compiled);
-    }
-
-    private function renderView(string $view): string
-    {
-        return trim(View::file(__DIR__."/resources/views/{$view}.blade.php")->render());
+        $view->assertSee($expected, false);
     }
 }

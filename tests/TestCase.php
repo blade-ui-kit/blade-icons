@@ -8,10 +8,13 @@ use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Factory;
 use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
+    use InteractsWithViews;
+
     protected function prepareSets(array $config = [], array $setOptions = []): Factory
     {
         $factory = (new Factory(new Filesystem(), $this->app->make(FilesystemFactory::class), $config))
