@@ -34,6 +34,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
   - [Filesystem Disk](#filesystem-disk)
   - [Prefixing Icons](#prefixing-icons)
   - [Default Classes](#default-classes)
+  - [Default Attributes](#default-attributes)
 - [Usage](#usage)
   - [Components](#components)
     - [Default Component](#default-component)
@@ -268,6 +269,25 @@ return [
 If you don't want any classes to be applied by default then leave this as an empty string. Additionally, the same option is available in sets so you can set default classes on every set.
 
 The sequence in which classes get applied is `<global classes> <set classes> <explicit classes>`. You can always override this by passing an explicit class with your attributes. Component classes cannot be overridden.
+
+### Default Attributes
+
+You can also optionally define some attributes which will be added to every icon in the `attributes` setting of your `blade-icons.php` config file:
+
+```php
+<?php
+
+return [
+    'attributes' => [
+        'width' => 50,
+        'height' => 50,
+    ],
+];
+```
+
+This always needs to be an associative array.  Additionally, the same option is available in sets so you can set default attributes on every set.
+
+It is not possible to overwrite existing attributes on SVG icons. If you already have attributes defined on icons which you want to override, remove them first.
 
 ## Usage
 

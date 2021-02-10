@@ -72,7 +72,7 @@ return [
         //
         //     /*
         //     |-----------------------------------------------------------------
-        //     | Default Set Class
+        //     | Default Set Classes
         //     |-----------------------------------------------------------------
         //     |
         //     | This config option allows you to define some classes which
@@ -82,13 +82,28 @@ return [
         //
         //     'class' => '',
         //
+        //     /*
+        //     |-----------------------------------------------------------------
+        //     | Default Set Attributes
+        //     |-----------------------------------------------------------------
+        //     |
+        //     | This config option allows you to define some attributes which
+        //     | will be applied by default to all icons within this set.
+        //     |
+        //     */
+        //
+        //     'attributes' => [
+        //         // 'width' => 50,
+        //         // 'height' => 50,
+        //     ],
+        //
         // ],
 
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Global Default Class
+    | Global Default Classes
     |--------------------------------------------------------------------------
     |
     | This config option allows you to define some classes which
@@ -97,6 +112,21 @@ return [
     */
 
     'class' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Global Default Attributes
+    |--------------------------------------------------------------------------
+    |
+    | This config option allows you to define some attributes which
+    | will be applied by default to all icons.
+    |
+    */
+
+    'attributes' => [
+        // 'width' => 50,
+        // 'height' => 50,
+    ],
 
     /*
     |--------------------------------------------------------------------------
