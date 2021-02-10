@@ -38,6 +38,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 - [Usage](#usage)
   - [Components](#components)
     - [Default Component](#default-component)
+    - [Disabling Components](#disabling-components)
   - [Directive](#directive)
   - [Helper](#helper)
 - [Building Packages](#building-packages)
@@ -358,6 +359,22 @@ return [
     ],
 ];
 ```
+
+#### Disabling Components
+
+Although they're enabled by default, if you don't wish to use components at all you may choose to disable them completely by setting the `components.disabled` setting in your `blade-icons.php` config file to true:
+
+```php
+<?php
+
+return [
+    'components' => [
+        'disabled' => true,
+    ],
+];
+```
+
+Doing this makes sense when you're only using [the directive](#directive) or [the helper](#helper) and can improve overall performance.
 
 ### Directive
 
