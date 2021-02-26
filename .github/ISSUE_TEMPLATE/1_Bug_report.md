@@ -1,0 +1,38 @@
+name: Bug Report
+about: Report a general library issue.
+labels: [bug]
+issue_body: true
+body:
+- type: input
+  attributes:
+    label: Library version
+    description: "Please provide the full version of Blade Icons that you're experiencing the bug with."
+    placeholder: "v1.2.3"
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: Laravel version
+    description: "Please provide the full version of Laravel that you're experiencing the bug with."
+    placeholder: "v1.2.3"
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: PHP version
+    description: "Please provide the full version of PHP that you're experiencing the bug with."
+    placeholder: "v1.2.3"
+  validations:
+    required: truebody:
+- type: textarea
+  attributes:
+    label: Description
+    description: "Please describe what is happening and what you expect to happen."
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    description: "Please provide accurate steps to reproduce the bug."
+  validations:
+    required: true
