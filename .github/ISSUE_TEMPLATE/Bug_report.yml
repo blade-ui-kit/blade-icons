@@ -1,8 +1,7 @@
----
 name: Bug Report
 about: Report a general library issue.
 labels: [bug]
-issue_body: true
+issue_body: false
 body:
 - type: input
   attributes:
