@@ -24,7 +24,7 @@ body:
     description: "Please provide the full version of PHP that you're experiencing the bug with."
     placeholder: "v1.2.3"
   validations:
-    required: truebody:
+    required: true
 - type: textarea
   attributes:
     label: Description
