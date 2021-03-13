@@ -77,7 +77,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
             return new IconsManifest(
                 new Filesystem(),
                 $this->getCachedIconsPath(),
-                $app->make(Factory::class)->all()
+                $app->make(Factory::class)->all(),
             );
         });
     }

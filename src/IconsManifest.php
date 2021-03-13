@@ -84,7 +84,7 @@ final class IconsManifest
 
         $this->filesystem->replace(
             $this->manifestPath,
-            '<?php return '.var_export($this->build(), true).';'
+            '<?php return '.var_export($this->build(), true).';',
         );
     }
 }
