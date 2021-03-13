@@ -434,7 +434,7 @@ public function register(): void
 {
     $this->callAfterResolving(Factory::class, function (Factory $factory) {
         $factory->add('heroicons', [
-            'path' => __DIR__ . '/../resources/svg',
+            'path' => __DIR__.'/../resources/svg',
             'prefix' => 'heroicon',
         ]);
     });
