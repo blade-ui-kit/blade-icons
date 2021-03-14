@@ -17,13 +17,13 @@ final class BladeIconsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerConfig();
-        $this->registerCommands();
         $this->registerFactory();
         $this->registerManifest();
     }
 
     public function boot(): void
     {
+        $this->bootCommands();
         $this->bootDirectives();
         $this->bootIconComponent();
         $this->bootPublishing();
@@ -32,16 +32,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
     private function registerConfig(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/blade-icons.php', 'blade-icons');
-    }
-
-    private function registerCommands(): void
-    {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Console\CacheCommand::class,
-                Console\ClearCommand::class,
-            ]);
-        }
     }
 
     private function registerFactory(): void
@@ -82,10 +72,18 @@ final class BladeIconsServiceProvider extends ServiceProvider
         });
     }
 
-    private function bootIconComponent(): void
+    private function getCachedIconsPath(): string
     {
-        if ($name = config('blade-icons.components.default')) {
-            Blade::component($name, Icon::class);
+        return $this->app->bootstrapPath('cache/blade-icons.php');
+    }
+
+    private function bootCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\CacheCommand::class,
+                Console\ClearCommand::class,
+            ]);
         }
     }
 
@@ -96,6 +94,13 @@ final class BladeIconsServiceProvider extends ServiceProvider
         });
     }
 
+    private function bootIconComponent(): void
+    {
+        if ($name = config('blade-icons.components.default')) {
+            Blade::component($name, Icon::class);
+        }
+    }
+
     private function bootPublishing(): void
     {
         if ($this->app->runningInConsole()) {
@@ -103,10 +108,5 @@ final class BladeIconsServiceProvider extends ServiceProvider
                 __DIR__.'/../config/blade-icons.php' => $this->app->configPath('blade-icons.php'),
             ], 'blade-icons');
         }
-    }
-
-    private function getCachedIconsPath(): string
-    {
-        return $this->app->bootstrapPath('cache/blade-icons.php');
     }
 }

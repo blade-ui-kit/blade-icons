@@ -188,6 +188,11 @@ final class Factory
             str_replace('.', '/', $name),
         )));
 
+        return $this->cleanSvgContents($contents);
+    }
+
+    private function cleanSvgContents(string $contents): string
+    {
         return trim(preg_replace('/^(<\?xml.+?\?>)/', '', $contents));
     }
 

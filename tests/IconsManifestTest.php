@@ -45,7 +45,10 @@ class IconsManifestTest extends TestCase
         $manifest->write();
 
         $this->assertTrue(file_exists($this->manifestPath));
-        $this->assertSame($this->expectedManifest(), file_get_contents($this->manifestPath));
+        $this->assertSame(
+            $this->expectedManifest(),
+            str_replace(" \n", "\n", file_get_contents($this->manifestPath)),
+        );
     }
 
     /** @test */

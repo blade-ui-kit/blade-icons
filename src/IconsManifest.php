@@ -35,13 +35,23 @@ final class IconsManifest
         $compiled = [];
 
         foreach ($this->sets as $name => $set) {
+            $icons = [];
+
             foreach ($set['paths'] as $path) {
+                $icons[$path] = [];
+
                 foreach ($this->filesystem->allFiles($path) as $file) {
-                    $set['icons'][] = $this->format($file, $path);
+                    if ($file->getExtension() !== 'svg') {
+                        continue;
+                    }
+
+                    $icons[$path][] = $this->format($file, $path);
                 }
+
+                $icons[$path] = array_unique($icons[$path]);
             }
 
-            $compiled[$name] = $set;
+            $compiled[$name] = array_filter($icons);
         }
 
         return $compiled;
