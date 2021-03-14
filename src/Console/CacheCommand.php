@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons\Console;
 
+use BladeUI\Icons\Factory;
 use BladeUI\Icons\IconsManifest;
 use Illuminate\Console\Command;
 
@@ -23,9 +24,9 @@ final class CacheCommand extends Command
      */
     protected $description = 'Discover icon sets and generate a manifest file';
 
-    public function handle(IconsManifest $manifest): int
+    public function handle(Factory $factory, IconsManifest $manifest): int
     {
-        $manifest->write();
+        $manifest->write($factory->all());
 
         $this->info('Blade icons manifest file generated successfully!');
 

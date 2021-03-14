@@ -18,6 +18,9 @@ final class Factory
     /** @var Filesystem */
     private $filesystem;
 
+    /** @var IconsManifest */
+    private $manifest;
+
     /** @var FilesystemFactory|null */
     private $disks;
 
@@ -30,9 +33,14 @@ final class Factory
     /** @var array */
     private $cache = [];
 
-    public function __construct(Filesystem $filesystem, FilesystemFactory $disks = null, array $config = [])
-    {
+    public function __construct(
+        Filesystem $filesystem,
+        IconsManifest $manifest,
+        FilesystemFactory $disks = null,
+        array $config = []
+    ) {
         $this->filesystem = $filesystem;
+        $this->manifest = $manifest;
         $this->disks = $disks;
         $this->config = $config;
 
@@ -46,7 +54,7 @@ final class Factory
     }
 
     /**
-     * @internal This method is only meant for testing purposes and does not fall under the package's BC promise.
+     * @internal This method is only meant for internal purposes and does not fall under the package's BC promise.
      */
     public function all(): array
     {
@@ -99,19 +107,13 @@ final class Factory
             return;
         }
 
-        foreach ($this->sets as $set) {
-            foreach ($set['paths'] as $path) {
-                foreach ($this->filesystem($options['disk'] ?? null)->allFiles($path) as $file) {
-                    if ($file->getExtension() !== 'svg') {
-                        continue;
-                    }
-
-                    $parts = array_filter(explode('/', Str::after($file->getPath(), $path)));
-
+        foreach ($this->manifest->getManifest($this->sets) as $set => $paths) {
+            foreach ($paths as $icons) {
+                foreach ($icons as $icon) {
                     Blade::component(
                         SvgComponent::class,
-                        implode('.', array_filter($parts + [$file->getFilenameWithoutExtension()])),
-                        $set['prefix'],
+                        $icon,
+                        $this->sets[$set]['prefix'] ?? '',
                     );
                 }
             }

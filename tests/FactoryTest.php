@@ -6,6 +6,7 @@ namespace Tests;
 
 use BladeUI\Icons\Exceptions\SvgNotFound;
 use BladeUI\Icons\Factory;
+use BladeUI\Icons\IconsManifest;
 use BladeUI\Icons\Svg;
 use Illuminate\Filesystem\Filesystem;
 use Mockery;
@@ -101,7 +102,7 @@ class FactoryTest extends TestCase
             ->with('/heroicon/svg/camera.svg')
             ->andReturn($heroicon = '<svg>Bar</svg>');
 
-        $factory = new Factory($filesystem);
+        $factory = new Factory($filesystem, $this->app->make(IconsManifest::class));
 
         $factory->add('default', [
             'path' => '/default/svg',
@@ -121,14 +122,18 @@ class FactoryTest extends TestCase
     /** @test */
     public function default_icon_set_is_optional()
     {
-        $factory = (new Factory(new Filesystem(), null, ['class' => 'icon icon-default']))
-            ->add('zondicons', [
-                'path' => __DIR__.'/resources/zondicons',
-                'prefix' => 'zondicon',
-                'class' => 'zondicon-class',
-            ]);
+        $factory = new Factory(
+            new Filesystem(),
+            $this->app->make(IconsManifest::class),
+            null,
+            ['class' => 'icon icon-default']
+        );
 
-        $factory = $this->app->instance(Factory::class, $factory);
+        $factory->add('zondicons', [
+            'path' => __DIR__.'/resources/zondicons',
+            'prefix' => 'zondicon',
+            'class' => 'zondicon-class',
+        ]);
 
         $icon = $factory->svg('zondicon-flag');
 
@@ -138,14 +143,18 @@ class FactoryTest extends TestCase
     /** @test */
     public function icon_not_found_without_default_set_throws_proper_exception()
     {
-        $factory = (new Factory(new Filesystem(), null, ['class' => 'icon icon-default']))
-            ->add('zondicons', [
-                'path' => __DIR__.'/resources/zondicons',
-                'prefix' => 'zondicon',
-                'class' => 'zondicon-class',
-            ]);
+        $factory = new Factory(
+            new Filesystem(),
+            $this->app->make(IconsManifest::class),
+            null,
+            ['class' => 'icon icon-default']
+        );
 
-        $factory = $this->app->instance(Factory::class, $factory);
+        $factory->add('zondicons', [
+            'path' => __DIR__.'/resources/zondicons',
+            'prefix' => 'zondicon',
+            'class' => 'zondicon-class',
+        ]);
 
         $this->expectExceptionObject(new SvgNotFound(
             'Svg by name "foo" from set "zondicons" not found.',
@@ -238,7 +247,7 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
-    public function it_excludes_files_without_an_svg_extension()
+    public function it_throws_an_exception_for_files_without_an_svg_extension()
     {
         $factory = $this->prepareSets();
 

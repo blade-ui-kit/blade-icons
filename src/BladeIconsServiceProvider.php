@@ -39,7 +39,12 @@ final class BladeIconsServiceProvider extends ServiceProvider
         $this->app->singleton(Factory::class, function (Application $app) {
             $config = $app->make('config')->get('blade-icons', []);
 
-            $factory = new Factory(new Filesystem(), $app->make(FilesystemFactory::class), $config);
+            $factory = new Factory(
+                new Filesystem(),
+                $app->make(IconsManifest::class),
+                $app->make(FilesystemFactory::class),
+                $config,
+            );
 
             foreach ($config['sets'] ?? [] as $set => $options) {
                 if (! isset($options['disk'])) {
@@ -66,13 +71,13 @@ final class BladeIconsServiceProvider extends ServiceProvider
         $this->app->singleton(IconsManifest::class, function (Application $app) {
             return new IconsManifest(
                 new Filesystem(),
-                $this->getCachedIconsPath(),
-                $app->make(Factory::class)->all(),
+                $this->manifestPath(),
+                $app->make(FilesystemFactory::class)
             );
         });
     }
 
-    private function getCachedIconsPath(): string
+    private function manifestPath(): string
     {
         return $this->app->bootstrapPath('cache/blade-icons.php');
     }

@@ -6,6 +6,7 @@ namespace Tests;
 
 use BladeUI\Icons\BladeIconsServiceProvider;
 use BladeUI\Icons\Factory;
+use BladeUI\Icons\IconsManifest;
 use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
@@ -17,7 +18,14 @@ abstract class TestCase extends OrchestraTestCase
 
     protected function prepareSets(array $config = [], array $setOptions = []): Factory
     {
-        $factory = (new Factory(new Filesystem(), $this->app->make(FilesystemFactory::class), $config))
+        $factory = new Factory(
+            new Filesystem(),
+            $this->app->make(IconsManifest::class),
+            $this->app->make(FilesystemFactory::class),
+            $config
+        );
+
+        $factory = $factory
             ->add('default', array_merge([
                 'path' => __DIR__.'/resources/svg',
                 'prefix' => 'icon',

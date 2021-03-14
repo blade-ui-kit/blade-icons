@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BladeUI\Icons;
 
 use Exception;
+use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\SplFileInfo;
@@ -14,38 +15,46 @@ final class IconsManifest
     /** @var Filesystem */
     private $filesystem;
 
-    /** @var array */
-    private $manifest;
-
     /** @var string */
     private $manifestPath;
 
-    /** @var array */
-    private $sets;
+    /** @var FilesystemFactory|null */
+    private $disks;
 
-    public function __construct(Filesystem $filesystem, string $manifestPath, array $sets)
+    /** @var array */
+    private $manifest;
+
+    public function __construct(Filesystem $filesystem, string $manifestPath, FilesystemFactory $disks = null)
     {
         $this->filesystem = $filesystem;
         $this->manifestPath = $manifestPath;
-        $this->sets = $sets;
+        $this->disks = $disks;
     }
 
-    private function build(): array
+    private function build(array $sets): array
     {
         $compiled = [];
 
-        foreach ($this->sets as $name => $set) {
+        foreach ($sets as $name => $set) {
             $icons = [];
 
             foreach ($set['paths'] as $path) {
                 $icons[$path] = [];
 
-                foreach ($this->filesystem->allFiles($path) as $file) {
-                    if ($file->getExtension() !== 'svg') {
-                        continue;
-                    }
+                foreach ($this->filesystem($set['disk'] ?? null)->allFiles($path) as $file) {
+                    if ($file instanceof SplFileInfo) {
+                        if ($file->getExtension() !== 'svg') {
+                            continue;
+                        }
 
-                    $icons[$path][] = $this->format($file, $path);
+                        $icons[$path][] = $this->format($file->getPathName(), $path);
+                    } else {
+                        if (! Str::endsWith($file, '.svg')) {
+                            continue;
+                        }
+
+                        $icons[$path][] = $this->format($file, $path);
+                    }
                 }
 
                 $icons[$path] = array_unique($icons[$path]);
@@ -57,27 +66,35 @@ final class IconsManifest
         return $compiled;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Filesystem\Filesystem|Filesystem
+     */
+    private function filesystem(?string $disk = null)
+    {
+        return $this->disks && $disk ? $this->disks->disk($disk) : $this->filesystem;
+    }
+
     public function delete(): bool
     {
         return $this->filesystem->delete($this->manifestPath);
     }
 
-    private function format(SplFileInfo $file, string $path): string
+    private function format(string $pathname, string $path): string
     {
-        return (string) Str::of($file->getPathName())
+        return (string) Str::of($pathname)
             ->after($path.'/')
             ->replace('/', '.')
-            ->basename('.'.$file->getExtension());
+            ->basename('.svg');
     }
 
-    public function getManifest(): array
+    public function getManifest(array $sets): array
     {
         if (! is_null($this->manifest)) {
             return $this->manifest;
         }
 
         if (! $this->filesystem->exists($this->manifestPath)) {
-            return $this->manifest = $this->build();
+            return $this->manifest = $this->build($sets);
         }
 
         return $this->manifest = $this->filesystem->getRequire($this->manifestPath);
@@ -86,7 +103,7 @@ final class IconsManifest
     /**
      * @throws Exception
      */
-    public function write(): void
+    public function write(array $sets): void
     {
         if (! is_writable($dirname = dirname($this->manifestPath))) {
             throw new Exception("The {$dirname} directory must be present and writable.");
@@ -94,7 +111,7 @@ final class IconsManifest
 
         $this->filesystem->replace(
             $this->manifestPath,
-            '<?php return '.var_export($this->build(), true).';',
+            '<?php return '.var_export($this->build($sets), true).';',
         );
     }
 }
