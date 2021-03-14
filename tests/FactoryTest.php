@@ -126,7 +126,7 @@ class FactoryTest extends TestCase
             new Filesystem(),
             $this->app->make(IconsManifest::class),
             null,
-            ['class' => 'icon icon-default']
+            ['class' => 'icon icon-default'],
         );
 
         $factory->add('zondicons', [
@@ -147,7 +147,7 @@ class FactoryTest extends TestCase
             new Filesystem(),
             $this->app->make(IconsManifest::class),
             null,
-            ['class' => 'icon icon-default']
+            ['class' => 'icon icon-default'],
         );
 
         $factory->add('zondicons', [

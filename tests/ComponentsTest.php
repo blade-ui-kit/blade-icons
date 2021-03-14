@@ -6,7 +6,6 @@ namespace Tests;
 
 use BladeUI\Icons\Components\Svg;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\View\ViewException;
 use InvalidArgumentException;
 
 class ComponentsTest extends TestCase

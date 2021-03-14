@@ -72,7 +72,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
             return new IconsManifest(
                 new Filesystem(),
                 $this->manifestPath(),
-                $app->make(FilesystemFactory::class)
+                $app->make(FilesystemFactory::class),
             );
         });
     }

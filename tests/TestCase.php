@@ -22,7 +22,7 @@ abstract class TestCase extends OrchestraTestCase
             new Filesystem(),
             $this->app->make(IconsManifest::class),
             $this->app->make(FilesystemFactory::class),
-            $config
+            $config,
         );
 
         $factory = $factory
