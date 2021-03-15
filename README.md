@@ -157,9 +157,11 @@ Defining a prefix for every set is required and every prefix should be unique.
 
 When referencing icons with the [Blade directive](#directive) or [helper](#helper) you can omit the prefix to reference icons from the `default` set. When referencing icons from other sets, using the prefix is required.
 
-When an icon in the default set has a name which collides with a prefix from a set then the icon from the set is retrieved first.
+When an icon in the default set has a name which collides with a prefix from a set then the icon from the default set is retrieved first.
 
 Please note that it's best practice that your icons themselves do not have the prefix in their name. So if you have a prefix in your set called `icon` and your icons are named `icon-example.svg` you should rename them to `example.svg`. Otherwise you can run into unexpected name resolving issues.
+
+It's also important to note that icon prefixes cannot contain dashes (`-`) as this is the delimiter which we use to split it from the rest of the icon name.
 
 ### Default Classes
 
