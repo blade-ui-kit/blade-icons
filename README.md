@@ -68,6 +68,7 @@ In addition to the official packages from above there's also quite some third pa
 - [Blade Material Design Icons](https://github.com/renoki-co/blade-mdi) by [Alex Renoki](https://github.com/rennokki)
 - [Blade Remix Icon](https://github.com/skydiver/blade-icons-remix) by [Martin M.](https://github.com/skydiver)
 - [Blade Simple Icons](https://github.com/codeat3/blade-simple-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Syste UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
 
 ## Requirements
