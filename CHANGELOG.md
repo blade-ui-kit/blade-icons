@@ -3,7 +3,7 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.0...main)
 
 
 ## [1.0.0 (2021-03-21)](https://github.com/blade-ui-kit/blade-icons/compare/0.5.1...1.0.0)
