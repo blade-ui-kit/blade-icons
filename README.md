@@ -163,7 +163,7 @@ return [
 ];
 ```
 
-> Always make sure you're pointing to existing directories.
+> ⚠️ Always make sure you're pointing to existing directories.
 
 #### Multiple Paths
 
@@ -186,7 +186,7 @@ return [
 
 This gives you the benefit from grouping icons from different paths under a single set where you can define the same prefix and default classes.
 
-> When using multiple paths instead of one, Blade Icons will return the first icon it finds when an icon name is present in more than one path. Please ensure you use unique icon names when registering multiple paths if you want to retrieve the correct icon.
+> ⚠️ When using multiple paths instead of one, Blade Icons will return the first icon it finds when an icon name is present in more than one path. Please ensure you use unique icon names when registering multiple paths if you want to retrieve the correct icon.
 
 ### Filesystem Disk
 
@@ -254,7 +254,7 @@ return [
 ];
 ```
 
-> There's one caveat when using fallback icons and that is that they don't work when using [Blade Components](#components). In this case, Laravel will throw an exception that the component cannot be found. If you want to make use of fallback icons please consider one of the other usages.
+> ⚠️ There's one caveat when using fallback icons and that is that they don't work when using [Blade Components](#components). In this case, Laravel will throw an exception that the component cannot be found. If you want to make use of fallback icons please consider one of the other usages.
 
 ### Prefixing Icons
 
@@ -347,7 +347,7 @@ Or any other attributes for that matter:
 <x-icon-camera class="icon-lg" id="settings-icon" style="color: #555" data-baz/>
 ```
 
-> Note that with Blade components, using a prefix is always required, even when referencing icons from the default set.
+> ⚠️ Note that with Blade components, using a prefix is always required, even when referencing icons from the default set.
 
 #### Default Component
 
