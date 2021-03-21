@@ -12,17 +12,13 @@ use Symfony\Component\Finder\SplFileInfo;
 
 final class IconsManifest
 {
-    /** @var Filesystem */
-    private $filesystem;
+    private Filesystem $filesystem;
 
-    /** @var string */
-    private $manifestPath;
+    private string $manifestPath;
 
-    /** @var FilesystemFactory|null */
-    private $disks;
+    private ?FilesystemFactory $disks;
 
-    /** @var array */
-    private $manifest;
+    private ?array $manifest = null;
 
     public function __construct(Filesystem $filesystem, string $manifestPath, FilesystemFactory $disks = null)
     {

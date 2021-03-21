@@ -3,13 +3,24 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/0.5.1...main)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.0...1.x)
+
+
+## [1.0.0 (2021-03-21)](https://github.com/blade-ui-kit/blade-icons/compare/0.5.1...1.0.0)
 
 ### Added
 - Default Icon class ([#110](https://github.com/blade-ui-kit/blade-icons/pull/110))
 - Filesystem Disks ([#111](https://github.com/blade-ui-kit/blade-icons/pull/111))
 - Fallback icons ([#112](https://github.com/blade-ui-kit/blade-icons/pull/112))
 - Multiple paths per icon set ([#113](https://github.com/blade-ui-kit/blade-icons/pull/113))
+- Default attributes ([#115](https://github.com/blade-ui-kit/blade-icons/pull/115))
+- Allow to disable components ([#118](https://github.com/blade-ui-kit/blade-icons/pull/118))
+- Caching ([#121](https://github.com/blade-ui-kit/blade-icons/pull/121))
+
+### Changed
+- Strip XML tag from icon ([#116](https://github.com/blade-ui-kit/blade-icons/pull/116))
+- Drop Laravel 7 support ([#117](https://github.com/blade-ui-kit/blade-icons/pull/117))
+- Drop PHP 7.3 ([#123](https://github.com/blade-ui-kit/blade-icons/pull/123))
 
 
 ## [0.5.1 (2020-11-05)](https://github.com/blade-ui-kit/blade-icons/compare/0.5.0...0.5.1)

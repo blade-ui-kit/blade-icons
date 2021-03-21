@@ -2,9 +2,46 @@
 
 General steps for every update:
 
+- Run `php artisan icons:clear`
 - Run `php artisan view:clear`
 
-## Upgrading from v0.3.4 to 0.4.0
+If you published the config file, make sure to sync it with the config file from the version you're upgrading to.
+
+## Upgrading from 0.5.1 to 1.0.0
+
+Blade Icons 1.0.0 is the first major release of the library. This release brings a whole range of new features and a stable API. While there aren't many, there's a few breaking changes to know about.
+
+### Minimum Requirements
+
+The package now requires as a minimum:
+
+- PHP 7.3
+- Laravel 8.0
+
+### Default Icon Component
+
+PR: https://github.com/blade-ui-kit/blade-icons/pull/110
+
+Blade Icons 1.0.0 ships with a default `Icon` component. If you were already using a default icon component with the `<x-icon` syntax then you can either upgrade to the Blade Icons one or disable the default shipped component by setting it to `null` in the config file:
+
+```php
+<?php
+
+return [
+    'components' => [
+        'default' => null,
+    ],
+];
+```
+
+### XML Tags
+
+PR: https://github.com/blade-ui-kit/blade-icons/pull/116
+
+Blade Icons 1.0.0 will now automatically strip XML tags from SVG icons. These should not be needed to render SVG icons. If you were specifically relying on these XML tags to be output together with the SVG contents you may not want to upgrade.
+
+
+## Upgrading from 0.3.4 to 0.4.0
 
 0.4.0 is a complete rewrite. If you haven't yet, [read the announcement pr](https://github.com/blade-ui-kit/blade-icons/pull/50). The package has been rewritten from the ground up and the public API has drastically changed. Most notable is the added support for Blade component syntax. While it'd be impossible to reference to every single breaking change, please refer below for the most notable ones:
 

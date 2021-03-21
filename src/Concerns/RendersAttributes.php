@@ -8,8 +8,7 @@ use Illuminate\Support\Str;
 
 trait RendersAttributes
 {
-    /** @var array */
-    private $attributes;
+    private array $attributes;
 
     public function attributes(): array
     {
