@@ -11,17 +11,12 @@ If you published the config file, make sure to sync it with the config file from
 
 Blade Icons 1.0.0 is the first major release of the library. This release brings a whole range of new features and a stable API. While there aren't many, there's a few breaking changes to know about.
 
-### Dropped PHP 7.3
+### Minimum Requirements
 
-PR: https://github.com/blade-ui-kit/blade-icons/pull/123
+The package now requires as a minimum:
 
-This release drops support for PHP 7.3 since it doesn't has active support anymore.
-
-### Dropped Laravel 7
-
-PR: https://github.com/blade-ui-kit/blade-icons/pull/117
-
-This release drops support for Laravel 7 which is now unmaintained.
+- PHP 7.3
+- Laravel 8.0
 
 ### Default Icon Component
 
