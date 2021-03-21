@@ -27,6 +27,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Updating](#updating)
+- [Caching](#caching)
 - [Configuration](#configuration)
   - [Defining Sets](#defining-sets)
   - [Icon Paths](#icon-paths)
@@ -103,6 +104,26 @@ php artisan vendor:publish --tag=blade-icons
 ## Updating
 
 Please refer to [`the upgrade guide`](UPGRADE.md) when updating the library.
+
+## Caching
+
+When working with Blade Icons, and third party icons in particularly, you'll often be working with large icon sets. This can slow down your app tremendously, especially when making use of [Blade components](#components). To solve this issue, Blade Icons ships with caching support. To enable icon caching you can run the following command:
+
+```blade
+php artisan icons:cache
+```
+
+This will create a `blade-icons.php` file in `bootstrap/cache` similar to the `packages.php` cached file. It'll contain a manifest of all known sets and its icons with their location on their specific disk. 
+
+Caching icons means you won't be able to add extra icons, change paths for icon sets or install/remove icon packages. To do so make sure you first clear the icons cache and cache after you've made these changes:
+
+```bash
+php artisan icons:clear
+```
+
+It's a good idea to add the `icons:cache` command as part of your deployment pipeline and always cache icons in production. 
+
+Alternatively, you may choose to [disable Blade components](#disabling-components) entirely.
 
 ## Configuration
 
