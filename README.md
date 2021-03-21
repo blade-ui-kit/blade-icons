@@ -114,7 +114,7 @@ When working with Blade Icons, and third party icons in particularly, you'll oft
 php artisan icons:cache
 ```
 
-This will create a `blade-icons.php` file in `bootstrap/cache` similar to the `packages.php` cached file. It'll contain a manifest of all known sets and its icons with their location on their specific disk. 
+This will create a `blade-icons.php` file in `bootstrap/cache` similar to the `packages.php` cached file. It'll contain a manifest of all known sets and icons with their path locations. 
 
 Caching icons means you won't be able to add extra icons, change paths for icon sets or install/remove icon packages. To do so make sure you first clear the icons cache and cache after you've made these changes:
 
