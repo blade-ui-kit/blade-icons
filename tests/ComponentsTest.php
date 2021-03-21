@@ -6,6 +6,7 @@ namespace Tests;
 
 use BladeUI\Icons\Components\Svg;
 use Illuminate\Support\Facades\Blade;
+use InvalidArgumentException;
 
 class ComponentsTest extends TestCase
 {
@@ -266,5 +267,16 @@ class ComponentsTest extends TestCase
             HTML;
 
         $view->assertSee($expected, false);
+    }
+
+    /** @test */
+    public function it_files_without_an_svg_extension_are_not_registered()
+    {
+        $this->prepareSets();
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unable to locate a class or view for component [icon-invalid-extension].');
+
+        $this->blade('<x-icon-invalid-extension/>');
     }
 }
