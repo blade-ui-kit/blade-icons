@@ -20,6 +20,7 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 ### Changed
 - Strip XML tag from icon ([#116](https://github.com/blade-ui-kit/blade-icons/pull/116))
 - Drop Laravel 7 support ([#117](https://github.com/blade-ui-kit/blade-icons/pull/117))
+- Drop PHP 7.3 ([#123](https://github.com/blade-ui-kit/blade-icons/pull/123))
 
 
 ## [0.5.1 (2020-11-05)](https://github.com/blade-ui-kit/blade-icons/compare/0.5.0...0.5.1)
