@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons\Components;
 
+use Closure;
 use Illuminate\View\Component;
 
 final class Icon extends Component
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
     public function __construct(string $name)
     {
         $this->name = $name;
     }
 
-    public function render()
+    public function render(): Closure
     {
         return function (array $data) {
             $attributes = $data['attributes']->getIterator()->getArrayCopy();
