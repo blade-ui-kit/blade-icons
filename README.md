@@ -70,10 +70,12 @@ In addition to the official packages from above there's also quite some third pa
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Ikonate Icons](https://github.com/codeat3/blade-ikonate) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
 - [Blade Material Design Icons](https://github.com/renoki-co/blade-mdi) by [Alex Renoki](https://github.com/rennokki)
 - [Blade Remix Icon](https://github.com/skydiver/blade-icons-remix) by [Martin M.](https://github.com/skydiver)
 - [Blade Simple Icons](https://github.com/codeat3/blade-simple-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
 
 ## Requirements
@@ -274,9 +276,11 @@ Defining a prefix for every set is required and every prefix should be unique.
 
 When referencing icons with the [Blade directive](#directive) or [helper](#helper) you can omit the prefix to reference icons from the `default` set. When referencing icons from other sets, using the prefix is required.
 
-When an icon in the default set has a name which collides with a prefix from a set then the icon from the set is retrieved first.
+When an icon in the default set has a name which collides with a prefix from a set then the icon from the default set is retrieved first.
 
 Please note that it's best practice that your icons themselves do not have the prefix in their name. So if you have a prefix in your set called `icon` and your icons are named `icon-example.svg` you should rename them to `example.svg`. Otherwise you can run into unexpected name resolving issues.
+
+It's also important to note that icon prefixes cannot contain dashes (`-`) as this is the delimiter which we use to split it from the rest of the icon name.
 
 ### Default Classes
 
