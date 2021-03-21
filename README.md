@@ -33,6 +33,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
   - [Icon Paths](#icon-paths)
     - [Multiple Paths](#multiple-paths)
   - [Filesystem Disk](#filesystem-disk)
+  - [Fallback Icons](#fallback-icons)
   - [Prefixing Icons](#prefixing-icons)
   - [Default Classes](#default-classes)
   - [Default Attributes](#default-attributes)
