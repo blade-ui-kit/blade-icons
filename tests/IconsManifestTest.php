@@ -10,8 +10,7 @@ use Illuminate\Filesystem\Filesystem;
 
 class IconsManifestTest extends TestCase
 {
-    /** @var string */
-    private $manifestPath;
+    private string $manifestPath;
 
     protected function setUp(): void
     {

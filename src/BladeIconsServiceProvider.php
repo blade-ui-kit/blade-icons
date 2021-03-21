@@ -50,9 +50,10 @@ final class BladeIconsServiceProvider extends ServiceProvider
                 if (! isset($options['disk'])) {
                     $paths = $options['paths'] ?? $options['path'] ?? [];
 
-                    $options['paths'] = array_map(function ($path) use ($app) {
-                        return $app->basePath($path);
-                    }, (array) $paths);
+                    $options['paths'] = array_map(
+                        fn ($path) => $app->basePath($path),
+                        (array) $paths,
+                    );
                 }
 
                 $factory->add($set, $options);
@@ -94,9 +95,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     private function bootDirectives(): void
     {
-        Blade::directive('svg', function ($expression) {
-            return "<?php echo e(svg($expression)); ?>";
-        });
+        Blade::directive('svg', fn ($expression) => "<?php echo e(svg($expression)); ?>");
     }
 
     private function bootIconComponent(): void

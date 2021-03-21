@@ -15,23 +15,17 @@ use Illuminate\Support\Str;
 
 final class Factory
 {
-    /** @var Filesystem */
-    private $filesystem;
+    private Filesystem $filesystem;
 
-    /** @var IconsManifest */
-    private $manifest;
+    private IconsManifest $manifest;
 
-    /** @var FilesystemFactory|null */
-    private $disks;
+    private ?FilesystemFactory $disks;
 
-    /** @var array */
-    private $config;
+    private array $config;
 
-    /** @var array */
-    private $sets = [];
+    private array $sets = [];
 
-    /** @var array */
-    private $cache = [];
+    private array $cache = [];
 
     public function __construct(
         Filesystem $filesystem,
@@ -76,9 +70,10 @@ final class Factory
 
         $paths = (array) ($options['paths'] ?? $options['path'] ?? []);
 
-        $options['paths'] = array_filter(array_map(function ($path) {
-            return $path !== '/' ? rtrim($path, '/') : $path;
-        }, $paths));
+        $options['paths'] = array_filter(array_map(
+            fn ($path) => $path !== '/' ? rtrim($path, '/') : $path,
+            $paths,
+        ));
 
         if (empty($options['paths'])) {
             throw CannotRegisterIconSet::pathsNotDefined($set);
