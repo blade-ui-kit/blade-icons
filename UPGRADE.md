@@ -7,7 +7,7 @@ General steps for every update:
 
 If you published the config file, make sure to sync it with the config file from the version you're upgrading to.
 
-## Upgrading from v0.5.1 to 1.0.0
+## Upgrading from 0.5.1 to 1.0.0
 
 Blade Icons 1.0.0 is the first major release of the library. This release brings a whole range of new features and a stable API. While there aren't many, there's a few breaking changes to know about.
 
