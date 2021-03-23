@@ -15,7 +15,7 @@ Blade Icons 1.0.0 is the first major release of the library. This release brings
 
 The package now requires as a minimum:
 
-- PHP 7.3
+- PHP 7.4
 - Laravel 8.0
 
 ### Default Icon Component
