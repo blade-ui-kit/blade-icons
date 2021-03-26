@@ -23,31 +23,6 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 
 *Join the Discord server: https://discord.gg/Vev5CyE*
 
-- [Icon Packages](#icon-packages)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Updating](#updating)
-- [Caching](#caching)
-- [Configuration](#configuration)
-  - [Defining Sets](#defining-sets)
-  - [Icon Paths](#icon-paths)
-    - [Multiple Paths](#multiple-paths)
-  - [Filesystem Disk](#filesystem-disk)
-  - [Fallback Icons](#fallback-icons)
-  - [Prefixing Icons](#prefixing-icons)
-  - [Default Classes](#default-classes)
-  - [Default Attributes](#default-attributes)
-- [Usage](#usage)
-  - [Components](#components)
-    - [Default Component](#default-component)
-    - [Disabling Components](#disabling-components)
-  - [Directive](#directive)
-  - [Helper](#helper)
-- [Building Packages](#building-packages)
-- [Changelog](#changelog)
-- [Maintainers](#maintainers)
-- [License](#license)
-
 ## Icon Packages
 
 This package is a base package to make it easy for you to use SVG icons in your app. If you want to start using a specific icon set, we offer the following ones below:
