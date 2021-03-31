@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use BladeUI\Icons\Factory;
 use BladeUI\Icons\Svg;
 
 class FilesystemDiskTest extends TestCase
@@ -53,6 +54,17 @@ class FilesystemDiskTest extends TestCase
             HTML;
 
         $view->assertSee($expected, false);
+    }
+
+    /** @test */
+    public function the_local_filesystem_is_used_for_the_disk_option_with_an_empty_string()
+    {
+        $factory = $this->prepareSets([], ['default' => [
+            'disk' => '',
+            'path' => $this->app->basePath('resources'),
+        ]]);
+
+        $this->assertInstanceOf(Factory::class, $factory);
     }
 
     protected function getEnvironmentSetUp($app)

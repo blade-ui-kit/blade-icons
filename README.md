@@ -23,30 +23,6 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 
 *Join the Discord server: https://discord.gg/Vev5CyE*
 
-- [Icon Packages](#icon-packages)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Updating](#updating)
-- [Caching](#caching)
-- [Configuration](#configuration)
-  - [Defining Sets](#defining-sets)
-  - [Icon Paths](#icon-paths)
-    - [Multiple Paths](#multiple-paths)
-  - [Filesystem Disk](#filesystem-disk)
-  - [Prefixing Icons](#prefixing-icons)
-  - [Default Classes](#default-classes)
-  - [Default Attributes](#default-attributes)
-- [Usage](#usage)
-  - [Components](#components)
-    - [Default Component](#default-component)
-    - [Disabling Components](#disabling-components)
-  - [Directive](#directive)
-  - [Helper](#helper)
-- [Building Packages](#building-packages)
-- [Changelog](#changelog)
-- [Maintainers](#maintainers)
-- [License](#license)
-
 ## Icon Packages
 
 This package is a base package to make it easy for you to use SVG icons in your app. If you want to start using a specific icon set, we offer the following ones below:
@@ -63,6 +39,7 @@ In addition to the official packages from above there's also quite some third pa
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
 - [Blade Boxicons](https://github.com/jfvoliveira/blade-boxicons) by [João Oliveira](https://github.com/jfvoliveira)
 - [Blade Brand Icons](https://github.com/sadegh19b/blade-brand-icons) by [Sadegh Barzegar](https://github.com/sadegh19b)
+- [Blade Cryptocurrency Icons](https://github.com/codeat3/blade-cryptocurrency-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
@@ -76,10 +53,11 @@ In addition to the official packages from above there's also quite some third pa
 - [Blade Simple Icons](https://github.com/codeat3/blade-simple-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
+- [Blade Unicons](https://github.com/codeat3/blade-unicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 
 ## Requirements
 
-- PHP 7.3 or higher
+- PHP 7.4 or higher
 - Laravel 8.0 or higher
 
 ## Installation
@@ -101,6 +79,8 @@ After installing the package, publish the configuration and **uncomment** the `d
 ```bash
 php artisan vendor:publish --tag=blade-icons
 ```
+
+Make sure that the path defined for this icon set exists. By default it's `resources/svg`.
 
 ## Updating
 
