@@ -80,6 +80,8 @@ After installing the package, publish the configuration and **uncomment** the `d
 php artisan vendor:publish --tag=blade-icons
 ```
 
+Make sure that the path defined for this icon set exists. By default it's `resources/svg`.
+
 ## Updating
 
 Please refer to [`the upgrade guide`](UPGRADE.md) when updating the library.
