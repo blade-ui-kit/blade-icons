@@ -47,7 +47,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
             );
 
             foreach ($config['sets'] ?? [] as $set => $options) {
-                if (! isset($options['disk']) && ! $options['disk']) {
+                if (! isset($options['disk']) || ! $options['disk']) {
                     $paths = $options['paths'] ?? $options['path'] ?? [];
 
                     $options['paths'] = array_map(
