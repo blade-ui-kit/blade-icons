@@ -3,7 +3,13 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.1...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.2...1.x)
+
+
+## [1.0.2 (2021-04-03)](https://github.com/blade-ui-kit/blade-icons/compare/1.0.1...1.0.2)
+
+### Fixed
+- Fix if statement ([7829b0b](https://github.com/blade-ui-kit/blade-icons/commit/7829b0b4faacd9cab1ddac8dcf48e5eb12a2b2b1))
 
 
 ## [1.0.1 (2021-03-31)](https://github.com/blade-ui-kit/blade-icons/compare/1.0.0...1.0.1)
