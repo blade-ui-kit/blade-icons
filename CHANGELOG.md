@@ -3,15 +3,19 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.1...main)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.2...main)
+
+
+## [1.0.2 (2021-04-03)](https://github.com/blade-ui-kit/blade-icons/compare/1.0.1...1.0.2)
+
+### Fixed
+- Fix if statement ([7829b0b](https://github.com/blade-ui-kit/blade-icons/commit/7829b0b4faacd9cab1ddac8dcf48e5eb12a2b2b1))
 
 
 ## [1.0.1 (2021-03-31)](https://github.com/blade-ui-kit/blade-icons/compare/1.0.0...1.0.1)
 
 ### Fixed
 - Fix an issue with empty disk ([2505ea4](https://github.com/blade-ui-kit/blade-icons/commit/2505ea41eccb72933497213c12e6d041add7b844))
->>>>>>> 1
-> .x
 
 
 ## [1.0.0 (2021-03-21)](https://github.com/blade-ui-kit/blade-icons/compare/0.5.1...1.0.0)
