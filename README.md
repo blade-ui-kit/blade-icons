@@ -53,7 +53,6 @@ In addition to the official packages from above there's also quite some third pa
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
 - [Blade Remix Icon](https://github.com/skydiver/blade-icons-remix) by [Martin M.](https://github.com/skydiver)
 - [Blade Simple Icons](https://github.com/codeat3/blade-simple-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
-- [Blade Simple Icons](https://github.com/ublabs/blade-simple-icons) by [Adrián UB](https://github.com/adrian-ub)
 - [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
 - [Blade Teeny Icons](https://github.com/codeat3/blade-teeny-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
