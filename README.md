@@ -25,7 +25,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 
 ## Icon Packages
 
-This package is a base package to make it easy for you to use SVG icons in your app. In addition, there's also quite some third party icon set packages. Thanks to the community for contributing these!
+Blade Icons is a base package to make it easy for you to use SVG icons in your app. In addition, there's also quite some third party icon set packages. Thanks to the community for contributing these!
 
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
 - [Blade Boxicons](https://github.com/jfvoliveira/blade-boxicons) by [João Oliveira](https://github.com/jfvoliveira)
