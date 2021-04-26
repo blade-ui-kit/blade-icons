@@ -55,6 +55,7 @@ This package is a base package to make it easy for you to use SVG icons in your 
 - [Blade Teeny Icons](https://github.com/codeat3/blade-teeny-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Typicons](https://github.com/codeat3/blade-typicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Unicons](https://github.com/codeat3/blade-unicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Vaadin Icons](https://github.com/codeat3/blade-vaadin-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons) by [Dries Vints](https://github.com/driesvints)
