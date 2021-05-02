@@ -29,7 +29,6 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
 - [Blade Boxicons](https://github.com/jfvoliveira/blade-boxicons) by [João Oliveira](https://github.com/jfvoliveira)
-- [Blade Simple Icons](https://github.com/ublabs/blade-simple-icons) by [Adrián UB](https://github.com/adrian-ub)
 - [Blade CoreUI Icons](https://github.com/ublabs/blade-coreui-icons) by [Adrián UB](https://github.com/adrian-ub)
 - [Blade Cryptocurrency Icons](https://github.com/codeat3/blade-cryptocurrency-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
@@ -50,6 +49,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Remix Icon](https://github.com/skydiver/blade-icons-remix) by [Martin M.](https://github.com/skydiver)
 - [Blade RPG Awesome Icons](https://github.com/codeat3/blade-rpg-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Simple Icons](https://github.com/ublabs/blade-simple-icons) by [Adrián UB](https://github.com/adrian-ub)
 - [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
 - [Blade Teeny Icons](https://github.com/codeat3/blade-teeny-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
