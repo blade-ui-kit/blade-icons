@@ -33,6 +33,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade Cryptocurrency Icons](https://github.com/codeat3/blade-cryptocurrency-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
+- [Blade EOS Icons](https://github.com/codeat3/blade-eos-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
 - [Blade Evil Icons](https://github.com/codeat3/blade-evil-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons) by [Bruno Falcão](https://github.com/brunocfalcao)
@@ -46,6 +47,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade Icon Park Icons](https://github.com/codeat3/blade-iconpark) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ikonate Icons](https://github.com/codeat3/blade-ikonate) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
+- [Blade Jam Icons](https://github.com/codeat3/blade-jam-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Remix Icon](https://github.com/skydiver/blade-icons-remix) by [Martin M.](https://github.com/skydiver)
 - [Blade RPG Awesome Icons](https://github.com/codeat3/blade-rpg-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
@@ -101,7 +103,7 @@ When working with Blade Icons, and third party icons in particularly, you'll oft
 php artisan icons:cache
 ```
 
-This will create a `blade-icons.php` file in `bootstrap/cache` similar to the `packages.php` cached file. It'll contain a manifest of all known sets and icons with their path locations. 
+This will create a `blade-icons.php` file in `bootstrap/cache` similar to the `packages.php` cached file. It'll contain a manifest of all known sets and icons with their path locations.
 
 Caching icons means you won't be able to add extra icons, change paths for icon sets or install/remove icon packages. To do so make sure you first clear the icons cache and cache after you've made these changes:
 
@@ -109,7 +111,7 @@ Caching icons means you won't be able to add extra icons, change paths for icon 
 php artisan icons:clear
 ```
 
-It's a good idea to add the `icons:cache` command as part of your deployment pipeline and always cache icons in production. 
+It's a good idea to add the `icons:cache` command as part of your deployment pipeline and always cache icons in production.
 
 Alternatively, you may choose to [disable Blade components](#disabling-components) entirely.
 
