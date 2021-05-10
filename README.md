@@ -49,7 +49,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
 - [Blade Jam Icons](https://github.com/codeat3/blade-jam-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
-- [Blade Remix Icon](https://github.com/skydiver/blade-icons-remix) by [Martin M.](https://github.com/skydiver)
+- [Blade Remix Icon](https://github.com/andreiio/blade-remix-icon) by [Andrei Ioniță](https://github.com/andreiio)
 - [Blade RPG Awesome Icons](https://github.com/codeat3/blade-rpg-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Simple Icons](https://github.com/ublabs/blade-simple-icons) by [Adrián UB](https://github.com/adrian-ub)
 - [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
