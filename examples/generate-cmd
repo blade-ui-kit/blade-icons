@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use <YOUR PACKAGE NAME>\Generator\Command\GenerateCommand;
+use Symfony\Component\Console\Application;
+
+$application = new Application('blade-icon-updater', '1.0.0');
+$command = new GenerateCommand('Generate <YOUR ICON PACKAGE NAME>');
+$application->add($command);
+$application->setDefaultCommand($command->getName(), true);
+$application->run();
