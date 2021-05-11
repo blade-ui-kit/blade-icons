@@ -100,7 +100,7 @@ Please refer to [`the upgrade guide`](UPGRADE.md) when updating the library.
 
 ## Caching
 
-When working with Blade Icons, and third party icons in particularly, you'll often be working with large icon sets. This can slow down your app tremendously, especially when making use of [Blade components](#components). To solve this issue, Blade Icons ships with caching support. To enable icon caching you can run the following command:
+When working with Blade Icons, and third party icon sets in particularly, you'll often be working with large icon sets. This can slow down your app tremendously, especially when making use of [Blade components](#components). To solve this issue, Blade Icons ships with caching support. To enable icon caching you can run the following command:
 
 ```blade
 php artisan icons:cache
