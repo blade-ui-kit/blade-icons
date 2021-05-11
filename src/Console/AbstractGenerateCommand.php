@@ -139,8 +139,8 @@ abstract class AbstractGenerateCommand extends Command
      * This is fired after copying the SVG to a temp folder, but before putting them in their final place.
      * Any changes to the file should be made in place; so no changes should result in a new file being made.
      *
-     * @param string $tempFilepath
-     * @param string $iconSet
+     * @param string $tempFilepath  This is the full path to the temporary SVG icon file.
+     * @param string $iconSet       The icon set that this icon exists in - provided for when SVGs need modifications based on icon set.
      */
     abstract public function normalizeSvgFile(string $tempFilepath, string $iconSet): void;
 }
