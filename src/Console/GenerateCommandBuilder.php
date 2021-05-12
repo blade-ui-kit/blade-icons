@@ -111,6 +111,9 @@ class GenerateCommandBuilder
                     $iconSetTmpDir = $tempDirPath.DIRECTORY_SEPARATOR.$iconSetName;
                     $this->ensureDirectoryExists($iconSetTmpDir);
 
+                    /**
+                     * @var array<SplFileInfo> $iconFileList
+                     */
                     $iconFileList = app(Filesystem::class)->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$iconSetName);
                     $this->updateSvgs($iconSetConfig, $iconFileList);
                     $output->writeln("Completed processing for '{$iconSetName}' svgs.");
@@ -156,7 +159,6 @@ class GenerateCommandBuilder
     }
 
     /**
-     * @param IconSetConfig         $iconSet
      * @param array<SplFileInfo>    $iconFileList
      */
     public function updateSvgs(IconSetConfig $iconSet, array $iconFileList): void
