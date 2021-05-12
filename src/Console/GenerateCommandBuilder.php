@@ -127,7 +127,7 @@ class GenerateCommandBuilder
     private function ensureDirExists($dirPath)
     {
         if (!is_dir($dirPath)) {
-            if (!mkdir($dirPath) && !is_dir($dirPath)) {
+            if (!mkdir($dirPath, 0777, true) && !is_dir($dirPath)) {
                 throw new \RuntimeException(sprintf('Directory "%s" was not created', $dirPath));
             }
         }
@@ -165,6 +165,7 @@ class GenerateCommandBuilder
             }
 
             // Copy to final destination...
+            $this->ensureDirExists(dirname($finalFile));
             copy($tempFile, $finalFile);
         }
     }
