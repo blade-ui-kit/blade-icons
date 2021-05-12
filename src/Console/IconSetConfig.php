@@ -46,7 +46,7 @@ class IconSetConfig
 
     public function getSourceFilePath(string $iconFileName): string
     {
-        return $this->svgSourcePath . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . $iconFileName;
+        return $this->svgSourcePath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.$iconFileName;
     }
 
     public function setTempPath(string $svgTempPath): self
@@ -58,7 +58,7 @@ class IconSetConfig
 
     public function getTempFilePath(string $iconFileName): string
     {
-        return $this->svgTempPath . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . $iconFileName;
+        return $this->svgTempPath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.$iconFileName;
     }
 
     public function setDestinationPath(string $svgDestinationPath): self
@@ -72,16 +72,16 @@ class IconSetConfig
     {
         if ($singleIconSet) {
             if ($this->outputFilePrefix !== '') {
-                return $this->svgDestinationPath . DIRECTORY_SEPARATOR . Str::of($iconFileName)->prepend($this->outputFilePrefix);
+                return $this->svgDestinationPath.DIRECTORY_SEPARATOR.Str::of($iconFileName)->prepend($this->outputFilePrefix);
             }
 
-            return $this->svgDestinationPath . DIRECTORY_SEPARATOR . $iconFileName;
+            return $this->svgDestinationPath.DIRECTORY_SEPARATOR.$iconFileName;
         }
 
         if ($this->inputFilePrefix !== '') {
-            return $this->svgDestinationPath . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . Str::of($iconFileName)->after($this->inputFilePrefix);
+            return $this->svgDestinationPath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.Str::of($iconFileName)->after($this->inputFilePrefix);
         }
 
-        return $this->svgDestinationPath . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . $iconFileName;
+        return $this->svgDestinationPath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.$iconFileName;
     }
 }

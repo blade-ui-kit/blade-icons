@@ -73,14 +73,15 @@ class GenerateCommandBuilder
         return (new SingleCommandApplication())
             ->setCode(function (InputInterface $input, OutputInterface $output) {
                 $output->writeln("Starting build process for {$this->name} icon pack.");
-                if (!is_dir($this->getSvgSourcePath())) {
+                if (! is_dir($this->getSvgSourcePath())) {
                     $output->writeln("The SVG source folder does not exist yet - check: <{$this->getSvgSourcePath()}>");
+
                     return Command::FAILURE;
                 }
                 $tempDirPath = $this->getSvgTempPath();
                 $this->ensureDirExists($tempDirPath);
 
-                $output->writeln("Discovering source SVGs for icon sets...");
+                $output->writeln('Discovering source SVGs for icon sets...');
                 foreach ($this->iconSets as $iconSetConfig) {
                     /**
                      * @var IconSetConfig $iconSetConfig
@@ -91,17 +92,17 @@ class GenerateCommandBuilder
                     $iconSetName = $iconSetConfig->name;
                     $output->writeln("Processing '{$iconSetName}' icon set SVGs.");
                     // Setup build dir for type
-                    $iconSetTmpDir = $tempDirPath . DIRECTORY_SEPARATOR . $iconSetName;
+                    $iconSetTmpDir = $tempDirPath.DIRECTORY_SEPARATOR.$iconSetName;
                     $this->ensureDirExists($iconSetTmpDir);
 
-                    $iconFileList = $this->getDirectoryFileList($this->getSvgSourcePath() . DIRECTORY_SEPARATOR . $iconSetName, $iconSetConfig);
+                    $iconFileList = $this->getDirectoryFileList($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$iconSetName, $iconSetConfig);
                     $this->updateSvgs($iconSetConfig, $iconFileList);
                     $output->writeln("Completed processing for '{$iconSetName}' svgs.");
                 }
 
-                $output->writeln("Cleaning up the build directory...");
+                $output->writeln('Cleaning up the build directory...');
                 $this->deleteDirectory(static::getSvgTempPath());
-                $output->writeln("Done!");
+                $output->writeln('Done!');
 
                 return Command::SUCCESS;
             })
@@ -111,29 +112,29 @@ class GenerateCommandBuilder
     private function getSvgSourcePath(): string
     {
         if ($this->npmPackageName !== null) {
-            return $this->baseDirectory . DIRECTORY_SEPARATOR .
-                'node_modules' . DIRECTORY_SEPARATOR .
-                $this->npmPackageName . DIRECTORY_SEPARATOR .
+            return $this->baseDirectory.DIRECTORY_SEPARATOR.
+                'node_modules'.DIRECTORY_SEPARATOR.
+                $this->npmPackageName.DIRECTORY_SEPARATOR.
                 ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
         }
 
-        return $this->baseDirectory . DIRECTORY_SEPARATOR . ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
+        return $this->baseDirectory.DIRECTORY_SEPARATOR.ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
     }
 
     private function getSvgTempPath(): string
     {
-        return $this->baseDirectory . DIRECTORY_SEPARATOR . 'build';
+        return $this->baseDirectory.DIRECTORY_SEPARATOR.'build';
     }
 
     private function getSvgDestinationPath(): string
     {
-        return $this->baseDirectory . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'svg';
+        return $this->baseDirectory.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'svg';
     }
 
     private function ensureDirExists($dirPath)
     {
-        if (!is_dir($dirPath)) {
-            if (!mkdir($dirPath, 0777, true) && !is_dir($dirPath)) {
+        if (! is_dir($dirPath)) {
+            if (! mkdir($dirPath, 0777, true) && !is_dir($dirPath)) {
                 throw new RuntimeException(sprintf('Directory "%s" was not created', $dirPath));
             }
         }
@@ -153,7 +154,7 @@ class GenerateCommandBuilder
     {
 
         $iconSetName = $iconSet->name;
-        $iconSetTmpDir = $this->getSvgTempPath() . DIRECTORY_SEPARATOR . $iconSetName;
+        $iconSetTmpDir = $this->getSvgTempPath().DIRECTORY_SEPARATOR.$iconSetName;
 
         foreach ($iconFileList as $iconFile) {
             // Set path variables...
@@ -180,7 +181,7 @@ class GenerateCommandBuilder
     {
         $files = array_diff(scandir($directory), ['.', '..']);
         foreach ($files as $file) {
-            $path = $directory . DIRECTORY_SEPARATOR . $file;
+            $path = $directory.DIRECTORY_SEPARATOR.$file;
             (is_dir($path)) ? $this->deleteDirectory($path) : unlink($path);
         }
         return rmdir($directory);
