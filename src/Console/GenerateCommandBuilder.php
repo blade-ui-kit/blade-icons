@@ -19,6 +19,7 @@ class GenerateCommandBuilder
     private ?string $npmPackageName = null;
     private array $iconSets = [];
     private ?\Closure $svgNormalizationClosure = null;
+    private bool $useSingleIconSet = false;
 
     private function __construct(string $name)
     {
@@ -55,11 +56,15 @@ class GenerateCommandBuilder
         return $this;
     }
 
+    public function useSingleIconSet(): self
+    {
+        $this->useSingleIconSet = true;
+        return $this;
+    }
+
     public function run()
     {
         return (new SingleCommandApplication())
-            ->setName('My Super Command') // Optional
-            ->setVersion('1.0.0') // Optional
             ->setCode(function (InputInterface $input, OutputInterface $output) {
                 $output->writeln("Starting build process for {$this->name} icon pack.");
                 if (!is_dir($this->getSvgSourcePath())) {
@@ -70,15 +75,22 @@ class GenerateCommandBuilder
                 $this->ensureDirExists($tempDirPath);
 
                 $output->writeln("Discovering source SVGs for icon sets...");
-                foreach ($this->iconSets as $iconSet => $prefix) {
-                    $output->writeln("Processing '{$iconSet}' icon set SVGs.");
+                foreach ($this->iconSets as $iconSetConfig) {
+                    /**
+                     * @var IconSetConfig $iconSetConfig
+                     */
+                    $iconSetConfig->setSourcePath($this->getSvgSourcePath())
+                                ->setTempPath($this->getSvgTempPath())
+                                ->setDestinationPath($this->getSvgDestinationPath());
+                    $iconSetName = $iconSetConfig->name;
+                    $output->writeln("Processing '{$iconSetName}' icon set SVGs.");
                     // Setup build dir for type
-                    $iconSetTmpDir = sprintf('%s/%s', $tempDirPath, $iconSet);
+                    $iconSetTmpDir = sprintf('%s/%s', $tempDirPath, $iconSetName);
                     $this->ensureDirExists($iconSetTmpDir);
 
-                    $fileTransformationList = $this->getDirectoryFileList($this->getSvgSourcePath() . '/' . $iconSet, $prefix);
-                    $this->updateSvgs($iconSet, $fileTransformationList);
-                    $output->writeln("Completed processing for '{$iconSet}' svgs.");
+                    $iconFileList = $this->getDirectoryFileList($this->getSvgSourcePath() . '/' . $iconSetName, $iconSetConfig);
+                    $this->updateSvgs($iconSetConfig, $iconFileList);
+                    $output->writeln("Completed processing for '{$iconSetName}' svgs.");
                 }
 
                 $output->writeln("Cleaning up the build directory...");
@@ -132,30 +144,22 @@ class GenerateCommandBuilder
      *
      * @return array<array<string>>
      */
-    private function getDirectoryFileList(string $dirPath, string $prefix): array
+    private function getDirectoryFileList(string $dirPath, IconSetConfig $iconSetConfig): array
     {
-        // Scan for files...
-        $filesList = scandir($dirPath);
-        // Filter out the "." and ".." items.
-        $filesList = array_diff($filesList, ['..', '.']);
-
-        // modify things to a tuple:
-        $filesList = collect($filesList)
-            ->map(static fn($value) => [$value, Str::after($value, $prefix)]);
-
-        return $filesList->values()->toArray();
+        return array_diff(scandir($dirPath), ['..', '.']);
     }
 
-    public function updateSvgs(string $iconSet, array $fileTransformations): void
+    public function updateSvgs(IconSetConfig $iconSet, array $iconFileList): void
     {
-        $iconSetTmpDir = $this->getSvgTempPath() . DIRECTORY_SEPARATOR . $iconSet;
 
-        foreach ($fileTransformations as $fileTransformation) {
-            [$orgFile, $newFile] = $fileTransformation;
+        $iconSetName = $iconSet->name;
+        $iconSetTmpDir = $this->getSvgTempPath() . DIRECTORY_SEPARATOR . $iconSetName;
+
+        foreach ($iconFileList as $iconFile) {
             // Set path variables...
-            $sourceFile = $this->getSvgSourcePath() . DIRECTORY_SEPARATOR . $iconSet . DIRECTORY_SEPARATOR . $orgFile;
-            $tempFile = $iconSetTmpDir . DIRECTORY_SEPARATOR . $newFile;
-            $finalFile = $this->getSvgDestinationPath() . DIRECTORY_SEPARATOR . $iconSet . DIRECTORY_SEPARATOR . $newFile;
+            $sourceFile = $iconSet->getSourceFilePath($iconFile);
+            $tempFile = $iconSet->getTempFilePath($iconFile);
+            $finalFile = $iconSet->getDestinationFilePath($iconFile, $this->useSingleIconSet);
 
             // Copy file to temp...
             copy($sourceFile, $tempFile);
