@@ -21,6 +21,7 @@ class GenerateCommandBuilder
     private array $iconSets = [];
     private ?Closure $svgNormalizationClosure = null;
     private bool $useSingleIconSet = false;
+    private bool $clearDestinationDirectory = false;
 
     private function __construct(string $name)
     {
@@ -68,6 +69,13 @@ class GenerateCommandBuilder
         return $this;
     }
 
+    public function clearDestinationDirectory(): self
+    {
+        $this->clearDestinationDirectory = true;
+
+        return $this;
+    }
+
     public function run()
     {
         return (new SingleCommandApplication())
@@ -81,6 +89,12 @@ class GenerateCommandBuilder
                 $tempDirPath = $this->getSvgTempPath();
                 $this->ensureDirExists($tempDirPath);
 
+                // Clear the destination directory
+                if ($this->clearDestinationDirectory) {
+                    $this->deleteDirectory($this->getSvgDestinationPath());
+                    $this->ensureDirExists($this->getSvgDestinationPath());
+                }
+
                 $output->writeln('Discovering source SVGs for icon sets...');
                 foreach ($this->iconSets as $iconSetConfig) {
                     /**
@@ -91,6 +105,7 @@ class GenerateCommandBuilder
                         ->setDestinationPath($this->getSvgDestinationPath());
                     $iconSetName = $iconSetConfig->name;
                     $output->writeln("Processing '{$iconSetName}' icon set SVGs.");
+
                     // Setup build dir for type
                     $iconSetTmpDir = $tempDirPath.DIRECTORY_SEPARATOR.$iconSetName;
                     $this->ensureDirExists($iconSetTmpDir);
