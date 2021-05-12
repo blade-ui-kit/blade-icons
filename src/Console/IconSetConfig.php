@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 class IconSetConfig
 {
     public string $name;
-    public string $iconSetPrefix = '';
     public string $inputFilePrefix = '';
     public string $outputFilePrefix = '';
     private string $svgSourcePath;
@@ -22,12 +21,6 @@ class IconSetConfig
     public static function create(string $name): self
     {
         return new self($name);
-    }
-
-    public function setIconSetPrefix(string $prefix): self
-    {
-        $this->iconSetPrefix = $prefix;
-        return $this;
     }
 
     public function setInputFilePrefix(string $filePrefix): self
