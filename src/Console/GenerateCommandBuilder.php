@@ -85,10 +85,10 @@ class GenerateCommandBuilder
                     $iconSetName = $iconSetConfig->name;
                     $output->writeln("Processing '{$iconSetName}' icon set SVGs.");
                     // Setup build dir for type
-                    $iconSetTmpDir = sprintf('%s/%s', $tempDirPath, $iconSetName);
+                    $iconSetTmpDir = $tempDirPath . DIRECTORY_SEPARATOR . $iconSetName;
                     $this->ensureDirExists($iconSetTmpDir);
 
-                    $iconFileList = $this->getDirectoryFileList($this->getSvgSourcePath() . '/' . $iconSetName, $iconSetConfig);
+                    $iconFileList = $this->getDirectoryFileList($this->getSvgSourcePath() . DIRECTORY_SEPARATOR . $iconSetName, $iconSetConfig);
                     $this->updateSvgs($iconSetConfig, $iconFileList);
                     $output->writeln("Completed processing for '{$iconSetName}' svgs.");
                 }
@@ -105,29 +105,23 @@ class GenerateCommandBuilder
     private function getSvgSourcePath(): string
     {
         if ($this->npmPackageName !== null) {
-            return sprintf(
-                '%s/node_modules/%s/%s',
-                $this->baseDirectory,
-                $this->npmPackageName,
-                ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR)
-            );
+            return $this->baseDirectory . DIRECTORY_SEPARATOR .
+                    'node_modules' . DIRECTORY_SEPARATOR .
+                    $this->npmPackageName . DIRECTORY_SEPARATOR .
+                    ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
         }
 
-        return sprintf(
-            '%s/%s',
-            $this->baseDirectory,
-            ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR)
-        );
+        return $this->baseDirectory . DIRECTORY_SEPARATOR . ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
     }
 
     private function getSvgTempPath(): string
     {
-        return $this->baseDirectory . '/build';
+        return $this->baseDirectory . DIRECTORY_SEPARATOR . 'build';
     }
 
     private function getSvgDestinationPath(): string
     {
-        return $this->baseDirectory . '/resources/svg';
+        return $this->baseDirectory . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'svg';
     }
 
     private function ensureDirExists($dirPath)
