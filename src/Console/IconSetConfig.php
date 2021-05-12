@@ -9,7 +9,6 @@ class IconSetConfig
     public string $name;
     public string $inputFilePrefix = '';
     public string $outputFilePrefix = '';
-    private string $svgSourcePath;
     private string $svgTempPath;
     private string $svgDestinationPath;
 
@@ -35,18 +34,6 @@ class IconSetConfig
         $this->outputFilePrefix = $filePrefix;
 
         return $this;
-    }
-
-    public function setSourcePath(string $svgSourcePath): self
-    {
-        $this->svgSourcePath = $svgSourcePath;
-
-        return $this;
-    }
-
-    public function getSourceFilePath(string $iconFileName): string
-    {
-        return $this->svgSourcePath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.$iconFileName;
     }
 
     public function setTempPath(string $svgTempPath): self
