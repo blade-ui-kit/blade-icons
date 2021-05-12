@@ -2,7 +2,8 @@
 
 namespace BladeUI\Icons\Console;
 
-use Illuminate\Support\Str;
+use Closure;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,7 +19,7 @@ class GenerateCommandBuilder
     private string $sourceDirectory;
     private ?string $npmPackageName = null;
     private array $iconSets = [];
-    private ?\Closure $svgNormalizationClosure = null;
+    private ?Closure $svgNormalizationClosure = null;
     private bool $useSingleIconSet = false;
 
     private function __construct(string $name)
@@ -35,30 +36,35 @@ class GenerateCommandBuilder
     public function fromSourceSvgDirectory(string $sourceDirectory): self
     {
         $this->sourceDirectory = $sourceDirectory;
+
         return $this;
     }
 
     public function fromNpmPackage(string $packageName): self
     {
         $this->npmPackageName = $packageName;
+
         return $this;
     }
 
     public function withIconSets(array $iconSets): self
     {
         $this->iconSets = $iconSets;
+
         return $this;
     }
 
-    public function withSvgNormalisation(\Closure $svgNormalizationClosure): self
+    public function withSvgNormalisation(Closure $svgNormalizationClosure): self
     {
         $this->svgNormalizationClosure = $svgNormalizationClosure;
+
         return $this;
     }
 
     public function useSingleIconSet(): self
     {
         $this->useSingleIconSet = true;
+
         return $this;
     }
 
@@ -80,8 +86,8 @@ class GenerateCommandBuilder
                      * @var IconSetConfig $iconSetConfig
                      */
                     $iconSetConfig->setSourcePath($this->getSvgSourcePath())
-                                ->setTempPath($this->getSvgTempPath())
-                                ->setDestinationPath($this->getSvgDestinationPath());
+                        ->setTempPath($this->getSvgTempPath())
+                        ->setDestinationPath($this->getSvgDestinationPath());
                     $iconSetName = $iconSetConfig->name;
                     $output->writeln("Processing '{$iconSetName}' icon set SVGs.");
                     // Setup build dir for type
@@ -106,9 +112,9 @@ class GenerateCommandBuilder
     {
         if ($this->npmPackageName !== null) {
             return $this->baseDirectory . DIRECTORY_SEPARATOR .
-                    'node_modules' . DIRECTORY_SEPARATOR .
-                    $this->npmPackageName . DIRECTORY_SEPARATOR .
-                    ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
+                'node_modules' . DIRECTORY_SEPARATOR .
+                $this->npmPackageName . DIRECTORY_SEPARATOR .
+                ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
         }
 
         return $this->baseDirectory . DIRECTORY_SEPARATOR . ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
@@ -128,7 +134,7 @@ class GenerateCommandBuilder
     {
         if (!is_dir($dirPath)) {
             if (!mkdir($dirPath, 0777, true) && !is_dir($dirPath)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $dirPath));
+                throw new RuntimeException(sprintf('Directory "%s" was not created', $dirPath));
             }
         }
     }
@@ -170,8 +176,9 @@ class GenerateCommandBuilder
         }
     }
 
-    private function deleteDirectory(string $directory) {
-        $files = array_diff(scandir($directory), array('.','..'));
+    private function deleteDirectory(string $directory)
+    {
+        $files = array_diff(scandir($directory), ['.', '..']);
         foreach ($files as $file) {
             $path = $directory . DIRECTORY_SEPARATOR . $file;
             (is_dir($path)) ? $this->deleteDirectory($path) : unlink($path);

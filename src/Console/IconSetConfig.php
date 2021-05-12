@@ -26,18 +26,21 @@ class IconSetConfig
     public function setInputFilePrefix(string $filePrefix): self
     {
         $this->inputFilePrefix = $filePrefix;
+
         return $this;
     }
 
     public function setOutputFilePrefix(string $filePrefix): self
     {
         $this->outputFilePrefix = $filePrefix;
+
         return $this;
     }
 
     public function setSourcePath(string $svgSourcePath): self
     {
         $this->svgSourcePath = $svgSourcePath;
+
         return $this;
     }
 
@@ -49,6 +52,7 @@ class IconSetConfig
     public function setTempPath(string $svgTempPath): self
     {
         $this->svgTempPath = $svgTempPath;
+
         return $this;
     }
 
@@ -60,6 +64,7 @@ class IconSetConfig
     public function setDestinationPath(string $svgDestinationPath): self
     {
         $this->svgDestinationPath = $svgDestinationPath;
+
         return $this;
     }
 
@@ -69,12 +74,14 @@ class IconSetConfig
             if ($this->outputFilePrefix !== '') {
                 return $this->svgDestinationPath . DIRECTORY_SEPARATOR . Str::of($iconFileName)->prepend($this->outputFilePrefix);
             }
+
             return $this->svgDestinationPath . DIRECTORY_SEPARATOR . $iconFileName;
         }
 
         if ($this->inputFilePrefix !== '') {
             return $this->svgDestinationPath . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . Str::of($iconFileName)->after($this->inputFilePrefix);
         }
+
         return $this->svgDestinationPath . DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . $iconFileName;
     }
 }
