@@ -134,7 +134,7 @@ class GenerateCommandBuilder
     private function ensureDirExists($dirPath)
     {
         if (! is_dir($dirPath)) {
-            if (! mkdir($dirPath, 0777, true) && !is_dir($dirPath)) {
+            if (! mkdir($dirPath, 0777, true) && ! is_dir($dirPath)) {
                 throw new RuntimeException(sprintf('Directory "%s" was not created', $dirPath));
             }
         }
@@ -152,7 +152,6 @@ class GenerateCommandBuilder
 
     public function updateSvgs(IconSetConfig $iconSet, array $iconFileList): void
     {
-
         $iconSetName = $iconSet->name;
         $iconSetTmpDir = $this->getSvgTempPath().DIRECTORY_SEPARATOR.$iconSetName;
 
@@ -184,6 +183,7 @@ class GenerateCommandBuilder
             $path = $directory.DIRECTORY_SEPARATOR.$file;
             (is_dir($path)) ? $this->deleteDirectory($path) : unlink($path);
         }
+
         return rmdir($directory);
     }
 }
