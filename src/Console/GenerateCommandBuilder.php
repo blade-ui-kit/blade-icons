@@ -20,7 +20,7 @@ class GenerateCommandBuilder
     private array $iconSets = [];
     private ?\Closure $svgNormalizationClosure = null;
 
-    public function __construct(string $name)
+    private function __construct(string $name)
     {
         $this->name = $name;
         $this->baseDirectory = getcwd();
@@ -61,24 +61,24 @@ class GenerateCommandBuilder
             ->setName('My Super Command') // Optional
             ->setVersion('1.0.0') // Optional
             ->setCode(function (InputInterface $input, OutputInterface $output) {
+                $output->writeln("Starting build process for {$this->name} icon pack.");
                 if (!is_dir($this->getSvgSourcePath())) {
                     $output->writeln("The SVG source folder does not exist yet - check: <{$this->getSvgSourcePath()}>");
                     return Command::FAILURE;
                 }
                 $tempDirPath = $this->getSvgTempPath();
                 $this->ensureDirExists($tempDirPath);
-                $output->writeln("Starting to discover source SVGs...");
 
-
+                $output->writeln("Discovering source SVGs for icon sets...");
                 foreach ($this->iconSets as $iconSet => $prefix) {
-                    $output->writeln("Processing SVGs for {$iconSet} type svgs.");
+                    $output->writeln("Processing '{$iconSet}' icon set SVGs.");
                     // Setup build dir for type
                     $iconSetTmpDir = sprintf('%s/%s', $tempDirPath, $iconSet);
                     $this->ensureDirExists($iconSetTmpDir);
 
                     $fileTransformationList = $this->getDirectoryFileList($this->getSvgSourcePath() . '/' . $iconSet, $prefix);
                     $this->updateSvgs($iconSet, $fileTransformationList);
-                    $output->writeln("Completed processing for {$iconSet} svgs.");
+                    $output->writeln("Completed processing for '{$iconSet}' svgs.");
                 }
 
                 $output->writeln("Cleaning up the build directory...");
