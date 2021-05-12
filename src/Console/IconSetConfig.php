@@ -57,18 +57,31 @@ class IconSetConfig
 
     public function getDestinationFilePath(string $iconFileName, bool $singleIconSet = false): string
     {
+        $destinationFilePath = $this->svgDestinationPath.DIRECTORY_SEPARATOR;
         if ($singleIconSet) {
-            if ($this->outputFilePrefix !== '') {
-                return $this->svgDestinationPath.DIRECTORY_SEPARATOR.Str::of($iconFileName)->prepend($this->outputFilePrefix);
-            }
+            return $this->compileDestinationFileName($destinationFilePath, $iconFileName);
+        }
 
-            return $this->svgDestinationPath.DIRECTORY_SEPARATOR.$iconFileName;
+        // Concat the set name onto the path...
+        $destinationFilePath .= $this->name.DIRECTORY_SEPARATOR;
+
+        return $this->compileDestinationFileName($destinationFilePath, $iconFileName);
+    }
+
+    private function compileDestinationFileName(string $basePath, string $iconFileName): string
+    {
+        if ($this->inputFilePrefix !== '' && $this->outputFilePrefix !== '') {
+            return $basePath.Str::of($iconFileName)->after($this->inputFilePrefix)->prepend($this->outputFilePrefix);
         }
 
         if ($this->inputFilePrefix !== '') {
-            return $this->svgDestinationPath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.Str::of($iconFileName)->after($this->inputFilePrefix);
+            return $basePath.Str::of($iconFileName)->after($this->inputFilePrefix);
         }
 
-        return $this->svgDestinationPath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.$iconFileName;
+        if ($this->outputFilePrefix !== '') {
+            return $basePath.Str::of($iconFileName)->prepend($this->outputFilePrefix);
+        }
+
+        return $basePath.$iconFileName;
     }
 }
