@@ -40,7 +40,6 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade File Icons](https://github.com/codeat3/blade-file-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Font Audio](https://github.com/codeat3/blade-fontaudio) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
-- [Blade Fork Awesome](https://github.com/codeat3/blade-forkawesome) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) by [Dries Vints](https://github.com/driesvints)
