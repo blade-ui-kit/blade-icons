@@ -27,6 +27,7 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 
 Blade Icons is a base package to make it easy for you to use SVG icons in your app. In addition, there's also quite some third party icon set packages. Thanks to the community for contributing these!
 
+- [Blade Akar Icons](https://github.com/codeat3/blade-akar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ant Design Icons](https://github.com/codeat3/blade-ant-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
 - [Blade Boxicons](https://github.com/mallardduck/blade-boxicons) by [Dan Pock](https://github.com/mallardduck)
@@ -43,6 +44,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade FluentUi System Icons](https://github.com/codeat3/blade-fluentui-system-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Font Audio](https://github.com/codeat3/blade-fontaudio) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
+- [Blade Fontisto Icons](https://github.com/codeat3/blade-fontisto-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Fork Awesome](https://github.com/codeat3/blade-forkawesome) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
