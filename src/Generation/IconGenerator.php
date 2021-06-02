@@ -1,6 +1,8 @@
 <?php
 
-namespace BladeUI\Icons\Console;
+declare(strict_types=1);
+
+namespace BladeUI\Icons\Generation;
 
 use Closure;
 use Illuminate\Filesystem\Filesystem;
@@ -11,48 +13,68 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\SingleCommandApplication;
 use Symfony\Component\Finder\SplFileInfo;
 
-class GenerateCommandBuilder
+final class IconGenerator
 {
-    private string $name;
-    /**
-     * @var false|string
-     */
-    private $baseDirectory;
-    private string $sourceDirectory;
-    private ?string $npmPackageName = null;
+    private Filesystem $filesystem;
+
+    private string $set;
+
+    private string $root;
+
+    private string $directory;
+
+    private string $npm = '';
+
+    private string $composer = '';
+
+    /** @var IconSetConfig[] $iconSets */
     private array $iconSets = [];
+
     private ?Closure $svgNormalizationClosure = null;
+
     private bool $useSingleIconSet = false;
-    private bool $clearDestinationDirectory = false;
 
-    private function __construct(string $name)
+    private bool $safe = false;
+
+    private function __construct(string $set)
     {
-        $this->name = $name;
-        $this->baseDirectory = getcwd();
+        $this->filesystem = new Filesystem();
+        $this->set = $set;
+        $this->root = getcwd();
     }
 
-    public static function create(string $name): self
+    public static function create(string $set): self
     {
-        return new self($name);
+        return new self($set);
     }
 
-    public function fromSourceSvgDirectory(string $sourceDirectory): self
+    public function directory(string $directory): self
     {
-        $this->sourceDirectory = $sourceDirectory;
+        $this->directory = trim($directory, DIRECTORY_SEPARATOR);
 
         return $this;
     }
 
-    public function fromNpmPackage(string $packageName): self
+    public function fromNPM(string $package): self
     {
-        $this->npmPackageName = $packageName;
+        $this->npm = $package;
 
         return $this;
     }
 
-    public function withIconSets(array $iconSets): self
+    public function fromComposer(string $package): self
     {
-        $this->iconSets = $iconSets;
+        $this->composer = $package;
+
+        return $this;
+    }
+
+    /**
+     * @param IconSetConfig[] $sets
+     */
+    public function withIconSets(array $sets): self
+    {
+        $this->iconSets = $sets;
 
         return $this;
     }
@@ -71,9 +93,9 @@ class GenerateCommandBuilder
         return $this;
     }
 
-    public function clearDestinationDirectory(): self
+    public function safe(): self
     {
-        $this->clearDestinationDirectory = true;
+        $this->safe = true;
 
         return $this;
     }
@@ -82,29 +104,29 @@ class GenerateCommandBuilder
     {
         return (new SingleCommandApplication())
             ->setCode(function (InputInterface $input, OutputInterface $output) {
-                $output->writeln("Starting build process for {$this->name} icon pack.");
+                $output->writeln("Starting build process for {$this->set} icon pack.");
+
                 if (! is_dir($this->getSvgSourcePath())) {
                     $output->writeln("The SVG source folder does not exist yet - check: <{$this->getSvgSourcePath()}>");
 
                     return Command::FAILURE;
                 }
+
                 $tempDirPath = $this->getSvgTempPath();
                 $this->ensureDirectoryExists($tempDirPath);
 
                 // Clear the destination directory
-                if ($this->clearDestinationDirectory) {
-                    app(Filesystem::class)->deleteDirectory($this->getSvgDestinationPath());
+                if (! $this->safe) {
+                    $this->filesystem->deleteDirectory($this->getSvgDestinationPath());
                     $this->ensureDirectoryExists($this->getSvgDestinationPath());
                 }
 
                 $output->writeln('Discovering source SVGs for icon sets...');
+
                 foreach ($this->iconSets as $iconSetConfig) {
-                    /**
-                     * @var IconSetConfig $iconSetConfig
-                     */
                     $iconSetConfig->setTempPath($this->getSvgTempPath())
                                   ->setDestinationPath($this->getSvgDestinationPath());
-                    $iconSetName = $iconSetConfig->name;
+                    $iconSetName = $iconSetConfig->set;
                     $output->writeln("Processing '{$iconSetName}' icon set SVGs.");
 
                     // Setup build dir for type
@@ -114,13 +136,15 @@ class GenerateCommandBuilder
                     /**
                      * @var array<SplFileInfo> $iconFileList
                      */
-                    $iconFileList = app(Filesystem::class)->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$iconSetName);
-                    $this->updateSvgs($iconSetConfig, $iconFileList);
+                    $iconFileList = $this->filesystem->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$iconSetName);
+                    $this->updateIcons($iconSetConfig, $iconFileList);
                     $output->writeln("Completed processing for '{$iconSetName}' svgs.");
                 }
 
                 $output->writeln('Cleaning up the build directory...');
-                app(Filesystem::class)->deleteDirectory(static::getSvgTempPath());
+
+                $this->filesystem->deleteDirectory(static::getSvgTempPath());
+
                 $output->writeln('Done!');
 
                 return Command::SUCCESS;
@@ -128,47 +152,11 @@ class GenerateCommandBuilder
             ->run();
     }
 
-    private function getSvgSourcePath(): string
-    {
-        if ($this->npmPackageName !== null) {
-            return $this->baseDirectory.DIRECTORY_SEPARATOR.
-                'node_modules'.DIRECTORY_SEPARATOR.
-                $this->npmPackageName.DIRECTORY_SEPARATOR.
-                ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
-        }
-
-        return $this->baseDirectory.DIRECTORY_SEPARATOR.ltrim($this->sourceDirectory, DIRECTORY_SEPARATOR);
-    }
-
-    private function getSvgTempPath(): string
-    {
-        return $this->baseDirectory.DIRECTORY_SEPARATOR.'build';
-    }
-
-    private function getSvgDestinationPath(): string
-    {
-        return $this->baseDirectory.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'svg';
-    }
-
-    private function ensureDirectoryExists($path)
-    {
-        app(Filesystem::class)->ensureDirectoryExists($path);
-        if (! is_dir($path)) {
-            throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
-        }
-    }
-
     /**
-     * @param array<SplFileInfo>    $iconFileList
+     * @param SplFileInfo[] $iconFileList
      */
-    public function updateSvgs(IconSetConfig $iconSet, array $iconFileList): void
+    public function updateIcons(IconSetConfig $iconSet, array $iconFileList): void
     {
-        $iconSetName = $iconSet->name;
-        $iconSetTmpDir = $this->getSvgTempPath().DIRECTORY_SEPARATOR.$iconSetName;
-
-        /**
-         * @var SplFileInfo $iconFile
-         */
         foreach ($iconFileList as $iconFile) {
             // Set path variables...
             $sourceFile = $iconFile->getRealPath();
@@ -186,7 +174,43 @@ class GenerateCommandBuilder
 
             // Copy to final destination...
             $this->ensureDirectoryExists(dirname($finalFile));
+
             copy($tempFile, $finalFile);
+        }
+    }
+
+    private function getSvgSourcePath(): string
+    {
+        $path = '';
+
+        if ($this->npm) {
+            $path = 'node_modules'.DIRECTORY_SEPARATOR.$this->npm;
+        } elseif ($this->composer) {
+            $path = 'vendor'.DIRECTORY_SEPARATOR.$this->composer;
+        }
+
+        return implode(
+            DIRECTORY_SEPARATOR,
+            array_filter([$this->root, $path, $this->directory])
+        );
+    }
+
+    private function getSvgTempPath(): string
+    {
+        return $this->root.DIRECTORY_SEPARATOR.'build';
+    }
+
+    private function getSvgDestinationPath(): string
+    {
+        return $this->root.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'svg';
+    }
+
+    private function ensureDirectoryExists($path)
+    {
+        $this->filesystem->ensureDirectoryExists($path);
+
+        if (! is_dir($path)) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
         }
     }
 }

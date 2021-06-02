@@ -1,25 +1,31 @@
 <?php
 
-namespace BladeUI\Icons\Console;
+declare(strict_types=1);
+
+namespace BladeUI\Icons\Generation;
 
 use Illuminate\Support\Str;
 
-class IconSetConfig
+final class IconSetConfig
 {
-    public string $name;
+    public string $set;
+
     public string $inputFilePrefix = '';
+
     public string $outputFilePrefix = '';
+
     private string $svgTempPath;
+
     private string $svgDestinationPath;
 
-    private function __construct(string $name)
+    private function __construct(string $set)
     {
-        $this->name = $name;
+        $this->set = $set;
     }
 
-    public static function create(string $name): self
+    public static function create(string $set): self
     {
-        return new self($name);
+        return new self($set);
     }
 
     public function setInputFilePrefix(string $filePrefix): self
@@ -45,7 +51,7 @@ class IconSetConfig
 
     public function getTempFilePath(string $iconFileName): string
     {
-        return $this->svgTempPath.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.$iconFileName;
+        return $this->svgTempPath.DIRECTORY_SEPARATOR.$this->set.DIRECTORY_SEPARATOR.$iconFileName;
     }
 
     public function setDestinationPath(string $svgDestinationPath): self
@@ -58,12 +64,13 @@ class IconSetConfig
     public function getDestinationFilePath(string $iconFileName, bool $singleIconSet = false): string
     {
         $destinationFilePath = $this->svgDestinationPath.DIRECTORY_SEPARATOR;
+
         if ($singleIconSet) {
             return $this->compileDestinationFileName($destinationFilePath, $iconFileName);
         }
 
         // Concat the set name onto the path...
-        $destinationFilePath .= $this->name.DIRECTORY_SEPARATOR;
+        $destinationFilePath .= $this->set.DIRECTORY_SEPARATOR;
 
         return $this->compileDestinationFileName($destinationFilePath, $iconFileName);
     }
