@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+$currentDir = getcwd();
+
+if (!file_exists($currentDir.'/vendor/autoload.php')) {
+    echo 'Autoload not found.';
+    exit(1);
+}
+
+require $currentDir.'/vendor/autoload.php';
+
+$packageGenerateCommand = require $currentDir.'/config/generation.php';
+$packageGenerateCommand->run();

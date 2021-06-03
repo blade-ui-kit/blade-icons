@@ -50,6 +50,7 @@
     "config": {
         "sort-packages": true
     },
+    "bin": ["bin/blade-icons-generate"],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
