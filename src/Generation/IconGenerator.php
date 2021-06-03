@@ -27,7 +27,7 @@ final class IconGenerator
 
     private string $composer = '';
 
-    /** @var IconSetConfig[] $iconSets */
+    /** @var IconSetConfig[] */
     private array $iconSets = [];
 
     private ?Closure $svgNormalizationClosure = null;
@@ -191,7 +191,7 @@ final class IconGenerator
 
         return implode(
             DIRECTORY_SEPARATOR,
-            array_filter([$this->root, $path, $this->directory])
+            array_filter([$this->root, $path, $this->directory]),
         );
     }
 
