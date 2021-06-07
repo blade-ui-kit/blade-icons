@@ -24,6 +24,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->bootCommands();
+        $this->bootComponents();
         $this->bootDirectives();
         $this->bootIconComponent();
         $this->bootPublishing();
@@ -61,10 +62,6 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
             return $factory;
         });
-
-        $this->callAfterResolving(ViewFactory::class, function ($view, Application $app) {
-            $app->make(Factory::class)->registerComponents();
-        });
     }
 
     private function registerManifest(): void
@@ -91,6 +88,13 @@ final class BladeIconsServiceProvider extends ServiceProvider
                 Console\ClearCommand::class,
             ]);
         }
+    }
+
+    private function bootComponents(): void
+    {
+        $this->callAfterResolving(ViewFactory::class, function ($view, Application $app) {
+            $app->make(Factory::class)->registerComponents();
+        });
     }
 
     private function bootDirectives(): void
