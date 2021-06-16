@@ -258,7 +258,7 @@ You can also provide a global fallback icon instead. This icon will be used when
 <?php
 
 return [
-    'default' => 'heroicon-cake',
+    'fallback' => 'heroicon-cake',
 ];
 ```
 
