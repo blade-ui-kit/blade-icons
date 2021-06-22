@@ -32,6 +32,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
 - [Blade Boxicons](https://github.com/mallardduck/blade-boxicons) by [Dan Pock](https://github.com/mallardduck)
 - [Blade Bytesize Icons](https://github.com/codeat3/blade-bytesize-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Carbon Icons](https://github.com/codeat3/blade-carbon-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Clarity Icons](https://github.com/codeat3/blade-clarity-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Coolicons](https://github.com/codeat3/blade-coolicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CoreUI Icons](https://github.com/ublabs/blade-coreui-icons) by [Adrián UB](https://github.com/adrian-ub)
