@@ -1,26 +1,21 @@
 #!/usr/bin/env php
 <?php
 
-$currentDir = getcwd();
+use BladeUI\Icons\Generation\IconGenerator;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\SingleCommandApplication as Command;
 
-$autoloadPath = "{$currentDir}/vendor/autoload.php";
+require __DIR__.'/../vendor/autoload.php';
 
-if (! file_exists($autoloadPath)) {
-    echo 'Autoload not found.' . PHP_EOL;
+return (new Command)->setCode(function (InputInterface $input, OutputInterface $output) {
+    $output->writeln("Starting to generate icons...");
 
-    exit(1);
-}
+    IconGenerator::create(
+        require getcwd().'/config/generation.php'
+    )->generate();
 
-require_once $autoloadPath;
+    $output->writeln("Finished generating icons!");
 
-$configurationPath = "{$currentDir}/config/generation.php";
-
-if (! file_exists($configurationPath)) {
-    echo 'The Blade Icons generator configuration file could not be found.' . PHP_EOL;
-    echo "Please create one at: {$configurationPath}" . PHP_EOL;
-
-    exit(1);
-}
-
-$packageGenerateCommand = require $configurationPath;
-$packageGenerateCommand->run();
+    return Command::SUCCESS;
+})->run();
