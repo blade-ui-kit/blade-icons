@@ -18,7 +18,7 @@ final class IconGenerator
 {
     private Filesystem $filesystem;
 
-    private string $set;
+    private string $library;
 
     private string $root;
 
@@ -28,7 +28,6 @@ final class IconGenerator
 
     private string $composer = '';
 
-    /** @var IconSetConfig[] */
     private array $iconSets = [];
 
     private ?Closure $svgNormalizationClosure = null;
@@ -37,10 +36,10 @@ final class IconGenerator
 
     private bool $safe = false;
 
-    private function __construct(string $set)
+    private function __construct(string $library)
     {
         $this->filesystem = new Filesystem();
-        $this->set = $set;
+        $this->library = $library;
         $this->root = getcwd();
     }
 
@@ -70,9 +69,6 @@ final class IconGenerator
         return $this;
     }
 
-    /**
-     * @param IconSetConfig[] $sets
-     */
     public function withIconSets(array $sets): self
     {
         $this->iconSets = $sets;
@@ -105,7 +101,7 @@ final class IconGenerator
     {
         return (new SingleCommandApplication())
             ->setCode(function (InputInterface $input, OutputInterface $output) {
-                $output->writeln("Starting build process for {$this->set} icon pack.");
+                $output->writeln("Starting build process for {$this->library} icon pack.");
 
                 if (! is_dir($this->getSvgSourcePath())) {
                     $output->writeln("The SVG source folder does not exist yet - check: <{$this->getSvgSourcePath()}>");
@@ -115,27 +111,24 @@ final class IconGenerator
 
                 // Clear the destination directory
                 if (! $this->safe) {
-                    $this->filesystem->deleteDirectory($this->getSvgDestinationPath());
+                    $this->filesystem->deleteDirectory($this->baseSvgDestinationPath());
 
-                    $this->ensureDirectoryExists($this->getSvgDestinationPath());
+                    $this->ensureDirectoryExists($this->baseSvgDestinationPath());
                 }
 
                 $output->writeln('Discovering source SVGs for icon sets...');
 
-                foreach ($this->iconSets as $iconSetConfig) {
-
-                    $iconSetConfig->setDestinationPath($this->getSvgDestinationPath());
-
-                    $output->writeln("Processing '{$iconSetConfig->set}' icon set SVGs.");
+                foreach ($this->iconSets as $set => $iconSetConfig) {
+                    $output->writeln("Processing '{$set}' icon set SVGs.");
 
                     /**
                      * @var array<SplFileInfo> $iconFileList
                      */
-                    $iconFileList = $this->filesystem->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$iconSetConfig->set);
+                    $iconFileList = $this->filesystem->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$set);
 
                     $this->updateIcons($iconSetConfig, $iconFileList);
 
-                    $output->writeln("Completed processing for '{$iconSetConfig->set}' svgs.");
+                    $output->writeln("Completed processing for '{$set}' svgs.");
                 }
 
                 $output->writeln('Done!');
@@ -148,24 +141,24 @@ final class IconGenerator
     /**
      * @param SplFileInfo[] $iconFileList
      */
-    public function updateIcons(IconSetConfig $iconSet, array $iconFileList): void
+    public function updateIcons(array $iconSet, array $iconFileList): void
     {
         foreach ($iconFileList as $iconFile) {
             // Set path variables...
             $sourceFile = $iconFile->getRealPath();
-            $destinationPath = $iconSet->svgDestinationPath.DIRECTORY_SEPARATOR;
+            $destinationPath = Str::finish($this->getSvgDestinationPath($iconSet), DIRECTORY_SEPARATOR);
 
             // Concat the set name onto the path...
             if (! $this->useSingleIconSet) {
-                $destinationPath .= $this->set.DIRECTORY_SEPARATOR;
+                $destinationPath .= $this->library.DIRECTORY_SEPARATOR;
             }
 
-            if ($iconSet->inputFilePrefix !== '' && $iconSet->outputFilePrefix !== '') {
-                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet->inputFilePrefix)->prepend($iconSet->outputFilePrefix);
-            } elseif ($iconSet->inputFilePrefix !== '') {
-                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet->inputFilePrefix);
-            } elseif ($iconSet->outputFilePrefix !== '') {
-                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->prepend($iconSet->outputFilePrefix);
+            if (($iconSet['input-prefix'] ?? false) && ($iconSet['output-prefix'] ?? false)) {
+                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet['input-prefix'])->prepend($iconSet['output-prefix']);
+            } elseif ($iconSet['input-prefix'] ?? false) {
+                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet['input-prefix']);
+            } elseif ($iconSet['output-prefix'] ?? false) {
+                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->prepend($iconSet['output-prefix']);
             } else {
                 $finalFile = $destinationPath.$iconFile->getFilename();
             }
@@ -199,7 +192,12 @@ final class IconGenerator
         );
     }
 
-    private function getSvgDestinationPath(): string
+    private function getSvgDestinationPath(array $iconSetConfig): string
+    {
+        return $iconSetConfig['destination'] ?? $this->baseSvgDestinationPath();
+    }
+
+    private function baseSvgDestinationPath(): string
     {
         return $this->root.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'svg';
     }
