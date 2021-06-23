@@ -7,7 +7,6 @@ namespace BladeUI\Icons\Generation;
 use Closure;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,19 +21,13 @@ final class IconGenerator
 
     private string $root;
 
-    private string $directory;
-
-    private string $npm = '';
-
-    private string $composer = '';
-
-    private array $iconSets = [];
+    private array $sets = [];
 
     private ?Closure $svgNormalizationClosure = null;
 
     private bool $useSingleIconSet = false;
 
-    private bool $safe = false;
+    private bool $deleteExistingIcons = true;
 
     private function __construct(string $library)
     {
@@ -48,30 +41,9 @@ final class IconGenerator
         return new self($set);
     }
 
-    public function directory(string $directory): self
-    {
-        $this->directory = trim($directory, DIRECTORY_SEPARATOR);
-
-        return $this;
-    }
-
-    public function fromNPM(string $package): self
-    {
-        $this->npm = $package;
-
-        return $this;
-    }
-
-    public function fromComposer(string $package): self
-    {
-        $this->composer = $package;
-
-        return $this;
-    }
-
     public function withIconSets(array $sets): self
     {
-        $this->iconSets = $sets;
+        $this->sets = $sets;
 
         return $this;
     }
@@ -90,9 +62,9 @@ final class IconGenerator
         return $this;
     }
 
-    public function safe(): self
+    public function preserveExistingIcons(): self
     {
-        $this->safe = true;
+        $this->deleteExistingIcons = false;
 
         return $this;
     }
@@ -101,37 +73,21 @@ final class IconGenerator
     {
         return (new SingleCommandApplication())
             ->setCode(function (InputInterface $input, OutputInterface $output) {
-                $output->writeln("Starting build process for {$this->library} icon pack.");
+                $output->writeln("Starting to generate icons for the {$this->library} package...");
 
-                if (! is_dir($this->getSvgSourcePath())) {
-                    $output->writeln("The SVG source folder does not exist yet - check: <{$this->getSvgSourcePath()}>");
-
-                    return Command::FAILURE;
+                if ($this->deleteExistingIcons) {
+                    $this->filesystem->deleteDirectory($this->defaultDestination());
                 }
 
-                // Clear the destination directory
-                if (! $this->safe) {
-                    $this->filesystem->deleteDirectory($this->baseSvgDestinationPath());
+                $this->filesystem->ensureDirectoryExists($this->defaultDestination());
 
-                    $this->ensureDirectoryExists($this->baseSvgDestinationPath());
+                foreach ($this->sets as $config) {
+                    $iconFileList = $this->filesystem->files($config['source']);
+
+                    $this->generateIcons($config, $iconFileList);
                 }
 
-                $output->writeln('Discovering source SVGs for icon sets...');
-
-                foreach ($this->iconSets as $set => $iconSetConfig) {
-                    $output->writeln("Processing '{$set}' icon set SVGs.");
-
-                    /**
-                     * @var array<SplFileInfo> $iconFileList
-                     */
-                    $iconFileList = $this->filesystem->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$set);
-
-                    $this->updateIcons($iconSetConfig, $iconFileList);
-
-                    $output->writeln("Completed processing for '{$set}' svgs.");
-                }
-
-                $output->writeln('Done!');
+                $output->writeln("Finished generating icons for the {$this->library} package!");
 
                 return Command::SUCCESS;
             })
@@ -139,75 +95,47 @@ final class IconGenerator
     }
 
     /**
-     * @param SplFileInfo[] $iconFileList
+     * @param SplFileInfo[] $icons
      */
-    public function updateIcons(array $iconSet, array $iconFileList): void
+    public function generateIcons(array $config, array $icons): void
     {
-        foreach ($iconFileList as $iconFile) {
-            // Set path variables...
-            $sourceFile = $iconFile->getRealPath();
-            $destinationPath = Str::finish($this->getSvgDestinationPath($iconSet), DIRECTORY_SEPARATOR);
+        foreach ($icons as $file) {
+            $destination = Str::finish(
+                $config['destination'] ?? $this->defaultDestination(), DIRECTORY_SEPARATOR
+            );
 
             // Concat the set name onto the path...
             if (! $this->useSingleIconSet) {
-                $destinationPath .= $this->library.DIRECTORY_SEPARATOR;
+                $destination .= $this->library.DIRECTORY_SEPARATOR;
             }
 
-            if (($iconSet['input-prefix'] ?? false) && ($iconSet['output-prefix'] ?? false)) {
-                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet['input-prefix'])->prepend($iconSet['output-prefix']);
-            } elseif ($iconSet['input-prefix'] ?? false) {
-                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet['input-prefix']);
-            } elseif ($iconSet['output-prefix'] ?? false) {
-                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->prepend($iconSet['output-prefix']);
-            } else {
-                $finalFile = $destinationPath.$iconFile->getFilename();
+            $this->filesystem->ensureDirectoryExists($destination);
+
+            $finalFile = Str::of($file->getFilename());
+
+            if ($config['input-prefix'] ?? false) {
+                $finalFile = $finalFile->after($config['input-prefix']);
             }
+
+            if ($config['prefix'] ?? false) {
+                $finalFile = $finalFile->prepend($config['prefix']);
+            }
+
+            $finalFile = $destination.$finalFile;
 
             // Copy to final destination...
-            $this->ensureDirectoryExists($destinationPath);
-
-            copy($sourceFile, $finalFile);
+            copy($file->getRealPath(), $finalFile);
 
             // Apply user transformations if they provide them...
             if ($this->svgNormalizationClosure !== null) {
                 $normalizeSvgClosure = $this->svgNormalizationClosure;
-                $normalizeSvgClosure($finalFile, $iconSet);
+                $normalizeSvgClosure($finalFile, $config);
             }
         }
     }
 
-    private function getSvgSourcePath(): string
+    private function defaultDestination(): string
     {
-        $path = '';
-
-        if ($this->npm) {
-            $path = 'node_modules'.DIRECTORY_SEPARATOR.$this->npm;
-        } elseif ($this->composer) {
-            $path = 'vendor'.DIRECTORY_SEPARATOR.$this->composer;
-        }
-
-        return implode(
-            DIRECTORY_SEPARATOR,
-            array_filter([$this->root, $path, $this->directory]),
-        );
-    }
-
-    private function getSvgDestinationPath(array $iconSetConfig): string
-    {
-        return $iconSetConfig['destination'] ?? $this->baseSvgDestinationPath();
-    }
-
-    private function baseSvgDestinationPath(): string
-    {
-        return $this->root.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'svg';
-    }
-
-    private function ensureDirectoryExists($path)
-    {
-        $this->filesystem->ensureDirectoryExists($path);
-
-        if (! is_dir($path)) {
-            throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
-        }
+        return $this->root.'/resources/svg';
     }
 }
