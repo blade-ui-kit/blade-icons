@@ -34,11 +34,11 @@ final class IconGenerator
             foreach ($this->filesystem->files($set['source']) as $file) {
                 $filename = Str::of($file->getFilename());
                 $filename = $this->applyPrefixes($set, $filename);
-                $pathname = $destination . $filename;
+                $pathname = $destination.$filename;
 
                 $this->filesystem->copy($file->getRealPath(), $pathname);
 
-                if (is_callable($set['after'] ?? null )) {
+                if (is_callable($set['after'] ?? null)) {
                     $set['after']($pathname, $set);
                 }
             }
