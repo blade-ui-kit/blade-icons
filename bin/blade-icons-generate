@@ -4,17 +4,21 @@
 $currentDir = getcwd();
 
 $autoloadPath = "{$currentDir}/vendor/autoload.php";
-if (!file_exists($autoloadPath)) {
+
+if (! file_exists($autoloadPath)) {
     echo 'Autoload not found.' . PHP_EOL;
+
     exit(1);
 }
 
 require_once $autoloadPath;
 
 $configurationPath = "{$currentDir}/config/generation.php";
+
 if (! file_exists($configurationPath)) {
     echo 'The Blade Icons generator configuration file could not be found.' . PHP_EOL;
     echo "Please create one at: {$configurationPath}" . PHP_EOL;
+
     exit(1);
 }
 

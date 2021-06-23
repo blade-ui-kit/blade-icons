@@ -6,6 +6,7 @@ namespace BladeUI\Icons\Generation;
 
 use Closure;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -112,38 +113,34 @@ final class IconGenerator
                     return Command::FAILURE;
                 }
 
-                $tempDirPath = $this->getSvgTempPath();
-                $this->ensureDirectoryExists($tempDirPath);
-
                 // Clear the destination directory
                 if (! $this->safe) {
                     $this->filesystem->deleteDirectory($this->getSvgDestinationPath());
+
                     $this->ensureDirectoryExists($this->getSvgDestinationPath());
                 }
 
                 $output->writeln('Discovering source SVGs for icon sets...');
 
                 foreach ($this->iconSets as $iconSetConfig) {
-                    $iconSetConfig->setTempPath($this->getSvgTempPath())
-                                  ->setDestinationPath($this->getSvgDestinationPath());
-                    $iconSetName = $iconSetConfig->set;
-                    $output->writeln("Processing '{$iconSetName}' icon set SVGs.");
+                    $this->ensureDirectoryExists($tempDirPath = $this->getSvgTempPath());
 
-                    // Setup build dir for type
-                    $iconSetTmpDir = $tempDirPath.DIRECTORY_SEPARATOR.$iconSetName;
-                    $this->ensureDirectoryExists($iconSetTmpDir);
+                    $iconSetConfig->setTempPath($tempDirPath)
+                                  ->setDestinationPath($this->getSvgDestinationPath());
+
+                    $output->writeln("Processing '{$iconSetConfig->set}' icon set SVGs.");
 
                     /**
                      * @var array<SplFileInfo> $iconFileList
                      */
-                    $iconFileList = $this->filesystem->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$iconSetName);
+                    $iconFileList = $this->filesystem->files($this->getSvgSourcePath().DIRECTORY_SEPARATOR.$iconSetConfig->set);
+
                     $this->updateIcons($iconSetConfig, $iconFileList);
-                    $output->writeln("Completed processing for '{$iconSetName}' svgs.");
+
+                    $output->writeln("Completed processing for '{$iconSetConfig->set}' svgs.");
+
+                    $this->filesystem->deleteDirectory($tempDirPath);
                 }
-
-                $output->writeln('Cleaning up the build directory...');
-
-                $this->filesystem->deleteDirectory(static::getSvgTempPath());
 
                 $output->writeln('Done!');
 
@@ -160,8 +157,23 @@ final class IconGenerator
         foreach ($iconFileList as $iconFile) {
             // Set path variables...
             $sourceFile = $iconFile->getRealPath();
-            $tempFile = $iconSet->getTempFilePath($iconFile->getFilename());
-            $finalFile = $iconSet->getDestinationFilePath($iconFile->getFilename(), $this->useSingleIconSet);
+            $tempFile = $iconSet->svgTempPath.DIRECTORY_SEPARATOR.$iconFile->getFilename();
+            $destinationPath = $iconSet->svgDestinationPath.DIRECTORY_SEPARATOR;
+
+            // Concat the set name onto the path...
+            if (! $this->useSingleIconSet) {
+                $destinationPath .= $this->set.DIRECTORY_SEPARATOR;
+            }
+
+            if ($iconSet->inputFilePrefix !== '' && $iconSet->outputFilePrefix !== '') {
+                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet->inputFilePrefix)->prepend($iconSet->outputFilePrefix);
+            } elseif ($iconSet->inputFilePrefix !== '') {
+                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->after($iconSet->inputFilePrefix);
+            } elseif ($iconSet->outputFilePrefix !== '') {
+                $finalFile = $destinationPath.Str::of($iconFile->getFilename())->prepend($iconSet->outputFilePrefix);
+            } else {
+                $finalFile = $destinationPath.$iconFile->getFilename();
+            }
 
             // Copy file to temp...
             copy($sourceFile, $tempFile);
@@ -173,7 +185,7 @@ final class IconGenerator
             }
 
             // Copy to final destination...
-            $this->ensureDirectoryExists(dirname($finalFile));
+            $this->ensureDirectoryExists($destinationPath);
 
             copy($tempFile, $finalFile);
         }
