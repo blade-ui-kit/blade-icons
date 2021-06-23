@@ -123,10 +123,8 @@ final class IconGenerator
                 $output->writeln('Discovering source SVGs for icon sets...');
 
                 foreach ($this->iconSets as $iconSetConfig) {
-                    $this->ensureDirectoryExists($tempDirPath = $this->getSvgTempPath());
 
-                    $iconSetConfig->setTempPath($tempDirPath)
-                                  ->setDestinationPath($this->getSvgDestinationPath());
+                    $iconSetConfig->setDestinationPath($this->getSvgDestinationPath());
 
                     $output->writeln("Processing '{$iconSetConfig->set}' icon set SVGs.");
 
@@ -138,8 +136,6 @@ final class IconGenerator
                     $this->updateIcons($iconSetConfig, $iconFileList);
 
                     $output->writeln("Completed processing for '{$iconSetConfig->set}' svgs.");
-
-                    $this->filesystem->deleteDirectory($tempDirPath);
                 }
 
                 $output->writeln('Done!');
@@ -157,7 +153,6 @@ final class IconGenerator
         foreach ($iconFileList as $iconFile) {
             // Set path variables...
             $sourceFile = $iconFile->getRealPath();
-            $tempFile = $iconSet->svgTempPath.DIRECTORY_SEPARATOR.$iconFile->getFilename();
             $destinationPath = $iconSet->svgDestinationPath.DIRECTORY_SEPARATOR;
 
             // Concat the set name onto the path...
@@ -175,19 +170,16 @@ final class IconGenerator
                 $finalFile = $destinationPath.$iconFile->getFilename();
             }
 
-            // Copy file to temp...
-            copy($sourceFile, $tempFile);
+            // Copy to final destination...
+            $this->ensureDirectoryExists($destinationPath);
+
+            copy($sourceFile, $finalFile);
 
             // Apply user transformations if they provide them...
             if ($this->svgNormalizationClosure !== null) {
                 $normalizeSvgClosure = $this->svgNormalizationClosure;
-                $normalizeSvgClosure($tempFile, $iconSet);
+                $normalizeSvgClosure($finalFile, $iconSet);
             }
-
-            // Copy to final destination...
-            $this->ensureDirectoryExists($destinationPath);
-
-            copy($tempFile, $finalFile);
         }
     }
 
@@ -205,11 +197,6 @@ final class IconGenerator
             DIRECTORY_SEPARATOR,
             array_filter([$this->root, $path, $this->directory]),
         );
-    }
-
-    private function getSvgTempPath(): string
-    {
-        return $this->root.DIRECTORY_SEPARATOR.'build';
     }
 
     private function getSvgDestinationPath(): string

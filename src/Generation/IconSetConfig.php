@@ -12,8 +12,6 @@ final class IconSetConfig
 
     public string $outputFilePrefix = '';
 
-    public string $svgTempPath;
-
     public string $svgDestinationPath;
 
     private function __construct(string $set)
@@ -36,13 +34,6 @@ final class IconSetConfig
     public function setOutputFilePrefix(string $filePrefix): self
     {
         $this->outputFilePrefix = $filePrefix;
-
-        return $this;
-    }
-
-    public function setTempPath(string $svgTempPath): self
-    {
-        $this->svgTempPath = $svgTempPath;
 
         return $this;
     }
