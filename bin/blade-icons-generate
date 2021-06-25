@@ -6,12 +6,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\SingleCommandApplication as Command;
 
-$autoloadPath = getcwd() . "/vendor/autoload.php";
-if (!file_exists($autoloadPath)) {
-    echo 'Autoload not found.' . PHP_EOL;
-    exit(1);
+if (file_exists(__DIR__.'/../vendor/autoload.php')) {
+    require __DIR__.'/../vendor/autoload.php';
+} else {
+    require __DIR__.'/../../../autoload.php';
 }
-require_once $autoloadPath;
 
 return (new Command)->setCode(function (InputInterface $input, OutputInterface $output) {
     $output->writeln("Starting to generate icons...");
