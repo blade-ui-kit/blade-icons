@@ -521,6 +521,12 @@ return [
 
 See [an example `config/generation.php` file](https://github.com/blade-ui-kit/blade-heroicons/blob/main/config/generation.php) for the Heroicons package.
 
+After setting up your config file you can use the icon generation as follow from the root of your icon package directory:
+
+```zsh
+vendor/bin/blade-icons-generate
+```
+
 ## Changelog
 
 Check out the [CHANGELOG](CHANGELOG.md) in this repository for all the recent changes.
