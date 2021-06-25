@@ -27,6 +27,8 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 
 Blade Icons is a base package to make it easy for you to use SVG icons in your app. In addition, there's also quite some third party icon set packages. Thanks to the community for contributing these!
 
+We're not accepting requests to build new icon packages ourselves but you can [start building your own](#building-packages).
+
 - [Blade Akar Icons](https://github.com/codeat3/blade-akar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ant Design Icons](https://github.com/codeat3/blade-ant-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
@@ -83,8 +85,6 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 - [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons) by [Dries Vints](https://github.com/driesvints)
-
-We're not accepting requests to build new icon packages ourselves but you can [start building your own](#building-packages).
 
 ## Requirements
 
@@ -487,6 +487,39 @@ Now your icons can be referenced using a component, directive or helper:
 ```
 
 Don't forget to make `blade-ui-kit/blade-icons` a requirement of your package's `composer.json`.
+
+### Generating Icons
+
+Blade Icons also offers an easy way to generate icons for your packages. By defining a config file with predefined source and destination paths, you can make updating your icons a breeze.
+
+First, start off by creating a `generation.php` config file in the `config` directory of your icon package. Next, you can define an array per icon set that you want to generate. Below is a full version of this file with explanation for every option. Only the `source` and `destination` options are required.
+
+```php
+<?php
+
+return [
+    [
+        // Define a source directory for the sets like a node_modules/ or vendor/ directory...
+        'source' => __DIR__.'/../node_modules/heroicons/outline',
+
+        // Define a destination directory for your icons. The below is a good default...
+        'destination' => __DIR__.'/../resources/svg',
+
+        // Strip an optional prefix from each source icon name...
+        'input-prefix' => 'o-',
+
+        // Set an optional prefix to applied to each destination icon name...
+        'output-prefix' => 'o-',
+
+        // Enable "safe" mode which will prevent deletion of old icons...
+        'safe' => true,
+    ],
+
+    // More icon sets...
+];
+```
+
+See [an example `config/generation.php` file](https://github.com/blade-ui-kit/blade-heroicons/blob/main/config/generation.php) for the Heroicons package.
 
 ## Changelog
 
