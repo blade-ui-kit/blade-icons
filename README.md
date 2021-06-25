@@ -25,37 +25,66 @@ Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade
 
 ## Icon Packages
 
-This package is a base package to make it easy for you to use SVG icons in your app. If you want to start using a specific icon set, we offer the following ones below:
-
-- [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons)
-- [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons)
+Blade Icons is a base package to make it easy for you to use SVG icons in your app. In addition, there's also quite some third party icon set packages. Thanks to the community for contributing these!
 
 We're not accepting requests to build new icon packages ourselves but you can [start building your own](#building-packages).
 
-### Third Party
-
-In addition to the official packages from above there's also quite some third party ones. Thanks to the community for contributing these!
-
+- [Blade Akar Icons](https://github.com/codeat3/blade-akar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Ant Design Icons](https://github.com/codeat3/blade-ant-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
-- [Blade Boxicons](https://github.com/jfvoliveira/blade-boxicons) by [João Oliveira](https://github.com/jfvoliveira)
-- [Blade Brand Icons](https://github.com/sadegh19b/blade-brand-icons) by [Sadegh Barzegar](https://github.com/sadegh19b)
+- [Blade Boxicons](https://github.com/mallardduck/blade-boxicons) by [Dan Pock](https://github.com/mallardduck)
+- [Blade Bytesize Icons](https://github.com/codeat3/blade-bytesize-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Carbon Icons](https://github.com/codeat3/blade-carbon-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Clarity Icons](https://github.com/codeat3/blade-clarity-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Coolicons](https://github.com/codeat3/blade-coolicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade CoreUI Icons](https://github.com/ublabs/blade-coreui-icons) by [Adrián UB](https://github.com/adrian-ub)
+- [Blade Country Flags](https://github.com/stijnvanouplines/blade-country-flags) by [Stijn Vanouplines](https://github.com/stijnvanouplines)
 - [Blade Cryptocurrency Icons](https://github.com/codeat3/blade-cryptocurrency-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
+- [Blade EOS Icons](https://github.com/codeat3/blade-eos-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
+- [Blade Evil Icons](https://github.com/codeat3/blade-evil-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Feather Icons](https://github.com/brunocfalcao/blade-feather-icons) by [Bruno Falcão](https://github.com/brunocfalcao)
+- [Blade File Icons](https://github.com/codeat3/blade-file-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade FluentUi System Icons](https://github.com/codeat3/blade-fluentui-system-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Font Audio](https://github.com/codeat3/blade-fontaudio) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
+- [Blade Fontisto Icons](https://github.com/codeat3/blade-fontisto-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Fork Awesome](https://github.com/codeat3/blade-forkawesome) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Gov Icons](https://github.com/codeat3/blade-govicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) by [Dries Vints](https://github.com/driesvints)
+- [Blade IcoMoon Icons](https://github.com/nerdroid23/blade-icomoon) by [Joe Sylnice](https://github.com/nerdroid23)
+- [Blade Icon Park Icons](https://github.com/codeat3/blade-iconpark) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Iconic Icons](https://github.com/ItsMalikJones/blade-iconic) by [Malik Alleyne-Jones](https://github.com/ItsMalikJones)
+- [Blade Iconoir](https://github.com/andreiio/blade-iconoir) by [Andrei Ioniță](https://github.com/andreiio)
 - [Blade Ikonate Icons](https://github.com/codeat3/blade-ikonate) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
-- [Blade Remix Icon](https://github.com/skydiver/blade-icons-remix) by [Martin M.](https://github.com/skydiver)
-- [Blade Simple Icons](https://github.com/codeat3/blade-simple-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Jam Icons](https://github.com/codeat3/blade-jam-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Line Awesome Icons](https://github.com/codeat3/blade-line-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Majestic Icons](https://github.com/codeat3/blade-majestic-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Mono Icons](https://github.com/codeat3/blade-mono-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Pepicons](https://github.com/codeat3/blade-pepicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Phosphor icons](https://github.com/codeat3/blade-phosphor-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Pixelarticons](https://github.com/codeat3/blade-pixelarticons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Radix Icons](https://github.com/codeat3/blade-radix-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Remix Icon](https://github.com/andreiio/blade-remix-icon) by [Andrei Ioniță](https://github.com/andreiio)
+- [Blade RPG Awesome Icons](https://github.com/codeat3/blade-rpg-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Simple Icons](https://github.com/ublabs/blade-simple-icons) by [Adrián UB](https://github.com/adrian-ub)
+- [Blade Simple Line Icons](https://github.com/codeat3/blade-simple-line-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
+- [Blade Teeny Icons](https://github.com/codeat3/blade-teeny-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Typicons](https://github.com/codeat3/blade-typicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Uiw Icons](https://github.com/codeat3/blade-uiw-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Unicons](https://github.com/codeat3/blade-unicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Vaadin Icons](https://github.com/codeat3/blade-vaadin-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons) by [Dries Vints](https://github.com/driesvints)
 
 ## Requirements
 
@@ -90,13 +119,13 @@ Please refer to [`the upgrade guide`](UPGRADE.md) when updating the library.
 
 ## Caching
 
-When working with Blade Icons, and third party icons in particularly, you'll often be working with large icon sets. This can slow down your app tremendously, especially when making use of [Blade components](#components). To solve this issue, Blade Icons ships with caching support. To enable icon caching you can run the following command:
+When working with Blade Icons, and third party icon sets in particularly, you'll often be working with large icon sets. This can slow down your app tremendously, especially when making use of [Blade components](#components). To solve this issue, Blade Icons ships with caching support. To enable icon caching you can run the following command:
 
 ```blade
 php artisan icons:cache
 ```
 
-This will create a `blade-icons.php` file in `bootstrap/cache` similar to the `packages.php` cached file. It'll contain a manifest of all known sets and icons with their path locations. 
+This will create a `blade-icons.php` file in `bootstrap/cache` similar to the `packages.php` cached file. It'll contain a manifest of all known sets and icons with their path locations.
 
 Caching icons means you won't be able to add extra icons, change paths for icon sets or install/remove icon packages. To do so make sure you first clear the icons cache and cache after you've made these changes:
 
@@ -104,7 +133,7 @@ Caching icons means you won't be able to add extra icons, change paths for icon 
 php artisan icons:clear
 ```
 
-It's a good idea to add the `icons:cache` command as part of your deployment pipeline and always cache icons in production. 
+It's a good idea to add the `icons:cache` command as part of your deployment pipeline and always cache icons in production.
 
 Alternatively, you may choose to [disable Blade components](#disabling-components) entirely.
 
@@ -231,7 +260,7 @@ You can also provide a global fallback icon instead. This icon will be used when
 <?php
 
 return [
-    'default' => 'heroicon-cake',
+    'fallback' => 'heroicon-cake',
 ];
 ```
 
@@ -458,6 +487,39 @@ Now your icons can be referenced using a component, directive or helper:
 ```
 
 Don't forget to make `blade-ui-kit/blade-icons` a requirement of your package's `composer.json`.
+
+### Generating Icons
+
+Blade Icons also offers an easy way to generate icons for your packages. By defining a config file with predefined source and destination paths, you can make updating your icons a breeze.
+
+First, start off by creating a `generation.php` config file in the `config` directory of your icon package. Next, you can define an array per icon set that you want to generate. Below is a full version of this file with explanation for every option. Only the `source` and `destination` options are required.
+
+```php
+<?php
+
+return [
+    [
+        // Define a source directory for the sets like a node_modules/ or vendor/ directory...
+        'source' => __DIR__.'/../node_modules/heroicons/outline',
+
+        // Define a destination directory for your icons. The below is a good default...
+        'destination' => __DIR__.'/../resources/svg',
+
+        // Strip an optional prefix from each source icon name...
+        'input-prefix' => 'o-',
+
+        // Set an optional prefix to applied to each destination icon name...
+        'output-prefix' => 'o-',
+
+        // Enable "safe" mode which will prevent deletion of old icons...
+        'safe' => true,
+    ],
+
+    // More icon sets...
+];
+```
+
+See [an example `config/generation.php` file](https://github.com/blade-ui-kit/blade-heroicons/blob/main/config/generation.php) for the Heroicons package.
 
 ## Changelog
 

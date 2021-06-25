@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+use BladeUI\Icons\Generation\IconGenerator;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\SingleCommandApplication as Command;
+
+if (file_exists(__DIR__.'/../vendor/autoload.php')) {
+    require __DIR__.'/../vendor/autoload.php';
+} else {
+    require __DIR__.'/../../../autoload.php';
+}
+
+return (new Command)->setCode(function (InputInterface $input, OutputInterface $output) {
+    $output->writeln("Starting to generate icons...");
+
+    IconGenerator::create(
+        require getcwd().'/config/generation.php'
+    )->generate();
+
+    $output->writeln("Finished generating icons!");
+
+    return Command::SUCCESS;
+})->run();
