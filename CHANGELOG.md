@@ -3,7 +3,13 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.0.2...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.1.0...1.x)
+
+
+## [1.1.0 (2021-06-25)](https://github.com/blade-ui-kit/blade-icons/compare/1.0.2...1.1.0)
+
+### Added
+- Add icon generation for package maintainers ([#144](https://github.com/blade-ui-kit/blade-icons/pull/144))
 
 
 ## [1.0.2 (2021-04-03)](https://github.com/blade-ui-kit/blade-icons/compare/1.0.1...1.0.2)
