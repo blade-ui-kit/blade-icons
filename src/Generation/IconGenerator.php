@@ -75,11 +75,11 @@ final class IconGenerator
     private function applySuffixes($set, Stringable $filename): Stringable
     {
         if ($set['input-suffix'] ?? false) {
-            $filename = $filename->before($set['input-suffix']);
+            $filename = $filename->replace($set['input-suffix'] . '.svg', '.svg');
         }
 
         if ($set['output-suffix'] ?? false) {
-            $filename = $filename->append($set['output-suffix']);
+            $filename = $filename->replace('.svg', $set['output-suffix'] . '.svg');
         }
 
         return $filename;
