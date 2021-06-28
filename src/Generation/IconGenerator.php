@@ -34,6 +34,7 @@ final class IconGenerator
             foreach ($this->filesystem->files($set['source']) as $file) {
                 $filename = Str::of($file->getFilename());
                 $filename = $this->applyPrefixes($set, $filename);
+                $filename = $this->applySuffixes($set, $filename);
                 $pathname = $destination.$filename;
 
                 $this->filesystem->copy($file->getRealPath(), $pathname);
@@ -66,6 +67,19 @@ final class IconGenerator
 
         if ($set['output-prefix'] ?? false) {
             $filename = $filename->prepend($set['output-prefix']);
+        }
+
+        return $filename;
+    }
+
+    private function applySuffixes($set, Stringable $filename): Stringable
+    {
+        if ($set['input-suffix'] ?? false) {
+            $filename = $filename->before($set['input-suffix']);
+        }
+
+        if ($set['output-suffix'] ?? false) {
+            $filename = $filename->append($set['output-suffix']);
         }
 
         return $filename;
