@@ -55,6 +55,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Gov Icons](https://github.com/codeat3/blade-govicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Health Icons](https://github.com/troccoli/blade-health-icons) by [Giulio Troccoli-Allard](https://github.com/troccoli)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) by [Dries Vints](https://github.com/driesvints)
 - [Blade IcoMoon Icons](https://github.com/nerdroid23/blade-icomoon) by [Joe Sylnice](https://github.com/nerdroid23)
 - [Blade Icon Park Icons](https://github.com/codeat3/blade-iconpark) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
