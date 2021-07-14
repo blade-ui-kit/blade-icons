@@ -113,7 +113,7 @@ After installing the package, publish the configuration and **uncomment** the `d
 php artisan vendor:publish --tag=blade-icons
 ```
 
-Make sure that the path defined for this icon set exists. By default it's `resources/svg`.
+Make sure that the path defined for this icon set exists. By default it's `resources/svg`. Your SVG icons will need to be placed in this directory.
 
 ## Updating
 
