@@ -95,19 +95,13 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 
 ## Installation
 
-Before installing a new package it's always a good idea to clear your config cache:
-
-```bash
-php artisan config:clear
-```
-
-Then install the package with composer:
+Install the package with composer:
 
 ```bash
 composer require blade-ui-kit/blade-icons
 ```
 
-After installing the package, publish the configuration and **uncomment** the `default` icon set:
+Then, publish the configuration and **uncomment** the `default` icon set:
 
 ```bash
 php artisan vendor:publish --tag=blade-icons
