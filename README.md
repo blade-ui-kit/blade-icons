@@ -41,6 +41,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Country Flags](https://github.com/stijnvanouplines/blade-country-flags) by [Stijn Vanouplines](https://github.com/stijnvanouplines)
 - [Blade Cryptocurrency Icons](https://github.com/codeat3/blade-cryptocurrency-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
+- [Blade Elusive Icons](https://github.com/codeat3/blade-elusive-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
 - [Blade EOS Icons](https://github.com/codeat3/blade-eos-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
@@ -55,6 +56,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Gov Icons](https://github.com/codeat3/blade-govicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Grommet Icons](https://github.com/codeat3/blade-grommet-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Health Icons](https://github.com/troccoli/blade-health-icons) by [Giulio Troccoli-Allard](https://github.com/troccoli)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) by [Dries Vints](https://github.com/driesvints)
 - [Blade IcoMoon Icons](https://github.com/nerdroid23/blade-icomoon) by [Joe Sylnice](https://github.com/nerdroid23)
@@ -517,7 +519,7 @@ return [
 
         // Enable "safe" mode which will prevent deletion of old icons...
         'safe' => true,
-        
+
         // Call an optional callback to manipulate the icon
         // with the pathname of the icon and the settings from above...
         'after' => static function (string $icon, array $config) {
