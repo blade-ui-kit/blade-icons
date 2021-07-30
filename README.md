@@ -51,6 +51,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 
 We're not accepting requests to build new icon packages ourselves but you can [start building your own](#building-packages).
 
+- [Blade Academicons](https://github.com/codeat3/blade-academicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Akar Icons](https://github.com/codeat3/blade-akar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ant Design Icons](https://github.com/codeat3/blade-ant-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
@@ -91,6 +92,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Line Awesome Icons](https://github.com/codeat3/blade-line-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Lucide Icons](https://github.com/mallardduck/blade-lucide-icons) by [Dan Pock](https://github.com/mallardduck)
 - [Blade Majestic Icons](https://github.com/codeat3/blade-majestic-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Maki Icons](https://github.com/codeat3/blade-maki-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Mono Icons](https://github.com/codeat3/blade-mono-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Pepicons](https://github.com/codeat3/blade-pepicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
