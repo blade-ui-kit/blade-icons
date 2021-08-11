@@ -521,6 +521,8 @@ First, start off by creating a `generation.php` config file in the `config` dire
 ```php
 <?php
 
+use Symfony\Component\Finder\SplFileInfo;
+
 return [
     [
         // Define a source directory for the sets like a node_modules/ or vendor/ directory...
@@ -544,9 +546,9 @@ return [
         // Enable "safe" mode which will prevent deletion of old icons...
         'safe' => true,
 
-        // Call an optional callback to manipulate the icon
-        // with the pathname of the icon and the settings from above...
-        'after' => static function (string $icon, array $config) {
+        // Call an optional callback to manipulate the icon with the pathname of the icon,
+        // the settings from above and the original icon file instance...
+        'after' => static function (string $icon, array $config, SplFileInfo $file) {
             // ...
         },
     ],
