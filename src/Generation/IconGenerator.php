@@ -40,7 +40,7 @@ final class IconGenerator
                 $this->filesystem->copy($file->getRealPath(), $pathname);
 
                 if (is_callable($set['after'] ?? null)) {
-                    $set['after']($pathname, $set, $file->getRealPath());
+                    $set['after']($pathname, $set, $file);
                 }
             }
         }
