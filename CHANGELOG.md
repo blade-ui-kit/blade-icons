@@ -6,6 +6,18 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 ## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.1.0...main)
 
 
+## [1.1.2 (2021-08-11)](https://github.com/blade-ui-kit/blade-icons/compare/1.1.1...1.1.2)
+
+### Changed
+- Make original file available in icon generation callback ([#173](https://github.com/blade-ui-kit/blade-icons/pull/173))
+
+
+## [1.1.1 (2021-06-29)](https://github.com/blade-ui-kit/blade-icons/compare/1.1.0...1.1.1)
+
+### Changed
+- New suffix options ([#166](https://github.com/blade-ui-kit/blade-icons/pull/166))
+
+
 ## [1.1.0 (2021-06-25)](https://github.com/blade-ui-kit/blade-icons/compare/1.0.2...1.1.0)
 
 ### Added

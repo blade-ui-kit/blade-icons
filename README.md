@@ -19,6 +19,28 @@
 
 A package to easily make use of SVG icons in your Laravel Blade views. Originally "Blade SVG" by [Adam Wathan](https://twitter.com/adamwathan).
 
+Turn...
+
+```html
+<!-- camera.svg -->
+<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+</svg>
+```
+
+Into...
+
+```blade
+<x-camera class="w-6 h-6" />
+```
+
+Or into...
+
+```blade
+@svg('camera', 'w-6 h-6')
+```
+
 Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade-icons#search
 
 *Join the Discord server: https://discord.gg/Vev5CyE*
@@ -29,6 +51,7 @@ Blade Icons is a base package to make it easy for you to use SVG icons in your a
 
 We're not accepting requests to build new icon packages ourselves but you can [start building your own](#building-packages).
 
+- [Blade Academicons](https://github.com/codeat3/blade-academicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Akar Icons](https://github.com/codeat3/blade-akar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ant Design Icons](https://github.com/codeat3/blade-ant-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Bootstrap Icons](https://github.com/davidhsianturi/blade-bootstrap-icons) by [David H. Sianturi](https://github.com/davidhsianturi)
@@ -41,6 +64,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Country Flags](https://github.com/stijnvanouplines/blade-country-flags) by [Stijn Vanouplines](https://github.com/stijnvanouplines)
 - [Blade Cryptocurrency Icons](https://github.com/codeat3/blade-cryptocurrency-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
+- [Blade Elusive Icons](https://github.com/codeat3/blade-elusive-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
 - [Blade EOS Icons](https://github.com/codeat3/blade-eos-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
@@ -55,6 +79,8 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Gov Icons](https://github.com/codeat3/blade-govicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Grommet Icons](https://github.com/codeat3/blade-grommet-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Health Icons](https://github.com/troccoli/blade-health-icons) by [Giulio Troccoli-Allard](https://github.com/troccoli)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) by [Dries Vints](https://github.com/driesvints)
 - [Blade IcoMoon Icons](https://github.com/nerdroid23/blade-icomoon) by [Joe Sylnice](https://github.com/nerdroid23)
 - [Blade Icon Park Icons](https://github.com/codeat3/blade-iconpark) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
@@ -64,7 +90,9 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
 - [Blade Jam Icons](https://github.com/codeat3/blade-jam-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Line Awesome Icons](https://github.com/codeat3/blade-line-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Lucide Icons](https://github.com/mallardduck/blade-lucide-icons) by [Dan Pock](https://github.com/mallardduck)
 - [Blade Majestic Icons](https://github.com/codeat3/blade-majestic-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Maki Icons](https://github.com/codeat3/blade-maki-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Mono Icons](https://github.com/codeat3/blade-mono-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Pepicons](https://github.com/codeat3/blade-pepicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
@@ -93,25 +121,19 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 
 ## Installation
 
-Before installing a new package it's always a good idea to clear your config cache:
-
-```bash
-php artisan config:clear
-```
-
-Then install the package with composer:
+Install the package with composer:
 
 ```bash
 composer require blade-ui-kit/blade-icons
 ```
 
-After installing the package, publish the configuration and **uncomment** the `default` icon set:
+Then, publish the configuration and **uncomment** the `default` icon set:
 
 ```bash
 php artisan vendor:publish --tag=blade-icons
 ```
 
-Make sure that the path defined for this icon set exists. By default it's `resources/svg`.
+Make sure that the path defined for this icon set exists. By default it's `resources/svg`. Your SVG icons will need to be placed in this directory.
 
 ## Updating
 
@@ -455,7 +477,9 @@ If you'd like, you can use the `svg` helper to expose a fluent syntax for settin
 
 ## Building Packages
 
-If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. If want to learn how to create packages first I can recommend these two excellent courses:
+If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. We've created [a template repo for you to get started with](https://github.com/blade-ui-kit/blade-icons-template). You can find the getting started instructions in its readme.
+
+If you want to learn how to create packages we can recommend these two excellent courses:
 
 - [PHP Package Development](https://phppackagedevelopment.com) by [Marcel Pociot](https://twitter.com/marcelpociot)
 - [Laravel Package Training](https://laravelpackage.training) by [Freek Van der Herten](https://twitter.com/freekmurze)
@@ -497,6 +521,8 @@ First, start off by creating a `generation.php` config file in the `config` dire
 ```php
 <?php
 
+use Symfony\Component\Finder\SplFileInfo;
+
 return [
     [
         // Define a source directory for the sets like a node_modules/ or vendor/ directory...
@@ -511,8 +537,20 @@ return [
         // Set an optional prefix to applied to each destination icon name...
         'output-prefix' => 'o-',
 
+        // Strip an optional suffix from each source icon name...
+        'input-suffix' => '-o',
+
+        // Set an optional suffix to applied to each destination icon name...
+        'output-suffix' => '-o',
+
         // Enable "safe" mode which will prevent deletion of old icons...
         'safe' => true,
+
+        // Call an optional callback to manipulate the icon with the pathname of the icon,
+        // the settings from above and the original icon file instance...
+        'after' => static function (string $icon, array $config, SplFileInfo $file) {
+            // ...
+        },
     ],
 
     // More icon sets...
@@ -520,6 +558,12 @@ return [
 ```
 
 See [an example `config/generation.php` file](https://github.com/blade-ui-kit/blade-heroicons/blob/main/config/generation.php) for the Heroicons package.
+
+After setting up your config file you can use the icon generation as follow from the root of your icon package directory:
+
+```zsh
+vendor/bin/blade-icons-generate
+```
 
 ## Changelog
 
