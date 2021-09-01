@@ -421,7 +421,7 @@ return [
 
 #### Disabling Components
 
-Although they're enabled by default, if you don't wish to use components at all you may choose to disable them completely by setting the `components.disabled` setting in your `blade-icons.php` config file to true:
+Although they're enabled by default, if you don't wish to use components at all you may choose to disable them completely by setting the `components.disabled` setting in your `blade-icons.php` config file to `true`:
 
 ```php
 <?php
