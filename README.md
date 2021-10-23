@@ -66,6 +66,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
 - [Blade Dev Icons](https://github.com/codeat3/blade-devicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Elusive Icons](https://github.com/codeat3/blade-elusive-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Emblemicons](https://github.com/codeat3/blade-emblemicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
 - [Blade EOS Icons](https://github.com/codeat3/blade-eos-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Eva Icons](https://github.com/Hasnayeen/blade-eva-icons) by [Nehal Hasnayeen](https://github.com/Hasnayeen)
