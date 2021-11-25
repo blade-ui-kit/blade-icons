@@ -43,8 +43,6 @@ Or into...
 
 Looking for a specific icon? Try our icon search: https://blade-ui-kit.com/blade-icons#search
 
-*Join the Discord server: https://discord.gg/Vev5CyE*
-
 ## Icon Packages
 
 Blade Icons is a base package to make it easy for you to use SVG icons in your app. In addition, there's also quite some third party icon set packages. Thanks to the community for contributing these!
