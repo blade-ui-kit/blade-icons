@@ -3,7 +3,13 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.1.2...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.2.0...1.x)
+
+
+## [1.2.0 (2022-01-20)](https://github.com/blade-ui-kit/blade-icons/compare/1.1.2...1.2.0)
+
+### Changed
+- Laravel 9 support ([#183](https://github.com/blade-ui-kit/blade-icons/pull/183))
 
 
 ## [1.1.2 (2021-08-11)](https://github.com/blade-ui-kit/blade-icons/compare/1.1.1...1.1.2)
