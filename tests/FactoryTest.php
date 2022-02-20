@@ -226,6 +226,26 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function classes_with_xss_are_escaped()
+    {
+        $factory = $this->prepareSets();
+
+        $icon = $factory->svg('camera', 'h-4 w-4\" onLoad=\"alert(\'XSS\')');
+
+        $this->assertSame('h-4 w-4\&quot; onLoad=\&quot;alert(\'XSS\')', $icon->attributes()['class']);
+
+        $icon = $factory->svg('camera', '', ['class' => 'h-4 w-4\" onLoad=\"alert(\'XSS\')']);
+
+        $this->assertSame('h-4 w-4\&quot; onLoad=\&quot;alert(\'XSS\')', $icon->attributes()['class']);
+
+        $factory = $this->prepareSets(['class' => 'h-4 w-4\" onLoad=\"alert(\'XSS\')']);
+
+        $icon = $factory->svg('camera');
+
+        $this->assertSame('h-4 w-4\&quot; onLoad=\&quot;alert(\'XSS\')', $icon->attributes()['class']);
+    }
+
+    /** @test */
     public function icons_can_have_attributes()
     {
         $factory = $this->prepareSets(['class' => 'icon icon-default']);

@@ -223,6 +223,10 @@ final class Factory
             }
         }
 
+        if (isset($attributes['class'])) {
+            $attributes['class'] = str_replace('"', '&quot;', $attributes['class']);
+        }
+
         return array_merge($attributes, $this->config['attributes'], (array) ($this->sets[$set]['attributes'] ?? []));
     }
 
