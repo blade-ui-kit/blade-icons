@@ -238,6 +238,10 @@ class FactoryTest extends TestCase
 
         $this->assertSame('h-4 w-4\&quot; onLoad=\&quot;alert(\'XSS\')', $icon->attributes()['class']);
 
+        $icon = $factory->svg('camera', '', ['foo' => 'h-4 w-4\" onLoad=\"alert(\'XSS\')']);
+
+        $this->assertSame('h-4 w-4\&quot; onLoad=\&quot;alert(\'XSS\')', $icon->attributes()['foo']);
+
         $factory = $this->prepareSets(['class' => 'h-4 w-4\" onLoad=\"alert(\'XSS\')']);
 
         $icon = $factory->svg('camera');

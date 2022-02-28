@@ -223,11 +223,19 @@ final class Factory
             }
         }
 
-        if (isset($attributes['class'])) {
-            $attributes['class'] = str_replace('"', '&quot;', $attributes['class']);
+        $attributes = array_merge(
+            $attributes,
+            $this->config['attributes'],
+            (array) ($this->sets[$set]['attributes'] ?? [])
+        );
+
+        foreach ($attributes as $key => $value) {
+            if (is_string($value)) {
+                $attributes[$key] = str_replace('"', '&quot;', $value);
+            }
         }
 
-        return array_merge($attributes, $this->config['attributes'], (array) ($this->sets[$set]['attributes'] ?? []));
+        return $attributes;
     }
 
     private function buildClass(string $set, string $class): string
