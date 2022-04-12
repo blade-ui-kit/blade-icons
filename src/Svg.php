@@ -43,22 +43,24 @@ final class Svg implements Htmlable
 
     protected function deferContent($contents, $defer = false)
     {
-        if (!$defer) {
+        if (! $defer) {
             return $contents;
         }
 
         $svgContent = strip_tags($contents, ['circle', 'ellipse', 'line', 'path', 'polygon', 'polyline', 'rect']);
-        $hash = 'icon-' . md5($svgContent);
-        $contents = str_replace($svgContent, strtr('<use href=":href"></use>', [':href' => '#' . $hash]), $contents);
+        $hash = 'icon-'.md5($svgContent);
+        $contents = str_replace($svgContent, strtr('<use href=":href"></use>', [':href' => '#'.$hash]), $contents);
         $contents .= <<<BLADE
-            @once("{$hash}")
-                @push("bladeicons")
-                    <g id="{$hash}">
-                        {$svgContent}
-                    </g>
-                @endpush
-            @endonce
-        BLADE;
+
+                @once("{$hash}")
+                    @push("bladeicons")
+                        <g id="{$hash}">
+                            {$svgContent}
+                        </g>
+                    @endpush
+                @endonce
+            BLADE;
+
         return $contents;
     }
 }
