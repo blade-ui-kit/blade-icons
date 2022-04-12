@@ -382,6 +382,26 @@ Or any other attributes for that matter:
 
 > ⚠️ Note that with Blade components, using a prefix is always required, even when referencing icons from the default set.
 
+#### Deferring icons
+
+When you're using the same icon in lots of places on the page the DOM element count may explode upwards.
+To remedy this you can add the defer attribute to the components:
+
+```blade
+<x-icon-camera :defer="true"/>
+```
+
+This will push the icons to the stack "bladeicons", you should load this stack at the bottom of your page
+
+```blade
+   ...
+    <svg hidden class="hidden">
+        @stack('bladeicons')
+    </svg>
+</body>
+</html>
+```
+
 #### Default Component
 
 If you don't want to use the component syntax from above you can also make use of the default `Icon` component that ships with Blade Icons. Simply pass the icon name through the `$name` attribute:
