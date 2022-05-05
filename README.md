@@ -86,6 +86,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Icon Park Icons](https://github.com/codeat3/blade-iconpark) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Iconic Icons](https://github.com/ItsMalikJones/blade-iconic) by [Malik Alleyne-Jones](https://github.com/ItsMalikJones)
 - [Blade Iconoir](https://github.com/andreiio/blade-iconoir) by [Andrei Ioniță](https://github.com/andreiio)
+- [Blade Iconsax](https://github.com/saade/blade-iconsax) by [Saade](https://github.com/saade)
 - [Blade Ikonate Icons](https://github.com/codeat3/blade-ikonate) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
 - [Blade Jam Icons](https://github.com/codeat3/blade-jam-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
