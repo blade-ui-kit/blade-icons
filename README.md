@@ -388,7 +388,7 @@ When you're using the same icon in lots of places on the page the DOM element co
 To remedy this you can add the defer attribute to the components:
 
 ```blade
-<x-icon-camera :defer="true"/>
+<x-icon-camera defer />
 ```
 
 This will push the icons to the stack "bladeicons", you should load this stack at the bottom of your page
