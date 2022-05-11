@@ -2,7 +2,13 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.2.2...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.3.0...1.x)
+
+## [1.3.0](https://github.com/blade-ui-kit/blade-icons/compare/1.2.2...1.3.0) - 2022-05-11
+
+### Added
+
+- Defer icons to icons stack to reduce DOM count by @indykoning in https://github.com/blade-ui-kit/blade-icons/pull/191
 
 ## [1.2.2](https://github.com/blade-ui-kit/blade-icons/compare/v0.3.5...1.2.2) - 2022-02-28
 
