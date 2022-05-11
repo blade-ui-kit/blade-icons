@@ -14,13 +14,13 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ### Security
 
-- Fix XSS injection ([bf972cb](https://github.com/blade-ui-kit/blade-icons/commit/bf972cb55ba65955a9735a0625af4928db7e3373)
+- Fix XSS injection ([bf972cb](https://github.com/blade-ui-kit/blade-icons/commit/bf972cb55ba65955a9735a0625af4928db7e3373))
 
 ## [v0.3.5](https://github.com/blade-ui-kit/blade-icons/compare/1.2.1...v0.3.5) - 2022-02-28
 
 ### Security
 
-- Fix XSS injection ([bf972cb](https://github.com/blade-ui-kit/blade-icons/commit/bf972cb55ba65955a9735a0625af4928db7e3373)
+- Fix XSS injection ([bf972cb](https://github.com/blade-ui-kit/blade-icons/commit/bf972cb55ba65955a9735a0625af4928db7e3373))
 
 ## [1.2.1](https://github.com/blade-ui-kit/blade-icons/compare/1.2.0...1.2.1) - 2022-02-20
 
