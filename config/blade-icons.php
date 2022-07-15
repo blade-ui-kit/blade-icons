@@ -180,4 +180,17 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom manifest dir
+    |--------------------------------------------------------------------------
+    |
+    | This config option allows you to define a custom manifest dir
+    | by default if not set it uses the application bootstrap dir cache/blade-icons.php
+    | so example you want to use a dir named custom set the value below to 'custom'
+    |
+    */
+
+    'custom_manifest_dir' => null,
+
 ];

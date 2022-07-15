@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 final class BladeIconsServiceProvider extends ServiceProvider
@@ -80,6 +81,13 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
     private function manifestPath(): string
     {
+        $config = $this->app->make('config')->get('blade-icons', []);
+        if (! is_null($customPath = $config['custom_manifest_dir'])) {
+            File::ensureDirectoryExists($customPath);
+
+            return base_path($customPath.'/blade-icons.php');
+        }
+
         return $this->app->bootstrapPath('cache/blade-icons.php');
     }
 
