@@ -144,6 +144,40 @@ class ComponentsTest extends TestCase
     }
 
     /** @test */
+    public function it_prioritizes_default_and_set_classes_on_components()
+    {
+        $this->prepareSets(['class' => 'h-40'], ['default' => ['class' => 'h-50']]);
+
+        $view = $this->blade('<x-icon-camera class="h-30"/>');
+
+        $expected = <<<'HTML'
+            <svg class="h-40 h-50 h-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            HTML;
+
+        $view->assertSee($expected, false);
+    }
+
+    /** @test */
+    public function it_prioritizes_attributes_on_components()
+    {
+        $this->prepareSets(['attributes' => ['height' => 40]], ['default' => ['attributes' => ['height' => 50]]]);
+
+        $view = $this->blade('<x-icon-camera height="60"/>');
+
+        $expected = <<<'HTML'
+            <svg height="60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            HTML;
+
+        $view->assertSee($expected, false);
+    }
+
+    /** @test */
     public function it_can_render_an_icon_from_a_subdirectory()
     {
         $this->prepareSets();

@@ -224,9 +224,9 @@ final class Factory
         }
 
         $attributes = array_merge(
-            $attributes,
             $this->config['attributes'],
             (array) ($this->sets[$set]['attributes'] ?? []),
+            $attributes,
         );
 
         foreach ($attributes as $key => $value) {
