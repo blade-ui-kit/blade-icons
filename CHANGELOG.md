@@ -2,7 +2,13 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.3.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/v1.3.1...1.x)
+
+## [v1.3.1](https://github.com/blade-ui-kit/blade-icons/compare/1.3.0...v1.3.1) - 2022-08-24
+
+### Changed
+
+- Prioritize component attributes over set and default attributes by @sebastianpopp in https://github.com/blade-ui-kit/blade-icons/pull/197
 
 ## [1.3.0](https://github.com/blade-ui-kit/blade-icons/compare/1.2.2...1.3.0) - 2022-05-11
 
