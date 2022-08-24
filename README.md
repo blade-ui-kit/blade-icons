@@ -349,7 +349,7 @@ return [
 
 This always needs to be an associative array.  Additionally, the same option is available in sets so you can set default attributes on every set.
 
-It is not possible to overwrite existing attributes on SVG icons. If you already have attributes defined on icons which you want to override, remove them first.
+The sequence in which classes get applied is `default attributes / set attributes / explicit attributes` where the latter overwrites the former. It is not possible to overwrite existing attributes on SVG icons. If you already have attributes defined on icons which you want to override, remove them first.
 
 ## Usage
 
