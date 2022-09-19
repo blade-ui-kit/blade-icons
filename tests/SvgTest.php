@@ -32,8 +32,56 @@ class SvgTest extends TestCase
         $svg = new Svg('heroicon-o-arrow-right', '<svg>'.$svgPath.'</svg>', ['defer' => true]);
 
         $svgHtml = $svg->toHtml();
-        $this->assertStringContainsString('<use href="#icon-'.md5($svgPath).'"></use>', $svgHtml);
-        $this->assertStringContainsString($svgPath, $svgHtml);
+        $this->assertEquals('<svg defer="1"><use href="#icon-8970cc32a6db8f9088d764a8832c411b"></use></svg>
+    @once("icon-8970cc32a6db8f9088d764a8832c411b")
+        @push("bladeicons")
+            <g id="icon-8970cc32a6db8f9088d764a8832c411b">
+                <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </g>
+        @endpush
+    @endonce', $svgHtml);
+    }
+
+    /** @test */
+    public function it_can_compile_to_defered_html_with_group()
+    {
+        $svgPath = '<g id="test" transform="translate(1 1)"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></g>';
+        $svg = new Svg('heroicon-o-arrow-right', '<svg>'.$svgPath.'</svg>', ['defer' => true]);
+
+        $svgHtml = $svg->toHtml();
+
+        $this->assertEquals('<svg defer="1"><use href="#icon-17c27df6b7d6560d9202829b719225b0"></use></svg>
+    @once("icon-17c27df6b7d6560d9202829b719225b0")
+        @push("bladeicons")
+            <g id="icon-17c27df6b7d6560d9202829b719225b0">
+                <g id="test" transform="translate(1 1)"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></g>
+            </g>
+        @endpush
+    @endonce', $svgHtml);
+    }
+
+    /** @test */
+    public function it_can_compile_to_defered_html_with_group_and_whitespace()
+    {
+        $svgPath = '
+<g id="test" transform="translate(1 1)">
+    <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+</g>';
+        $svg = new Svg('heroicon-o-arrow-right', '<svg>'.$svgPath.'</svg>', ['defer' => true]);
+
+        $svgHtml = $svg->toHtml();
+
+        $this->assertEquals('<svg defer="1"><use href="#icon-e691490d4580d7276ba2a39a287f365f"></use></svg>
+    @once("icon-e691490d4580d7276ba2a39a287f365f")
+        @push("bladeicons")
+            <g id="icon-e691490d4580d7276ba2a39a287f365f">
+                
+<g id="test" transform="translate(1 1)">
+    <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+</g>
+            </g>
+        @endpush
+    @endonce', $svgHtml);
     }
 
     /** @test */
