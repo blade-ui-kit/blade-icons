@@ -41,14 +41,17 @@ final class Svg implements Htmlable
         );
     }
 
-    protected function deferContent($contents, $defer = false)
+    /**
+     * @param  string|bool  $defer
+     */
+    protected function deferContent(string $contents, $defer = false): string
     {
-        if (! $defer) {
+        if ($defer === false) {
             return $contents;
         }
 
         $svgContent = strip_tags($contents, ['circle', 'ellipse', 'line', 'path', 'polygon', 'polyline', 'rect', 'g']);
-        $hash = 'icon-'.md5($svgContent);
+        $hash = 'icon-'.(is_string($defer) ? $defer : md5($svgContent));
         $contents = str_replace($svgContent, strtr('<use href=":href"></use>', [':href' => '#'.$hash]), $contents);
         $contents .= <<<BLADE
 
