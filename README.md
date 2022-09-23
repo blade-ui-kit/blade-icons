@@ -407,6 +407,23 @@ This will push the icons to the stack "bladeicons", you should load this stack a
 </html>
 ```
 
+##### Using deferred icons in React/Vue.js/javascript 
+
+You can reuse your icons from blade in your javascript rendered views by providing a custom defer value that will be used
+as an id:
+
+```blade
+<x-icon-camera defer="my-custom-hash" />
+```
+
+Then in your javascript create a `svg` element with `use` and `href="#icon-{your-hash}"` attribute.
+
+```javascript
+function Icon () {
+    return <svg><use href="#icon-my-custom-hash"></use></svg>
+}
+```
+
 #### Default Component
 
 If you don't want to use the component syntax from above you can also make use of the default `Icon` component that ships with Blade Icons. Simply pass the icon name through the `$name` attribute:
