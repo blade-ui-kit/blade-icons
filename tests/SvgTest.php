@@ -43,6 +43,23 @@ class SvgTest extends TestCase
     }
 
     /** @test */
+    public function it_can_compile_to_defered_html_custom_defer()
+    {
+        $svgPath = '<path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>';
+        $svg = new Svg('heroicon-o-arrow-right', '<svg>'.$svgPath.'</svg>', ['defer' => 'my-custom-hash']);
+
+        $svgHtml = $svg->toHtml();
+        $this->assertEquals('<svg defer="my-custom-hash"><use href="#icon-my-custom-hash"></use></svg>
+    @once("icon-my-custom-hash")
+        @push("bladeicons")
+            <g id="icon-my-custom-hash">
+                <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </g>
+        @endpush
+    @endonce', $svgHtml);
+    }
+
+    /** @test */
     public function it_can_compile_to_defered_html_with_group()
     {
         $svgPath = '<g id="test" transform="translate(1 1)"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></g>';
@@ -54,6 +71,24 @@ class SvgTest extends TestCase
     @once("icon-17c27df6b7d6560d9202829b719225b0")
         @push("bladeicons")
             <g id="icon-17c27df6b7d6560d9202829b719225b0">
+                <g id="test" transform="translate(1 1)"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></g>
+            </g>
+        @endpush
+    @endonce', $svgHtml);
+    }
+
+    /** @test */
+    public function it_can_compile_to_defered_html_with_group_custom_defer()
+    {
+        $svgPath = '<g id="test" transform="translate(1 1)"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></g>';
+        $svg = new Svg('heroicon-o-arrow-right', '<svg>'.$svgPath.'</svg>', ['defer' => 'my-custom-hash']);
+
+        $svgHtml = $svg->toHtml();
+
+        $this->assertEquals('<svg defer="my-custom-hash"><use href="#icon-my-custom-hash"></use></svg>
+    @once("icon-my-custom-hash")
+        @push("bladeicons")
+            <g id="icon-my-custom-hash">
                 <g id="test" transform="translate(1 1)"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></g>
             </g>
         @endpush
