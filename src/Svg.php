@@ -41,9 +41,6 @@ final class Svg implements Htmlable
         );
     }
 
-    /**
-     * @param  string|bool  $defer
-     */
     protected function deferContent(string $contents, $defer = false): string
     {
         if ($defer === false) {
