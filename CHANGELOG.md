@@ -2,7 +2,13 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.3.2...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.4.0...1.x)
+
+## [1.4.0](https://github.com/blade-ui-kit/blade-icons/compare/1.3.2...1.4.0) - 2022-09-28
+
+### Added
+
+- Add ability to provide own defer hash by @pionl in https://github.com/blade-ui-kit/blade-icons/pull/201
 
 ## [1.3.2](https://github.com/blade-ui-kit/blade-icons/compare/v1.3.1...1.3.2) - 2022-09-21
 
