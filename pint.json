@@ -1,0 +1,5 @@
+{
+    "notPath": [
+        "tests/fixtures/generated-manifest.php"
+    ]
+}

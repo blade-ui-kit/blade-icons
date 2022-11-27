@@ -1,7 +1,0 @@
-preset: laravel
-enabled:
-  - heredoc_indentation
-  - trailing_comma_in_multiline_call
-finder:
-  exclude:
-    - "tests/fixtures"
