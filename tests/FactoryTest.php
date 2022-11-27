@@ -186,7 +186,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function icons_can_have_default_classes_from_sets()
     {
-        $factory = $this->prepareSets(['class' => 'icon icon-default'], ['zondicons' =>  ['class' => 'zondicon-class']]);
+        $factory = $this->prepareSets(['class' => 'icon icon-default'], ['zondicons' => ['class' => 'zondicon-class']]);
 
         $icon = $factory->svg('camera');
 
@@ -200,7 +200,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function default_classes_from_sets_are_applied_even_when_main_default_class_is_empty()
     {
-        $factory = $this->prepareSets([], ['zondicons' =>  ['class' => 'zondicon-class']]);
+        $factory = $this->prepareSets([], ['zondicons' => ['class' => 'zondicon-class']]);
 
         $icon = $factory->svg('camera');
 

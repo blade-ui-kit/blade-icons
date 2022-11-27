@@ -78,7 +78,7 @@ class ComponentsTest extends TestCase
     /** @test */
     public function it_can_render_an_icon_with_default_classes_and_set_classes()
     {
-        $this->prepareSets(['class' => 'text-blue-500'], ['default' =>  ['class' => 'w-6 h-6']]);
+        $this->prepareSets(['class' => 'text-blue-500'], ['default' => ['class' => 'w-6 h-6']]);
 
         $view = $this->blade('<x-icon-camera class="icon icon-lg" data-foo/>');
 
