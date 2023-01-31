@@ -94,6 +94,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Lucide Icons](https://github.com/mallardduck/blade-lucide-icons) by [Dan Pock](https://github.com/mallardduck)
 - [Blade Majestic Icons](https://github.com/codeat3/blade-majestic-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Maki Icons](https://github.com/codeat3/blade-maki-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Material Design Icons](https://github.com/postare/blade-mdi) by [Postare](https://github.com/postare)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Mono Icons](https://github.com/codeat3/blade-mono-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Pepicons](https://github.com/codeat3/blade-pepicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
