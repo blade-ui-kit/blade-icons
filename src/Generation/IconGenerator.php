@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace BladeUI\Icons\Generation;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Symfony\Component\Finder\SplFileInfo;
@@ -14,6 +13,9 @@ final class IconGenerator
 {
     private Filesystem $filesystem;
 
+    /**
+     * @var IconSetConfig[]
+     */
     private array $sets;
 
     public function __construct(array $sets)
@@ -22,17 +24,35 @@ final class IconGenerator
         $this->sets = $sets;
     }
 
-    public static function create(array $config): self
+    /**
+     * @param array<int, IconSetConfig|array<string, mixed>> $configs
+     * @return static
+     */
+    public static function create(array $configs): self
     {
-        return new self($config);
+        /**
+         * @var IconSetConfig[] $parsed
+         */
+        $parsed = [];
+        foreach ($configs as $config) {
+            if ($config instanceof IconSetConfig) {
+                $parsed[] = $config;
+            } else {
+                $parsed[] = IconSetConfig::tryFromArray($config);
+            }
+        }
+        return new self($parsed);
     }
 
     public function generate(): void
     {
+        /**
+         * @var IconSetConfig $set
+         */
         foreach ($this->sets as $set) {
             $destination = $this->getDestinationDirectory($set);
             $files = array_filter(
-                $this->filesystem->files($set['source']),
+                $this->filesystem->files($set->source),
                 fn (SplFileInfo $value) => str_ends_with($value->getFilename(), '.svg')
             );
 
@@ -44,18 +64,18 @@ final class IconGenerator
 
                 $this->filesystem->copy($file->getRealPath(), $pathname);
 
-                if (is_callable($set['after'] ?? null)) {
-                    $set['after']($pathname, $set, $file);
+                if (!is_null($set->after)) {
+                    ($set->after)($pathname, $set, $file);
                 }
             }
         }
     }
 
-    private function getDestinationDirectory(array $set): string
+    private function getDestinationDirectory(IconSetConfig $set): string
     {
-        $destination = Str::finish($set['destination'], DIRECTORY_SEPARATOR);
+        $destination = Str::finish($set->destination, DIRECTORY_SEPARATOR);
 
-        if (! Arr::get($set, 'safe', false)) {
+        if ($set->safe) {
             $this->filesystem->deleteDirectory($destination);
         }
 
@@ -64,27 +84,27 @@ final class IconGenerator
         return $destination;
     }
 
-    private function applyPrefixes($set, Stringable $filename): Stringable
+    private function applyPrefixes(IconSetConfig $set, Stringable $filename): Stringable
     {
-        if ($set['input-prefix'] ?? false) {
-            $filename = $filename->after($set['input-prefix']);
+        if ($set->inputPrefix !== '') {
+            $filename = $filename->after($set->inputPrefix);
         }
 
-        if ($set['output-prefix'] ?? false) {
-            $filename = $filename->prepend($set['output-prefix']);
+        if ($set->outputPrefix !== '') {
+            $filename = $filename->prepend($set->outputPrefix);
         }
 
         return $filename;
     }
 
-    private function applySuffixes($set, Stringable $filename): Stringable
+    private function applySuffixes(IconSetConfig $set, Stringable $filename): Stringable
     {
-        if ($set['input-suffix'] ?? false) {
-            $filename = $filename->replace($set['input-suffix'].'.svg', '.svg');
+        if ($set->inputSuffix !== '') {
+            $filename = $filename->replace($set->inputSuffix.'.svg', '.svg');
         }
 
-        if ($set['output-suffix'] ?? false) {
-            $filename = $filename->replace('.svg', $set['output-suffix'].'.svg');
+        if ($set->outputSuffix ?? false) {
+            $filename = $filename->replace('.svg', $set->outputSuffix.'.svg');
         }
 
         return $filename;
