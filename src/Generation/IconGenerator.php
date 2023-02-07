@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons\Generation;
 
+use Closure;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -30,8 +31,15 @@ final class IconGenerator
     {
         foreach ($this->sets as $set) {
             $destination = $this->getDestinationDirectory($set);
+            $files = $this->filesystem->files($set['source']);
+            if (isset($set['fileFilter'])) {
+                $files = array_filter(
+                    $files,
+                    $set['fileFilter']
+                );
+            }
 
-            foreach ($this->filesystem->files($set['source']) as $file) {
+            foreach ($files as $file) {
                 $filename = Str::of($file->getFilename());
                 $filename = $this->applyPrefixes($set, $filename);
                 $filename = $this->applySuffixes($set, $filename);
