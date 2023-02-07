@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BladeUI\Icons\Generation;
 
-use Closure;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
