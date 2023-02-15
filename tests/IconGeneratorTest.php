@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use BladeUI\Icons\Generation\IconGenerator;
+use BladeUI\Icons\Generation\IconSetConfig;
 use Illuminate\Filesystem\Filesystem;
 use SplFileInfo;
 
@@ -112,7 +113,7 @@ class IconGeneratorTest extends TestCase
                 'destination' => static::RESULT_DIR.'/primary',
                 'after' => static function (
                     string $tempFilepath,
-                    array $iconSet,
+                    IconSetConfig $iconSet,
                     SplFileInfo $file
                 ) use ($comment) {
                     $fileContents = file_get_contents($tempFilepath);
