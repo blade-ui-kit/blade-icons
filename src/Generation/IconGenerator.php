@@ -26,7 +26,7 @@ final class IconGenerator
     }
 
     /**
-     * @param array<int, IconSetConfig|array<string, mixed>> $configs
+     * @param  array<int, IconSetConfig|array<string, mixed>>  $configs
      * @return static
      */
     public static function create(array $configs): self
@@ -42,6 +42,7 @@ final class IconGenerator
                 $parsed[] = IconSetConfig::tryFromArray($config);
             }
         }
+
         return new self($parsed);
     }
 
@@ -65,7 +66,7 @@ final class IconGenerator
 
                 $this->filesystem->copy($file->getRealPath(), $pathname);
 
-                if (!is_null($set->after)) {
+                if (! is_null($set->after)) {
                     $reflectHook = new ReflectionFunction($set->after);
                     if ($reflectHook->getParameters()[1]->getType()->getName() === 'array') {
                         ($set->after)($pathname, $set->toArray(), $file);

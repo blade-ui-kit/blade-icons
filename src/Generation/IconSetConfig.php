@@ -56,14 +56,14 @@ class IconSetConfig implements ArrayAccess, Arrayable
     }
 
     /**
-     * @param string $source Define a source directory for the icon sets. Like a node_modules/ or vendor/ directory.
-     * @param string $destination Define a destination directory for your icons.
-     * @param string $inputPrefix Strip an optional prefix from each source icon name.
-     * @param string $outputPrefix Set an optional prefix to applied to each destination icon name.
-     * @param string $inputSuffix Strip an optional suffix from each source icon name.
-     * @param string $outputSuffix Set an optional suffix to applied to each destination icon name.
-     * @param bool|null $safe Enable "safe" mode which will prevent deletion of old icons.
-     * @param Closure(string, IconSetConfig, SplFileInfo): void|null $after Call an optional callback to manipulate the icon.
+     * @param  string  $source Define a source directory for the icon sets. Like a node_modules/ or vendor/ directory.
+     * @param  string  $destination Define a destination directory for your icons.
+     * @param  string  $inputPrefix Strip an optional prefix from each source icon name.
+     * @param  string  $outputPrefix Set an optional prefix to applied to each destination icon name.
+     * @param  string  $inputSuffix Strip an optional suffix from each source icon name.
+     * @param  string  $outputSuffix Set an optional suffix to applied to each destination icon name.
+     * @param  bool|null  $safe Enable "safe" mode which will prevent deletion of old icons.
+     * @param  Closure(string, IconSetConfig, SplFileInfo): void|null  $after Call an optional callback to manipulate the icon.
      * @return static
      */
     public static function build(
@@ -75,8 +75,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         string $outputSuffix = '',
         ?bool $safe = false,
         ?Closure $after = null
-    ): self
-    {
+    ): self {
         return new self(
             $source,
             $destination,
@@ -89,9 +88,9 @@ class IconSetConfig implements ArrayAccess, Arrayable
         );
     }
 
-    public static function tryFromArray(array $config) : self
+    public static function tryFromArray(array $config): self
     {
-        if (!isset($config['source'], $config['destination'])) {
+        if (! isset($config['source'], $config['destination'])) {
             throw new \RuntimeException('Config must have source and destination set');
         }
 
@@ -112,6 +111,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         if (in_array($offset, array_keys(static::$arrayKeyMap))) {
             return true;
         }
+
         return property_exists($this, $offset);
     }
 
@@ -120,6 +120,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         if (in_array($offset, array_keys(static::$arrayKeyMap))) {
             $offset = static::$arrayKeyMap[$offset];
         }
+
         return $this->{$offset};
     }
 
@@ -134,7 +135,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
     public function offsetUnset($offset)
     {
         // Intentionally unimplemented.
-        return;
+
     }
 
     public function toArray()
@@ -149,6 +150,9 @@ class IconSetConfig implements ArrayAccess, Arrayable
             'safe' => $this->safe,
             'after' => $this->after,
         ];
-        return array_filter($array, static function ($value) { return !empty($value);});
+
+        return array_filter($array, static function ($value) {
+        return ! empty($value);
+        });
     }
 }
