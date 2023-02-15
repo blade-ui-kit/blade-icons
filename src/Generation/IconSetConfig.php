@@ -2,10 +2,11 @@
 
 namespace BladeUI\Icons\Generation;
 
+use ArrayAccess;
 use Closure;
 use SplFileInfo;
 
-class IconSetConfig
+class IconSetConfig implements ArrayAccess
 {
     public string $source;
 
@@ -20,6 +21,13 @@ class IconSetConfig
     public string $outputSuffix;
 
     public bool $safe;
+
+    private static array $arrayKeyMap = [
+        'input-prefix' => 'inputPrefix',
+        'output-prefix' => 'outputPrefix',
+        'input-suffix' => 'inputSuffix',
+        'output-suffix' => 'outputSuffix',
+    ];
 
     /**
      * @var ?Closure(string, IconSetConfig, SplFileInfo): void
@@ -96,5 +104,35 @@ class IconSetConfig
             $config['safe'] ?? false,
             $config['after'] ?? null,
         );
+    }
+
+    public function offsetExists($offset): bool
+    {
+        if (in_array($offset, array_keys(static::$arrayKeyMap))) {
+            return true;
+        }
+        return property_exists($this, $offset);
+    }
+
+    public function offsetGet($offset)
+    {
+        if (in_array($offset, array_keys(static::$arrayKeyMap))) {
+            $offset = static::$arrayKeyMap[$offset];
+        }
+        return $this->{$offset};
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        if (in_array($offset, array_keys(static::$arrayKeyMap))) {
+            $offset = static::$arrayKeyMap[$offset];
+        }
+        $this->{$offset} = $value;
+    }
+
+    public function offsetUnset($offset)
+    {
+        // Intentionally unimplemented.
+        return;
     }
 }

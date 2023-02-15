@@ -170,4 +170,62 @@ class IconGeneratorTest extends TestCase
 
         $this->clearResultsDirectory();
     }
+
+    /** @test */
+    public function it_can_use_generator_config_with_old_hooks()
+    {
+        $comment = '<!-- ICONS TEST --->'.PHP_EOL;
+
+        $tests = $this;
+        IconGenerator::create([
+            [
+                'source' => __DIR__.'/resources/svg',
+                'destination' => static::RESULT_DIR.'/primary',
+                'input-suffix' => '-camera',
+                'output-suffix' => '-wonky',
+                'after' => function (
+                    $tempFilepath,
+                    $iconSet,
+                    $file
+                ) use ($comment) {
+                    $fileContents = file_get_contents($tempFilepath);
+                    $this->assertIsString($iconSet['input-suffix']);
+                    $this->assertIsString($iconSet['output-suffix']);
+                    $this->assertEmpty($iconSet['output-prefix']);
+                    $this->assertEquals($iconSet->inputSuffix, $iconSet['input-suffix']);
+                    file_put_contents($tempFilepath, $comment.$fileContents);
+                },
+            ],
+        ])->generate();
+
+        $this->assertDirectoryExists(static::RESULT_DIR.'/primary');
+        $this->assertFileExists(static::RESULT_DIR.'/primary/camera-wonky.svg');
+
+        $iconContent = file_get_contents(static::RESULT_DIR.'/primary/camera-wonky.svg');
+        $this->assertStringStartsWith($comment, $iconContent);
+
+        $this->clearResultsDirectory();
+    }
+
+    /** @test */
+    public function it_can_use_icon_set_configs()
+    {
+        IconGenerator::create([
+            IconSetConfig::build(
+                __DIR__.'/resources/svg',
+                static::RESULT_DIR.'/primary',
+                'zondicon-',
+                '',
+                '',
+                '-blade',
+            ),
+        ])->generate();
+
+        $this->assertDirectoryExists(static::RESULT_DIR.'/primary');
+        $this->assertFileExists(static::RESULT_DIR.'/primary/flag-blade.svg');
+        $this->assertFileExists(static::RESULT_DIR.'/primary/camera-blade.svg');
+        $this->assertFileExists(static::RESULT_DIR.'/primary/foo-camera-blade.svg');
+
+        $this->clearResultsDirectory();
+    }
 }
