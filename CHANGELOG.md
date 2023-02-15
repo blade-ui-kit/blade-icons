@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.5.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.5.1...1.x)
+
+## [1.5.1](https://github.com/blade-ui-kit/blade-icons/compare/1.5.0...1.5.1) - 2023-02-15
+
+- Apply SVG file filter for Generator by Default by @mallardduck in https://github.com/blade-ui-kit/blade-icons/pull/209
 
 ## [1.5.0](https://github.com/blade-ui-kit/blade-icons/compare/1.4.1...1.5.0) - 2023-01-11
 
