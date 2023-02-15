@@ -7,6 +7,7 @@ namespace BladeUI\Icons\Generation;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
+use ReflectionFunction;
 use Symfony\Component\Finder\SplFileInfo;
 
 final class IconGenerator
@@ -65,7 +66,12 @@ final class IconGenerator
                 $this->filesystem->copy($file->getRealPath(), $pathname);
 
                 if (!is_null($set->after)) {
-                    ($set->after)($pathname, $set, $file);
+                    $reflectHook = new ReflectionFunction($set->after);
+                    if ($reflectHook->getParameters()[1]->getType()->getName() === 'array') {
+                        ($set->after)($pathname, $set->toArray(), $file);
+                    } else {
+                        ($set->after)($pathname, $set, $file);
+                    }
                 }
             }
         }

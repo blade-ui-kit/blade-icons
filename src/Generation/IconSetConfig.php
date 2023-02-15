@@ -4,9 +4,10 @@ namespace BladeUI\Icons\Generation;
 
 use ArrayAccess;
 use Closure;
+use Illuminate\Contracts\Support\Arrayable;
 use SplFileInfo;
 
-class IconSetConfig implements ArrayAccess
+class IconSetConfig implements ArrayAccess, Arrayable
 {
     public string $source;
 
@@ -134,5 +135,20 @@ class IconSetConfig implements ArrayAccess
     {
         // Intentionally unimplemented.
         return;
+    }
+
+    public function toArray()
+    {
+        $array = [
+            'source' => $this->source,
+            'destination' => $this->destination,
+            'input-prefix' => $this->inputPrefix,
+            'output-prefix' => $this->outputPrefix,
+            'input-suffix' => $this->inputSuffix,
+            'output-suffix' => $this->outputSuffix,
+            'safe' => $this->safe,
+            'after' => $this->after,
+        ];
+        return array_filter($array, static function ($value) { return !empty($value);});
     }
 }

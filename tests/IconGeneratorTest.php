@@ -111,12 +111,13 @@ class IconGeneratorTest extends TestCase
             [
                 'source' => __DIR__.'/resources/svg',
                 'destination' => static::RESULT_DIR.'/primary',
-                'after' => static function (
+                'after' => function (
                     string $tempFilepath,
                     IconSetConfig $iconSet,
                     SplFileInfo $file
                 ) use ($comment) {
                     $fileContents = file_get_contents($tempFilepath);
+                    $this->assertEquals($iconSet->inputSuffix, $iconSet['input-suffix']); // Verify property and array access work the same...
                     file_put_contents($tempFilepath, $comment.$fileContents);
                 },
             ],
@@ -184,15 +185,14 @@ class IconGeneratorTest extends TestCase
                 'input-suffix' => '-camera',
                 'output-suffix' => '-wonky',
                 'after' => function (
-                    $tempFilepath,
-                    $iconSet,
-                    $file
+                    string $tempFilepath,
+                    array $iconSet,
+                    SplFileInfo $file
                 ) use ($comment) {
                     $fileContents = file_get_contents($tempFilepath);
                     $this->assertIsString($iconSet['input-suffix']);
                     $this->assertIsString($iconSet['output-suffix']);
-                    $this->assertEmpty($iconSet['output-prefix']);
-                    $this->assertEquals($iconSet->inputSuffix, $iconSet['input-suffix']);
+                    $this->assertArrayNotHasKey('output-prefix', $iconSet);
                     file_put_contents($tempFilepath, $comment.$fileContents);
                 },
             ],
