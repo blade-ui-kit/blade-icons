@@ -15,6 +15,7 @@ class IconGeneratorTest extends TestCase
     private function clearResultsDirectory(): void
     {
         $fs = new Filesystem();
+
         if ($fs->isDirectory(static::RESULT_DIR)) {
             $fs->deleteDirectory(static::RESULT_DIR);
         }
@@ -33,6 +34,7 @@ class IconGeneratorTest extends TestCase
                 'destination' => static::RESULT_DIR.'/solid',
             ],
         ])->generate();
+
         $this->assertDirectoryExists(static::RESULT_DIR.'/primary');
         $this->assertDirectoryExists(static::RESULT_DIR.'/solid');
         $this->assertFileDoesNotExist(static::RESULT_DIR.'/primary/invalid-extension.txt');
@@ -56,10 +58,12 @@ class IconGeneratorTest extends TestCase
                 'destination' => static::RESULT_DIR.'/solid',
             ],
         ])->generate();
+
         $this->assertDirectoryExists(static::RESULT_DIR.'/primary');
         $this->assertDirectoryExists(static::RESULT_DIR.'/solid');
         $this->assertFileExists(static::RESULT_DIR.'/primary/camera.svg');
         $this->assertFileExists(static::RESULT_DIR.'/solid/camera.svg');
+
         // Manually insert an "OLD ICON" that's been "removed".
         file_put_contents(static::RESULT_DIR.'/primary/cold-beans.svg', 'COOL BEANS!');
         $this->assertFileExists(static::RESULT_DIR.'/primary/cold-beans.svg');
@@ -77,6 +81,7 @@ class IconGeneratorTest extends TestCase
                 'safe' => true,
             ],
         ])->generate();
+
         $this->assertFileExists(static::RESULT_DIR.'/primary/cold-beans.svg');
 
         // Regenerate the icons with safe feature enabled.
@@ -90,6 +95,7 @@ class IconGeneratorTest extends TestCase
                 'destination' => static::RESULT_DIR.'/solid',
             ],
         ])->generate();
+
         $this->assertFileDoesNotExist(static::RESULT_DIR.'/primary/cold-beans.svg');
 
         $this->clearResultsDirectory();
@@ -99,6 +105,7 @@ class IconGeneratorTest extends TestCase
     public function it_can_use_generator_hooks()
     {
         $comment = '<!-- ICONS TEST --->'.PHP_EOL;
+
         IconGenerator::create([
             [
                 'source' => __DIR__.'/resources/svg',
@@ -113,6 +120,7 @@ class IconGeneratorTest extends TestCase
                 },
             ],
         ])->generate();
+
         $this->assertDirectoryExists(static::RESULT_DIR.'/primary');
         $this->assertFileExists(static::RESULT_DIR.'/primary/camera.svg');
 
@@ -133,6 +141,7 @@ class IconGeneratorTest extends TestCase
                 'output-prefix' => 'blade-',
             ],
         ])->generate();
+
         $this->assertDirectoryExists(static::RESULT_DIR.'/primary');
         $this->assertFileExists(static::RESULT_DIR.'/primary/blade-flag.svg');
         $this->assertFileExists(static::RESULT_DIR.'/primary/blade-camera.svg');
@@ -152,6 +161,7 @@ class IconGeneratorTest extends TestCase
                 'output-suffix' => '-wonky',
             ],
         ])->generate();
+
         $this->assertDirectoryExists(static::RESULT_DIR.'/primary');
         $this->assertFileExists(static::RESULT_DIR.'/primary/zondicon-flag-wonky.svg');
         $this->assertFileExists(static::RESULT_DIR.'/primary/camera-wonky.svg');
