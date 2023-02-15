@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
+use Symfony\Component\Finder\SplFileInfo;
 
 final class IconGenerator
 {
@@ -30,8 +31,12 @@ final class IconGenerator
     {
         foreach ($this->sets as $set) {
             $destination = $this->getDestinationDirectory($set);
+            $files = array_filter(
+                $this->filesystem->files($set['source']),
+                fn (SplFileInfo $value) => str_ends_with($value->getFilename(), '.svg')
+            );
 
-            foreach ($this->filesystem->files($set['source']) as $file) {
+            foreach ($files as $file) {
                 $filename = Str::of($file->getFilename());
                 $filename = $this->applyPrefixes($set, $filename);
                 $filename = $this->applySuffixes($set, $filename);
