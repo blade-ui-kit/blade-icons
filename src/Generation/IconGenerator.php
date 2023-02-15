@@ -75,7 +75,7 @@ final class IconGenerator
     {
         $destination = Str::finish($set->destination, DIRECTORY_SEPARATOR);
 
-        if ($set->safe) {
+        if (! $set->safe) {
             $this->filesystem->deleteDirectory($destination);
         }
 
