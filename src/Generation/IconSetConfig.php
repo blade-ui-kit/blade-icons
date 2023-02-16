@@ -135,7 +135,6 @@ class IconSetConfig implements ArrayAccess, Arrayable
     public function offsetUnset($offset): void
     {
         // Intentionally unimplemented.
-
     }
 
     public function toArray()
@@ -152,7 +151,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         ];
 
         return array_filter($array, static function ($value) {
-        return ! empty($value);
+            return ! empty($value);
         });
     }
 }
