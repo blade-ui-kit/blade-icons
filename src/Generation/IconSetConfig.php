@@ -116,7 +116,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
     }
 
     #[\ReturnTypeWillChange]
-    public function offsetGet($offset): mixed
+    public function offsetGet($offset)
     {
         if (in_array($offset, array_keys(static::$arrayKeyMap))) {
             $offset = static::$arrayKeyMap[$offset];
