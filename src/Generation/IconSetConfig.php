@@ -115,7 +115,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         return property_exists($this, $offset);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if (in_array($offset, array_keys(static::$arrayKeyMap))) {
             $offset = static::$arrayKeyMap[$offset];
@@ -124,7 +124,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         return $this->{$offset};
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (in_array($offset, array_keys(static::$arrayKeyMap))) {
             $offset = static::$arrayKeyMap[$offset];
@@ -132,7 +132,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         $this->{$offset} = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         // Intentionally unimplemented.
 
