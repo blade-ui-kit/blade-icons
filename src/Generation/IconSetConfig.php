@@ -115,6 +115,7 @@ class IconSetConfig implements ArrayAccess, Arrayable
         return property_exists($this, $offset);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset): mixed
     {
         if (in_array($offset, array_keys(static::$arrayKeyMap))) {
