@@ -163,6 +163,12 @@ It's a good idea to add the `icons:cache` command as part of your deployment pip
 
 Alternatively, you may choose to [disable Blade components](#disabling-components) entirely.
 
+Also, when adding new icons, renaming directories in your icon paths, it's always a good idea to clear your views before refreshing the page:
+
+```bash
+php artisan view:clear
+```
+
 ## Configuration
 
 ### Defining Sets
