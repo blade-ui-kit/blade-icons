@@ -14,6 +14,12 @@
             "homepage": "https://driesvints.com"
         }
     ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/driesvints"
+        }
+    ],
     "require": {
         "php": "^7.4|^8.0",
         "illuminate/contracts": "^8.0|^9.0|^10.0",
