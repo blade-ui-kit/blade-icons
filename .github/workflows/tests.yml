@@ -10,7 +10,7 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  unix:
+  ubuntu:
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,7 +28,7 @@ jobs:
           - php: 8.2
             laravel: 8
 
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+    name: Ubuntu - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
@@ -58,7 +58,7 @@ jobs:
         php: [8.2]
         laravel: [10]
 
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+    name: Windows - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
