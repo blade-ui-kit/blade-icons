@@ -78,8 +78,8 @@ final class IconsManifest
     private function format(string $pathname, string $path): string
     {
         return (string) Str::of($pathname)
-            ->after($path.'/')
-            ->replace('/', '.')
+            ->after($path.DIRECTORY_SEPARATOR)
+            ->replace(DIRECTORY_SEPARATOR, '.')
             ->basename('.svg');
     }
 
