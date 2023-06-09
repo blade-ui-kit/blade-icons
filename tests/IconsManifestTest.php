@@ -16,7 +16,7 @@ class IconsManifestTest extends TestCase
     {
         parent::setUp();
 
-        $this->manifestPath = __DIR__.DIRECTORY_SEPARATOR.'fixtures'.DIRECTORY_SEPARATOR.'blade-icons.php';
+        $this->manifestPath = __DIR__.'/fixtures/blade-icons.php';
         @unlink($this->manifestPath);
     }
 

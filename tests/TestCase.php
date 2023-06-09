@@ -27,11 +27,11 @@ abstract class TestCase extends OrchestraTestCase
 
         $factory = $factory
             ->add('default', array_merge([
-                'path' => __DIR__.'/resources/svg',
+                'path' => __DIR__.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'svg',
                 'prefix' => 'icon',
             ], $setOptions['default'] ?? []))
             ->add('zondicons', array_merge([
-                'path' => __DIR__.'/resources/zondicons',
+                'path' => __DIR__.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'zondicons',
                 'prefix' => 'zondicon',
             ], $setOptions['zondicons'] ?? []));
 
