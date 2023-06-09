@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.5.1...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.5.2...1.x)
+
+## [1.5.2](https://github.com/blade-ui-kit/blade-icons/compare/1.5.1...1.5.2) - 2023-06-09
+
+- Windows support by @driesvints in https://github.com/blade-ui-kit/blade-icons/pull/213
 
 ## [1.5.1](https://github.com/blade-ui-kit/blade-icons/compare/1.5.0...1.5.1) - 2023-02-15
 
