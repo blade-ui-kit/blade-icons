@@ -48,44 +48,6 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose
-  unix:
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [7.4, '8.0', 8.1, 8.2]
-        laravel: [8, 9, 10]
-        exclude:
-          - php: 7.4
-            laravel: 9
-          - php: 7.4
-            laravel: 10
-          - php: '8.0'
-            laravel: 10
-          - php: 8.2
-            laravel: 8
-
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip
-          coverage: none
-
-      - name: Install dependencies
-        run: |
-          composer require "illuminate/contracts=^${{ matrix.laravel }}" --prefer-dist --no-interaction --no-update
-          composer update --prefer-dist --no-interaction --no-progress
-
-      - name: Execute tests
-        run: vendor/bin/phpunit --verbose
 
   windows:
     runs-on: windows-latest
