@@ -30,8 +30,8 @@ class IconsManifestTest extends TestCase
     private function expectedManifest(): string
     {
         return trim(str_replace(
-            '{{ dir }}',
-            __DIR__,
+            ['{{ dir }}', '/'],
+            [__DIR__, DIRECTORY_SEPARATOR],
             file_get_contents(__DIR__.'/fixtures/generated-manifest.php'),
         ));
     }
@@ -43,9 +43,13 @@ class IconsManifestTest extends TestCase
         $manifest->write($this->prepareSets()->all());
 
         $this->assertTrue(file_exists($this->manifestPath));
-        $this->assertSame(
+        $this->assertEquals(
             $this->expectedManifest(),
-            str_replace(" \n", "\n", file_get_contents($this->manifestPath)),
+            stripslashes(str_replace(
+                ["\n", '=> '.PHP_EOL],
+                [PHP_EOL, '=>'.PHP_EOL],
+                file_get_contents($this->manifestPath)
+            )),
         );
     }
 

@@ -10,7 +10,7 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  tests:
+  ubuntu:
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,7 +28,7 @@ jobs:
           - php: 8.2
             laravel: 8
 
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+    name: Ubuntu - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
@@ -39,6 +39,36 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer require "illuminate/contracts=^${{ matrix.laravel }}" --prefer-dist --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose
+
+  windows:
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.2]
+        laravel: [10]
+
+    name: Windows - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, gd, pdo_mysql, fileinfo, ftp, gmp
           coverage: none
 
       - name: Install dependencies
