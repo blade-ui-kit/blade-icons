@@ -45,7 +45,7 @@ class IconsManifestTest extends TestCase
         $this->assertTrue(file_exists($this->manifestPath));
         $this->assertSame(
             $this->expectedManifest(),
-            str_replace([' '.PHP_EOL, "\n"], PHP_EOL, file_get_contents($this->manifestPath)),
+            str_replace(' '.PHP_EOL, PHP_EOL, file_get_contents($this->manifestPath)),
         );
     }
 
