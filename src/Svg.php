@@ -50,8 +50,8 @@ final class Svg implements Htmlable
         $svgContent = strip_tags($contents, ['circle', 'ellipse', 'line', 'path', 'polygon', 'polyline', 'rect', 'g', 'mask', 'defs', 'use']);
         $svgContent = str_replace(PHP_EOL, "\n", $svgContent); // Force Unix line endings for hash.
         $hash = 'icon-'.(is_string($defer) ? $defer : md5($svgContent));
-        $svgContent = ltrim($svgContent, PHP_EOL);
         $contents = str_replace($svgContent, strtr('<use href=":href"></use>', [':href' => '#'.$hash]), $contents).PHP_EOL;
+        $svgContent = ltrim($svgContent, PHP_EOL);
         $contents .= <<<BLADE
                 @once("{$hash}")
                     @push("bladeicons")
