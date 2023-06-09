@@ -30,8 +30,8 @@ class IconsManifestTest extends TestCase
     private function expectedManifest(): string
     {
         return trim(str_replace(
-            '{{ dir }}',
-            __DIR__,
+            ['{{ dir }}', '/'],
+            [__DIR__, DIRECTORY_SEPARATOR],
             file_get_contents(__DIR__.'/fixtures/generated-manifest.php'),
         ));
     }
