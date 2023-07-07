@@ -116,7 +116,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Vaadin Icons](https://github.com/codeat3/blade-vaadin-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
-- [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons) by [Dries Vints](https://github.com/driesvints)
+- [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 
 ## Requirements
 
