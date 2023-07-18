@@ -65,7 +65,7 @@ final class IconsManifest
     /**
      * @return \Illuminate\Contracts\Filesystem\Filesystem|Filesystem
      */
-    private function filesystem(?string $disk = null)
+    private function filesystem(string $disk = null)
     {
         return $this->disks && $disk ? $this->disks->disk($disk) : $this->filesystem;
     }
