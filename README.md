@@ -114,6 +114,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Typicons](https://github.com/codeat3/blade-typicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Uiw Icons](https://github.com/codeat3/blade-uiw-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Unicons](https://github.com/codeat3/blade-unicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade UntitledIU Icons](https://github.com/mckenziearts/blade-untitledui-icons) by [Arthur Monney](https://github.com/mckenziearts)
 - [Blade Vaadin Icons](https://github.com/codeat3/blade-vaadin-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
