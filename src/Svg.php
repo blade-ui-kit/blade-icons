@@ -19,6 +19,10 @@ final class Svg implements Htmlable
     {
         $this->name = $name;
         $this->contents = $this->deferContent($contents, $attributes['defer'] ?? false);
+
+        // Remove invalid attribute
+        unset($attributes['defer']);
+        
         $this->attributes = $attributes;
     }
 
