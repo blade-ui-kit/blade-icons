@@ -32,7 +32,7 @@ class SvgTest extends TestCase
         $svg = new Svg('heroicon-o-arrow-right', '<svg>'.$svgPath.'</svg>', ['defer' => true]);
 
         $svgHtml = $svg->toHtml();
-        $this->assertEquals('<svg defer="1"><use href="#icon-8970cc32a6db8f9088d764a8832c411b"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-8970cc32a6db8f9088d764a8832c411b"></use></svg>
     @once("icon-8970cc32a6db8f9088d764a8832c411b")
         @push("bladeicons")
             <g id="icon-8970cc32a6db8f9088d764a8832c411b">
@@ -49,7 +49,7 @@ class SvgTest extends TestCase
         $svg = new Svg('heroicon-o-arrow-right', '<svg>'.$svgPath.'</svg>', ['defer' => 'my-custom-hash']);
 
         $svgHtml = $svg->toHtml();
-        $this->assertEquals('<svg defer="my-custom-hash"><use href="#icon-my-custom-hash"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-my-custom-hash"></use></svg>
     @once("icon-my-custom-hash")
         @push("bladeicons")
             <g id="icon-my-custom-hash">
@@ -67,7 +67,7 @@ class SvgTest extends TestCase
 
         $svgHtml = $svg->toHtml();
 
-        $this->assertEquals('<svg defer="1"><use href="#icon-17c27df6b7d6560d9202829b719225b0"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-17c27df6b7d6560d9202829b719225b0"></use></svg>
     @once("icon-17c27df6b7d6560d9202829b719225b0")
         @push("bladeicons")
             <g id="icon-17c27df6b7d6560d9202829b719225b0">
@@ -85,7 +85,7 @@ class SvgTest extends TestCase
 
         $svgHtml = $svg->toHtml();
 
-        $this->assertEquals('<svg defer="my-custom-hash"><use href="#icon-my-custom-hash"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-my-custom-hash"></use></svg>
     @once("icon-my-custom-hash")
         @push("bladeicons")
             <g id="icon-my-custom-hash">
@@ -105,7 +105,7 @@ class SvgTest extends TestCase
 
         $svgHtml = $svg->toHtml();
 
-        $this->assertEquals('<svg defer="1"><use href="#icon-7f6f192a3c61bd15e25530394ec18d86"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-7f6f192a3c61bd15e25530394ec18d86"></use></svg>
     @once("icon-7f6f192a3c61bd15e25530394ec18d86")
         @push("bladeicons")
             <g id="icon-7f6f192a3c61bd15e25530394ec18d86">
@@ -127,7 +127,7 @@ class SvgTest extends TestCase
 
         $svgHtml = $svg->toHtml();
 
-        $this->assertEquals('<svg defer="1"><use href="#icon-75e079eb3e6f7403d66f76ff7f0475c5"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-75e079eb3e6f7403d66f76ff7f0475c5"></use></svg>
     @once("icon-75e079eb3e6f7403d66f76ff7f0475c5")
         @push("bladeicons")
             <g id="icon-75e079eb3e6f7403d66f76ff7f0475c5">
@@ -151,7 +151,7 @@ class SvgTest extends TestCase
 
         $svgHtml = $svg->toHtml();
 
-        $this->assertEquals('<svg defer="1"><use href="#icon-cf7005271ce6acebfa1a20cb123ad8b0"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-cf7005271ce6acebfa1a20cb123ad8b0"></use></svg>
     @once("icon-cf7005271ce6acebfa1a20cb123ad8b0")
         @push("bladeicons")
             <g id="icon-cf7005271ce6acebfa1a20cb123ad8b0">
@@ -172,7 +172,7 @@ class SvgTest extends TestCase
 
         $svgHtml = $svg->toHtml();
 
-        $this->assertEquals('<svg defer="1"><use href="#icon-540a77d3751047fd94004bffda3ffb55"></use></svg>
+        $this->assertEquals('<svg><use href="#icon-540a77d3751047fd94004bffda3ffb55"></use></svg>
     @once("icon-540a77d3751047fd94004bffda3ffb55")
         @push("bladeicons")
             <g id="icon-540a77d3751047fd94004bffda3ffb55">
