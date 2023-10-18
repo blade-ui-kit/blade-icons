@@ -422,8 +422,7 @@ This will push the icons to the stack "bladeicons", you should load this stack a
 
 ##### Using deferred icons in JavaScript 
 
-You can re-use your icons from blade in your JavaScript rendered views by providing a custom defer value that will be used
-as an identifier:
+You can re-use your icons from blade in your JavaScript rendered views by providing a custom defer value that will be used as an identifier:
 
 ```blade
 <x-icon-camera defer="my-custom-hash" />
