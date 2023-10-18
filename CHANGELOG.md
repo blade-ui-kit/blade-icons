@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.5.2...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.5.3...1.x)
+
+## [1.5.3](https://github.com/blade-ui-kit/blade-icons/compare/1.5.2...1.5.3) - 2023-10-18
+
+- Fix for invalid defer attribute on SVG tag by [@Jaybuz](https://github.com/Jaybuz) in https://github.com/blade-ui-kit/blade-icons/pull/218
 
 ## [1.5.2](https://github.com/blade-ui-kit/blade-icons/compare/1.5.1...1.5.2) - 2023-06-09
 
