@@ -75,6 +75,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade File Icons](https://github.com/codeat3/blade-file-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade File Type Icons](https://github.com/log1x/blade-filetype-icons) by [Brandon Nifong](https://github.com/log1x)
 - [Blade FluentUi System Icons](https://github.com/codeat3/blade-fluentui-system-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Flowbite Icons](https://github.com/themesberg/flowbite-blade-icons) by [Dominique Thomas](https://github.com/domthomas-dev)
 - [Blade Font Audio](https://github.com/codeat3/blade-fontaudio) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Font Awesome](https://github.com/owenvoke/blade-fontawesome) by [Owen Voke](https://github.com/owenvoke)
 - [Blade Fontisto Icons](https://github.com/codeat3/blade-fontisto-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
