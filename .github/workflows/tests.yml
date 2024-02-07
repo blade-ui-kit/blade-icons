@@ -65,8 +65,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.2]
-        laravel: [10, 11]
+        php: [8.3]
+        laravel: [10]
 
     name: Windows - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
