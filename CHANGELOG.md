@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.5.3...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.6.0...1.x)
+
+## [1.6.0](https://github.com/blade-ui-kit/blade-icons/compare/1.5.3...1.6.0) - 2024-02-07
+
+* Laravel 11 by [@robsontenorio](https://github.com/robsontenorio) in https://github.com/blade-ui-kit/blade-icons/pull/223
 
 ## [1.5.3](https://github.com/blade-ui-kit/blade-icons/compare/1.5.2...1.5.3) - 2023-10-18
 
