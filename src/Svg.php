@@ -50,7 +50,8 @@ final class Svg implements Htmlable
             return $contents;
         }
 
-        $svgContent = strip_tags($contents, ['circle', 'ellipse', 'line', 'path', 'polygon', 'polyline', 'rect', 'g', 'mask', 'defs', 'use']);
+        preg_match_all('/<svg\b[^>]*>(.*?)<\/svg>/is', $contents, $matches);
+        $svgContent = $matches[1][0] ?? '';
 
         // Force Unix line endings for hash.
         $hashContent = str_replace(PHP_EOL, "\n", $svgContent);
