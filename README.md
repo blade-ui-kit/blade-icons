@@ -118,7 +118,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Typicons](https://github.com/codeat3/blade-typicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Uiw Icons](https://github.com/codeat3/blade-uiw-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Unicons](https://github.com/codeat3/blade-unicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
-- [Blade UntitledIU Icons](https://github.com/mckenziearts/blade-untitledui-icons) by [Arthur Monney](https://github.com/mckenziearts)
+- [Blade UntitledUI Icons](https://github.com/mckenziearts/blade-untitledui-icons) by [Arthur Monney](https://github.com/mckenziearts)
 - [Blade Vaadin Icons](https://github.com/codeat3/blade-vaadin-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
@@ -211,7 +211,7 @@ return [
 ];
 ```
 
-> **Warning**  
+> **Warning**
 > Always make sure you're pointing to existing directories.
 
 #### Multiple Paths
@@ -235,7 +235,7 @@ return [
 
 This gives you the benefit from grouping icons from different paths under a single set where you can define the same prefix and default classes.
 
-> **Warning**  
+> **Warning**
 > When using multiple paths instead of one, Blade Icons will return the first icon it finds when an icon name is present in more than one path. Please ensure you use unique icon names when registering multiple paths if you want to retrieve the correct icon.
 
 ### Filesystem Disk
@@ -304,7 +304,7 @@ return [
 ];
 ```
 
-> **Note**  
+> **Note**
 > There's one caveat when using fallback icons and that is that they don't work when using [Blade Components](#components). In this case, Laravel will throw an exception that the component cannot be found. If you want to make use of fallback icons please consider one of the other usages.
 
 ### Prefixing Icons
@@ -398,7 +398,7 @@ Or any other attributes for that matter:
 <x-icon-camera class="icon-lg" id="settings-icon" style="color: #555" data-baz/>
 ```
 
-> **Note**  
+> **Note**
 > With Blade components, using a prefix is always required, even when referencing icons from the default set.
 
 #### Deferring icons
@@ -421,7 +421,7 @@ This will push the icons to the stack "bladeicons", you should load this stack a
 </html>
 ```
 
-##### Using deferred icons in JavaScript 
+##### Using deferred icons in JavaScript
 
 You can re-use your icons from blade in your JavaScript rendered views by providing a custom defer value that will be used as an identifier:
 
