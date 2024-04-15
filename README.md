@@ -86,6 +86,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Grommet Icons](https://github.com/codeat3/blade-grommet-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Health Icons](https://github.com/troccoli/blade-health-icons) by [Giulio Troccoli-Allard](https://github.com/troccoli)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) by [Dries Vints](https://github.com/driesvints)
+- [Blade Hugeicons](https://github.com/afatmustafa/blade-hugeicons) by [Mustafa Afat](https://github.com/afatmustafa)
 - [Blade IcoMoon Icons](https://github.com/nerdroid23/blade-icomoon) by [Joe Sylnice](https://github.com/nerdroid23)
 - [Blade Icon Park Icons](https://github.com/codeat3/blade-iconpark) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Iconic Icons](https://github.com/ItsMalikJones/blade-iconic) by [Malik Alleyne-Jones](https://github.com/ItsMalikJones)
