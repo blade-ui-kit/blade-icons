@@ -95,6 +95,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Ikonate Icons](https://github.com/codeat3/blade-ikonate) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Ionicons](https://github.com/Faisal50x/blade-ionicons) by [Faisal Ahmed](https://github.com/Faisal50x)
 - [Blade Jam Icons](https://github.com/codeat3/blade-jam-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Lets Icons](https://github.com/mansoorkhan96/blade-lets-icons) by [Mansoor Ahmed](https://github.com/mansoorkhan96)
 - [Blade Line Awesome Icons](https://github.com/codeat3/blade-line-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Lineicons](https://github.com/datlechin/blade-lineicons) by [Ngô Quốc Đạt](https://github.com/datlechin)
 - [Blade Lucide Icons](https://github.com/mallardduck/blade-lucide-icons) by [Dan Pock](https://github.com/mallardduck)
