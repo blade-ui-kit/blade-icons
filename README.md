@@ -65,6 +65,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Cryptocurrency Icons](https://github.com/codeat3/blade-cryptocurrency-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CSS Icons](https://github.com/khatabwedaa/blade-css-icons) by [khatabWedaa](https://github.com/khatabwedaa)
 - [Blade Dev Icons](https://github.com/codeat3/blade-devicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Element Plus Icons](https://github.com/codeat3/blade-element-plus-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Elusive Icons](https://github.com/codeat3/blade-elusive-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Emblemicons](https://github.com/codeat3/blade-emblemicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Entypo](https://github.com/owenvoke/blade-entypo) by [Owen Voke](https://github.com/owenvoke)
@@ -83,10 +84,12 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Github Octicons](https://github.com/Activisme-be/Blade-github-octicons) by [Tim Joosten](https://github.com/Tjoosten)
 - [Blade Google Material Design Icons](https://github.com/codeat3/blade-google-material-design-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Gov Icons](https://github.com/codeat3/blade-govicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Gravity UI Icons](https://github.com/codeat3/blade-gravity-ui-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Grommet Icons](https://github.com/codeat3/blade-grommet-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Health Icons](https://github.com/troccoli/blade-health-icons) by [Giulio Troccoli-Allard](https://github.com/troccoli)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) by [Dries Vints](https://github.com/driesvints)
 - [Blade Hugeicons](https://github.com/afatmustafa/blade-hugeicons) by [Mustafa Afat](https://github.com/afatmustafa)
+- [Blade Humbleicons](https://github.com/codeat3/blade-humbleicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade IcoMoon Icons](https://github.com/nerdroid23/blade-icomoon) by [Joe Sylnice](https://github.com/nerdroid23)
 - [Blade Icon Park Icons](https://github.com/codeat3/blade-iconpark) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Iconic Icons](https://github.com/ItsMalikJones/blade-iconic) by [Malik Alleyne-Jones](https://github.com/ItsMalikJones)
@@ -102,6 +105,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Majestic Icons](https://github.com/codeat3/blade-majestic-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Maki Icons](https://github.com/codeat3/blade-maki-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Material Design Icons](https://github.com/postare/blade-mdi) by [Postare](https://github.com/postare)
+- [Blade Memory Icons](https://github.com/codeat3/blade-memory-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Mono Icons](https://github.com/codeat3/blade-mono-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Pepicons](https://github.com/codeat3/blade-pepicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
@@ -213,7 +217,7 @@ return [
 ];
 ```
 
-> **Warning**  
+> **Warning**
 > Always make sure you're pointing to existing directories.
 
 #### Multiple Paths
@@ -237,7 +241,7 @@ return [
 
 This gives you the benefit from grouping icons from different paths under a single set where you can define the same prefix and default classes.
 
-> **Warning**  
+> **Warning**
 > When using multiple paths instead of one, Blade Icons will return the first icon it finds when an icon name is present in more than one path. Please ensure you use unique icon names when registering multiple paths if you want to retrieve the correct icon.
 
 ### Filesystem Disk
@@ -306,7 +310,7 @@ return [
 ];
 ```
 
-> **Note**  
+> **Note**
 > There's one caveat when using fallback icons and that is that they don't work when using [Blade Components](#components). In this case, Laravel will throw an exception that the component cannot be found. If you want to make use of fallback icons please consider one of the other usages.
 
 ### Prefixing Icons
@@ -400,7 +404,7 @@ Or any other attributes for that matter:
 <x-icon-camera class="icon-lg" id="settings-icon" style="color: #555" data-baz/>
 ```
 
-> **Note**  
+> **Note**
 > With Blade components, using a prefix is always required, even when referencing icons from the default set.
 
 #### Deferring icons
@@ -423,7 +427,7 @@ This will push the icons to the stack "bladeicons", you should load this stack a
 </html>
 ```
 
-##### Using deferred icons in JavaScript 
+##### Using deferred icons in JavaScript
 
 You can re-use your icons from blade in your JavaScript rendered views by providing a custom defer value that will be used as an identifier:
 
