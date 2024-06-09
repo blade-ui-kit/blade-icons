@@ -118,6 +118,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade RPG Awesome Icons](https://github.com/codeat3/blade-rpg-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Simple Icons](https://github.com/ublabs/blade-simple-icons) by [Adrián UB](https://github.com/adrian-ub)
 - [Blade Simple Line Icons](https://github.com/codeat3/blade-simple-line-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Solar Icons](https://github.com/codeat3/blade-solar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
 - [Blade Teeny Icons](https://github.com/codeat3/blade-teeny-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
