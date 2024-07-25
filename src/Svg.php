@@ -54,7 +54,7 @@ final class Svg implements Htmlable
         $svgContent = Str::of($contents)
             ->replaceMatches('/<svg[^>]*>/', '')
             ->replaceMatches('/<\/svg>/', '')
-            ->toString();
+            ->__toString();
 
         // Force Unix line endings for hash.
         $hashContent = str_replace(PHP_EOL, "\n", $svgContent);
