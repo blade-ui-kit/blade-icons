@@ -6,6 +6,7 @@ namespace BladeUI\Icons;
 
 use BladeUI\Icons\Concerns\RendersAttributes;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Str;
 
 final class Svg implements Htmlable
 {
@@ -50,7 +51,7 @@ final class Svg implements Htmlable
             return $contents;
         }
 
-        $svgContent = str($contents)
+        $svgContent = Str::of($contents)
             ->replaceMatches('/<svg[^>]*>/', '')
             ->replaceMatches('/<\/svg>/', '')
             ->toString();
