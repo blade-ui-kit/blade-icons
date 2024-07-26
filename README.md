@@ -540,6 +540,38 @@ If you'd like, you can use the `svg` helper to expose a fluent syntax for settin
 {{ svg('camera')->id('settings-icon')->dataFoo('bar')->dataBaz() }}
 ```
 
+### Accessibility
+
+If the icon should have semantic meaning, a text alternative can be added with the title attribute. Refer to the [Usage](https://github.com/blade-ui-kit/blade-icons?tab=readme-ov-file#usage) section of this documentation to learn how to add an attribute.
+
+For almost all use cases, your icon will be assuming the role of an image. This means that deciding on if your icon has any semantic meaning, or what that semantic meaning is, you can use the [WCAG alt text decision tree](https://www.w3.org/WAI/tutorials/images/decision-tree/).
+
+If your icon has semantic meaning, using the title attribute will apply the following features to the SVG element:
+
+- Child element of `<title>` with a unique ID containing the value that was passed
+- `title` attribute containing the value that was passed
+- `role="img"`
+- `aria-labelledby` to refer to the unique ID of the title element
+
+Example result:
+
+```html
+<svg 
+	 title="Camera" 
+	 role="img" 
+	 aria-labelledby="svg-inline--title-ajx18rtJBjSu" 
+	 xmlns="http://www.w3.org/2000/svg"
+	 viewBox="0 0 448 512"
+>
+	<title id="svg-inline--title-ajx18rtJBjSu">
+		Camera
+	</title>
+	<path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+</svg>  
+```
+
+If your icon does not have semantic meaning, you may want to hide the icon to reduce overall document clutter. You may do this by adding `aria-hidden="true"` to your icon.
+
 ## Building Packages
 
 If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. We've created [a template repo for you to get started with](https://github.com/blade-ui-kit/blade-icons-template). You can find the getting started instructions in its readme.
