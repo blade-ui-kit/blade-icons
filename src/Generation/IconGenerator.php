@@ -18,7 +18,7 @@ final class IconGenerator
 
     public function __construct(array $sets)
     {
-        $this->filesystem = new Filesystem();
+        $this->filesystem = new Filesystem;
         $this->sets = $sets;
     }
 

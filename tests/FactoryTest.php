@@ -123,7 +123,7 @@ class FactoryTest extends TestCase
     public function default_icon_set_is_optional()
     {
         $factory = new Factory(
-            new Filesystem(),
+            new Filesystem,
             $this->app->make(IconsManifest::class),
             null,
             ['class' => 'icon icon-default'],
@@ -144,7 +144,7 @@ class FactoryTest extends TestCase
     public function icon_not_found_without_default_set_throws_proper_exception()
     {
         $factory = new Factory(
-            new Filesystem(),
+            new Filesystem,
             $this->app->make(IconsManifest::class),
             null,
             ['class' => 'icon icon-default'],
