@@ -52,6 +52,9 @@ final class Svg implements Htmlable
         // add aria-labelledby attribute to svg element
         $this->attributes['aria-labelledby'] = $titleId;
 
+        // add role attribute to svg element
+        $this->attributes['role'] = 'img';
+
         // add title element to svg
         return preg_replace('/<svg[^>]*>/', "$0$titleElement", $this->contents);
     }
