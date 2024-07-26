@@ -47,13 +47,13 @@ final class Svg implements Htmlable
         $titleId = 'svg-inline--title-'.Str::random(10);
 
         // create title element
-        $titleElement = '<title id='.$titleId.'>'.$title.'</title>';
+        $titleElement = '<title id="'.$titleId.'">'.$title.'</title>';
 
         // add aria-labelledby attribute to svg element
         $this->attributes['aria-labelledby'] = $titleId;
 
         // add title element to svg
-        return preg_replace('/<svg .+?(>)/', "$0 $titleElement", $this->contents);
+        return preg_replace('/<svg[^>]*>/', "$0$titleElement", $this->contents);
     }
 
     public function toHtml(): string
