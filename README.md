@@ -218,7 +218,7 @@ return [
 ];
 ```
 
-> **Warning**  
+> [!WARNING]  
 > Always make sure you're pointing to existing directories.
 
 #### Multiple Paths
@@ -242,7 +242,7 @@ return [
 
 This gives you the benefit from grouping icons from different paths under a single set where you can define the same prefix and default classes.
 
-> **Warning**
+> [!WARNING]
 > When using multiple paths instead of one, Blade Icons will return the first icon it finds when an icon name is present in more than one path. Please ensure you use unique icon names when registering multiple paths if you want to retrieve the correct icon.
 
 ### Filesystem Disk
@@ -311,7 +311,7 @@ return [
 ];
 ```
 
-> **Note**
+> [!NOTE]
 > There's one caveat when using fallback icons and that is that they don't work when using [Blade Components](#components). In this case, Laravel will throw an exception that the component cannot be found. If you want to make use of fallback icons please consider one of the other usages.
 
 ### Prefixing Icons
@@ -405,7 +405,7 @@ Or any other attributes for that matter:
 <x-icon-camera class="icon-lg" id="settings-icon" style="color: #555" data-baz/>
 ```
 
-> **Note**
+> [!NOTE]
 > With Blade components, using a prefix is always required, even when referencing icons from the default set.
 
 #### Deferring icons
@@ -428,7 +428,7 @@ This will push the icons to the stack "bladeicons", you should load this stack a
 </html>
 ```
 
-> **Warning**
+> [!WARNING]
 > Deferring icons is only possible using the `<x-icon>` component. This [feature doesn't work](https://github.com/blade-ui-kit/blade-icons/issues/194#issuecomment-1175156423) with the `@svg` Blade directive or the `svg()` helper function.
 
 ##### Using deferred icons in JavaScript
