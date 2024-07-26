@@ -210,10 +210,11 @@ class SvgTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_aria_labelledby_attribute_if_title_attribute_is_passed()
+    public function it_can_add_aria_labelledby_and_role_attributes_if_title_attribute_is_passed()
     {
         $svg = new Svg('heroicon-s-camera', '<svg></svg>', ['title' => 'Camera']);
 
         $this->assertStringContainsString('aria-labelledby="svg-inline--title-', $svg->toHtml());
+        $this->assertStringContainsString('role="img">', $svg->toHtml());
     }
 }
