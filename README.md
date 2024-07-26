@@ -218,7 +218,7 @@ return [
 ];
 ```
 
-> **Warning**
+> **Warning**  
 > Always make sure you're pointing to existing directories.
 
 #### Multiple Paths
