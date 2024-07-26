@@ -428,7 +428,8 @@ This will push the icons to the stack "bladeicons", you should load this stack a
 </html>
 ```
 
-Deferring icons is only possible using the `<x-icon>` component. This [feature doesn't work](https://github.com/blade-ui-kit/blade-icons/issues/194#issuecomment-1175156423) with the `@svg` Blade directive or the `svg()` helper function.
+> **Warning**
+> Deferring icons is only possible using the `<x-icon>` component. This [feature doesn't work](https://github.com/blade-ui-kit/blade-icons/issues/194#issuecomment-1175156423) with the `@svg` Blade directive or the `svg()` helper function.
 
 ##### Using deferred icons in JavaScript
 
