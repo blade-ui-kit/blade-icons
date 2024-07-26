@@ -44,13 +44,13 @@ final class Svg implements Htmlable
     public function addTitle(): string
     {
         // generate a random id for the title element
-        $title_id = 'svg-inline--title-'.Str::random(10);
+        $titleId = 'svg-inline--title-'.Str::random(10);
 
         // create title element
-        $title = '<title id='.$title_id.'>'.$this->attributes['title'].'</title>';
+        $title = '<title id='.$titleId.'>'.$this->attributes['title'].'</title>';
 
         // add aria-labelledby attribute to svg element
-        $this->attributes['aria-labelledby'] = $title_id;
+        $this->attributes['aria-labelledby'] = $titleId;
 
         // add title element to svg
         return preg_replace('/<svg .+?(>)/', "$0 $title", $this->contents);
