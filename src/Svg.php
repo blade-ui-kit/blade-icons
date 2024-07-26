@@ -6,6 +6,7 @@ namespace BladeUI\Icons;
 
 use BladeUI\Icons\Concerns\RendersAttributes;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Str;
 
 final class Svg implements Htmlable
 {
@@ -35,8 +36,33 @@ final class Svg implements Htmlable
         return $this->contents;
     }
 
+    /**
+     * This method adds a title element and an aria-labelledby attribute to the SVG.
+     * To comply with accessibility standards, SVGs should have a title element.
+     * Check accessibility patterns for icons: https://www.deque.com/blog/creating-accessible-svgs/
+     */
+    public function addTitle(): string
+    {
+        // generate a random id for the title element
+        $title_id = 'svg-inline--title-'.Str::random(10);
+
+        // create title element
+        $title = '<title id='.$title_id.'>'.$this->attributes['title'].'</title>';
+
+        // add aria-labelledby attribute to svg element
+        $this->attributes['aria-labelledby'] = $title_id;
+
+        // add title element to svg
+        return preg_replace('/<svg .+?(>)/', "$0 $title", $this->contents);
+    }
+
     public function toHtml(): string
     {
+        // Check if the title attribute is set and add a title element to the SVG
+        if (array_key_exists('title', $this->attributes)) {
+            $this->contents = $this->addTitle();
+        }
+
         return str_replace(
             '<svg',
             sprintf('<svg%s', $this->renderAttributes()),
