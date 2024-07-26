@@ -41,13 +41,13 @@ final class Svg implements Htmlable
      * To comply with accessibility standards, SVGs should have a title element.
      * Check accessibility patterns for icons: https://www.deque.com/blog/creating-accessible-svgs/
      */
-    public function addTitle(): string
+    public function addTitle(string $title): string
     {
         // generate a random id for the title element
         $titleId = 'svg-inline--title-'.Str::random(10);
 
         // create title element
-        $title = '<title id='.$titleId.'>'.$this->attributes['title'].'</title>';
+        $title = '<title id='.$titleId.'>'.$title.'</title>';
 
         // add aria-labelledby attribute to svg element
         $this->attributes['aria-labelledby'] = $titleId;
@@ -60,7 +60,7 @@ final class Svg implements Htmlable
     {
         // Check if the title attribute is set and add a title element to the SVG
         if (array_key_exists('title', $this->attributes)) {
-            $this->contents = $this->addTitle();
+            $this->contents = $this->addTitle($this->attributes['title']);
         }
 
         return str_replace(
