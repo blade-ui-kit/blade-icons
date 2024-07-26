@@ -6,6 +6,7 @@ namespace BladeUI\Icons;
 
 use BladeUI\Icons\Concerns\RendersAttributes;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Str;
 
 final class Svg implements Htmlable
 {
@@ -50,7 +51,10 @@ final class Svg implements Htmlable
             return $contents;
         }
 
-        $svgContent = strip_tags($contents, ['circle', 'ellipse', 'line', 'path', 'polygon', 'polyline', 'rect', 'g', 'mask', 'defs', 'use']);
+        $svgContent = Str::of($contents)
+            ->replaceMatches('/<svg[^>]*>/', '')
+            ->replaceMatches('/<\/svg>/', '')
+            ->__toString();
 
         // Force Unix line endings for hash.
         $hashContent = str_replace(PHP_EOL, "\n", $svgContent);
