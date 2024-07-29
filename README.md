@@ -553,6 +553,14 @@ If your icon has semantic meaning, using the title attribute will apply the foll
 - `role="img"`
 - `aria-labelledby` to refer to the unique ID of the title element
 
+Example usage:
+
+```blade
+<x-icon-camera title="camera" />
+
+@svg('camera', ['title' => 'camera'])
+```
+
 Example result:
 
 ```html
