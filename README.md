@@ -542,7 +542,7 @@ If you'd like, you can use the `svg` helper to expose a fluent syntax for settin
 
 ### Accessibility
 
-If the icon should have semantic meaning, a text alternative can be added with the title attribute. Refer to the [Usage](https://github.com/blade-ui-kit/blade-icons?tab=readme-ov-file#usage) section of this documentation to learn how to add an attribute.
+If the icon should have semantic meaning, a text alternative can be added with the title attribute. Refer to the [Usage](https://github.com/blade-ui-kit/blade-icons#usage) section of this documentation to learn how to add an attribute.
 
 For almost all use cases, your icon will be assuming the role of an image. This means that deciding on if your icon has any semantic meaning, or what that semantic meaning is, you can use the [WCAG alt text decision tree](https://www.w3.org/WAI/tutorials/images/decision-tree/).
 
