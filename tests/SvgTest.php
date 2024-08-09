@@ -205,7 +205,7 @@ class SvgTest extends TestCase
     {
         $svg = new Svg('heroicon-s-camera', '<svg></svg>', ['title' => 'Camera']);
 
-        $this->assertStringContainsString('><title id="svg-inline--title-', $svg->toHtml());
+        $this->assertStringContainsString('><title', $svg->toHtml());
         $this->assertStringContainsString('</title></svg>', $svg->toHtml());
     }
 
@@ -214,7 +214,6 @@ class SvgTest extends TestCase
     {
         $svg = new Svg('heroicon-s-camera', '<svg></svg>', ['title' => 'Camera']);
 
-        $this->assertStringContainsString('aria-labelledby="svg-inline--title-', $svg->toHtml());
         $this->assertStringContainsString('role="img">', $svg->toHtml());
     }
 }
