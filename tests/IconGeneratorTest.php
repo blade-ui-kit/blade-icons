@@ -14,7 +14,7 @@ class IconGeneratorTest extends TestCase
 
     private function clearResultsDirectory(): void
     {
-        $fs = new Filesystem();
+        $fs = new Filesystem;
 
         if ($fs->isDirectory(static::RESULT_DIR)) {
             $fs->deleteDirectory(static::RESULT_DIR);

@@ -40,7 +40,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
             $config = $app->make('config')->get('blade-icons', []);
 
             $factory = new Factory(
-                new Filesystem(),
+                new Filesystem,
                 $app->make(IconsManifest::class),
                 $app->make(FilesystemFactory::class),
                 $config,
@@ -71,7 +71,7 @@ final class BladeIconsServiceProvider extends ServiceProvider
     {
         $this->app->singleton(IconsManifest::class, function (Application $app) {
             return new IconsManifest(
-                new Filesystem(),
+                new Filesystem,
                 $this->manifestPath(),
                 $app->make(FilesystemFactory::class),
             );

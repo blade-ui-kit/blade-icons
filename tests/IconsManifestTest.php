@@ -39,7 +39,7 @@ class IconsManifestTest extends TestCase
     /** @test */
     public function it_can_write_the_manifest_file()
     {
-        $manifest = new IconsManifest(new Filesystem(), $this->manifestPath);
+        $manifest = new IconsManifest(new Filesystem, $this->manifestPath);
         $manifest->write($this->prepareSets()->all());
 
         $this->assertTrue(file_exists($this->manifestPath));
@@ -56,7 +56,7 @@ class IconsManifestTest extends TestCase
     /** @test */
     public function it_can_delete_the_manifest_file()
     {
-        $manifest = new IconsManifest(new Filesystem(), $this->manifestPath);
+        $manifest = new IconsManifest(new Filesystem, $this->manifestPath);
         $manifest->write([]);
 
         $this->assertTrue(file_exists($this->manifestPath));
@@ -67,7 +67,7 @@ class IconsManifestTest extends TestCase
     /** @test */
     public function it_throws_an_exceptiion_when_the_manifest_path_is_not_present_or_writable()
     {
-        $manifest = new IconsManifest(new Filesystem(), '/foo/bar.php');
+        $manifest = new IconsManifest(new Filesystem, '/foo/bar.php');
 
         try {
             $manifest->write([]);
@@ -83,7 +83,7 @@ class IconsManifestTest extends TestCase
     /** @test */
     public function it_can_get_the_manifest()
     {
-        $manifest = new IconsManifest(new Filesystem(), $this->manifestPath);
+        $manifest = new IconsManifest(new Filesystem, $this->manifestPath);
 
         $this->assertSame([], $manifest->getManifest([]));
     }

@@ -19,7 +19,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function prepareSets(array $config = [], array $setOptions = []): Factory
     {
         $factory = new Factory(
-            new Filesystem(),
+            new Filesystem,
             $this->app->make(IconsManifest::class),
             $this->app->make(FilesystemFactory::class),
             $config,

@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.6.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.7.0...1.x)
+
+## [1.7.0](https://github.com/blade-ui-kit/blade-icons/compare/1.6.1...1.7.0) - 2024-07-29
+
+* Accessible SVG icons: Add title tag inside SVG if the title attribute is set by [@aarishgilani](https://github.com/aarishgilani) in https://github.com/blade-ui-kit/blade-icons/pull/245
+
+## [1.6.1](https://github.com/blade-ui-kit/blade-icons/compare/1.6.0...1.6.1) - 2024-07-26
+
+* Icon deferring; match all SVG tags by [@royduin](https://github.com/royduin) in https://github.com/blade-ui-kit/blade-icons/pull/244
 
 ## [1.6.0](https://github.com/blade-ui-kit/blade-icons/compare/1.5.3...1.6.0) - 2024-02-07
 
