@@ -43,14 +43,8 @@ final class Svg implements Htmlable
      */
     public function addTitle(string $title): string
     {
-        // generate a random id for the title element
-        $titleId = 'svg-inline--title-'.Str::random(10);
-
         // create title element
-        $titleElement = '<title id="'.$titleId.'">'.$title.'</title>';
-
-        // add aria-labelledby attribute to svg element
-        $this->attributes['aria-labelledby'] = $titleId;
+        $titleElement = '<title>'.$title.'</title>';
 
         // add role attribute to svg element
         $this->attributes['role'] = 'img';
