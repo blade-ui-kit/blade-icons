@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.7.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.7.1...1.x)
+
+## [1.7.1](https://github.com/blade-ui-kit/blade-icons/compare/1.7.0...1.7.1) - 2024-08-14
+
+* Remove labelled-by attribute from SVG when title attribute is passed  by [@aarishgilani](https://github.com/aarishgilani) in https://github.com/blade-ui-kit/blade-icons/pull/249
 
 ## [1.7.0](https://github.com/blade-ui-kit/blade-icons/compare/1.6.1...1.7.0) - 2024-07-29
 
