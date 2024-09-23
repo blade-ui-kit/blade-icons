@@ -58,6 +58,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Boxicons](https://github.com/mallardduck/blade-boxicons) by [Dan Pock](https://github.com/mallardduck)
 - [Blade Bytesize Icons](https://github.com/codeat3/blade-bytesize-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Carbon Icons](https://github.com/codeat3/blade-carbon-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Circle Flags](https://github.com/fahrim/blade-circle-flags) by [Fahri Meral](https://github.com/fahrim)
 - [Blade Clarity Icons](https://github.com/codeat3/blade-clarity-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Coolicons](https://github.com/codeat3/blade-coolicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade CoreUI Icons](https://github.com/ublabs/blade-coreui-icons) by [Adrián UB](https://github.com/adrian-ub)
