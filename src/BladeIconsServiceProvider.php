@@ -90,6 +90,14 @@ final class BladeIconsServiceProvider extends ServiceProvider
                 Console\CacheCommand::class,
                 Console\ClearCommand::class,
             ]);
+
+            if (method_exists($this, 'optimizes')) {
+                $this->optimizes(
+                    'icons:cache',
+                    'icons:clear',
+                    'blade-icons'
+                );
+            }
         }
     }
 
