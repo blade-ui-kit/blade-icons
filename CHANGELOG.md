@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.7.1...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.7.2...1.x)
+
+## [1.7.2](https://github.com/blade-ui-kit/blade-icons/compare/1.7.1...1.7.2) - 2024-10-17
+
+* Register optimize commands by [@erikgaal](https://github.com/erikgaal) in https://github.com/blade-ui-kit/blade-icons/pull/253
 
 ## [1.7.1](https://github.com/blade-ui-kit/blade-icons/compare/1.7.0...1.7.1) - 2024-08-14
 
