@@ -93,9 +93,9 @@ final class BladeIconsServiceProvider extends ServiceProvider
 
             if (method_exists($this, 'optimizes')) {
                 $this->optimizes(
-                    optimize: 'icons:cache',
-                    clear: 'icons:clear',
-                    key: 'blade-icons'
+                    'icons:cache',
+                    'icons:clear',
+                    'blade-icons'
                 );
             }
         }
