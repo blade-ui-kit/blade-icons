@@ -6,7 +6,9 @@ namespace BladeUI\Icons\Console;
 
 use BladeUI\Icons\IconsManifest;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'icons:clear')]
 final class ClearCommand extends Command
 {
     /**
@@ -23,11 +25,12 @@ final class ClearCommand extends Command
      */
     protected $description = 'Remove the blade icons manifest file';
 
+    
     public function handle(IconsManifest $manifest): int
     {
         $manifest->delete();
-
-        $this->info('Blade icons manifest file cleared!');
+        
+        $this->components->info('Cached blade icons cleared successfully.');
 
         return 0;
     }
