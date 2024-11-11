@@ -30,7 +30,7 @@ final class CacheCommand extends Command
     {
         $manifest->write($factory->all());
 
-        $this->component->info('Blade icons cached successfully.');
+        $this->components->info('Blade icons cached successfully.');
 
         return 0;
     }
