@@ -26,15 +26,12 @@ final class CacheCommand extends Command
      */
     protected $description = 'Discover icon sets and generate a manifest file';
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle(Factory $factory, IconsManifest $manifest)
+    public function handle(Factory $factory, IconsManifest $manifest): int
     {
         $manifest->write($factory->all());
 
         $this->component->info('Blade icons cached successfully.');
+
+        return 0;
     }
 }
