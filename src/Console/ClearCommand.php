@@ -25,7 +25,6 @@ final class ClearCommand extends Command
      */
     protected $description = 'Remove the blade icons manifest file';
 
-    
     public function handle(IconsManifest $manifest): int
     {
         $manifest->delete();
