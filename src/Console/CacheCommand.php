@@ -8,6 +8,7 @@ use BladeUI\Icons\Factory;
 use BladeUI\Icons\IconsManifest;
 use Illuminate\Console\Command;
 
+#[AsCommand(name: 'icons:cache')]
 final class CacheCommand extends Command
 {
     /**
@@ -24,12 +25,15 @@ final class CacheCommand extends Command
      */
     protected $description = 'Discover icon sets and generate a manifest file';
 
-    public function handle(Factory $factory, IconsManifest $manifest): int
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle(Factory $factory, IconsManifest $manifest)
     {
         $manifest->write($factory->all());
 
-        $this->info('Blade icons manifest file generated successfully!');
-
-        return 0;
+        $this->component->info('Blade icons cached successfully.');
     }
 }
