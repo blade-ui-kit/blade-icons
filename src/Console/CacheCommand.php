@@ -7,6 +7,7 @@ namespace BladeUI\Icons\Console;
 use BladeUI\Icons\Factory;
 use BladeUI\Icons\IconsManifest;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'icons:cache')]
 final class CacheCommand extends Command
