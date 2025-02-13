@@ -20,7 +20,7 @@ class IconsManifestTest extends TestCase
         @unlink($this->manifestPath);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
 
