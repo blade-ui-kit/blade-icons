@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.7.2...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.8.0...1.x)
+
+## [1.8.0](https://github.com/blade-ui-kit/blade-icons/compare/1.7.2...1.8.0) - 2025-02-13
+
+* Laravel v12 support by [@driesvints](https://github.com/driesvints) in https://github.com/blade-ui-kit/blade-icons/pull/261
 
 ## [1.7.2](https://github.com/blade-ui-kit/blade-icons/compare/1.7.1...1.7.2) - 2024-10-17
 
