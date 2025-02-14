@@ -131,6 +131,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Iranian Brands Icons](https://github.com/rezadindar/blade-iranian-brands-icons) by [MRDindar](https://github.com/rezadindar)
 
 ## Requirements
 
