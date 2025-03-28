@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report a general library issue.
-labels: [bug]
+type: Bug
 body:
 - type: input
   attributes:
