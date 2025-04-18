@@ -2,11 +2,11 @@
     "name": "blade-ui-kit/blade-icons",
     "description": "A package to easily make use of icons in your Laravel Blade views.",
     "keywords": ["Blade", "Icons", "Laravel", "SVG"],
-    "homepage": "https://github.com/blade-ui-kit/blade-icons",
+    "homepage": "https://github.com/driesvints/blade-icons",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/blade-ui-kit/blade-icons/issues",
-        "source": "https://github.com/blade-ui-kit/blade-icons"
+        "issues": "https://github.com/driesvints/blade-icons/issues",
+        "source": "https://github.com/driesvints/blade-icons"
     },
     "authors": [
         {
