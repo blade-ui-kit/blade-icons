@@ -4,11 +4,11 @@
 
 # Blade Icons
 
-<a href="https://github.com/blade-ui-kit/blade-icons/actions?query=workflow%3ATests">
-    <img src="https://github.com/blade-ui-kit/blade-icons/workflows/Tests/badge.svg" alt="Tests">
+<a href="https://github.com/driesvints/blade-icons/actions?query=workflow%3ATests">
+    <img src="https://github.com/driesvints/blade-icons/workflows/Tests/badge.svg" alt="Tests">
 </a>
-<a href="https://github.com/blade-ui-kit/blade-icons/actions/workflows/coding-standards.yml">
-    <img src="https://github.com/blade-ui-kit/blade-icons/actions/workflows/coding-standards.yml/badge.svg" alt="Coding Standards" />
+<a href="https://github.com/driesvints/blade-icons/actions/workflows/coding-standards.yml">
+    <img src="https://github.com/driesvints/blade-icons/actions/workflows/coding-standards.yml/badge.svg" alt="Coding Standards" />
 </a>
 <a href="https://packagist.org/packages/blade-ui-kit/blade-icons">
     <img src="https://img.shields.io/packagist/v/blade-ui-kit/blade-icons" alt="Latest Stable Version">
@@ -132,7 +132,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Vaadin Icons](https://github.com/codeat3/blade-vaadin-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade VSCode Codicons](https://github.com/codeat3/blade-codicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Weather Icons](https://github.com/codeat3/blade-weather-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
-- [Blade Zondicons](https://github.com/blade-ui-kit/blade-zondicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Zondicons](https://github.com/codeat3/blade-zondicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 
 ## Requirements
 
@@ -546,7 +546,7 @@ If you'd like, you can use the `svg` helper to expose a fluent syntax for settin
 
 ### Accessibility
 
-If the icon should have semantic meaning, a text alternative can be added with the title attribute. Refer to the [Usage](https://github.com/blade-ui-kit/blade-icons#usage) section of this documentation to learn how to add an attribute.
+If the icon should have semantic meaning, a text alternative can be added with the title attribute. Refer to the [Usage](https://github.com/driesvints/blade-icons#usage) section of this documentation to learn how to add an attribute.
 
 For almost all use cases, your icon will be assuming the role of an image. This means that deciding on if your icon has any semantic meaning, or what that semantic meaning is, you can use the [WCAG alt text decision tree](https://www.w3.org/WAI/tutorials/images/decision-tree/).
 
@@ -585,7 +585,7 @@ If your icon does not have semantic meaning, you may want to hide the icon to re
 
 ## Building Packages
 
-If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. We've created [a template repo for you to get started with](https://github.com/blade-ui-kit/blade-icons-template). You can find the getting started instructions in its readme.
+If you're interested in building your own third party package to integrate an icon set, it's pretty easy to do so. We've created [a template repo for you to get started with](https://github.com/driesvints/blade-icons-template). You can find the getting started instructions in its readme.
 
 If you want to learn how to create packages we can recommend these two excellent courses:
 
@@ -665,7 +665,7 @@ return [
 ];
 ```
 
-See [an example `config/generation.php` file](https://github.com/blade-ui-kit/blade-heroicons/blob/main/config/generation.php) for the Heroicons package.
+See [an example `config/generation.php` file](https://github.com/driesvints/blade-heroicons/blob/main/config/generation.php) for the Heroicons package.
 
 After setting up your config file you can use the icon generation as follow from the root of your icon package directory:
 
