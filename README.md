@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/driesvints/art/blob/main/socialcard-blade-icons.png" width="1280" title="Social Card Blade UI Kit">
+    <img src="https://github.com/driesvints/blade-icons/blob/main/art/socialcard-blade-icons.png" width="1280" title="Social Card Blade UI Kit">
 </p>
 
 # Blade Icons
