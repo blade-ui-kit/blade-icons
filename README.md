@@ -1,7 +1,3 @@
-<p align="center">
-    <img src="https://github.com/driesvints/blade-icons/blob/1.x/art/socialcard-blade-icons.png" width="1280" title="Social Card Blade UI Kit">
-</p>
-
 # Blade Icons
 
 <a href="https://github.com/driesvints/blade-icons/actions?query=workflow%3ATests">
