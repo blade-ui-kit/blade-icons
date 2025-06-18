@@ -108,6 +108,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Memory Icons](https://github.com/codeat3/blade-memory-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Mono Icons](https://github.com/codeat3/blade-mono-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Payment Logos](https://github.com/isap-ou/blade-payment-logos) by [Andrii Trush](https://github.com/isap-ou)
 - [Blade Pepicons](https://github.com/codeat3/blade-pepicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Phosphor icons](https://github.com/codeat3/blade-phosphor-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Pixelarticons](https://github.com/codeat3/blade-pixelarticons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
