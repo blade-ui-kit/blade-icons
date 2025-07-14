@@ -121,7 +121,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Simple Line Icons](https://github.com/codeat3/blade-simple-line-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Solar Icons](https://github.com/codeat3/blade-solar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade System UIcons](https://github.com/codeat3/blade-system-uicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
-- [Blade Tabler Icons](https://github.com/ryangjchandler/blade-tabler-icons) by [Ryan Chandler](https://github.com/ryangjchandler)
+- [Blade Tabler Icons](https://github.com/secondnetwork/blade-tabler-icons) by [Andreas Farah](https://github.com/secondnetwork)
 - [Blade Teeny Icons](https://github.com/codeat3/blade-teeny-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Typicons](https://github.com/codeat3/blade-typicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Uiw Icons](https://github.com/codeat3/blade-uiw-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
