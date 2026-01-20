@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.8.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.8.1...1.x)
+
+## [1.8.1](https://github.com/blade-ui-kit/blade-icons/compare/1.8.0...1.8.1) - 2026-01-20
+
+* Fix "unable to locate" error by [@ringform](https://github.com/ringform) in https://github.com/driesvints/blade-icons/pull/276
 
 ## [1.8.0](https://github.com/blade-ui-kit/blade-icons/compare/1.7.2...1.8.0) - 2025-02-13
 
