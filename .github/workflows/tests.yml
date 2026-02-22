@@ -1,4 +1,4 @@
-name: Tests
+name: 'Tests '
 
 on:
   push:
@@ -12,7 +12,6 @@ on:
 jobs:
   ubuntu:
     runs-on: ubuntu-latest
-
 
     strategy:
       fail-fast: true
@@ -59,14 +58,11 @@ jobs:
           - laravel: '13'
             php: 8.2
 
-
     name: Ubuntu - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
-
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -75,12 +71,10 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip
           coverage: none
 
-
       - name: Install dependencies
         run: |
           composer require "illuminate/contracts=^${{ matrix.laravel }}" --prefer-dist --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-progress
-
 
       - name: Execute tests
         run: vendor/bin/phpunit
@@ -88,21 +82,17 @@ jobs:
   windows:
     runs-on: windows-latest
 
-
     strategy:
       fail-fast: true
       matrix:
         php: [8.5]
         laravel: [10, 11, 13]
 
-
     name: Windows - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
-
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -111,12 +101,10 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, gd, pdo_mysql, fileinfo, ftp, gmp
           coverage: none
 
-
       - name: Install dependencies
         run: |
           composer require "illuminate/contracts=${{ matrix.laravel }}.*" --prefer-dist --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-progress
-
 
       - name: Execute tests
         run: vendor/bin/phpunit
