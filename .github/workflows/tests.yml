@@ -86,7 +86,7 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.5]
-        laravel: [10, 11, 12]
+        laravel: [10, 11, 12, 13]
 
     name: Windows - PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
