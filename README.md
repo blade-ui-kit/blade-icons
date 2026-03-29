@@ -118,6 +118,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Pepicons](https://github.com/codeat3/blade-pepicons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Phosphor icons](https://github.com/codeat3/blade-phosphor-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Pixelarticons](https://github.com/codeat3/blade-pixelarticons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade PixelIcon Icons](https://github.com/daljo25/blade-pixelicon-icons) by [Daljomar Morillo](https://github.com/daljo25/)
 - [Blade Polaris Icons](https://github.com/Eduard9969/blade-polaris-icons) by [Samoilenko Eduard](https://github.com/Eduard9969)
 - [Blade Prime Icons](https://github.com/codeat3/blade-prime-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Radix Icons](https://github.com/codeat3/blade-radix-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
