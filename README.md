@@ -123,6 +123,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Radix Icons](https://github.com/codeat3/blade-radix-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Remix Icon](https://github.com/andreiio/blade-remix-icon) by [Andrei Ioniță](https://github.com/andreiio)
 - [Blade RPG Awesome Icons](https://github.com/codeat3/blade-rpg-awesome-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Selfh.st Icons](https://github.com/RobertBoes/blade-selfhst-icons) by [Robert Boes](https://github.com/RobertBoes)
 - [Blade Simple Icons](https://github.com/ublabs/blade-simple-icons) by [Adrián UB](https://github.com/adrian-ub)
 - [Blade Simple Line Icons](https://github.com/codeat3/blade-simple-line-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Solar Icons](https://github.com/codeat3/blade-solar-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
