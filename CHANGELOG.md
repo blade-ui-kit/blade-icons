@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.9.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.9.1...1.x)
+
+## [1.9.1](https://github.com/blade-ui-kit/blade-icons/compare/1.9.0...1.9.1) - 2026-04-07
+
+* Modify component registration in console commands #286 by [@sweebee](https://github.com/sweebee) in https://github.com/driesvints/blade-icons/pull/287
 
 ## [1.9.0](https://github.com/blade-ui-kit/blade-icons/compare/1.8.1...1.9.0) - 2026-02-23
 
