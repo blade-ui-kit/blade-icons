@@ -70,12 +70,13 @@ final class BladeIconsServiceProvider extends ServiceProvider
         // that may compile views before ViewFactory is resolved
         if ($this->app->runningInConsole() && ! $this->app->environment('testing')) {
             $this->app->booted(function (Application $app) {
-                // Only register components for commands that compile views, to avoid                                                                                                                                                                                                                                                      
-                // scanning all icon files on every CLI invocation.  
+                // Only register components for commands that compile views, to avoid
+                // scanning all icon files on every CLI invocation.
                 if (in_array($_SERVER['argv'][1] ?? null, ['optimize', 'view:cache', 'icons:cache'])) {
                     try {
                         $app->make(Factory::class)->registerComponents();
-                    } catch (\Exception $e) {}
+                    } catch (\Exception $e) {
+                    }
                 }
             });
         }
