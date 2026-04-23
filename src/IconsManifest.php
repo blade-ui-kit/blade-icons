@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace BladeUI\Icons;
 
 use Exception;
+use FilesystemIterator;
 use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use Symfony\Component\Finder\SplFileInfo;
 
 final class IconsManifest
@@ -33,33 +36,83 @@ final class IconsManifest
 
         foreach ($sets as $name => $set) {
             $icons = [];
+            $disk = $set['disk'] ?? null;
 
             foreach ($set['paths'] as $path) {
-                $icons[$path] = [];
+                $found = $disk
+                    ? $this->scanDisk($disk, $path)
+                    : $this->scanLocal($path);
 
-                foreach ($this->filesystem($set['disk'] ?? null)->allFiles($path) as $file) {
-                    if ($file instanceof SplFileInfo) {
-                        if ($file->getExtension() !== 'svg') {
-                            continue;
-                        }
+                sort($found);
 
-                        $icons[$path][] = $this->format($file->getPathName(), $path);
-                    } else {
-                        if (! Str::endsWith($file, '.svg')) {
-                            continue;
-                        }
-
-                        $icons[$path][] = $this->format($file, $path);
-                    }
-                }
-
-                $icons[$path] = array_unique($icons[$path]);
+                $icons[$path] = $found;
             }
 
             $compiled[$name] = array_filter($icons);
         }
 
         return $compiled;
+    }
+
+    /**
+     * Fast local-filesystem scan. Bypasses Symfony Finder (used by
+     * Illuminate\Filesystem\Filesystem::allFiles) because it adds significant
+     * per-file overhead for large icon libraries where a single set can hold
+     * tens of thousands of SVGs.
+     */
+    private function scanLocal(string $path): array
+    {
+        if (! is_dir($path)) {
+            return [];
+        }
+
+        $seen = [];
+        $prefixLength = strlen($path) + 1;
+
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)
+        );
+
+        foreach ($iterator as $file) {
+            $pathname = $file->getPathname();
+
+            if (substr($pathname, -4) !== '.svg') {
+                continue;
+            }
+
+            $relative = substr($pathname, $prefixLength, -4);
+
+            if (DIRECTORY_SEPARATOR !== '.') {
+                $relative = str_replace(DIRECTORY_SEPARATOR, '.', $relative);
+            }
+
+            $seen[$relative] = true;
+        }
+
+        return array_keys($seen);
+    }
+
+    private function scanDisk(string $disk, string $path): array
+    {
+        $seen = [];
+
+        foreach ($this->filesystem($disk)->allFiles($path) as $file) {
+            if ($file instanceof SplFileInfo) {
+                if ($file->getExtension() !== 'svg') {
+                    continue;
+                }
+
+                $seen[$this->format($file->getPathName(), $path)] = true;
+            } else {
+                if (! Str::endsWith($file, '.svg')) {
+                    continue;
+                }
+
+                $seen[$this->format($file, $path)] = true;
+            }
+        }
+
+        return array_keys($seen);
     }
 
     /**
@@ -105,9 +158,11 @@ final class IconsManifest
             throw new Exception("The {$dirname} directory must be present and writable.");
         }
 
+        $this->manifest = $this->build($sets);
+
         $this->filesystem->replace(
             $this->manifestPath,
-            '<?php return '.var_export($this->build($sets), true).';',
+            '<?php return '.var_export($this->manifest, true).';',
         );
     }
 }
