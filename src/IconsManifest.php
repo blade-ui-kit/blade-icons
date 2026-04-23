@@ -35,7 +35,7 @@ final class IconsManifest
             $icons = [];
 
             foreach ($set['paths'] as $path) {
-                $icons[$path] = [];
+                $seen = [];
 
                 foreach ($this->filesystem($set['disk'] ?? null)->allFiles($path) as $file) {
                     if ($file instanceof SplFileInfo) {
@@ -43,17 +43,17 @@ final class IconsManifest
                             continue;
                         }
 
-                        $icons[$path][] = $this->format($file->getPathName(), $path);
+                        $seen[$this->format($file->getPathName(), $path)] = true;
                     } else {
                         if (! Str::endsWith($file, '.svg')) {
                             continue;
                         }
 
-                        $icons[$path][] = $this->format($file, $path);
+                        $seen[$this->format($file, $path)] = true;
                     }
                 }
 
-                $icons[$path] = array_unique($icons[$path]);
+                $icons[$path] = array_keys($seen);
             }
 
             $compiled[$name] = array_filter($icons);
@@ -105,9 +105,11 @@ final class IconsManifest
             throw new Exception("The {$dirname} directory must be present and writable.");
         }
 
+        $this->manifest = $this->build($sets);
+
         $this->filesystem->replace(
             $this->manifestPath,
-            '<?php return '.var_export($this->build($sets), true).';',
+            '<?php return '.var_export($this->manifest, true).';',
         );
     }
 }
