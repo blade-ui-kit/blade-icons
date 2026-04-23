@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.9.1...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.10.0...1.x)
+
+## [1.10.0](https://github.com/blade-ui-kit/blade-icons/compare/1.9.1...1.10.0) - 2026-04-23
+
+* Optimized `php artisan icons:cache` by [@RyanPaiva56](https://github.com/RyanPaiva56) in https://github.com/driesvints/blade-icons/pull/288
 
 ## [1.9.1](https://github.com/blade-ui-kit/blade-icons/compare/1.9.0...1.9.1) - 2026-04-07
 
