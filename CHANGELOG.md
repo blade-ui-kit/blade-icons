@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.10.0...1.x)
+## [Unreleased](https://github.com/blade-ui-kit/blade-icons/compare/1.10.1...1.x)
+
+## [1.10.1](https://github.com/blade-ui-kit/blade-icons/compare/1.10.0...1.10.1) - 2026-06-30
+
+* Remove `testing` env check by [@tanerkay](https://github.com/tanerkay) in https://github.com/driesvints/blade-icons/pull/290
 
 ## [1.10.0](https://github.com/blade-ui-kit/blade-icons/compare/1.9.1...1.10.0) - 2026-04-23
 
