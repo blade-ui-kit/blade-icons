@@ -112,6 +112,7 @@ We're not accepting requests to build new icon packages ourselves but you can [s
 - [Blade Maki Icons](https://github.com/codeat3/blade-maki-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Material Design Icons](https://github.com/postare/blade-mdi) by [Postare](https://github.com/postare)
 - [Blade Memory Icons](https://github.com/codeat3/blade-memory-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
+- [Blade Meteocons](https://github.com/tempi-marathon/blade-meteocons) by [tempi-marathon](https://github.com/tempi-marathon)
 - [Blade Microns](https://github.com/codeat3/blade-microns) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Mono Icons](https://github.com/codeat3/blade-mono-icons) by [Swapnil Sarwe](https://github.com/swapnilsarwe)
 - [Blade Payment Logos](https://github.com/isap-ou/blade-payment-logos) by [Andrii Trush](https://github.com/isap-ou)
